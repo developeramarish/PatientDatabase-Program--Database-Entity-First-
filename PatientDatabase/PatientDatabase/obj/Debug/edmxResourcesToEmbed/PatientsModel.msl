@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PatientDatabaseModelStoreContainer" CdmEntityContainer="PatientDatabaseEntities">
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="First_Name" ColumnName="First Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+          <ScalarProperty Name="Date_Entered_Into_System" ColumnName="Date Entered Into System" />
+          <ScalarProperty Name="Middle_Name" ColumnName="Middle Name" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip_Code" ColumnName="Zip Code" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Last_Visit" ColumnName="Last Visit" />
+          <ScalarProperty Name="First_Visit" ColumnName="First Visit" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Date_of_Birth" ColumnName="Date of Birth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pathologies">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Pathology">
+        <MappingFragment StoreEntitySet="Pathology">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientPathologies">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientPathology">
+        <MappingFragment StoreEntitySet="PatientPathology">
+          <ScalarProperty Name="PathologyID" ColumnName="PathologyID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medications">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Medication">
+        <MappingFragment StoreEntitySet="Medication">
+          <ScalarProperty Name="Morphine_Equivalent__mg_" ColumnName="Morphine Equivalent (mg)" />
+          <ScalarProperty Name="Short_Acting" ColumnName="Short Acting" />
+          <ScalarProperty Name="Sustained_Release" ColumnName="Sustained Release" />
+          <ScalarProperty Name="Generic_Name" ColumnName="Generic Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientMedications">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientMedication">
+        <MappingFragment StoreEntitySet="PatientMedication">
+          <ScalarProperty Name="Mg" ColumnName="Mg" />
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
+          <ScalarProperty Name="MedicationID" ColumnName="MedicationID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Past_Medical_History">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Past_Medical_History">
+        <MappingFragment StoreEntitySet="Past_Medical_History">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientPast_Medical_History">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientPast_Medical_History">
+        <MappingFragment StoreEntitySet="PatientPast_Medical_History">
+          <ScalarProperty Name="Past_Medical_HistoryID" ColumnName="Past_Medical_HistoryID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientProblems">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientProblem">
+        <MappingFragment StoreEntitySet="PatientProblem">
+          <ScalarProperty Name="Primary" ColumnName="Primary" />
+          <ScalarProperty Name="ProblemID" ColumnName="ProblemID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientSurgeries">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientSurgery">
+        <MappingFragment StoreEntitySet="PatientSurgery">
+          <ScalarProperty Name="Date_Received" ColumnName="Date Received" />
+          <ScalarProperty Name="SurgeryID" ColumnName="SurgeryID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientTraumas">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientTrauma">
+        <MappingFragment StoreEntitySet="PatientTrauma">
+          <ScalarProperty Name="TraumaID" ColumnName="TraumaID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientTreatments">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientTreatment">
+        <MappingFragment StoreEntitySet="PatientTreatment">
+          <ScalarProperty Name="Date_Ended" ColumnName="Date Ended" />
+          <ScalarProperty Name="Date_Started" ColumnName="Date Started" />
+          <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Problems">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Problem">
+        <MappingFragment StoreEntitySet="Problem">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Surgeries">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Surgery">
+        <MappingFragment StoreEntitySet="Surgery">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Traumata">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Trauma">
+        <MappingFragment StoreEntitySet="Trauma">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Treatments">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Treatment">
+        <MappingFragment StoreEntitySet="Treatment">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

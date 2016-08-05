@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PatientDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Medication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Morphine Equivalent (mg)" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Generic Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sustained Release" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Short Acting" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Past_Medical_History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pathology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Last Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="First Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Middle Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sex" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Date of Birth" Type="date" Nullable="false" />
+    <Property Name="Date Entered Into System" Type="date" Nullable="false" />
+    <Property Name="First Visit" Type="date" Nullable="false" />
+    <Property Name="Last Visit" Type="date" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Zip Code" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientMedication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="MedicationID" Type="int" Nullable="false" />
+    <Property Name="Mg" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Start Date" Type="date" Nullable="false" />
+    <Property Name="End Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientPast_Medical_History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="Past_Medical_HistoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientPathology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="PathologyID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientProblem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="ProblemID" Type="int" Nullable="false" />
+    <Property Name="Primary" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientSurgery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="SurgeryID" Type="int" Nullable="false" />
+    <Property Name="Date Received" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientTrauma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="TraumaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientTreatment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="TreatmentID" Type="int" Nullable="false" />
+    <Property Name="Date Started" Type="date" Nullable="false" />
+    <Property Name="Date Ended" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Problem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Surgery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trauma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Treatment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PatientMedication_ToMedication">
+    <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+    <End Role="PatientMedication" Type="Self.PatientMedication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medication">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientMedication">
+        <PropertyRef Name="MedicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientMedication_ToPatient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientMedication" Type="Self.PatientMedication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientMedication">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientPast_Medical_History_ToPast_Medical_History">
+    <End Role="Past_Medical_History" Type="Self.Past_Medical_History" Multiplicity="1" />
+    <End Role="PatientPast_Medical_History" Type="Self.PatientPast_Medical_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Past_Medical_History">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPast_Medical_History">
+        <PropertyRef Name="Past_Medical_HistoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientPast_Medical_History_ToPatient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientPast_Medical_History" Type="Self.PatientPast_Medical_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPast_Medical_History">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientPathology_ToPathology">
+    <End Role="Pathology" Type="Self.Pathology" Multiplicity="1" />
+    <End Role="PatientPathology" Type="Self.PatientPathology" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pathology">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPathology">
+        <PropertyRef Name="PathologyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientPathology_ToPatient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientPathology" Type="Self.PatientPathology" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPathology">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientProblem_ToTable">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientProblem" Type="Self.PatientProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientProblem">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientProblem_ToTable_1">
+    <End Role="Problem" Type="Self.Problem" Multiplicity="1" />
+    <End Role="PatientProblem" Type="Self.PatientProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Problem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientProblem">
+        <PropertyRef Name="ProblemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientSurgery_ToPatient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientSurgery" Type="Self.PatientSurgery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientSurgery">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientSurgery_ToSurgery">
+    <End Role="Surgery" Type="Self.Surgery" Multiplicity="1" />
+    <End Role="PatientSurgery" Type="Self.PatientSurgery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Surgery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientSurgery">
+        <PropertyRef Name="SurgeryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTrauma_ToPatient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientTrauma" Type="Self.PatientTrauma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTrauma">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTrauma_ToTrauma">
+    <End Role="Trauma" Type="Self.Trauma" Multiplicity="1" />
+    <End Role="PatientTrauma" Type="Self.PatientTrauma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trauma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTrauma">
+        <PropertyRef Name="TraumaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTreatment_ToPatient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientTreatment" Type="Self.PatientTreatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTreatment">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTreatment_ToTreatment">
+    <End Role="Treatment" Type="Self.Treatment" Multiplicity="1" />
+    <End Role="PatientTreatment" Type="Self.PatientTreatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Treatment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTreatment">
+        <PropertyRef Name="TreatmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="getAge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="DOB" Type="datetime" Mode="In" />
+    <Parameter Name="PassedDate" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="PatientDatabaseModelStoreContainer">
+    <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Past_Medical_History" EntityType="Self.Past_Medical_History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pathology" EntityType="Self.Pathology" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientMedication" EntityType="Self.PatientMedication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientPast_Medical_History" EntityType="Self.PatientPast_Medical_History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientPathology" EntityType="Self.PatientPathology" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientProblem" EntityType="Self.PatientProblem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientSurgery" EntityType="Self.PatientSurgery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientTrauma" EntityType="Self.PatientTrauma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientTreatment" EntityType="Self.PatientTreatment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Problem" EntityType="Self.Problem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Surgery" EntityType="Self.Surgery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trauma" EntityType="Self.Trauma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PatientMedication_ToMedication" Association="Self.FK_PatientMedication_ToMedication">
+      <End Role="Medication" EntitySet="Medication" />
+      <End Role="PatientMedication" EntitySet="PatientMedication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientMedication_ToPatient" Association="Self.FK_PatientMedication_ToPatient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientMedication" EntitySet="PatientMedication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientPast_Medical_History_ToPast_Medical_History" Association="Self.FK_PatientPast_Medical_History_ToPast_Medical_History">
+      <End Role="Past_Medical_History" EntitySet="Past_Medical_History" />
+      <End Role="PatientPast_Medical_History" EntitySet="PatientPast_Medical_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientPast_Medical_History_ToPatient" Association="Self.FK_PatientPast_Medical_History_ToPatient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientPast_Medical_History" EntitySet="PatientPast_Medical_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientPathology_ToPathology" Association="Self.FK_PatientPathology_ToPathology">
+      <End Role="Pathology" EntitySet="Pathology" />
+      <End Role="PatientPathology" EntitySet="PatientPathology" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientPathology_ToPatient" Association="Self.FK_PatientPathology_ToPatient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientPathology" EntitySet="PatientPathology" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientProblem_ToTable" Association="Self.FK_PatientProblem_ToTable">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientProblem" EntitySet="PatientProblem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientProblem_ToTable_1" Association="Self.FK_PatientProblem_ToTable_1">
+      <End Role="Problem" EntitySet="Problem" />
+      <End Role="PatientProblem" EntitySet="PatientProblem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientSurgery_ToPatient" Association="Self.FK_PatientSurgery_ToPatient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientSurgery" EntitySet="PatientSurgery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientSurgery_ToSurgery" Association="Self.FK_PatientSurgery_ToSurgery">
+      <End Role="Surgery" EntitySet="Surgery" />
+      <End Role="PatientSurgery" EntitySet="PatientSurgery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTrauma_ToPatient" Association="Self.FK_PatientTrauma_ToPatient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientTrauma" EntitySet="PatientTrauma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTrauma_ToTrauma" Association="Self.FK_PatientTrauma_ToTrauma">
+      <End Role="Trauma" EntitySet="Trauma" />
+      <End Role="PatientTrauma" EntitySet="PatientTrauma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTreatment_ToPatient" Association="Self.FK_PatientTreatment_ToPatient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientTreatment" EntitySet="PatientTreatment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTreatment_ToTreatment" Association="Self.FK_PatientTreatment_ToTreatment">
+      <End Role="Treatment" EntitySet="Treatment" />
+      <End Role="PatientTreatment" EntitySet="PatientTreatment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

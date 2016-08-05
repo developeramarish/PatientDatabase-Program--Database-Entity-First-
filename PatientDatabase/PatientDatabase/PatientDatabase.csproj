@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{690875BF-E8AC-43EE-94A9-D987FE4F77C4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PatientDatabase</RootNamespace>
+    <AssemblyName>PatientDatabase</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\..\..\..\..\..\..\..\Downloads\linqkit\LinqKit\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Query Builder\AddQueryToBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Query Builder\AddQueryToBuilder.Designer.cs">
+      <DependentUpon>AddQueryToBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Query Builder\AddQueryToBuilderMethodsAndFunctions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Query Builder\Command\CommandCenter.cs" />
+    <Compile Include="Query Builder\Command\Criteria.cs" />
+    <Compile Include="Query Builder\Command\CriteriaOption.cs" />
+    <Compile Include="Query Builder\Command\CriteriaTypes\CriteriaBoolean.cs" />
+    <Compile Include="Query Builder\Command\CriteriaTypes\CriteriaDate.cs" />
+    <Compile Include="Query Builder\Command\CriteriaTypes\CriteriaEntity.cs" />
+    <Compile Include="Query Builder\Command\CriteriaTypes\CriteriaInt.cs" />
+    <Compile Include="Query Builder\Command\CriteriaTypes\CriteriaIsCurrentlyHappening.cs" />
+    <Compile Include="Query Builder\Command\CriteriaTypes\CriteriaString.cs" />
+    <Compile Include="Query Builder\Command\PropertyTypes\PropertyBoolean.cs" />
+    <Compile Include="Query Builder\Command\PropertyTypes\PropertyDate.cs" />
+    <Compile Include="Query Builder\Command\PropertyTypes\PropertyEntity.cs" />
+    <Compile Include="Query Builder\Command\PropertyTypes\PropertyInt.cs" />
+    <Compile Include="Query Builder\Command\PropertyTypes\PropertyIsCurrentlyHappening.cs" />
+    <Compile Include="Query Builder\Command\PropertyTypes\PropertyString.cs" />
+    <Compile Include="Database\DatabaseAccess.cs" />
+    <Compile Include="Globals\GlobalFormManager.cs" />
+    <Compile Include="Query Builder\IDHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Query Builder\IDHelper.Designer.cs">
+      <DependentUpon>IDHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main Menu\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main Menu\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Medication.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Past_Medical_History.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pathology.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patient.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientMedication.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPast_Medical_History.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPathology.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientProblem.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patient Profile\PatientProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patient Profile\PatientProfile.Designer.cs">
+      <DependentUpon>PatientProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Patient Profile\PatientProfilePreSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patient Profile\PatientProfilePreSelection.Designer.cs">
+      <DependentUpon>PatientProfilePreSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Patient Profile\PatientProfileSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patient Profile\PatientProfileSelection.Designer.cs">
+      <DependentUpon>PatientProfileSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Query\PatientQuery.cs" />
+    <Compile Include="PatientsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PatientsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PatientsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PatientSurgery.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientTrauma.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientTreatment.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Problem.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query Builder\Command\Property.cs" />
+    <Compile Include="Database\Query\Query.cs" />
+    <Compile Include="Query Builder\QueryBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Query Builder\QueryBuilder.Designer.cs">
+      <DependentUpon>QueryBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Query Builder\QueryBuilderMethodsAndFunctions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Surgery.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Trauma.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Treatment.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patient Profile\ViewPropertyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Patient Profile\ViewPropertyDetails.Designer.cs">
+      <DependentUpon>ViewPropertyDetails.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Query Builder\AddQueryToBuilder.resx">
+      <DependentUpon>AddQueryToBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Query Builder\IDHelper.resx">
+      <DependentUpon>IDHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main Menu\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patient Profile\PatientProfile.resx">
+      <DependentUpon>PatientProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patient Profile\PatientProfilePreSelection.resx">
+      <DependentUpon>PatientProfilePreSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patient Profile\PatientProfileSelection.resx">
+      <DependentUpon>PatientProfileSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Query Builder\QueryBuilder.resx">
+      <DependentUpon>QueryBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Patient Profile\ViewPropertyDetails.resx">
+      <DependentUpon>ViewPropertyDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="PatientsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PatientsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Misc\packages.config" />
+    <None Include="PatientsModel.edmx.diagram">
+      <DependentUpon>PatientsModel.edmx</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Misc\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PatientsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PatientsModel.edmx</DependentUpon>
+      <LastGenOutput>PatientsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="PatientsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PatientsModel.edmx</DependentUpon>
+      <LastGenOutput>PatientsModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

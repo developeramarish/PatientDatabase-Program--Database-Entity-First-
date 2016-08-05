@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PatientDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Middle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Date_of_Birth" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PatientPathologies" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable" FromRole="Patient" ToRole="PatientPathology" />
+    <Property Name="Date_Entered_Into_System" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="First_Visit" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Last_Visit" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PatientMedications" Relationship="PatientDatabaseModel.FK_PatientMedication_ToPatient" FromRole="Patient" ToRole="PatientMedication" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Zip_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientPast_Medical_History" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPatient" FromRole="Patient" ToRole="PatientPast_Medical_History" />
+    <NavigationProperty Name="PatientProblems" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable" FromRole="Patient" ToRole="PatientProblem" />
+    <NavigationProperty Name="PatientSurgeries" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToPatient" FromRole="Patient" ToRole="PatientSurgery" />
+    <NavigationProperty Name="PatientTraumas" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToPatient" FromRole="Patient" ToRole="PatientTrauma" />
+    <NavigationProperty Name="PatientTreatments" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="Patient" ToRole="PatientTreatment" />
+  </EntityType>
+  <EntityContainer Name="PatientDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="Pathologies" EntityType="PatientDatabaseModel.Pathology" />
+    <EntitySet Name="PatientPathologies" EntityType="PatientDatabaseModel.PatientPathology" />
+    <AssociationSet Name="FK_PatientPathology_ToTable_1" Association="PatientDatabaseModel.FK_PatientPathology_ToTable_1">
+      <End Role="Pathology" EntitySet="Pathologies" />
+      <End Role="PatientPathology" EntitySet="PatientPathologies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientPathology_ToTable" Association="PatientDatabaseModel.FK_PatientPathology_ToTable">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientPathology" EntitySet="PatientPathologies" />
+    </AssociationSet>
+    <EntitySet Name="Medications" EntityType="PatientDatabaseModel.Medication" />
+    <EntitySet Name="PatientMedications" EntityType="PatientDatabaseModel.PatientMedication" />
+    <AssociationSet Name="FK_PatientMedication_ToMedication" Association="PatientDatabaseModel.FK_PatientMedication_ToMedication">
+      <End Role="Medication" EntitySet="Medications" />
+      <End Role="PatientMedication" EntitySet="PatientMedications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientMedication_ToPatient" Association="PatientDatabaseModel.FK_PatientMedication_ToPatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientMedication" EntitySet="PatientMedications" />
+    </AssociationSet>
+    <EntitySet Name="Past_Medical_History" EntityType="PatientDatabaseModel.Past_Medical_History" />
+    <EntitySet Name="PatientPast_Medical_History" EntityType="PatientDatabaseModel.PatientPast_Medical_History" />
+    <EntitySet Name="PatientProblems" EntityType="PatientDatabaseModel.PatientProblem" />
+    <EntitySet Name="PatientSurgeries" EntityType="PatientDatabaseModel.PatientSurgery" />
+    <EntitySet Name="PatientTraumas" EntityType="PatientDatabaseModel.PatientTrauma" />
+    <EntitySet Name="PatientTreatments" EntityType="PatientDatabaseModel.PatientTreatment" />
+    <EntitySet Name="Problems" EntityType="PatientDatabaseModel.Problem" />
+    <EntitySet Name="Surgeries" EntityType="PatientDatabaseModel.Surgery" />
+    <EntitySet Name="Traumata" EntityType="PatientDatabaseModel.Trauma" />
+    <EntitySet Name="Treatments" EntityType="PatientDatabaseModel.Treatment" />
+    <AssociationSet Name="FK_PatientPast_Medical_History_ToPast_Medical_History" Association="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPast_Medical_History">
+      <End Role="Past_Medical_History" EntitySet="Past_Medical_History" />
+      <End Role="PatientPast_Medical_History" EntitySet="PatientPast_Medical_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientPast_Medical_History_ToPatient" Association="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientPast_Medical_History" EntitySet="PatientPast_Medical_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientProblem_ToTable" Association="PatientDatabaseModel.FK_PatientProblem_ToTable">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientProblem" EntitySet="PatientProblems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientSurgery_ToPatient" Association="PatientDatabaseModel.FK_PatientSurgery_ToPatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientSurgery" EntitySet="PatientSurgeries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTrauma_ToPatient" Association="PatientDatabaseModel.FK_PatientTrauma_ToPatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientTrauma" EntitySet="PatientTraumas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTreatment_ToPatient" Association="PatientDatabaseModel.FK_PatientTreatment_ToPatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientTreatment" EntitySet="PatientTreatments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientProblem_ToTable_1" Association="PatientDatabaseModel.FK_PatientProblem_ToTable_1">
+      <End Role="Problem" EntitySet="Problems" />
+      <End Role="PatientProblem" EntitySet="PatientProblems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientSurgery_ToSurgery" Association="PatientDatabaseModel.FK_PatientSurgery_ToSurgery">
+      <End Role="Surgery" EntitySet="Surgeries" />
+      <End Role="PatientSurgery" EntitySet="PatientSurgeries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTrauma_ToTrauma" Association="PatientDatabaseModel.FK_PatientTrauma_ToTrauma">
+      <End Role="Trauma" EntitySet="Traumata" />
+      <End Role="PatientTrauma" EntitySet="PatientTraumas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientTreatment_ToTreatment" Association="PatientDatabaseModel.FK_PatientTreatment_ToTreatment">
+      <End Role="Treatment" EntitySet="Treatments" />
+      <End Role="PatientTreatment" EntitySet="PatientTreatments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Pathology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientPathologies" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable_1" FromRole="Pathology" ToRole="PatientPathology" />
+  </EntityType>
+  <EntityType Name="PatientPathology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="PathologyID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pathology" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable_1" FromRole="PatientPathology" ToRole="Pathology" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable" FromRole="PatientPathology" ToRole="Patient" />
+  </EntityType>
+  <Association Name="FK_PatientPathology_ToTable_1">
+    <End Type="PatientDatabaseModel.Pathology" Role="Pathology" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientPathology" Role="PatientPathology" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pathology">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPathology">
+        <PropertyRef Name="PathologyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientPathology_ToTable">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientPathology" Role="PatientPathology" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPathology">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Medication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Morphine_Equivalent__mg_" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Generic_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sustained_Release" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Short_Acting" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="PatientMedications" Relationship="PatientDatabaseModel.FK_PatientMedication_ToMedication" FromRole="Medication" ToRole="PatientMedication" />
+  </EntityType>
+  <EntityType Name="PatientMedication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="MedicationID" Type="Int32" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Medication" Relationship="PatientDatabaseModel.FK_PatientMedication_ToMedication" FromRole="PatientMedication" ToRole="Medication" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientMedication_ToPatient" FromRole="PatientMedication" ToRole="Patient" />
+    <Property Name="Mg" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK_PatientMedication_ToMedication">
+    <End Type="PatientDatabaseModel.Medication" Role="Medication" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientMedication" Role="PatientMedication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medication">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientMedication">
+        <PropertyRef Name="MedicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientMedication_ToPatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientMedication" Role="PatientMedication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientMedication">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Past_Medical_History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientPast_Medical_History" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPast_Medical_History" FromRole="Past_Medical_History" ToRole="PatientPast_Medical_History" />
+  </EntityType>
+  <EntityType Name="PatientPast_Medical_History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="Past_Medical_HistoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Past_Medical_History" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPast_Medical_History" FromRole="PatientPast_Medical_History" ToRole="Past_Medical_History" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPatient" FromRole="PatientPast_Medical_History" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="PatientProblem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="ProblemID" Type="Int32" Nullable="false" />
+    <Property Name="Primary" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable" FromRole="PatientProblem" ToRole="Patient" />
+    <NavigationProperty Name="Problem" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable_1" FromRole="PatientProblem" ToRole="Problem" />
+  </EntityType>
+  <EntityType Name="PatientSurgery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="SurgeryID" Type="Int32" Nullable="false" />
+    <Property Name="Date_Received" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToPatient" FromRole="PatientSurgery" ToRole="Patient" />
+    <NavigationProperty Name="Surgery" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToSurgery" FromRole="PatientSurgery" ToRole="Surgery" />
+  </EntityType>
+  <EntityType Name="PatientTrauma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="TraumaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToPatient" FromRole="PatientTrauma" ToRole="Patient" />
+    <NavigationProperty Name="Trauma" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToTrauma" FromRole="PatientTrauma" ToRole="Trauma" />
+  </EntityType>
+  <EntityType Name="PatientTreatment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="TreatmentID" Type="Int32" Nullable="false" />
+    <Property Name="Date_Started" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_Ended" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="PatientTreatment" ToRole="Patient" />
+    <NavigationProperty Name="Treatment" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToTreatment" FromRole="PatientTreatment" ToRole="Treatment" />
+  </EntityType>
+  <EntityType Name="Problem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientProblems" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable_1" FromRole="Problem" ToRole="PatientProblem" />
+  </EntityType>
+  <EntityType Name="Surgery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientSurgeries" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToSurgery" FromRole="Surgery" ToRole="PatientSurgery" />
+  </EntityType>
+  <EntityType Name="Trauma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientTraumas" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToTrauma" FromRole="Trauma" ToRole="PatientTrauma" />
+  </EntityType>
+  <EntityType Name="Treatment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientTreatments" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToTreatment" FromRole="Treatment" ToRole="PatientTreatment" />
+  </EntityType>
+  <Association Name="FK_PatientPast_Medical_History_ToPast_Medical_History">
+    <End Type="PatientDatabaseModel.Past_Medical_History" Role="Past_Medical_History" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientPast_Medical_History" Role="PatientPast_Medical_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Past_Medical_History">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPast_Medical_History">
+        <PropertyRef Name="Past_Medical_HistoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientPast_Medical_History_ToPatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientPast_Medical_History" Role="PatientPast_Medical_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientPast_Medical_History">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientProblem_ToTable">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientProblem" Role="PatientProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientProblem">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientSurgery_ToPatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientSurgery" Role="PatientSurgery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientSurgery">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTrauma_ToPatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientTrauma" Role="PatientTrauma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTrauma">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTreatment_ToPatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientTreatment" Role="PatientTreatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTreatment">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientProblem_ToTable_1">
+    <End Type="PatientDatabaseModel.Problem" Role="Problem" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientProblem" Role="PatientProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Problem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientProblem">
+        <PropertyRef Name="ProblemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientSurgery_ToSurgery">
+    <End Type="PatientDatabaseModel.Surgery" Role="Surgery" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientSurgery" Role="PatientSurgery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Surgery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientSurgery">
+        <PropertyRef Name="SurgeryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTrauma_ToTrauma">
+    <End Type="PatientDatabaseModel.Trauma" Role="Trauma" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientTrauma" Role="PatientTrauma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trauma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTrauma">
+        <PropertyRef Name="TraumaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientTreatment_ToTreatment">
+    <End Type="PatientDatabaseModel.Treatment" Role="Treatment" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientTreatment" Role="PatientTreatment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Treatment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientTreatment">
+        <PropertyRef Name="TreatmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

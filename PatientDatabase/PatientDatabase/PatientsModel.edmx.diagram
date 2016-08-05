@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3423c2df1540468c951769462b41a686" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="PatientDatabaseModel.Patient" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Pathology" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientPathology" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientPathology_ToTable_1" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientPathology_ToTable" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Medication" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientMedication" Width="1.5" PointX="3" PointY="4" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientMedication_ToMedication" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientMedication_ToPatient" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Past_Medical_History" Width="1.5" PointX="3.75" PointY="18.125" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientPast_Medical_History" Width="1.5" PointX="6" PointY="6" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientProblem" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientSurgery" Width="1.5" PointX="6" PointY="8.875" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientTrauma" Width="1.5" PointX="6" PointY="3" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientTreatment" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Problem" Width="1.5" PointX="0.75" PointY="18.125" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Surgery" Width="1.5" PointX="3.75" PointY="21.125" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Trauma" Width="1.5" PointX="3.75" PointY="15.25" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Treatment" Width="1.5" PointX="0.75" PointY="15.125" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPast_Medical_History" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPatient" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientProblem_ToTable" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientSurgery_ToPatient" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientTrauma_ToPatient" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientTreatment_ToPatient" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientProblem_ToTable_1" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientSurgery_ToSurgery" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientTrauma_ToTrauma" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientTreatment_ToTreatment" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
