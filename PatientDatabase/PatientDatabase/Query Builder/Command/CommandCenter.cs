@@ -34,9 +34,9 @@ namespace PatientDatabase
                 new PropertyString("Zip Code", false),
                 new PropertyString("Country", false),
                 new PropertyEntity("Medication Entity", "Medication", true),
+                new PropertyInt("Medication Entity MG", "Medication", true, "Whole Number/Decimal", "Miligrams"),
                 new PropertyDate("Medication Entity Start Date", "Medication", true),
                 new PropertyDate("Medication Entity End Date", "Medication", true),
-                new PropertyInt("Medication Entity MG", "Medication", true, "Whole Number/Decimal", "Miligrams"),
                 new PropertyInt("Medication Entity How Long Taken For", "Medication", true, "Whole Number", "Months"),
                 new PropertyIsCurrentlyHappening("Medication Entity Is Currently Being Taken", "Medication", true),
                 new PropertyString("Medication @ Name", false),
@@ -44,7 +44,23 @@ namespace PatientDatabase
                 new PropertyString("Medication @ Generic Name", false),
                 new PropertyInt("Medication @ Morphine Equivalent", false, "Whole Number/Decimal", "Miligrams"),
                 new PropertyBoolean("Medication @ Sustained Release", false, new string[] { "True", "False" }),
-                new PropertyBoolean("Medication @ Short Acting", false, new string[] { "True", "False" })
+                new PropertyBoolean("Medication @ Short Acting", false, new string[] { "True", "False" }),
+                new PropertyEntity("Past Medical History Entity", "Past Medical History", true),
+                new PropertyString("Past Medical History @ Name", false),
+                new PropertyEntity("Pathology Entity", "Pathology", true),
+                new PropertyString("Pathology @ Name", false),
+                new PropertyEntity("Problem Entity", "Problem", true),
+                new PropertyBoolean("Problem Entity Primary", "Problem", true, new string[] { "True", "False" }),
+                new PropertyString("Problem @ Name", false),
+                new PropertyEntity("Surgery Entity", "Surgery", true),
+                new PropertyDate("Surgery Entity Date Received", "Surgery", true),
+                new PropertyString("Surgery @ Name", false),
+                new PropertyEntity("Trauma Entity", "Trauma", true),
+                new PropertyString("Trauma @ Name", false),
+                new PropertyEntity("Treatment Entity", "Treatment", true),
+                new PropertyDate("Treatment Entity Start Date", "Treatment", true),
+                new PropertyDate("Treatment Entity End Date", "Treatment", true),
+                new PropertyString("Treatment @ Name", false)
             };
         }
 

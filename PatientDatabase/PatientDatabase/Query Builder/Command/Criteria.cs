@@ -39,7 +39,7 @@ namespace PatientDatabase
             }
         }
 
-        private List<string> notCriteria(List<string> names)
+        public List<string> notCriteria(List<string> names)
         {
             for (int i = 0; i < names.Count; i++) names[i] += " NOT";
             return names;          
@@ -55,9 +55,30 @@ namespace PatientDatabase
             return "";
         }
 
-        public virtual bool isFilterValid(string filter)
+        public virtual bool isFilterValid(string criteriaOption, string filter)
         {
             return false;
+        }
+
+        public virtual string stripNot(string criteriaOption)
+        {
+            string[] criteriaOptions = criteriaOption.Split(' ');
+            if (criteriaOptions[criteriaOptions.Length - 1] == "NOT")
+            {
+                criteriaOptions[criteriaOptions.Length - 1] = "";
+                criteriaOption = string.Join(" ", criteriaOptions).Trim();
+            }
+            return criteriaOption;
+        }
+
+        public string[] splitFilter(string filter)
+        {
+            return filter.Split(' ');
+        }
+
+        public string[] splitId(string filter)
+        {
+            return filter.Split(':');
         }
     }
 }

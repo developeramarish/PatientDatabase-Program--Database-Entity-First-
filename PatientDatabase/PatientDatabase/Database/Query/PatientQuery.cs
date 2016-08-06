@@ -42,18 +42,34 @@ namespace PatientDatabase
                 case "State": return checkState();
                 case "Zip Code": return checkZipCode();
                 case "Country": return checkCountry();
-                case "Medication Entity": return checkMedication();
-                case "Medication Entity MG": return checkMedicationMG();
-                case "Medication Entity Start Date": return checkMedicationStartDate();
-                case "Medication Entity End Date": return checkMedicationEndDate();
-                case "Medication Entity How Long Taken For": return checkMedicationHowLongTakenFor();
-                case "Medication Entity Is Currently Being Taken": return checkMedicationIsCurrentlyBeingTaken();
+                case "Medication Entity": return checkMedicationEntity();
+                case "Medication Entity MG": return checkMedicationEntityMG();
+                case "Medication Entity Start Date": return checkMedicationEntityStartDate();
+                case "Medication Entity End Date": return checkMedicationEntityEndDate();
+                case "Medication Entity How Long Taken For": return checkMedicationEntityHowLongTakenFor();
+                case "Medication Entity Is Currently Being Taken": return checkMedicationEntityIsCurrentlyBeingTaken();
                 case "Medication @ Name": return checkMedicationName();
                 case "Medication @ Type": return checkMedicationType();
                 case "Medication @ Morphine Equivalent": return checkMedicationMorphineEquivalent();
                 case "Medication @ Generic Name": return checkMedicationGenericName();
                 case "Medication @ Sustained Release": return checkMedicationSustainedRelease();
                 case "Medication @ Short Acting": return checkMedicationShortActing();
+                case "Past Medical History Entity": return checkPastMedicalHistoryEntity();
+                case "Past Medical History @ Name": return checkPastMedicalHistoryName();
+                case "Pathology Entity": return checkPathologyEntity();
+                case "Pathology @ Name": return checkPathologyName();
+                case "Problem Entity": return checkProblemEntity();
+                case "Problem Entity Primary": return checkProblemEntityPrimary();
+                case "Problem @ Name": return checkProblemName();
+                case "Surgery Entity": return checkSurgeryEntity();
+                case "Surgery Entity Date Received": return checkSurgeryEntityDateReceived();
+                case "Surgery @ Name": return checkSurgeryName();
+                case "Trauma Entity": return checkTraumaEntity();
+                case "Trauma @ Name": return checkTraumaName();
+                case "Treatment Entity": return checkTreatmentEntity();
+                case "Treatment Entity Start Date": return checkTreatmentEntityStartDate();
+                case "Treatment Entity End Date": return checkTreatmentEntityEndDate();
+                case "Treatment @ Name": return checkTreatmentName();
                 default: return p => false;
             }
 
@@ -338,8 +354,8 @@ namespace PatientDatabase
         }
         #endregion
 
-        #region Medication
-        private Expression<Func<Patient, bool>> checkMedication()
+        #region Medication Entity
+        private Expression<Func<Patient, bool>> checkMedicationEntity()
         {
             string[] id = Filter.Split(':');
             int medId = Int32.Parse(id[0]);
@@ -351,8 +367,8 @@ namespace PatientDatabase
             }
         }
         #endregion
-        #region Medication MG
-        private Expression<Func<Patient, bool>> checkMedicationMG()
+        #region Medication Entity MG
+        private Expression<Func<Patient, bool>> checkMedicationEntityMG()
         {
             string[] values = Filter.Split(' ');
             string[] id = values[0].Split(':');
@@ -380,8 +396,8 @@ namespace PatientDatabase
             }
         }
         #endregion
-        #region Medication Start Date
-        private Expression<Func<Patient, bool>> checkMedicationStartDate()
+        #region Medication Entity Start Date
+        private Expression<Func<Patient, bool>> checkMedicationEntityStartDate()
         {
             string[] values = Filter.Split(' ');
             string[] id = values[0].Split(':');
@@ -409,8 +425,8 @@ namespace PatientDatabase
             }
         }
         #endregion
-        #region Medication End Date
-        private Expression<Func<Patient, bool>> checkMedicationEndDate()
+        #region Medication Entity End Date
+        private Expression<Func<Patient, bool>> checkMedicationEntityEndDate()
         {
             string[] values = Filter.Split(' ');
             string[] id = values[0].Split(':');
@@ -438,8 +454,8 @@ namespace PatientDatabase
             }
         }
         #endregion
-        #region Medication How Long Taken For
-        private Expression<Func<Patient, bool>> checkMedicationHowLongTakenFor()
+        #region Medication Entity How Long Taken For
+        private Expression<Func<Patient, bool>> checkMedicationEntityHowLongTakenFor()
         {
             string[] values = Filter.Split(' ');
             string[] id = values[0].Split(':');
@@ -467,8 +483,8 @@ namespace PatientDatabase
             }
         }
         #endregion
-        #region Medication Is Currently Being Taken
-        private Expression<Func<Patient, bool>> checkMedicationIsCurrentlyBeingTaken()
+        #region Medication Entity Is Currently Being Taken
+        private Expression<Func<Patient, bool>> checkMedicationEntityIsCurrentlyBeingTaken()
         {
             string[] id = Filter.Split(':');
             int medId = Int32.Parse(id[0]);
@@ -483,7 +499,6 @@ namespace PatientDatabase
         }
 
         #endregion
-
         #region Medication Name
         private Expression<Func<Patient, bool>> checkMedicationName()
         {
@@ -584,6 +599,292 @@ namespace PatientDatabase
                 default: return p => false;
             }
 
+        }
+        #endregion
+
+        #region Past Medical History Entity
+        private Expression<Func<Patient, bool>> checkPastMedicalHistoryEntity()
+        {
+            string[] id = Filter.Split(':');
+            int pmhId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientPast_Medical_History.Any(pmh => pmh.Past_Medical_HistoryID == pmhId);
+                case "Is Equal To NOT": return p => p.PatientPast_Medical_History.Any(pmh => pmh.Past_Medical_HistoryID != pmhId);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Past Medical History Name
+        private Expression<Func<Patient, bool>> checkPastMedicalHistoryName()
+        {
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientPast_Medical_History.Any(pmh => pmh.Past_Medical_History.Name == Filter);
+                case "Starts With": return p => p.PatientPast_Medical_History.Any(pmh => pmh.Past_Medical_History.Name.StartsWith(Filter));
+                case "Contains": return p => p.PatientPast_Medical_History.Any(pmh => pmh.Past_Medical_History.Name.Contains(Filter));
+                case "Ends With": return p => p.PatientPast_Medical_History.Any(pmh => pmh.Past_Medical_History.Name.EndsWith(Filter));
+                case "Is Equal To NOT": return p => p.PatientPast_Medical_History.Any(pmh => pmh.Past_Medical_History.Name != Filter);
+                case "Starts With NOT": return p => p.PatientPast_Medical_History.Any(pmh => !pmh.Past_Medical_History.Name.StartsWith(Filter));
+                case "Contains NOT": return p => p.PatientPast_Medical_History.Any(pmh => !pmh.Past_Medical_History.Name.Contains(Filter));
+                case "Ends With NOT": return p => p.PatientPast_Medical_History.Any(pmh => !pmh.Past_Medical_History.Name.EndsWith(Filter));
+                default: return p => false;
+            }
+        }
+        #endregion
+
+        #region Pathology Entity
+        private Expression<Func<Patient, bool>> checkPathologyEntity()
+        {
+            string[] id = Filter.Split(':');
+            int patId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientPathologies.Any(pat => pat.PathologyID == patId);
+                case "Is Equal To NOT": return p => p.PatientPathologies.Any(pat => pat.PathologyID != patId);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Pathology Name
+        private Expression<Func<Patient, bool>> checkPathologyName()
+        {
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientPathologies.Any(pat => pat.Pathology.Name == Filter);
+                case "Starts With": return p => p.PatientPathologies.Any(pat => pat.Pathology.Name.StartsWith(Filter));
+                case "Contains": return p => p.PatientPathologies.Any(pat => pat.Pathology.Name.Contains(Filter));
+                case "Ends With": return p => p.PatientPathologies.Any(pat => pat.Pathology.Name.EndsWith(Filter));
+                case "Is Equal To NOT": return p => p.PatientPathologies.Any(pat => pat.Pathology.Name != Filter);
+                case "Starts With NOT": return p => p.PatientPathologies.Any(pat => !pat.Pathology.Name.StartsWith(Filter));
+                case "Contains NOT": return p => p.PatientPathologies.Any(pat => !pat.Pathology.Name.Contains(Filter));
+                case "Ends With NOT": return p => p.PatientPathologies.Any(pat => !pat.Pathology.Name.EndsWith(Filter));
+                default: return p => false;
+            }
+        }
+        #endregion
+
+        #region Problem Entity
+        private Expression<Func<Patient, bool>> checkProblemEntity()
+        {
+            string[] id = Filter.Split(':');
+            int probId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientProblems.Any(prob => prob.ProblemID == probId);
+                case "Is Equal To NOT": return p => p.PatientProblems.Any(prob => prob.ProblemID != probId);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Problem Entity Primary
+        private Expression<Func<Patient, bool>> checkProblemEntityPrimary()
+        {
+            string[] id = Filter.Split(':');
+            int probId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientProblems.Any(prob => prob.ProblemID == probId && prob.Primary == Filter);
+                case "Is Equal To NOT": return p => p.PatientProblems.Any(prob => prob.ProblemID == probId && prob.Primary != Filter);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Problem Name
+        private Expression<Func<Patient, bool>> checkProblemName()
+        {
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientProblems.Any(prob => prob.Problem.Name == Filter);
+                case "Starts With": return p => p.PatientProblems.Any(prob => prob.Problem.Name.StartsWith(Filter));
+                case "Contains": return p => p.PatientProblems.Any(prob => prob.Problem.Name.Contains(Filter));
+                case "Ends With": return p => p.PatientProblems.Any(prob => prob.Problem.Name.EndsWith(Filter));
+                case "Is Equal To NOT": return p => p.PatientProblems.Any(prob => prob.Problem.Name != Filter);
+                case "Starts With NOT": return p => p.PatientProblems.Any(prob => !prob.Problem.Name.StartsWith(Filter));
+                case "Contains NOT": return p => p.PatientProblems.Any(prob => !prob.Problem.Name.Contains(Filter));
+                case "Ends With NOT": return p => p.PatientProblems.Any(prob => !prob.Problem.Name.EndsWith(Filter));
+                default: return p => false;
+            }
+        }
+        #endregion
+
+        #region Surgery Entity
+        private Expression<Func<Patient, bool>> checkSurgeryEntity()
+        {
+            string[] id = Filter.Split(':');
+            int surId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId);
+                case "Is Equal To NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID != surId);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Surgery Entity Date Received
+        private Expression<Func<Patient, bool>> checkSurgeryEntityDateReceived()
+        {
+            string[] values = Filter.Split(' ');
+            string[] id = values[0].Split(':');
+            int surId = Int32.Parse(id[0]);
+            DateTime date1 = DateTime.Parse(values[1]);
+            DateTime date2 = date1;
+            if (values.Length > 2) date2 = DateTime.Parse(values[2]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received == date1);
+                case "Is Between Inclusive": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received >= date1 && sur.Date_Received <= date2);
+                case "Is Before Or Equal To": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received <= date1);
+                case "Is After Or Equal To": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received >= date1);
+                case "Is Between Exclusive": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received > date1 && sur.Date_Received < date2);
+                case "Is Before": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received < date1);
+                case "Is After": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received > date1);
+                case "Is Equal To NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received != date1);
+                case "Is Between Inclusive NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received < date1 && sur.Date_Received > date2);
+                case "Is Before Or Equal To NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received > date1);
+                case "Is After Or Equal To NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received < date1);
+                case "Is Between Exclusive NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received <= date1 && sur.Date_Received >= date2);
+                case "Is Before NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received >= date1);
+                case "Is After NOT": return p => p.PatientSurgeries.Any(sur => sur.SurgeryID == surId && sur.Date_Received <= date1);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Surgery Name
+        private Expression<Func<Patient, bool>> checkSurgeryName()
+        {
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientSurgeries.Any(sur => sur.Surgery.Name == Filter);
+                case "Starts With": return p => p.PatientSurgeries.Any(sur => sur.Surgery.Name.StartsWith(Filter));
+                case "Contains": return p => p.PatientSurgeries.Any(sur => sur.Surgery.Name.Contains(Filter));
+                case "Ends With": return p => p.PatientSurgeries.Any(sur => sur.Surgery.Name.EndsWith(Filter));
+                case "Is Equal To NOT": return p => p.PatientSurgeries.Any(sur => sur.Surgery.Name != Filter);
+                case "Starts With NOT": return p => p.PatientSurgeries.Any(sur => !sur.Surgery.Name.StartsWith(Filter));
+                case "Contains NOT": return p => p.PatientSurgeries.Any(sur => !sur.Surgery.Name.Contains(Filter));
+                case "Ends With NOT": return p => p.PatientSurgeries.Any(sur => !sur.Surgery.Name.EndsWith(Filter));
+                default: return p => false;
+            }
+        }
+        #endregion
+
+        #region Trauma Entity
+        private Expression<Func<Patient, bool>> checkTraumaEntity()
+        {
+            string[] id = Filter.Split(':');
+            int traId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientTraumas.Any(tra => tra.TraumaID == traId);
+                case "Is Equal To NOT": return p => p.PatientTraumas.Any(tra => tra.TraumaID != traId);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Trauma Name
+        private Expression<Func<Patient, bool>> checkTraumaName()
+        {
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientTraumas.Any(tra => tra.Trauma.Name == Filter);
+                case "Starts With": return p => p.PatientTraumas.Any(tra => tra.Trauma.Name.StartsWith(Filter));
+                case "Contains": return p => p.PatientTraumas.Any(tra => tra.Trauma.Name.Contains(Filter));
+                case "Ends With": return p => p.PatientTraumas.Any(tra => tra.Trauma.Name.EndsWith(Filter));
+                case "Is Equal To NOT": return p => p.PatientTraumas.Any(tra => tra.Trauma.Name != Filter);
+                case "Starts With NOT": return p => p.PatientTraumas.Any(tra => !tra.Trauma.Name.StartsWith(Filter));
+                case "Contains NOT": return p => p.PatientTraumas.Any(tra => !tra.Trauma.Name.Contains(Filter));
+                case "Ends With NOT": return p => p.PatientTraumas.Any(tra => !tra.Trauma.Name.EndsWith(Filter));
+                default: return p => false;
+            }
+        }
+        #endregion
+
+        #region Treatment Entity
+        private Expression<Func<Patient, bool>> checkTreatmentEntity()
+        {
+            string[] id = Filter.Split(':');
+            int treId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientTreatments.Any(tra => tra.TreatmentID == treId);
+                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tra => tra.TreatmentID != treId);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Treatment Entity Start Date
+        private Expression<Func<Patient, bool>> checkTreatmentEntityStartDate()
+        {
+            string[] values = Filter.Split(' ');
+            string[] id = values[0].Split(':');
+            int treId = Int32.Parse(id[0]);
+            DateTime date1 = DateTime.Parse(values[1]);
+            DateTime date2 = date1;
+            if (values.Length > 2) date2 = DateTime.Parse(values[2]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started == date1);
+                case "Is Between Inclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started >= date1 && tre.Date_Started <= date2);
+                case "Is Before Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started <= date1);
+                case "Is After Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started >= date1);
+                case "Is Between Exclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started > date1 && tre.Date_Started < date2);
+                case "Is Before": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started < date1);
+                case "Is After": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started > date1);
+                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started != date1);
+                case "Is Between Inclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started < date1 && tre.Date_Started > date2);
+                case "Is Before Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started > date1);
+                case "Is After Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started < date1);
+                case "Is Between Exclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started <= date1 && tre.Date_Started >= date2);
+                case "Is Before NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started >= date1);
+                case "Is After NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started <= date1);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Treatment Entity End Date
+        private Expression<Func<Patient, bool>> checkTreatmentEntityEndDate()
+        {
+            string[] values = Filter.Split(' ');
+            string[] id = values[0].Split(':');
+            int treId = Int32.Parse(id[0]);
+            DateTime date1 = DateTime.Parse(values[1]);
+            DateTime date2 = date1;
+            if (values.Length > 2) date2 = DateTime.Parse(values[2]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended == date1);
+                case "Is Between Inclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended >= date1 && tre.Date_Ended <= date2);
+                case "Is Before Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended <= date1);
+                case "Is After Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended >= date1);
+                case "Is Between Exclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended > date1 && tre.Date_Ended < date2);
+                case "Is Before": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended < date1);
+                case "Is After": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended > date1);
+                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended != date1);
+                case "Is Between Inclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended < date1 && tre.Date_Ended > date2);
+                case "Is Before Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended > date1);
+                case "Is After Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended < date1);
+                case "Is Between Exclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended <= date1 && tre.Date_Ended >= date2);
+                case "Is Before NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended >= date1);
+                case "Is After NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended <= date1);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Treatment Name
+        private Expression<Func<Patient, bool>> checkTreatmentName()
+        {
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientTreatments.Any(tre => tre.Treatment.Name == Filter);
+                case "Starts With": return p => p.PatientTreatments.Any(tre => tre.Treatment.Name.StartsWith(Filter));
+                case "Contains": return p => p.PatientTreatments.Any(tre => tre.Treatment.Name.Contains(Filter));
+                case "Ends With": return p => p.PatientTreatments.Any(tre => tre.Treatment.Name.EndsWith(Filter));
+                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.Treatment.Name != Filter);
+                case "Starts With NOT": return p => p.PatientTreatments.Any(tre => !tre.Treatment.Name.StartsWith(Filter));
+                case "Contains NOT": return p => p.PatientTreatments.Any(tre => !tre.Treatment.Name.Contains(Filter));
+                case "Ends With NOT": return p => p.PatientTreatments.Any(tre => !tre.Treatment.Name.EndsWith(Filter));
+                default: return p => false;
+            }
         }
         #endregion
 

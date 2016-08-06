@@ -92,7 +92,7 @@
             // 
             // mnuCommandStrip
             // 
-            this.mnuCommandStrip.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.mnuCommandStrip.BackColor = System.Drawing.Color.LightSteelBlue;
             this.mnuCommandStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.mnuCommandStrip.Location = new System.Drawing.Point(0, 0);
@@ -349,6 +349,7 @@
             // 
             this.txtReq3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReq3.BackColor = System.Drawing.Color.White;
             this.txtReq3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReq3.Location = new System.Drawing.Point(90, 110);
             this.txtReq3.Name = "txtReq3";
@@ -359,6 +360,7 @@
             // 
             this.txtReq2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReq2.BackColor = System.Drawing.Color.White;
             this.txtReq2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReq2.Location = new System.Drawing.Point(90, 64);
             this.txtReq2.Name = "txtReq2";
@@ -369,6 +371,7 @@
             // 
             this.txtReq1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReq1.BackColor = System.Drawing.Color.White;
             this.txtReq1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReq1.Location = new System.Drawing.Point(90, 18);
             this.txtReq1.Name = "txtReq1";
@@ -528,6 +531,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSubmit.Enabled = false;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.Location = new System.Drawing.Point(0, 0);
             this.btnSubmit.Name = "btnSubmit";

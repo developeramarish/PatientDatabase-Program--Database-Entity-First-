@@ -34,5 +34,18 @@ namespace PatientDatabase
                 return "Req 1: [" + Entity + " ID] (Use ID Helper)";
             }
         }
+
+        public override bool isFilterValid(string criteriaOption, string filter)
+        {
+            string[] ids = splitId(filter);
+            criteriaOption = stripNot(criteriaOption);
+            int intTest;
+            if (criteriaOption == "Is Current")
+            {
+                if (Entity == "") return true;
+                else if (Int32.TryParse(ids[0], out intTest)) return true;
+            }
+            return false;
+        }
     }
 }

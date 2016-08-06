@@ -25,6 +25,7 @@ namespace PatientDatabase
 
         public override int getFilterReqNumber(string criteriaOption)
         {
+            criteriaOption = stripNot(criteriaOption);
             if (criteriaOption == "Is Between Inclusive" || criteriaOption == "Is Between Exclusive")
             {
                 if (Entity == "") return 2;
@@ -39,8 +40,8 @@ namespace PatientDatabase
 
         public override string getFilterInstructions(string criteriaOption)
         {
-            if (criteriaOption == "Is Between Inclusive" || criteriaOption == "Is Between Exclusive"
-                || criteriaOption == "Is Between Inclusive NOT" || criteriaOption == "Is Between Exclusive NOT")
+            criteriaOption = stripNot(criteriaOption);
+            if (criteriaOption == "Is Between Inclusive" || criteriaOption == "Is Between Exclusive")
             {
                 if (Entity == "")
                 {
@@ -70,7 +71,52 @@ namespace PatientDatabase
                         + "Req 2: [Date] (MM/DD/YYYY)";
                 }
             }
+        }
 
+        public override bool isFilterValid(string criteriaOption, string filter)
+        {
+            string[] filters = splitFilter(filter);
+            string[] ids = splitId(filters[0]);
+            criteriaOption = stripNot(criteriaOption);
+            int intTest;
+            DateTime dateTest;
+            DateTime dateTest2;
+            if (criteriaOption == "Is Between Inclusive" || criteriaOption == "Is Between Exclusive")
+            {
+                if (Entity == "")
+                {
+                    if (DateTime.TryParse(filters[0], out dateTest) 
+                        && DateTime.TryParse(filters[1], out dateTest2))
+                    {
+                        if (dateTest < dateTest2) return true;
+                    }
+                        
+                }
+                else
+                {
+                    if (Int32.TryParse(ids[0], out intTest)
+                        && DateTime.TryParse(filters[1], out dateTest)
+                        && DateTime.TryParse(filters[2], out dateTest2))
+                    {
+                        if (dateTest < dateTest2) return true;
+                    }
+                }
+            }
+            else
+            {
+                if (Entity == "")
+                {
+                    if (DateTime.TryParse(filters[0], out dateTest))
+                        return true;
+                }
+                else
+                {
+                    if (Int32.TryParse(ids[0], out intTest)
+                        && DateTime.TryParse(filters[1], out dateTest))
+                        return true;
+                }
+            }
+            return false;
         }
     }
 }

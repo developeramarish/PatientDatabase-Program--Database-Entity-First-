@@ -37,11 +37,54 @@ namespace PatientDatabase
             switch (helper)
             {
                 case "Medication": return "Medication ID Helper";
+                case "Past Medical History": return "Past Medical History ID Helper";
+                case "Pathology": return "Pathology ID Helper";
+                case "Problem": return "Problem ID Helper";
+                case "Surgery": return "Surgery ID Helper";
+                case "Trauma": return "Trauma ID Helper";
+                case "Treatment": return "Treatment ID Helper";
                 default: return "ID Helper";
             }
         }
 
         public void loadDataGridViewColumns()
+        {
+            switch (helper)
+            {
+                case "Medication": LoadMedicationColumns(); break;
+                case "Past Medical History": LoadPastMedicalHistoryColumns(); break;
+                case "Pathology": LoadPathologyColumns(); break;
+                case "Problem": LoadProblemColumns(); break;
+                case "Surgery": LoadSurgeryColumns(); break;
+                case "Trauma": LoadTraumaColumns(); break;
+                case "Treatment": LoadTreatmentColumns(); break;
+                default: break;
+            }        
+        }
+
+        private void btnLoadDatabase_Click(object sender, EventArgs e)
+        {
+            dgvIdHelper.Rows.Clear();
+            switch (helper)
+            {
+                case "Medication": LoadMedicationData(); break;
+                case "Past Medical History": LoadPastMedicalHistoryData(); break;
+                case "Pathology": LoadPathologyData(); break;
+                case "Problem": LoadProblemData(); break;
+                case "Surgery": LoadSurgeryData(); break;
+                case "Trauma": LoadTraumaData(); break;
+                case "Treatment": LoadTreatmentData(); break;
+                default: break;
+            }
+            foreach (DataGridViewColumn column in dgvIdHelper.Columns) { column.SortMode = DataGridViewColumnSortMode.NotSortable; }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void LoadMedicationColumns()
         {
             dgvIdHelper.Columns.Add("cID", "ID");
             dgvIdHelper.Columns.Add("cName", "Name");
@@ -52,29 +95,90 @@ namespace PatientDatabase
             dgvIdHelper.Columns.Add("cShortActing", "Short Acting?");
         }
 
-        private void btnLoadDatabase_Click(object sender, EventArgs e)
+        private void LoadMedicationData()
         {
-            switch (helper)
-            {
-                case "Medication": LoadMedication(); break;
-                default: break;
-            }
-        }
-
-        private void LoadMedication()
-        {
-            dgvIdHelper.Rows.Clear();
             List<Medication> medication = database.loadMedicationTable(txtFilter.Text);
-            foreach (DataGridViewColumn column in dgvIdHelper.Columns) { column.SortMode = DataGridViewColumnSortMode.NotSortable; }
             medication.ForEach(m => dgvIdHelper.Rows.Add(m.Id, m.Name, m.Type, m.Generic_Name, m.Morphine_Equivalent__mg_, m.Sustained_Release, m.Short_Acting));
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void LoadPastMedicalHistoryColumns()
         {
-            this.Close();
+            dgvIdHelper.Columns.Add("cID", "ID");
+            dgvIdHelper.Columns.Add("cName", "Name");
+        }
+
+        private void LoadPastMedicalHistoryData()
+        {
+            List<Past_Medical_History> pastMedicalHistory = database.loadPastMedicalHistoryTable(txtFilter.Text);
+            pastMedicalHistory.ForEach(pmh => dgvIdHelper.Rows.Add(pmh.Id, pmh.Name));
+        }
+
+        private void LoadPathologyColumns()
+        {
+            dgvIdHelper.Columns.Add("cID", "ID");
+            dgvIdHelper.Columns.Add("cName", "Name");
+        }
+
+        private void LoadPathologyData()
+        {
+            List<Pathology> pathology = database.loadPathologyTable(txtFilter.Text);
+            pathology.ForEach(p => dgvIdHelper.Rows.Add(p.Id, p.Name));
+        }
+
+        private void LoadProblemColumns()
+        {
+            dgvIdHelper.Columns.Add("cID", "ID");
+            dgvIdHelper.Columns.Add("cName", "Name");
+        }
+
+        private void LoadProblemData()
+        {
+            List<Problem> problem = database.loadProblemTable(txtFilter.Text);
+            problem.ForEach(p => dgvIdHelper.Rows.Add(p.Id, p.Name));
+        }
+
+        private void LoadSurgeryColumns()
+        {
+            dgvIdHelper.Columns.Add("cID", "ID");
+            dgvIdHelper.Columns.Add("cName", "Name");
+        }
+
+        private void LoadSurgeryData()
+        {
+            List<Surgery> surgery = database.loadSurgeryTable(txtFilter.Text);
+            surgery.ForEach(s => dgvIdHelper.Rows.Add(s.Id, s.Name));
+        }
+
+        private void LoadTraumaColumns()
+        {
+            dgvIdHelper.Columns.Add("cID", "ID");
+            dgvIdHelper.Columns.Add("cName", "Name");
+        }
+
+        private void LoadTraumaData()
+        {
+            List<Trauma> trauma = database.loadTraumaTable(txtFilter.Text);
+            trauma.ForEach(t => dgvIdHelper.Rows.Add(t.Id, t.Name));
+        }
+
+        private void LoadTreatmentColumns()
+        {
+            dgvIdHelper.Columns.Add("cID", "ID");
+            dgvIdHelper.Columns.Add("cName", "Name");
+        }
+
+        private void LoadTreatmentData()
+        {
+            List<Treatment> treatment = database.loadTreatmentTable(txtFilter.Text);
+            treatment.ForEach(t => dgvIdHelper.Rows.Add(t.Id, t.Name));
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
+        {
+            commitEntitySelection();
+        }
+
+        private void dgvIdHelper_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             commitEntitySelection();
         }
@@ -86,11 +190,6 @@ namespace PatientDatabase
                 + ":" + dgvIdHelper.Rows[selectedRow].Cells[1].Value;
 
             this.Close();
-        }
-
-        private void dgvIdHelper_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            commitEntitySelection();
         }
     }
 }

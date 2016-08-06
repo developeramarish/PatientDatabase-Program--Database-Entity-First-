@@ -21,7 +21,8 @@ namespace PatientDatabase
 {
     public partial class QueryBuilder : Form
     {
-        DatabaseAccess database = new DatabaseAccess();
+        CommandCenter queryCommands;
+        DatabaseAccess database;
         List<Query> queries;
         int selectedRow;
         Query copiedQuery;
@@ -29,6 +30,8 @@ namespace PatientDatabase
         public QueryBuilder()
         {
             InitializeComponent();
+            queryCommands = new CommandCenter();
+            database = new DatabaseAccess();
         }
 
         private void QueryBuilder_Load(object sender, EventArgs e)

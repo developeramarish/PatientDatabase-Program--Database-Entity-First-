@@ -26,5 +26,17 @@ namespace PatientDatabase
         {
             return "Req 1: [" + Entity + " ID] (Use ID Helper)";
         }
+
+        public override bool isFilterValid(string criteriaOption, string filter)
+        {
+            string[] ids = splitId(filter);
+            criteriaOption = stripNot(criteriaOption);
+            int intTest;
+            if (criteriaOption == "Is Equal To")
+            {
+                if (Int32.TryParse(ids[0], out intTest)) return true;
+            }
+            return false;
+        }
     }
 }

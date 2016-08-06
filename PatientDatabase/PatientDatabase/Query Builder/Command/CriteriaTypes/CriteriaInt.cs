@@ -44,8 +44,8 @@ namespace PatientDatabase
 
         public override string getFilterInstructions(string criteriaOption)
         {
-            if (criteriaOption == "Is Between Inclusive" || criteriaOption == "Is Between Exclusive"
-               || criteriaOption == "Is Between Inclusive NOT" || criteriaOption == "Is Between Exclusive NOT")
+            criteriaOption = stripNot(criteriaOption);
+            if (criteriaOption == "Is Between Inclusive" || criteriaOption == "Is Between Exclusive")
             {
                 if (Entity == "")
                 {
@@ -75,6 +75,52 @@ namespace PatientDatabase
                         + "Req 2: [Number] (" + NumberType + ") (" + Measurement + ")";
                 }
             }
+        }
+
+        public override bool isFilterValid(string criteriaOption, string filter)
+        {
+            string[] filters = splitFilter(filter);
+            string[] ids = splitId(filters[0]);
+            criteriaOption = stripNot(criteriaOption);
+            int intTest;
+            int intTest2;
+            int intTest3;
+            if (criteriaOption == "Is Between Inclusive" || criteriaOption == "Is Between Exclusive")
+            {
+                if (Entity == "")
+                {
+                    if (Int32.TryParse(filters[0], out intTest)
+                        && Int32.TryParse(filters[1], out intTest2))
+                    {
+                        if (intTest < intTest2) return true;
+                    }
+
+                }
+                else
+                {
+                    if (Int32.TryParse(ids[0], out intTest)
+                        && Int32.TryParse(filters[1], out intTest2)
+                        && Int32.TryParse(filters[2], out intTest3))
+                    {
+                        if (intTest2 < intTest3) return true;
+                    }
+                }
+            }
+            else
+            {
+                if (Entity == "")
+                {
+                    if (Int32.TryParse(filters[0], out intTest))
+                        return true;
+                }
+                else
+                {
+                    if (Int32.TryParse(ids[0], out intTest)
+                        && Int32.TryParse(filters[1], out intTest2))
+                        return true;
+                }
+            }
+            return false;
         }
     }
 }

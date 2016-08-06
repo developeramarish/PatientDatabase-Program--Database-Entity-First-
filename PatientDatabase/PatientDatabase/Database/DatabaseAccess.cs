@@ -62,7 +62,7 @@ namespace PatientDatabase
         {
             using (pde = new PatientDatabaseEntities())
             {
-                return pde.Medications.FirstOrDefault(p => p.Id == id);
+                return pde.Medications.FirstOrDefault(m => m.Id == id);
             }
         }
 
@@ -81,7 +81,18 @@ namespace PatientDatabase
         {
             using (pde = new PatientDatabaseEntities())
             {
-                return pde.Past_Medical_History.FirstOrDefault(p => p.Id == id);
+                return pde.Past_Medical_History.FirstOrDefault(pmh => pmh.Id == id);
+            }
+        }
+
+        public List<Past_Medical_History> loadPastMedicalHistoryTable(string filter)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                if (filter == "")
+                    return pde.Past_Medical_History.ToList();
+                else
+                    return pde.Past_Medical_History.Where(pmh => pmh.Name.StartsWith(filter)).OrderBy(pmh => pmh.Name).ToList();
             }
         }
 
@@ -93,6 +104,17 @@ namespace PatientDatabase
             }
         }
 
+        public List<Pathology> loadPathologyTable(string filter)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                if (filter == "")
+                    return pde.Pathologies.ToList();
+                else
+                    return pde.Pathologies.Where(p => p.Name.StartsWith(filter)).OrderBy(p => p.Name).ToList();
+            }
+        }
+
         public Problem loadProblem(int id)
         {
             using (pde = new PatientDatabaseEntities())
@@ -101,11 +123,33 @@ namespace PatientDatabase
             }
         }
 
+        public List<Problem> loadProblemTable(string filter)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                if (filter == "")
+                    return pde.Problems.ToList();
+                else
+                    return pde.Problems.Where(p => p.Name.StartsWith(filter)).OrderBy(p => p.Name).ToList();
+            }
+        }
+
         public Surgery loadSurgery(int id)
         {
             using (pde = new PatientDatabaseEntities())
             {
-                return pde.Surgeries.FirstOrDefault(p => p.Id == id);
+                return pde.Surgeries.FirstOrDefault(s => s.Id == id);
+            }
+        }
+
+        public List<Surgery> loadSurgeryTable(string filter)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                if (filter == "")
+                    return pde.Surgeries.ToList();
+                else
+                    return pde.Surgeries.Where(s => s.Name.StartsWith(filter)).OrderBy(s => s.Name).ToList();
             }
         }
 
@@ -113,7 +157,18 @@ namespace PatientDatabase
         {
             using (pde = new PatientDatabaseEntities())
             {
-                return pde.Traumata.FirstOrDefault(p => p.Id == id);
+                return pde.Traumata.FirstOrDefault(t => t.Id == id);
+            }
+        }
+
+        public List<Trauma> loadTraumaTable(string filter)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                if (filter == "")
+                    return pde.Traumata.ToList();
+                else
+                    return pde.Traumata.Where(t => t.Name.StartsWith(filter)).OrderBy(t => t.Name).ToList();
             }
         }
 
@@ -121,7 +176,18 @@ namespace PatientDatabase
         {
             using (pde = new PatientDatabaseEntities())
             {
-                return pde.Treatments.FirstOrDefault(p => p.Id == id);
+                return pde.Treatments.FirstOrDefault(t => t.Id == id);
+            }
+        }
+
+        public List<Treatment> loadTreatmentTable(string filter)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                if (filter == "")
+                    return pde.Treatments.ToList();
+                else
+                    return pde.Treatments.Where(t => t.Name.StartsWith(filter)).OrderBy(t => t.Name).ToList();
             }
         }
 

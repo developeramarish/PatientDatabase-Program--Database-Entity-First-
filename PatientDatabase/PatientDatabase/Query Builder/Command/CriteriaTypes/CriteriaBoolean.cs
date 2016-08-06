@@ -40,5 +40,38 @@ namespace PatientDatabase
                     + "Req 2: [" + possibleChoices + "]";
             }
         }
+
+        public override bool isFilterValid(string criteriaOption, string filter)
+        {
+            string[] filters = splitFilter(filter);
+            string[] ids = splitId(filters[0]);
+            int intTest;
+            criteriaOption = stripNot(criteriaOption);
+
+            if (Entity == "")
+            {
+                if (criteriaOption == "Is Equal To")
+                {
+                    foreach (string choice in Choices)
+                    {
+                        if (filters[0].ToUpper() == choice.ToUpper()) return true;
+                    }
+                }
+            }
+            else
+            {
+                if (criteriaOption == "Is Equal To")
+                {
+                    if (Int32.TryParse(ids[0], out intTest))
+                    {
+                        foreach (string choice in Choices)
+                        {
+                            if (filters[1].ToUpper() == choice.ToUpper()) return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

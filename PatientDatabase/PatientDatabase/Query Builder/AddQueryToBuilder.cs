@@ -13,13 +13,13 @@ namespace PatientDatabase
     // Look in AddQueryToBuilderMethodsAndFunctions for all non control methods and functions called
     public partial class AddQueryToBuilder : Form
     {
-        CommandCenter queryCommands = new CommandCenter();
+        CommandCenter queryCommands;
         List<Query> queries;
         DataGridView dgvCurrentQuery;
         Query query;
         int selectedIndex;
 
-        public AddQueryToBuilder(List<Query> queries, DataGridView dgvCurrentQuery, int selectedIndex)
+        public AddQueryToBuilder(List<Query> queries, DataGridView dgvCurrentQuery, int selectedIndex, CommandCenter queryCommands)
         {
             InitializeComponent();
             this.queries = queries;
@@ -31,12 +31,12 @@ namespace PatientDatabase
                 query = queries[selectedIndex];
 
             this.selectedIndex = selectedIndex;
+            this.queryCommands = queryCommands;
         }
 
         private void AddQueryToBuilder_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
-            enableSubmitButton();
             setUpProperty();
             setUpCriteria();
             setUpFilter();

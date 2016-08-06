@@ -22,13 +22,13 @@ namespace PatientDatabase
 
         private void addQuery()
         {
-            AddQueryToBuilder aqtb = new AddQueryToBuilder(queries, dgvCurrentQuery, -1);
+            AddQueryToBuilder aqtb = new AddQueryToBuilder(queries, dgvCurrentQuery, -1, queryCommands);
             aqtb.ShowDialog();
         }
 
         private void editQuery()
         {
-            AddQueryToBuilder aqtb = new AddQueryToBuilder(queries, dgvCurrentQuery, selectedRow);
+            AddQueryToBuilder aqtb = new AddQueryToBuilder(queries, dgvCurrentQuery, selectedRow, queryCommands);
             aqtb.ShowDialog();
         }
 

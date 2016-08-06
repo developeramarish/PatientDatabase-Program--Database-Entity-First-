@@ -82,6 +82,8 @@ namespace PatientDatabase
                     txtReq3.Text = "";
                     txtSelectedFilter.Text = "";
                 }
+
+                if (isFilterValid()) btnSubmit.Enabled = true;
             }
             else
             {
@@ -184,9 +186,15 @@ namespace PatientDatabase
         private void enableIdHelper()
         {
             if (queryCommands.getProperty(query.Property).enableIDHelper())
+            {
                 btnIdHelper.Enabled = true;
+                txtReq1.ReadOnly = true;
+            }
             else
+            {
                 btnIdHelper.Enabled = false;
+                txtReq1.ReadOnly = false;
+            }
         }
 
         private void commitPropertyChoice()
@@ -233,12 +241,16 @@ namespace PatientDatabase
 
         private void commitFilterChoice()
         {
-         //   if (queryCommands.isFilterValid())
-          //  {
+            if (isFilterValid())
+            {
                 txtSelectedFilter.Text = (txtReq1.Text + " " + txtReq2.Text + " " + txtReq3.Text).Trim();
                 query.Filter = txtSelectedFilter.Text;
-                enableSubmitButton();
-           // }
+                btnSubmit.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Error: Filter is not valid!", "Error");
+            }
         }
 
         private void clearFilter()
@@ -264,15 +276,15 @@ namespace PatientDatabase
             }
         }
 
-        private void enableSubmitButton()
+
+        private bool isFilterValid()
         {
-            if (isQueryValid()) btnSubmit.Enabled = true;
-            else btnSubmit.Enabled = false;
+            return queryCommands.getProperty(query.Property).getCriteria().isFilterValid(query.Criteria, (txtReq1.Text + " " + txtReq2.Text + " " + txtReq3.Text).Trim());
         }
 
-        private bool isQueryValid()
+        private void enableSubmitButton()
         {
-            return true;
+            
         }
     }
 }

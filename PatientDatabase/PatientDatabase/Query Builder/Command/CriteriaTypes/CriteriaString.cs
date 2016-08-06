@@ -39,5 +39,26 @@ namespace PatientDatabase
                     + "Req 2: [Anything]";
             }
         }
+
+        public override bool isFilterValid(string criteriaOption, string filter)
+        {
+            string[] filters = splitFilter(filter);
+            string[] ids = splitId(filter);
+            int intTest;
+            if (Entity == "")
+            {
+                if (filter != "") return true;
+            }
+            else
+            {
+                if (Int32.TryParse(ids[0], out intTest))
+                {
+                    filters[0] = "";
+                    filter = string.Join("", filters);
+                    if (filter.Trim() != "") return true;
+                }
+            }
+            return false;
+        }
     }
 }
