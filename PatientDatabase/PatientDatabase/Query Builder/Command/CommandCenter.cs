@@ -45,6 +45,7 @@ namespace PatientDatabase
                 new PropertyInt("Medication @ Morphine Equivalent", false, "Whole Number/Decimal", "Miligrams"),
                 new PropertyBoolean("Medication @ Sustained Release", false, new string[] { "True", "False" }),
                 new PropertyBoolean("Medication @ Short Acting", false, new string[] { "True", "False" }),
+                new PropertyIsCurrentlyHappening("Medication @ Is Currently Being Taken", true),
                 new PropertyEntity("Past Medical History Entity", "Past Medical History", true),
                 new PropertyString("Past Medical History @ Name", false),
                 new PropertyEntity("Pathology Entity", "Pathology", true),
@@ -60,7 +61,9 @@ namespace PatientDatabase
                 new PropertyEntity("Treatment Entity", "Treatment", true),
                 new PropertyDate("Treatment Entity Start Date", "Treatment", true),
                 new PropertyDate("Treatment Entity End Date", "Treatment", true),
-                new PropertyString("Treatment @ Name", false)
+                new PropertyString("Treatment @ Name", false),
+                new PropertyEntity("Protocol Entity", "Protocol", true),
+                new PropertyBoolean("Protocol Entity Has Been Completed", "Protocol", true, new string[] {"True", "False" }),
             };
         }
 

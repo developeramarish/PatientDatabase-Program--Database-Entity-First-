@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
-//using System.Data.Entity.Core.Objects.DataClasses;
 using System.Data.Entity.Core.Objects.DataClasses;
 using LinqKit;
 
@@ -188,6 +187,25 @@ namespace PatientDatabase
                     return pde.Treatments.ToList();
                 else
                     return pde.Treatments.Where(t => t.Name.StartsWith(filter)).OrderBy(t => t.Name).ToList();
+            }
+        }
+
+        public Protocol loadProtocol(int id)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                return pde.Protocols.FirstOrDefault(p => p.Id == id);
+            }
+        }
+
+        public List<Protocol> loadProtocolTable(string filter)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                if (filter == "")
+                    return pde.Protocols.ToList();
+                else
+                    return pde.Protocols.Where(p => p.Name.StartsWith(filter)).OrderBy(t => t.Name).ToList();
             }
         }
 

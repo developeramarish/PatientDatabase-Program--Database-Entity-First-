@@ -54,6 +54,7 @@ namespace PatientDatabase
                 case "Medication @ Generic Name": return checkMedicationGenericName();
                 case "Medication @ Sustained Release": return checkMedicationSustainedRelease();
                 case "Medication @ Short Acting": return checkMedicationShortActing();
+                case "Medication @ Is Currently Being Taken": return checkMedicationIsCurrentlyBeingTaken();
                 case "Past Medical History Entity": return checkPastMedicalHistoryEntity();
                 case "Past Medical History @ Name": return checkPastMedicalHistoryName();
                 case "Pathology Entity": return checkPathologyEntity();
@@ -70,6 +71,8 @@ namespace PatientDatabase
                 case "Treatment Entity Start Date": return checkTreatmentEntityStartDate();
                 case "Treatment Entity End Date": return checkTreatmentEntityEndDate();
                 case "Treatment @ Name": return checkTreatmentName();
+                case "Protocol Entity": return checkProtocolEntity();
+                case "Protocol Entity Has Been Completed": return checkProtocolEntityHasBeenCompleted();
                 default: return p => false;
             }
 
@@ -598,7 +601,19 @@ namespace PatientDatabase
                 case "Is Equal To NOT": return p => p.PatientMedications.Any(m => m.Medication.Short_Acting != Filter);
                 default: return p => false;
             }
-
+        }
+        #endregion
+        #region Medication Is Currently Being Taken
+        private Expression<Func<Patient, bool>> checkMedicationIsCurrentlyBeingTaken()
+        {
+            string endDate = "12/31/9999";
+            DateTime neverEndingDate = DateTime.Parse(endDate);
+            switch (Criteria)
+            {
+                case "Is Current": return p => p.PatientMedications.Any(pm => pm.End_Date == neverEndingDate);
+                case "Is Current NOT": return p => p.PatientMedications.Any(pm => pm.End_Date != neverEndingDate);
+                default: return p => false;
+            }
         }
         #endregion
 
@@ -883,6 +898,33 @@ namespace PatientDatabase
                 case "Starts With NOT": return p => p.PatientTreatments.Any(tre => !tre.Treatment.Name.StartsWith(Filter));
                 case "Contains NOT": return p => p.PatientTreatments.Any(tre => !tre.Treatment.Name.Contains(Filter));
                 case "Ends With NOT": return p => p.PatientTreatments.Any(tre => !tre.Treatment.Name.EndsWith(Filter));
+                default: return p => false;
+            }
+        }
+        #endregion
+
+        #region Protocol Entity
+        private Expression<Func<Patient, bool>> checkProtocolEntity()
+        {
+            string[] id = Filter.Split(':');
+            int proId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientProtocols.Any(pro => pro.ProtocolID == proId);
+                case "Is Equal To NOT": return p => p.PatientProtocols.Any(pro => pro.ProtocolID != proId);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Protocol Entity Has Been Completed
+        private Expression<Func<Patient, bool>> checkProtocolEntityHasBeenCompleted()
+        {
+            string[] id = Filter.Split(':');
+            int proId = Int32.Parse(id[0]);
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientProtocols.Any(pro => pro.ProtocolID == proId && pro.Last_Updated_Interval == p.PatientProtocols.FirstOrDefault(pp => pp.ProtocolID == proId).Protocol.End_Interval);
+                case "Is Equal To NOT": return p => p.PatientProtocols.Any(pro => pro.ProtocolID == proId && pro.Last_Updated_Interval != p.PatientProtocols.FirstOrDefault(pp => pp.ProtocolID == proId).Protocol.End_Interval);
                 default: return p => false;
             }
         }

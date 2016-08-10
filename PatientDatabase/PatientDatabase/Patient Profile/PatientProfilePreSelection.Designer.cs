@@ -32,7 +32,7 @@
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cboUsing = new System.Windows.Forms.ComboBox();
+            this.cboProperty = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboCriteria = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             // 
             this.txtFilter.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilter.Location = new System.Drawing.Point(133, 15);
+            this.txtFilter.Location = new System.Drawing.Point(116, 113);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(191, 26);
             this.txtFilter.TabIndex = 4;
@@ -75,11 +75,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(18, 18);
+            this.label1.Location = new System.Drawing.Point(59, 116);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 20);
+            this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Filter Results:";
+            this.label1.Text = "Filter:";
             // 
             // label2
             // 
@@ -93,19 +93,19 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Search Patient Database";
             // 
-            // cboUsing
+            // cboProperty
             // 
-            this.cboUsing.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cboUsing.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUsing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboUsing.FormattingEnabled = true;
-            this.cboUsing.Items.AddRange(new object[] {
+            this.cboProperty.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboProperty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProperty.FormattingEnabled = true;
+            this.cboProperty.Items.AddRange(new object[] {
             "Last Name",
             "First Name"});
-            this.cboUsing.Location = new System.Drawing.Point(133, 61);
-            this.cboUsing.Name = "cboUsing";
-            this.cboUsing.Size = new System.Drawing.Size(191, 28);
-            this.cboUsing.TabIndex = 7;
+            this.cboProperty.Location = new System.Drawing.Point(116, 15);
+            this.cboProperty.Name = "cboProperty";
+            this.cboProperty.Size = new System.Drawing.Size(191, 28);
+            this.cboProperty.TabIndex = 7;
             // 
             // label3
             // 
@@ -113,11 +113,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(70, 64);
+            this.label3.Location = new System.Drawing.Point(35, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 20);
+            this.label3.Size = new System.Drawing.Size(72, 20);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Using:";
+            this.label3.Text = "Property:";
             // 
             // cboCriteria
             // 
@@ -126,11 +126,11 @@
             this.cboCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCriteria.FormattingEnabled = true;
             this.cboCriteria.Items.AddRange(new object[] {
-            "Starts With",
             "Is Equal To",
+            "Starts With",
             "Contains",
             "Ends With"});
-            this.cboCriteria.Location = new System.Drawing.Point(133, 109);
+            this.cboCriteria.Location = new System.Drawing.Point(116, 64);
             this.cboCriteria.Name = "cboCriteria";
             this.cboCriteria.Size = new System.Drawing.Size(191, 28);
             this.cboCriteria.TabIndex = 9;
@@ -141,7 +141,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(64, 112);
+            this.label4.Location = new System.Drawing.Point(44, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 20);
             this.label4.TabIndex = 10;
@@ -168,7 +168,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtFilter);
             this.panel1.Controls.Add(this.cboCriteria);
-            this.panel1.Controls.Add(this.cboUsing);
+            this.panel1.Controls.Add(this.cboProperty);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(59, 98);
             this.panel1.Name = "panel1";
@@ -260,7 +260,7 @@
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cboUsing;
+        private System.Windows.Forms.ComboBox cboProperty;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboCriteria;
         private System.Windows.Forms.Label label4;

@@ -104,9 +104,11 @@ namespace PatientDatabase
         {
             queries = formatQueriesList();
             List<Patient> results = database.loadPatientsFromQuery(queries);
-            PatientProfileSelection pps = new PatientProfileSelection(results);
-            pps.Show();
-            this.Close();
+            //PatientProfileSelection pps = new PatientProfileSelection(results);
+            //pps.Show();
+            QueryResults qr = new QueryResults(results, queries);
+            qr.ShowDialog();
+           // this.Close();
         }
 
         // applies continue and standalone groups where needed to each query for structuring purposes

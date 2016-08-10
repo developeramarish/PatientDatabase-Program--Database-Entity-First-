@@ -27,7 +27,7 @@ namespace PatientDatabase
             GlobalFormManager.FormOpen();
             LoadDataGridView();
             dgvPatientInfoDisplay.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            cboUsing.SelectedIndex = 0;
+            cboProperty.SelectedIndex = 0;
             cboCriteria.SelectedIndex = 0;
         }
 
@@ -49,10 +49,27 @@ namespace PatientDatabase
             if (txtFilter.Text == "") { LoadDataGridView(); }
             else
             {
-                filteredPatients = database.loadPatientsFromQuery(new List<Query> { new PatientQuery(cboUsing.Text, cboCriteria.Text, txtFilter.Text) });
+                filteredPatients = applyFilter();
                 filteredPatients.ForEach(p => dgvPatientInfoDisplay.Rows.Add(p.Last_Name, p.First_Name, p.Sex, p.Date_of_Birth.ToShortDateString()));
                 lblNumberOfRecords.Text = "* Number of Records Shown: " + filteredPatients.Count;
             }
+        }
+
+        private List<Patient> applyFilter()
+        {
+            if (cboProperty.Text == "Last Name")
+            {
+                if (cboCriteria.Text == "Starts With") return patients.Where(p => p.Last_Name.ToUpper().StartsWith(txtFilter.Text.ToUpper())).ToList();
+                else if (cboCriteria.Text == "Contains") return patients.Where(p => p.Last_Name.ToUpper().Contains(txtFilter.Text.ToUpper())).ToList();
+                else if (cboCriteria.Text == "Ends With") return patients.Where(p => p.Last_Name.ToUpper().EndsWith(txtFilter.Text.ToUpper())).ToList();
+            }
+            else if (cboProperty.Text == "First Name")
+            {
+                if (cboCriteria.Text == "Starts With") return patients.Where(p => p.First_Name.ToUpper().StartsWith(txtFilter.Text.ToUpper())).ToList();
+                else if (cboCriteria.Text == "Contains") return patients.Where(p => p.First_Name.ToUpper().Contains(txtFilter.Text.ToUpper())).ToList();
+                else if (cboCriteria.Text == "Ends With") return patients.Where(p => p.First_Name.ToUpper().EndsWith(txtFilter.Text.ToUpper())).ToList();
+            }
+            return patients;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)

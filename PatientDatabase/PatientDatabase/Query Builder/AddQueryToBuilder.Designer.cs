@@ -129,7 +129,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.LightSlateGray;
+            this.panel4.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.btnClearCriteria);
             this.panel4.Controls.Add(this.chkNot);
@@ -160,7 +160,7 @@
             // 
             this.chkNot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkNot.AutoSize = true;
-            this.chkNot.ForeColor = System.Drawing.Color.White;
+            this.chkNot.ForeColor = System.Drawing.Color.Black;
             this.chkNot.Location = new System.Drawing.Point(12, 313);
             this.chkNot.Name = "chkNot";
             this.chkNot.Size = new System.Drawing.Size(43, 17);
@@ -211,7 +211,7 @@
             // 
             this.chkCriteriaDevMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkCriteriaDevMode.AutoSize = true;
-            this.chkCriteriaDevMode.ForeColor = System.Drawing.Color.White;
+            this.chkCriteriaDevMode.ForeColor = System.Drawing.Color.Black;
             this.chkCriteriaDevMode.Location = new System.Drawing.Point(117, 313);
             this.chkCriteriaDevMode.Name = "chkCriteriaDevMode";
             this.chkCriteriaDevMode.Size = new System.Drawing.Size(106, 17);
@@ -224,7 +224,7 @@
             // 
             this.lblFilterCriteria.AutoSize = true;
             this.lblFilterCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilterCriteria.ForeColor = System.Drawing.Color.White;
+            this.lblFilterCriteria.ForeColor = System.Drawing.Color.Black;
             this.lblFilterCriteria.Location = new System.Drawing.Point(12, 13);
             this.lblFilterCriteria.Name = "lblFilterCriteria";
             this.lblFilterCriteria.Size = new System.Drawing.Size(48, 20);
@@ -233,7 +233,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.LightSlateGray;
+            this.panel5.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.btnClearFilter);
@@ -316,7 +316,7 @@
             // 
             this.lblReq3.AutoSize = true;
             this.lblReq3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReq3.ForeColor = System.Drawing.Color.White;
+            this.lblReq3.ForeColor = System.Drawing.Color.Black;
             this.lblReq3.Location = new System.Drawing.Point(28, 113);
             this.lblReq3.Name = "lblReq3";
             this.lblReq3.Size = new System.Drawing.Size(56, 20);
@@ -327,7 +327,7 @@
             // 
             this.lblReq2.AutoSize = true;
             this.lblReq2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReq2.ForeColor = System.Drawing.Color.White;
+            this.lblReq2.ForeColor = System.Drawing.Color.Black;
             this.lblReq2.Location = new System.Drawing.Point(28, 67);
             this.lblReq2.Name = "lblReq2";
             this.lblReq2.Size = new System.Drawing.Size(56, 20);
@@ -338,7 +338,7 @@
             // 
             this.lblReq1.AutoSize = true;
             this.lblReq1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReq1.ForeColor = System.Drawing.Color.White;
+            this.lblReq1.ForeColor = System.Drawing.Color.Black;
             this.lblReq1.Location = new System.Drawing.Point(28, 21);
             this.lblReq1.Name = "lblReq1";
             this.lblReq1.Size = new System.Drawing.Size(56, 20);
@@ -380,7 +380,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnClearProperty);
             this.panel1.Controls.Add(this.txtPropertyFilter);
@@ -448,7 +448,7 @@
             // 
             this.chkPropertyDevMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkPropertyDevMode.AutoSize = true;
-            this.chkPropertyDevMode.ForeColor = System.Drawing.Color.White;
+            this.chkPropertyDevMode.ForeColor = System.Drawing.Color.Black;
             this.chkPropertyDevMode.Location = new System.Drawing.Point(117, 313);
             this.chkPropertyDevMode.Name = "chkPropertyDevMode";
             this.chkPropertyDevMode.Size = new System.Drawing.Size(106, 17);
@@ -461,7 +461,7 @@
             // 
             this.lblFilterProperty.AutoSize = true;
             this.lblFilterProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilterProperty.ForeColor = System.Drawing.Color.White;
+            this.lblFilterProperty.ForeColor = System.Drawing.Color.Black;
             this.lblFilterProperty.Location = new System.Drawing.Point(12, 13);
             this.lblFilterProperty.Name = "lblFilterProperty";
             this.lblFilterProperty.Size = new System.Drawing.Size(48, 20);

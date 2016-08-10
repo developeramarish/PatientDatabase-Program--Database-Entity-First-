@@ -25,6 +25,8 @@
     <NavigationProperty Name="PatientSurgeries" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToPatient" FromRole="Patient" ToRole="PatientSurgery" />
     <NavigationProperty Name="PatientTraumas" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToPatient" FromRole="Patient" ToRole="PatientTrauma" />
     <NavigationProperty Name="PatientTreatments" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="Patient" ToRole="PatientTreatment" />
+    <NavigationProperty Name="PatientOutcomes" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToPatient" FromRole="Patient" ToRole="PatientOutcome" />
+    <NavigationProperty Name="PatientProtocols" Relationship="PatientDatabaseModel.FK_PatientProtocol_ToPatient" FromRole="Patient" ToRole="PatientProtocol" />
   </EntityType>
   <EntityContainer Name="PatientDatabaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Patients" EntityType="Self.Patient" />
@@ -97,6 +99,39 @@
     <AssociationSet Name="FK_PatientTreatment_ToTreatment" Association="PatientDatabaseModel.FK_PatientTreatment_ToTreatment">
       <End Role="Treatment" EntitySet="Treatments" />
       <End Role="PatientTreatment" EntitySet="PatientTreatments" />
+    </AssociationSet>
+    <EntitySet Name="Outcomes" EntityType="PatientDatabaseModel.Outcome" />
+    <EntitySet Name="PatientOutcomes" EntityType="PatientDatabaseModel.PatientOutcome" />
+    <EntitySet Name="PatientProtocols" EntityType="PatientDatabaseModel.PatientProtocol" />
+    <EntitySet Name="Protocols" EntityType="PatientDatabaseModel.Protocol" />
+    <EntitySet Name="ProtocolOutcomes" EntityType="PatientDatabaseModel.ProtocolOutcome" />
+    <AssociationSet Name="FK_PatientOutcome_ToOutcome" Association="PatientDatabaseModel.FK_PatientOutcome_ToOutcome">
+      <End Role="Outcome" EntitySet="Outcomes" />
+      <End Role="PatientOutcome" EntitySet="PatientOutcomes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProtocolOutcome_ToOutcome" Association="PatientDatabaseModel.FK_ProtocolOutcome_ToOutcome">
+      <End Role="Outcome" EntitySet="Outcomes" />
+      <End Role="ProtocolOutcome" EntitySet="ProtocolOutcomes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientOutcome_ToPatient" Association="PatientDatabaseModel.FK_PatientOutcome_ToPatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientOutcome" EntitySet="PatientOutcomes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientProtocol_ToPatient" Association="PatientDatabaseModel.FK_PatientProtocol_ToPatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientProtocol" EntitySet="PatientProtocols" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientProtocol_ToProtocol" Association="PatientDatabaseModel.FK_PatientProtocol_ToProtocol">
+      <End Role="Protocol" EntitySet="Protocols" />
+      <End Role="PatientProtocol" EntitySet="PatientProtocols" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProtocolOutcome_ToProtocol" Association="PatientDatabaseModel.FK_ProtocolOutcome_ToProtocol">
+      <End Role="Protocol" EntitySet="Protocols" />
+      <End Role="ProtocolOutcome" EntitySet="ProtocolOutcomes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientOutcome_ToProtocol" Association="PatientDatabaseModel.FK_PatientOutcome_ToProtocol">
+      <End Role="Protocol" EntitySet="Protocols" />
+      <End Role="PatientOutcome" EntitySet="PatientOutcomes" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Pathology">
@@ -402,6 +437,150 @@
       </Principal>
       <Dependent Role="PatientTreatment">
         <PropertyRef Name="TreatmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Outcome">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PatientOutcomes" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToOutcome" FromRole="Outcome" ToRole="PatientOutcome" />
+    <NavigationProperty Name="ProtocolOutcomes" Relationship="PatientDatabaseModel.FK_ProtocolOutcome_ToOutcome" FromRole="Outcome" ToRole="ProtocolOutcome" />
+  </EntityType>
+  <EntityType Name="PatientOutcome">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="ProtocolID" Type="Int32" Nullable="false" />
+    <Property Name="OutcomeID" Type="Int32" Nullable="false" />
+    <Property Name="Result" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Interval_Number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Outcome" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToOutcome" FromRole="PatientOutcome" ToRole="Outcome" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToPatient" FromRole="PatientOutcome" ToRole="Patient" />
+    <NavigationProperty Name="Protocol" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToProtocol" FromRole="PatientOutcome" ToRole="Protocol" />
+  </EntityType>
+  <EntityType Name="PatientProtocol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="ProtocolID" Type="Int32" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Last_Update" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientProtocol_ToPatient" FromRole="PatientProtocol" ToRole="Patient" />
+    <NavigationProperty Name="Protocol" Relationship="PatientDatabaseModel.FK_PatientProtocol_ToProtocol" FromRole="PatientProtocol" ToRole="Protocol" />
+    <Property Name="Last_Updated_Interval" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Protocol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Interval__Months_" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PatientProtocols" Relationship="PatientDatabaseModel.FK_PatientProtocol_ToProtocol" FromRole="Protocol" ToRole="PatientProtocol" />
+    <NavigationProperty Name="ProtocolOutcomes" Relationship="PatientDatabaseModel.FK_ProtocolOutcome_ToProtocol" FromRole="Protocol" ToRole="ProtocolOutcome" />
+    <Property Name="End_Interval" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PatientOutcomes" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToProtocol" FromRole="Protocol" ToRole="PatientOutcome" />
+  </EntityType>
+  <EntityType Name="ProtocolOutcome">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProtocolID" Type="Int32" Nullable="false" />
+    <Property Name="OutcomeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Outcome" Relationship="PatientDatabaseModel.FK_ProtocolOutcome_ToOutcome" FromRole="ProtocolOutcome" ToRole="Outcome" />
+    <NavigationProperty Name="Protocol" Relationship="PatientDatabaseModel.FK_ProtocolOutcome_ToProtocol" FromRole="ProtocolOutcome" ToRole="Protocol" />
+  </EntityType>
+  <Association Name="FK_PatientOutcome_ToOutcome">
+    <End Type="PatientDatabaseModel.Outcome" Role="Outcome" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientOutcome" Role="PatientOutcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Outcome">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientOutcome">
+        <PropertyRef Name="OutcomeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProtocolOutcome_ToOutcome">
+    <End Type="PatientDatabaseModel.Outcome" Role="Outcome" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.ProtocolOutcome" Role="ProtocolOutcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Outcome">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProtocolOutcome">
+        <PropertyRef Name="OutcomeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientOutcome_ToPatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientOutcome" Role="PatientOutcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientOutcome">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientProtocol_ToPatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientProtocol" Role="PatientProtocol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientProtocol">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientProtocol_ToProtocol">
+    <End Type="PatientDatabaseModel.Protocol" Role="Protocol" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientProtocol" Role="PatientProtocol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Protocol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientProtocol">
+        <PropertyRef Name="ProtocolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProtocolOutcome_ToProtocol">
+    <End Type="PatientDatabaseModel.Protocol" Role="Protocol" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.ProtocolOutcome" Role="ProtocolOutcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Protocol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProtocolOutcome">
+        <PropertyRef Name="ProtocolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientOutcome_ToProtocol">
+    <End Type="PatientDatabaseModel.Protocol" Role="Protocol" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientOutcome" Role="PatientOutcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Protocol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientOutcome">
+        <PropertyRef Name="ProtocolID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

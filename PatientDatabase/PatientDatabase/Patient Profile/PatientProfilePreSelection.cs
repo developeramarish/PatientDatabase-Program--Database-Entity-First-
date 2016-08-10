@@ -23,7 +23,7 @@ namespace PatientDatabase
         private void PatientProfilePreSelection_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
-            cboUsing.SelectedIndex = 0;
+            cboProperty.SelectedIndex = 0;
             cboCriteria.SelectedIndex = 0;
             lblNumberOfRecords.Text = "* Total Number of Patient Records: " + database.getTableRecordCount("Patient").ToString();
         }
@@ -35,7 +35,7 @@ namespace PatientDatabase
 
         private void btnLoadPatientDatabase_Click(object sender, EventArgs e)
         {
-            List<Query> queries = new List<Query> { new PatientQuery(cboUsing.Text, cboCriteria.Text, txtFilter.Text) };
+            List<Query> queries = new List<Query> { new PatientQuery(cboProperty.Text, cboCriteria.Text, txtFilter.Text) };
             queries = formatQueriesList(queries);
             patients = database.loadPatientsFromQuery(queries);
 

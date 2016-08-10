@@ -24,6 +24,8 @@ namespace PatientDatabase
             this.PatientSurgeries = new HashSet<PatientSurgery>();
             this.PatientTraumas = new HashSet<PatientTrauma>();
             this.PatientTreatments = new HashSet<PatientTreatment>();
+            this.PatientOutcomes = new HashSet<PatientOutcome>();
+            this.PatientProtocols = new HashSet<PatientProtocol>();
         }
     
         public int Id { get; set; }
@@ -55,5 +57,9 @@ namespace PatientDatabase
         public virtual ICollection<PatientTrauma> PatientTraumas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientTreatment> PatientTreatments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PatientOutcome> PatientOutcomes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PatientProtocol> PatientProtocols { get; set; }
     }
 }

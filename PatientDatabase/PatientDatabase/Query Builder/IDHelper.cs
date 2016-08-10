@@ -43,6 +43,7 @@ namespace PatientDatabase
                 case "Surgery": return "Surgery ID Helper";
                 case "Trauma": return "Trauma ID Helper";
                 case "Treatment": return "Treatment ID Helper";
+                case "Protocol": return "Protocol ID Helper";
                 default: return "ID Helper";
             }
         }
@@ -58,6 +59,7 @@ namespace PatientDatabase
                 case "Surgery": LoadSurgeryColumns(); break;
                 case "Trauma": LoadTraumaColumns(); break;
                 case "Treatment": LoadTreatmentColumns(); break;
+                case "Protocol": LoadProtocolColumns(); break;
                 default: break;
             }        
         }
@@ -74,6 +76,7 @@ namespace PatientDatabase
                 case "Surgery": LoadSurgeryData(); break;
                 case "Trauma": LoadTraumaData(); break;
                 case "Treatment": LoadTreatmentData(); break;
+                case "Protocol": LoadProtocolData(); break;
                 default: break;
             }
             foreach (DataGridViewColumn column in dgvIdHelper.Columns) { column.SortMode = DataGridViewColumnSortMode.NotSortable; }
@@ -171,6 +174,20 @@ namespace PatientDatabase
         {
             List<Treatment> treatment = database.loadTreatmentTable(txtFilter.Text);
             treatment.ForEach(t => dgvIdHelper.Rows.Add(t.Id, t.Name));
+        }
+
+        private void LoadProtocolColumns()
+        {
+            dgvIdHelper.Columns.Add("cID", "ID");
+            dgvIdHelper.Columns.Add("cName", "Name");
+            dgvIdHelper.Columns.Add("cInterval", "Interval (Months)");
+            dgvIdHelper.Columns.Add("cEnd Interval", "End Interval");
+        }
+
+        private void LoadProtocolData()
+        {
+            List<Protocol> protocols = database.loadProtocolTable(txtFilter.Text);
+            protocols.ForEach(p => dgvIdHelper.Rows.Add(p.Id, p.Name, p.Interval__Months_, p.End_Interval));
         }
 
         private void btnSelect_Click(object sender, EventArgs e)

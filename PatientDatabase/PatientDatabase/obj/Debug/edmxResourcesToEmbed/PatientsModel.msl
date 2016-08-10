@@ -152,5 +152,58 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Outcomes">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Outcome">
+        <MappingFragment StoreEntitySet="Outcome">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientOutcomes">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientOutcome">
+        <MappingFragment StoreEntitySet="PatientOutcome">
+          <ScalarProperty Name="ProtocolID" ColumnName="ProtocolID" />
+          <ScalarProperty Name="Interval_Number" ColumnName="Interval Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="OutcomeID" ColumnName="OutcomeID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientProtocols">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientProtocol">
+        <MappingFragment StoreEntitySet="PatientProtocol">
+          <ScalarProperty Name="Last_Updated_Interval" ColumnName="Last Updated Interval" />
+          <ScalarProperty Name="Last_Update" ColumnName="Last Update" />
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
+          <ScalarProperty Name="ProtocolID" ColumnName="ProtocolID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Protocols">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.Protocol">
+        <MappingFragment StoreEntitySet="Protocol">
+          <ScalarProperty Name="End_Interval" ColumnName="End Interval" />
+          <ScalarProperty Name="Interval__Months_" ColumnName="Interval (Months)" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProtocolOutcomes">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.ProtocolOutcome">
+        <MappingFragment StoreEntitySet="ProtocolOutcome">
+          <ScalarProperty Name="OutcomeID" ColumnName="OutcomeID" />
+          <ScalarProperty Name="ProtocolID" ColumnName="ProtocolID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

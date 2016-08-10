@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPatientInfoDisplay = new System.Windows.Forms.DataGridView();
             this.cLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,9 +45,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.lblUsing = new System.Windows.Forms.Label();
+            this.lblProperty = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.cboUsing = new System.Windows.Forms.ComboBox();
+            this.cboProperty = new System.Windows.Forms.ComboBox();
             this.cboCriteria = new System.Windows.Forms.ComboBox();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -62,35 +62,35 @@
             this.dgvPatientInfoDisplay.AllowUserToAddRows = false;
             this.dgvPatientInfoDisplay.AllowUserToDeleteRows = false;
             this.dgvPatientInfoDisplay.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.PaleGreen;
-            this.dgvPatientInfoDisplay.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.PaleGreen;
+            this.dgvPatientInfoDisplay.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPatientInfoDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPatientInfoDisplay.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPatientInfoDisplay.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPatientInfoDisplay.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPatientInfoDisplay.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPatientInfoDisplay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPatientInfoDisplay.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cLastName,
             this.cFirstName,
             this.cSex,
             this.cDateOfBirth});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPatientInfoDisplay.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPatientInfoDisplay.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPatientInfoDisplay.Location = new System.Drawing.Point(12, 103);
             this.dgvPatientInfoDisplay.MultiSelect = false;
             this.dgvPatientInfoDisplay.Name = "dgvPatientInfoDisplay";
@@ -145,9 +145,9 @@
             // 
             this.txtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilter.Location = new System.Drawing.Point(66, 20);
+            this.txtFilter.Location = new System.Drawing.Point(81, 109);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(153, 26);
+            this.txtFilter.Size = new System.Drawing.Size(138, 26);
             this.txtFilter.TabIndex = 2;
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
@@ -157,7 +157,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(11, 23);
+            this.label2.Location = new System.Drawing.Point(27, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 20);
             this.label2.TabIndex = 3;
@@ -228,17 +228,17 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // lblUsing
+            // lblProperty
             // 
-            this.lblUsing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUsing.AutoSize = true;
-            this.lblUsing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsing.ForeColor = System.Drawing.Color.White;
-            this.lblUsing.Location = new System.Drawing.Point(5, 64);
-            this.lblUsing.Name = "lblUsing";
-            this.lblUsing.Size = new System.Drawing.Size(54, 20);
-            this.lblUsing.TabIndex = 7;
-            this.lblUsing.Text = "Using:";
+            this.lblProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProperty.AutoSize = true;
+            this.lblProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProperty.ForeColor = System.Drawing.Color.White;
+            this.lblProperty.Location = new System.Drawing.Point(3, 22);
+            this.lblProperty.Name = "lblProperty";
+            this.lblProperty.Size = new System.Drawing.Size(72, 20);
+            this.lblProperty.TabIndex = 7;
+            this.lblProperty.Text = "Property:";
             // 
             // label4
             // 
@@ -246,25 +246,25 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(2, 109);
+            this.label4.Location = new System.Drawing.Point(12, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "Criteria:";
             // 
-            // cboUsing
+            // cboProperty
             // 
-            this.cboUsing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboUsing.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUsing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboUsing.FormattingEnabled = true;
-            this.cboUsing.Items.AddRange(new object[] {
+            this.cboProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboProperty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProperty.FormattingEnabled = true;
+            this.cboProperty.Items.AddRange(new object[] {
             "Last Name",
             "First Name"});
-            this.cboUsing.Location = new System.Drawing.Point(66, 61);
-            this.cboUsing.Name = "cboUsing";
-            this.cboUsing.Size = new System.Drawing.Size(153, 28);
-            this.cboUsing.TabIndex = 9;
+            this.cboProperty.Location = new System.Drawing.Point(81, 19);
+            this.cboProperty.Name = "cboProperty";
+            this.cboProperty.Size = new System.Drawing.Size(138, 28);
+            this.cboProperty.TabIndex = 9;
             // 
             // cboCriteria
             // 
@@ -276,9 +276,9 @@
             "Starts With",
             "Contains",
             "Ends With"});
-            this.cboCriteria.Location = new System.Drawing.Point(66, 106);
+            this.cboCriteria.Location = new System.Drawing.Point(81, 64);
             this.cboCriteria.Name = "cboCriteria";
-            this.cboCriteria.Size = new System.Drawing.Size(153, 28);
+            this.cboCriteria.Size = new System.Drawing.Size(138, 28);
             this.cboCriteria.TabIndex = 10;
             // 
             // lblNumberOfRecords
@@ -300,9 +300,9 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.cboCriteria);
             this.panel2.Controls.Add(this.txtFilter);
+            this.panel2.Controls.Add(this.cboProperty);
+            this.panel2.Controls.Add(this.lblProperty);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.cboUsing);
-            this.panel2.Controls.Add(this.lblUsing);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(547, 103);
             this.panel2.Name = "panel2";
@@ -355,9 +355,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Label lblUsing;
+        private System.Windows.Forms.Label lblProperty;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cboUsing;
+        private System.Windows.Forms.ComboBox cboProperty;
         private System.Windows.Forms.ComboBox cboCriteria;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Panel panel2;

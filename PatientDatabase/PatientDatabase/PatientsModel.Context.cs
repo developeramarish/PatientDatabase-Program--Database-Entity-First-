@@ -40,5 +40,10 @@ namespace PatientDatabase
         public virtual DbSet<Surgery> Surgeries { get; set; }
         public virtual DbSet<Trauma> Traumata { get; set; }
         public virtual DbSet<Treatment> Treatments { get; set; }
+        public virtual DbSet<Outcome> Outcomes { get; set; }
+        public virtual DbSet<PatientOutcome> PatientOutcomes { get; set; }
+        public virtual DbSet<PatientProtocol> PatientProtocols { get; set; }
+        public virtual DbSet<Protocol> Protocols { get; set; }
+        public virtual DbSet<ProtocolOutcome> ProtocolOutcomes { get; set; }
     }
 }
