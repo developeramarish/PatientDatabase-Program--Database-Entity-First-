@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PatientDatabase
 {
@@ -46,11 +47,25 @@ namespace PatientDatabase
             // chartOutcomeData.ChartAreas["ChartArea1"].Axes[0].Interval = 1;
 
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
-            chart1.Series["Series1"].Points.AddXY(0, 25);
+            chart1.Series["Series1"].Points.AddXY(0, 125);
             chart1.Series["Series1"].Points.AddXY(1, 3);
-            chart1.Series["Series1"].Points.AddXY(2, 2);
-            chart1.Series["Series1"].Points.AddXY(3, 2);
-            chart1.Series["Series1"].Points.AddXY(4, 1);
+            //chart1.Series["Series1"].Points.AddXY(2, 2);
+            //chart1.Series["Series1"].Points.AddXY(3, 2);
+            //chart1.Series["Series1"].Points.AddXY(4, 1);
+
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(-.5, 0.5, "Baseline", 1, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(0.5, 1.5, "3 Months", 1, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(1.5, 2.5, "6 Months", 1, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(2.5, 3.5, "9 Months", 1, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(3.5, 4.5, "12 Months", 1, LabelMarkStyle.None);
+
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(-.5, 0.5, "(25)", 2, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(0.5, 1.5, "(3)", 2, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(1.5, 2.5, "(2)", 2, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(2.5, 3.5, "(2)", 2, LabelMarkStyle.None);
+            chart1.ChartAreas[0].AxisX.CustomLabels.Add(3.5, 4.5, "(1)", 2, LabelMarkStyle.None);
+
+            chart1.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
         }
         
         private decimal getPercentage(decimal count, decimal total)

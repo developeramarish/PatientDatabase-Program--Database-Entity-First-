@@ -55,16 +55,32 @@
             this.cFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.tpCharts = new System.Windows.Forms.TabPage();
+            this.btnFullView = new System.Windows.Forms.Button();
+            this.txtGraphCount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboStartInterval = new System.Windows.Forms.ComboBox();
+            this.cboOutcome = new System.Windows.Forms.ComboBox();
+            this.cboProtocol = new System.Windows.Forms.ComboBox();
             this.btnAddFilter = new System.Windows.Forms.Button();
             this.btnDeleteFilter = new System.Windows.Forms.Button();
             this.lstFilters = new System.Windows.Forms.ListBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboEndInterval = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboGraphType = new System.Windows.Forms.ComboBox();
             this.mnuCommandStrip.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tpCurrentQuery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentQuery)).BeginInit();
             this.tpCharts.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,7 +158,7 @@
             this.tbControl.Location = new System.Drawing.Point(13, 102);
             this.tbControl.Name = "tbControl";
             this.tbControl.SelectedIndex = 0;
-            this.tbControl.Size = new System.Drawing.Size(845, 506);
+            this.tbControl.Size = new System.Drawing.Size(845, 457);
             this.tbControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tbControl.TabIndex = 29;
             // 
@@ -164,7 +180,7 @@
             this.tpCurrentQuery.Location = new System.Drawing.Point(4, 29);
             this.tpCurrentQuery.Name = "tpCurrentQuery";
             this.tpCurrentQuery.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCurrentQuery.Size = new System.Drawing.Size(837, 473);
+            this.tpCurrentQuery.Size = new System.Drawing.Size(837, 424);
             this.tpCurrentQuery.TabIndex = 0;
             this.tpCurrentQuery.Text = "Current Query";
             // 
@@ -298,7 +314,7 @@
             this.dgvCurrentQuery.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvCurrentQuery.RowHeadersVisible = false;
             this.dgvCurrentQuery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCurrentQuery.Size = new System.Drawing.Size(681, 407);
+            this.dgvCurrentQuery.Size = new System.Drawing.Size(681, 366);
             this.dgvCurrentQuery.TabIndex = 28;
             // 
             // cGate
@@ -340,7 +356,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCount.BackColor = System.Drawing.Color.White;
             this.txtCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCount.Location = new System.Drawing.Point(6, 423);
+            this.txtCount.Location = new System.Drawing.Point(6, 378);
             this.txtCount.Multiline = true;
             this.txtCount.Name = "txtCount";
             this.txtCount.ReadOnly = true;
@@ -353,18 +369,142 @@
             // 
             this.tpCharts.BackColor = System.Drawing.Color.LightSteelBlue;
             this.tpCharts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tpCharts.Controls.Add(this.chart1);
+            this.tpCharts.Controls.Add(this.cboGraphType);
+            this.tpCharts.Controls.Add(this.label7);
+            this.tpCharts.Controls.Add(this.label6);
+            this.tpCharts.Controls.Add(this.cboEndInterval);
+            this.tpCharts.Controls.Add(this.btnFullView);
+            this.tpCharts.Controls.Add(this.txtGraphCount);
+            this.tpCharts.Controls.Add(this.label4);
+            this.tpCharts.Controls.Add(this.label3);
+            this.tpCharts.Controls.Add(this.panel1);
+            this.tpCharts.Controls.Add(this.label2);
+            this.tpCharts.Controls.Add(this.cboStartInterval);
+            this.tpCharts.Controls.Add(this.cboOutcome);
+            this.tpCharts.Controls.Add(this.cboProtocol);
             this.tpCharts.Location = new System.Drawing.Point(4, 29);
             this.tpCharts.Name = "tpCharts";
-            this.tpCharts.Size = new System.Drawing.Size(837, 473);
+            this.tpCharts.Size = new System.Drawing.Size(837, 424);
             this.tpCharts.TabIndex = 1;
             this.tpCharts.Text = "Charts";
+            // 
+            // btnFullView
+            // 
+            this.btnFullView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFullView.Location = new System.Drawing.Point(687, 378);
+            this.btnFullView.Name = "btnFullView";
+            this.btnFullView.Size = new System.Drawing.Size(145, 42);
+            this.btnFullView.TabIndex = 9;
+            this.btnFullView.Text = "Compare Graph";
+            this.btnFullView.UseVisualStyleBackColor = true;
+            // 
+            // txtGraphCount
+            // 
+            this.txtGraphCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGraphCount.BackColor = System.Drawing.Color.White;
+            this.txtGraphCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGraphCount.Location = new System.Drawing.Point(6, 378);
+            this.txtGraphCount.Multiline = true;
+            this.txtGraphCount.Name = "txtGraphCount";
+            this.txtGraphCount.ReadOnly = true;
+            this.txtGraphCount.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtGraphCount.Size = new System.Drawing.Size(431, 42);
+            this.txtGraphCount.TabIndex = 8;
+            this.txtGraphCount.WordWrap = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(471, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Start Interval:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(276, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Outcome:";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.chart1);
+            this.panel1.Location = new System.Drawing.Point(2, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(831, 313);
+            this.panel1.TabIndex = 5;
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
+            this.chart1.Location = new System.Drawing.Point(-1, -1);
+            this.chart1.Name = "chart1";
+            series3.BorderWidth = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(831, 313);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(62, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Protocol:";
+            // 
+            // cboStartInterval
+            // 
+            this.cboStartInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStartInterval.FormattingEnabled = true;
+            this.cboStartInterval.Location = new System.Drawing.Point(448, 29);
+            this.cboStartInterval.Name = "cboStartInterval";
+            this.cboStartInterval.Size = new System.Drawing.Size(154, 28);
+            this.cboStartInterval.TabIndex = 3;
+            // 
+            // cboOutcome
+            // 
+            this.cboOutcome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOutcome.FormattingEnabled = true;
+            this.cboOutcome.Location = new System.Drawing.Point(235, 29);
+            this.cboOutcome.Name = "cboOutcome";
+            this.cboOutcome.Size = new System.Drawing.Size(158, 28);
+            this.cboOutcome.TabIndex = 2;
+            // 
+            // cboProtocol
+            // 
+            this.cboProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProtocol.FormattingEnabled = true;
+            this.cboProtocol.Location = new System.Drawing.Point(22, 29);
+            this.cboProtocol.Name = "cboProtocol";
+            this.cboProtocol.Size = new System.Drawing.Size(158, 28);
+            this.cboProtocol.TabIndex = 1;
             // 
             // btnAddFilter
             // 
             this.btnAddFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddFilter.Location = new System.Drawing.Point(864, 536);
+            this.btnAddFilter.Location = new System.Drawing.Point(864, 491);
             this.btnAddFilter.Name = "btnAddFilter";
             this.btnAddFilter.Size = new System.Drawing.Size(154, 31);
             this.btnAddFilter.TabIndex = 30;
@@ -376,7 +516,7 @@
             // 
             this.btnDeleteFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteFilter.Location = new System.Drawing.Point(864, 573);
+            this.btnDeleteFilter.Location = new System.Drawing.Point(864, 528);
             this.btnDeleteFilter.Name = "btnDeleteFilter";
             this.btnDeleteFilter.Size = new System.Drawing.Size(154, 31);
             this.btnDeleteFilter.TabIndex = 31;
@@ -391,30 +531,71 @@
             this.lstFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstFilters.FormattingEnabled = true;
             this.lstFilters.ItemHeight = 20;
-            this.lstFilters.Location = new System.Drawing.Point(864, 131);
+            this.lstFilters.Location = new System.Drawing.Point(864, 151);
             this.lstFilters.Name = "lstFilters";
-            this.lstFilters.Size = new System.Drawing.Size(154, 384);
+            this.lstFilters.Size = new System.Drawing.Size(154, 284);
             this.lstFilters.TabIndex = 32;
             // 
-            // chart1
+            // btnSelect
             // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(829, 401);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelect.Location = new System.Drawing.Point(864, 454);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(154, 31);
+            this.btnSelect.TabIndex = 33;
+            this.btnSelect.Text = "Select";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(915, 128);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 20);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Filters";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(683, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "End Interval:";
+            // 
+            // cboEndInterval
+            // 
+            this.cboEndInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEndInterval.FormattingEnabled = true;
+            this.cboEndInterval.Location = new System.Drawing.Point(657, 29);
+            this.cboEndInterval.Name = "cboEndInterval";
+            this.cboEndInterval.Size = new System.Drawing.Size(154, 28);
+            this.cboEndInterval.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(456, 389);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 20);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Graph Type:";
+            // 
+            // cboGraphType
+            // 
+            this.cboGraphType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboGraphType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboGraphType.FormattingEnabled = true;
+            this.cboGraphType.Location = new System.Drawing.Point(558, 386);
+            this.cboGraphType.Name = "cboGraphType";
+            this.cboGraphType.Size = new System.Drawing.Size(121, 28);
+            this.cboGraphType.TabIndex = 13;
             // 
             // QueryResults
             // 
@@ -422,6 +603,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(1030, 620);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.lstFilters);
             this.Controls.Add(this.btnDeleteFilter);
             this.Controls.Add(this.btnAddFilter);
@@ -443,6 +626,8 @@
             this.tpCurrentQuery.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentQuery)).EndInit();
             this.tpCharts.ResumeLayout(false);
+            this.tpCharts.PerformLayout();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -479,5 +664,20 @@
         private System.Windows.Forms.ListBox lstFilters;
         private System.Windows.Forms.TabPage tpCharts;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.ComboBox cboStartInterval;
+        private System.Windows.Forms.ComboBox cboOutcome;
+        private System.Windows.Forms.ComboBox cboProtocol;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtGraphCount;
+        private System.Windows.Forms.Button btnFullView;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboEndInterval;
+        private System.Windows.Forms.ComboBox cboGraphType;
+        private System.Windows.Forms.Label label7;
     }
 }
