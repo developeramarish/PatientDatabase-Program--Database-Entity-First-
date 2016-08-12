@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity Extended\DBContextExtended.cs" />
+    <Compile Include="Entity Extended\ProtocolExtended.cs" />
     <Compile Include="Outcome.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>

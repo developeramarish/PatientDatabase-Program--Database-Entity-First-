@@ -12,10 +12,10 @@ namespace PatientDatabase
         private void loadTestQueries()
         {
 
-            queries.Add(new PatientQuery("Last Name", "Starts With", "Thim", true, false));
+            //queries.Add(new PatientQuery("Last Name", "Starts With", "Thim", true, false));
             queries.Add(new PatientQuery("Sex", "Is Equal To", "Male", true, false));
-            queries.Add(new PatientQuery("First Name", "Starts With", "Ja", false, true));
-            queries.Add(new PatientQuery("First Name", "Starts With", "Ale", true, false));
+            //queries.Add(new PatientQuery("First Name", "Starts With", "Ja", false, true));
+            //queries.Add(new PatientQuery("First Name", "Starts With", "Ale", true, false));
 
             loadDataGridView();
         }
@@ -106,8 +106,8 @@ namespace PatientDatabase
             List<Patient> results = database.loadPatientsFromQuery(queries);
             //PatientProfileSelection pps = new PatientProfileSelection(results);
             //pps.Show();
-            QueryResults qr = new QueryResults(results, queries);
-            qr.ShowDialog();
+            DataCharts dc = new DataCharts(results, queries);
+            dc.ShowDialog();
            // this.Close();
         }
 

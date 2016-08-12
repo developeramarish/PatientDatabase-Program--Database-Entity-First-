@@ -23,6 +23,7 @@ namespace PatientDatabase
         private void MainMenu_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
+            database.ConnectionString = @"metadata = res://*/PatientsModel.csdl|res://*/PatientsModel.ssdl|res://*/PatientsModel.msl;provider=System.Data.SqlClient;provider connection string="";data source=(localdb)\MSSQLLocalDB;initial catalog=PatientDatabase;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework"";";
             database.establishConnection();
         }
 

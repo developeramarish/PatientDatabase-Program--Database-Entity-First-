@@ -49,9 +49,9 @@ namespace PatientDatabase
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
             chart1.Series["Series1"].Points.AddXY(0, 125);
             chart1.Series["Series1"].Points.AddXY(1, 3);
-            //chart1.Series["Series1"].Points.AddXY(2, 2);
-            //chart1.Series["Series1"].Points.AddXY(3, 2);
-            //chart1.Series["Series1"].Points.AddXY(4, 1);
+            chart1.Series["Series1"].Points.AddXY(2, 2);
+            chart1.Series["Series1"].Points.AddXY(3, 2);
+            chart1.Series["Series1"].Points.AddXY(4, 1);
 
             chart1.ChartAreas[0].AxisX.CustomLabels.Add(-.5, 0.5, "Baseline", 1, LabelMarkStyle.None);
             chart1.ChartAreas[0].AxisX.CustomLabels.Add(0.5, 1.5, "3 Months", 1, LabelMarkStyle.None);
@@ -133,6 +133,12 @@ namespace PatientDatabase
         private int getTabLocation(int selectedIndex)
         {
             return selectedIndex - 1;
+        }
+
+        private void btnFullView_Click(object sender, EventArgs e)
+        {
+            //DataCharts dc = new DataCharts(patients);
+            //dc.Show();
         }
     }
 }

@@ -18,12 +18,12 @@ namespace PatientDatabase
         public int PatientID { get; set; }
         public int ProtocolID { get; set; }
         public int OutcomeID { get; set; }
-        public string Result { get; set; }
+        public decimal Result { get; set; }
         public System.DateTime Date { get; set; }
         public int Interval_Number { get; set; }
     
-        public virtual Outcome Outcome { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual Protocol Protocol { get; set; }
+        public virtual Outcome Outcome { get; set; }
     }
 }

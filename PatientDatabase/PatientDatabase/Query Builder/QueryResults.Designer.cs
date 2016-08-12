@@ -55,25 +55,25 @@
             this.cFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.tpCharts = new System.Windows.Forms.TabPage();
-            this.btnFullView = new System.Windows.Forms.Button();
-            this.txtGraphCount = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cboStartInterval = new System.Windows.Forms.ComboBox();
-            this.cboOutcome = new System.Windows.Forms.ComboBox();
-            this.cboProtocol = new System.Windows.Forms.ComboBox();
             this.btnAddFilter = new System.Windows.Forms.Button();
             this.btnDeleteFilter = new System.Windows.Forms.Button();
             this.lstFilters = new System.Windows.Forms.ListBox();
             this.btnSelect = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cboEndInterval = new System.Windows.Forms.ComboBox();
+            this.txtGraphCount = new System.Windows.Forms.TextBox();
+            this.btnFullView = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cboGraphType = new System.Windows.Forms.ComboBox();
+            this.cboProtocol = new System.Windows.Forms.ComboBox();
+            this.cboOutcome = new System.Windows.Forms.ComboBox();
+            this.cboStartInterval = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboEndInterval = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.mnuCommandStrip.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tbControl.SuspendLayout();
@@ -367,6 +367,7 @@
             // 
             // tpCharts
             // 
+            this.tpCharts.AutoScroll = true;
             this.tpCharts.BackColor = System.Drawing.Color.LightSteelBlue;
             this.tpCharts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpCharts.Controls.Add(this.cboGraphType);
@@ -387,49 +388,6 @@
             this.tpCharts.Size = new System.Drawing.Size(837, 424);
             this.tpCharts.TabIndex = 1;
             this.tpCharts.Text = "Charts";
-            // 
-            // btnFullView
-            // 
-            this.btnFullView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFullView.Location = new System.Drawing.Point(687, 378);
-            this.btnFullView.Name = "btnFullView";
-            this.btnFullView.Size = new System.Drawing.Size(145, 42);
-            this.btnFullView.TabIndex = 9;
-            this.btnFullView.Text = "Compare Graph";
-            this.btnFullView.UseVisualStyleBackColor = true;
-            // 
-            // txtGraphCount
-            // 
-            this.txtGraphCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGraphCount.BackColor = System.Drawing.Color.White;
-            this.txtGraphCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGraphCount.Location = new System.Drawing.Point(6, 378);
-            this.txtGraphCount.Multiline = true;
-            this.txtGraphCount.Name = "txtGraphCount";
-            this.txtGraphCount.ReadOnly = true;
-            this.txtGraphCount.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtGraphCount.Size = new System.Drawing.Size(431, 42);
-            this.txtGraphCount.TabIndex = 8;
-            this.txtGraphCount.WordWrap = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(471, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 20);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Start Interval:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(276, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Outcome:";
             // 
             // panel1
             // 
@@ -463,42 +421,6 @@
             this.chart1.Size = new System.Drawing.Size(831, 313);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Protocol:";
-            // 
-            // cboStartInterval
-            // 
-            this.cboStartInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStartInterval.FormattingEnabled = true;
-            this.cboStartInterval.Location = new System.Drawing.Point(448, 29);
-            this.cboStartInterval.Name = "cboStartInterval";
-            this.cboStartInterval.Size = new System.Drawing.Size(154, 28);
-            this.cboStartInterval.TabIndex = 3;
-            // 
-            // cboOutcome
-            // 
-            this.cboOutcome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboOutcome.FormattingEnabled = true;
-            this.cboOutcome.Location = new System.Drawing.Point(235, 29);
-            this.cboOutcome.Name = "cboOutcome";
-            this.cboOutcome.Size = new System.Drawing.Size(158, 28);
-            this.cboOutcome.TabIndex = 2;
-            // 
-            // cboProtocol
-            // 
-            this.cboProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProtocol.FormattingEnabled = true;
-            this.cboProtocol.Location = new System.Drawing.Point(22, 29);
-            this.cboProtocol.Name = "cboProtocol";
-            this.cboProtocol.Size = new System.Drawing.Size(158, 28);
-            this.cboProtocol.TabIndex = 1;
             // 
             // btnAddFilter
             // 
@@ -559,23 +481,31 @@
             this.label5.TabIndex = 34;
             this.label5.Text = "Filters";
             // 
-            // label6
+            // txtGraphCount
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(683, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "End Interval:";
+            this.txtGraphCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGraphCount.BackColor = System.Drawing.Color.White;
+            this.txtGraphCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGraphCount.Location = new System.Drawing.Point(6, 378);
+            this.txtGraphCount.Multiline = true;
+            this.txtGraphCount.Name = "txtGraphCount";
+            this.txtGraphCount.ReadOnly = true;
+            this.txtGraphCount.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtGraphCount.Size = new System.Drawing.Size(431, 42);
+            this.txtGraphCount.TabIndex = 8;
+            this.txtGraphCount.WordWrap = false;
             // 
-            // cboEndInterval
+            // btnFullView
             // 
-            this.cboEndInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEndInterval.FormattingEnabled = true;
-            this.cboEndInterval.Location = new System.Drawing.Point(657, 29);
-            this.cboEndInterval.Name = "cboEndInterval";
-            this.cboEndInterval.Size = new System.Drawing.Size(154, 28);
-            this.cboEndInterval.TabIndex = 10;
+            this.btnFullView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFullView.Location = new System.Drawing.Point(687, 378);
+            this.btnFullView.Name = "btnFullView";
+            this.btnFullView.Size = new System.Drawing.Size(145, 42);
+            this.btnFullView.TabIndex = 9;
+            this.btnFullView.Text = "Detailed View";
+            this.btnFullView.UseVisualStyleBackColor = true;
+            this.btnFullView.Click += new System.EventHandler(this.btnFullView_Click);
             // 
             // label7
             // 
@@ -596,6 +526,78 @@
             this.cboGraphType.Name = "cboGraphType";
             this.cboGraphType.Size = new System.Drawing.Size(121, 28);
             this.cboGraphType.TabIndex = 13;
+            // 
+            // cboProtocol
+            // 
+            this.cboProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProtocol.FormattingEnabled = true;
+            this.cboProtocol.Location = new System.Drawing.Point(22, 29);
+            this.cboProtocol.Name = "cboProtocol";
+            this.cboProtocol.Size = new System.Drawing.Size(158, 28);
+            this.cboProtocol.TabIndex = 1;
+            // 
+            // cboOutcome
+            // 
+            this.cboOutcome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOutcome.FormattingEnabled = true;
+            this.cboOutcome.Location = new System.Drawing.Point(235, 29);
+            this.cboOutcome.Name = "cboOutcome";
+            this.cboOutcome.Size = new System.Drawing.Size(158, 28);
+            this.cboOutcome.TabIndex = 2;
+            // 
+            // cboStartInterval
+            // 
+            this.cboStartInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStartInterval.FormattingEnabled = true;
+            this.cboStartInterval.Location = new System.Drawing.Point(448, 29);
+            this.cboStartInterval.Name = "cboStartInterval";
+            this.cboStartInterval.Size = new System.Drawing.Size(154, 28);
+            this.cboStartInterval.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(62, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Protocol:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(276, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Outcome:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(471, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Start Interval:";
+            // 
+            // cboEndInterval
+            // 
+            this.cboEndInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEndInterval.FormattingEnabled = true;
+            this.cboEndInterval.Location = new System.Drawing.Point(657, 29);
+            this.cboEndInterval.Name = "cboEndInterval";
+            this.cboEndInterval.Size = new System.Drawing.Size(154, 28);
+            this.cboEndInterval.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(683, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "End Interval:";
             // 
             // QueryResults
             // 
@@ -665,19 +667,19 @@
         private System.Windows.Forms.TabPage tpCharts;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboGraphType;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnFullView;
+        private System.Windows.Forms.TextBox txtGraphCount;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboEndInterval;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboStartInterval;
         private System.Windows.Forms.ComboBox cboOutcome;
         private System.Windows.Forms.ComboBox cboProtocol;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtGraphCount;
-        private System.Windows.Forms.Button btnFullView;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cboEndInterval;
-        private System.Windows.Forms.ComboBox cboGraphType;
-        private System.Windows.Forms.Label label7;
     }
 }

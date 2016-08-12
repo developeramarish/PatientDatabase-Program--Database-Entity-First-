@@ -87,7 +87,6 @@ namespace PatientDatabase
             patientMedication = database.getPatientMedications(patient);
             patientMedication.ForEach(pm => dgvPatientProperties.Rows.Add(pm.Medication.Name, pm.Mg, pm.Start_Date.ToShortDateString(), getEndDateDisplay(pm.End_Date)));
             btnViewDetails.Text = "View Medication Details";
-            
         }
 
         private void DisplayPastMedicalHistory()

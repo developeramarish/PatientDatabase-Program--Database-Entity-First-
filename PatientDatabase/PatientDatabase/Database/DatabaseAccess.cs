@@ -17,10 +17,11 @@ namespace PatientDatabase
     public partial class DatabaseAccess
     {
         PatientDatabaseEntities pde;
+        public string ConnectionString { get; set; }
 
         public void establishConnection()
         {
-            using (pde = new PatientDatabaseEntities())
+            using (pde = new PatientDatabaseEntities(ConnectionString))
             {
                 Patient patient = pde.Patients.FirstOrDefault();
             }
@@ -262,6 +263,30 @@ namespace PatientDatabase
             using (pde = new PatientDatabaseEntities())
             {
                 return pde.Patients.FirstOrDefault(p => p.Id == patient.Id).PatientTreatments.OrderBy(p => p.Treatment.Name).ToList();
+            }
+        }
+
+        public List<PatientProtocol> getPatientProtocol(Patient patient)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                return pde.Patients.FirstOrDefault(p => p.Id == patient.Id).PatientProtocols.OrderBy(p => p.Protocol.Id).ToList();
+            }
+        }
+
+        public List<PatientOutcome> getPatientOutcome(Patient patient)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                return pde.Patients.FirstOrDefault(p => p.Id == patient.Id).PatientOutcomes.OrderBy(p => p.Outcome.Id).ThenBy(p => p.Protocol.Id).ToList();
+            }
+        }
+
+        public List<ProtocolOutcome> getProtocolOutcome(Protocol protocol)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                return pde.Protocols.FirstOrDefault(p => p.Id == protocol.Id).ProtocolOutcomes.OrderBy(p => p.Outcome.Id).ToList();
             }
         }
 

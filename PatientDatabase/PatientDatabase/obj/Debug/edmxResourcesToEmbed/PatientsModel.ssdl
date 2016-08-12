@@ -71,7 +71,7 @@
     <Property Name="PatientID" Type="int" Nullable="false" />
     <Property Name="ProtocolID" Type="int" Nullable="false" />
     <Property Name="OutcomeID" Type="int" Nullable="false" />
-    <Property Name="Result" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Result" Type="decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="Interval Number" Type="int" Nullable="false" />
   </EntityType>

@@ -37,7 +37,7 @@
         <EntityTypeShape EntityType="PatientDatabaseModel.Outcome" Width="1.5" PointX="8.375" PointY="2.875" />
         <EntityTypeShape EntityType="PatientDatabaseModel.PatientOutcome" Width="1.5" PointX="10.625" PointY="2.25" />
         <EntityTypeShape EntityType="PatientDatabaseModel.PatientProtocol" Width="1.5" PointX="13.625" PointY="2.875" />
-        <EntityTypeShape EntityType="PatientDatabaseModel.Protocol" Width="1.5" PointX="8.375" PointY="5.75" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.Protocol" Width="1.5" PointX="7.75" PointY="6.25" />
         <EntityTypeShape EntityType="PatientDatabaseModel.ProtocolOutcome" Width="1.5" PointX="10.625" PointY="5.75" />
         <AssociationConnector Association="PatientDatabaseModel.FK_PatientOutcome_ToOutcome" />
         <AssociationConnector Association="PatientDatabaseModel.FK_ProtocolOutcome_ToOutcome" />
