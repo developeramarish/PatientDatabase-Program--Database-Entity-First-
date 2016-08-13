@@ -103,12 +103,9 @@ namespace PatientDatabase
         private void runQuery()
         {
             queries = formatQueriesList();
-            List<Patient> results = database.loadPatientsFromQuery(queries);
-            //PatientProfileSelection pps = new PatientProfileSelection(results);
-            //pps.Show();
-            DataCharts dc = new DataCharts(results, queries);
+           // List<Patient> results = database.loadPatientsFromQuery(queries);
+            DataCharts dc = new DataCharts(queries);
             dc.ShowDialog();
-           // this.Close();
         }
 
         // applies continue and standalone groups where needed to each query for structuring purposes
