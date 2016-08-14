@@ -292,6 +292,7 @@ namespace PatientDatabase
 
         public List<Patient> loadPatientsFromQuery(List<Query> queries)
         {
+            queries = formatQueriesList(queries);
             using (PatientDatabaseEntities pde = new PatientDatabaseEntities())
             {
                 IQueryable<Patient> queryBuilder = pde.Set<Patient>();
@@ -311,6 +312,33 @@ namespace PatientDatabase
                 }
                 return queryBuilder.AsExpandable().OrderBy(p => p.Last_Name).ThenBy(p => p.First_Name).ToList();
             }
+        }
+
+        // applies continue and standalone groups where needed to each query for structuring purposes
+        private List<Query> formatQueriesList(List<Query> queries)
+        {
+            if (queries.Count > 0) queries[0].And = true; // first query MUST be AND otherwise it won't work
+            for (int i = 0; i < queries.Count; i++)
+            {
+                if (queries[i].And && locationExistsInQueriesList(queries, i + 1))
+                {
+                    if (!queries[i + 1].Or) queries[i].StandAlone = true;
+                    else if (queries[i + 1].Or) queries[i].StartGroup = true;
+                }
+                else if (queries[i].And && !locationExistsInQueriesList(queries, i + 1)) queries[i].StandAlone = true;
+                else if (queries[i].Or && locationExistsInQueriesList(queries, i + 1))
+                {
+                    if (!queries[i + 1].Or) queries[i].EndGroup = true;
+                    else if (queries[i + 1].Or) queries[i].ContinueGroup = true;
+                }
+                else if (queries[i].Or && !locationExistsInQueriesList(queries, i + 1)) queries[i].EndGroup = true;
+            }
+            return queries;
+        }
+
+        private bool locationExistsInQueriesList(List<Query> queries, int index)
+        {
+            return index >= 0 & index <= queries.Count - 1;
         }
 
         [DbFunction("PatientDatabaseModel.Store", "getAge")]

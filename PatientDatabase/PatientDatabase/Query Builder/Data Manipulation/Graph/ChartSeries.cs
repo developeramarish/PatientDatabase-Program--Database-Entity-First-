@@ -9,22 +9,20 @@ namespace PatientDatabase
 {
     public class ChartSeries
     {
-        public string Name { get; set; }
-        public List<Query> Queries { get; set; }
+        public QueryEntity Entity;
         public bool Show { get; set; }
         DatabaseAccess database;
 
-        public ChartSeries(string name, List<Query> queries, bool show)
+        public ChartSeries(QueryEntity entity, bool show)
         {
-            Name = name;
-            Queries = queries;
+            Entity = entity;
             Show = show;
             database = new DatabaseAccess();
         }
 
         public Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, int startInterval, int endInterval)
         {
-            List<Patient> patients = database.loadPatientsFromQuery(Queries);
+            List<Patient> patients = Entity.getPatients();
             Dictionary<int, List<decimal>> allPoints = getAllPoints(selectedProtocol, selectedOutcome, startInterval, endInterval, patients);
             Dictionary<int, int> averagedPoints = getAveragedPoints(allPoints);           
             return averagedPoints;

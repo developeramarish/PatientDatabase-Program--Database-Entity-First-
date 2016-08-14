@@ -12,14 +12,14 @@ namespace PatientDatabase
 {
     public class PatientQuery : Query
     {
-        public PatientQuery(string filter, string property, string criteria)
-            : base(filter, property, criteria)
+        public PatientQuery(string property, string criteria, string filter)
+            : base(property, criteria, filter)
         {
 
         }
 
-        public PatientQuery(string filter, string property, string criteria, bool and, bool or)
-            : base(filter, property, criteria, and, or)
+        public PatientQuery(string property, string criteria, string filter, bool and, bool or)
+            : base(property, criteria, filter, and, or)
         {
 
         }

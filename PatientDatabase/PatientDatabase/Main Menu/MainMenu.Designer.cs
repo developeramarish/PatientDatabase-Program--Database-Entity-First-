@@ -30,7 +30,7 @@
         {
             this.btnPatientProfiles = new System.Windows.Forms.Button();
             this.btnQueryBuilder = new System.Windows.Forms.Button();
-            this.btnAddToDatabase = new System.Windows.Forms.Button();
+            this.btnQueryManager = new System.Windows.Forms.Button();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCommandStrip.SuspendLayout();
@@ -60,16 +60,17 @@
             this.btnQueryBuilder.UseVisualStyleBackColor = true;
             this.btnQueryBuilder.Click += new System.EventHandler(this.btnQueryBuilder_Click);
             // 
-            // btnAddToDatabase
+            // btnQueryManager
             // 
-            this.btnAddToDatabase.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAddToDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToDatabase.Location = new System.Drawing.Point(49, 249);
-            this.btnAddToDatabase.Name = "btnAddToDatabase";
-            this.btnAddToDatabase.Size = new System.Drawing.Size(263, 61);
-            this.btnAddToDatabase.TabIndex = 2;
-            this.btnAddToDatabase.Text = "Add To Database";
-            this.btnAddToDatabase.UseVisualStyleBackColor = true;
+            this.btnQueryManager.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnQueryManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQueryManager.Location = new System.Drawing.Point(49, 249);
+            this.btnQueryManager.Name = "btnQueryManager";
+            this.btnQueryManager.Size = new System.Drawing.Size(263, 61);
+            this.btnQueryManager.TabIndex = 2;
+            this.btnQueryManager.Text = "Query Manager";
+            this.btnQueryManager.UseVisualStyleBackColor = true;
+            this.btnQueryManager.Click += new System.EventHandler(this.btnQueryManager_Click);
             // 
             // mnuCommandStrip
             // 
@@ -94,7 +95,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(360, 358);
-            this.Controls.Add(this.btnAddToDatabase);
+            this.Controls.Add(this.btnQueryManager);
             this.Controls.Add(this.btnQueryBuilder);
             this.Controls.Add(this.btnPatientProfiles);
             this.Controls.Add(this.mnuCommandStrip);
@@ -115,7 +116,7 @@
 
         private System.Windows.Forms.Button btnPatientProfiles;
         private System.Windows.Forms.Button btnQueryBuilder;
-        private System.Windows.Forms.Button btnAddToDatabase;
+        private System.Windows.Forms.Button btnQueryManager;
         private System.Windows.Forms.MenuStrip mnuCommandStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
     }

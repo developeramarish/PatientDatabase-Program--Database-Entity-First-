@@ -28,24 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDataAnalysis = new System.Windows.Forms.Button();
             this.lstSeries = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtQueryInfo = new System.Windows.Forms.TextBox();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rtxtQueryData = new System.Windows.Forms.RichTextBox();
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnMoveDown = new System.Windows.Forms.Button();
-            this.btnRemoveSeries = new System.Windows.Forms.Button();
-            this.btnEditSeries = new System.Windows.Forms.Button();
-            this.btnAddNewSeries = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -120,40 +117,27 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(1057, 10);
+            this.label8.Location = new System.Drawing.Point(1078, 10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 20);
+            this.label8.Size = new System.Drawing.Size(54, 20);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Queries/Filters";
-            // 
-            // txtQueryInfo
-            // 
-            this.txtQueryInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtQueryInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQueryInfo.Location = new System.Drawing.Point(1018, 320);
-            this.txtQueryInfo.Multiline = true;
-            this.txtQueryInfo.Name = "txtQueryInfo";
-            this.txtQueryInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtQueryInfo.Size = new System.Drawing.Size(196, 190);
-            this.txtQueryInfo.TabIndex = 9;
-            this.txtQueryInfo.WordWrap = false;
+            this.label8.Text = "Series";
             // 
             // chartOutcomeData
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartOutcomeData.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chartOutcomeData.ChartAreas.Add(chartArea1);
             this.chartOutcomeData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chartOutcomeData.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chartOutcomeData.Legends.Add(legend1);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
             this.chartOutcomeData.Name = "chartOutcomeData";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartOutcomeData.Series.Add(series2);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartOutcomeData.Series.Add(series1);
             this.chartOutcomeData.Size = new System.Drawing.Size(1007, 503);
             this.chartOutcomeData.TabIndex = 8;
             this.chartOutcomeData.Text = "chart1";
@@ -177,11 +161,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.rtxtQueryData);
             this.panel2.Controls.Add(this.btnMoveUp);
             this.panel2.Controls.Add(this.btnMoveDown);
-            this.panel2.Controls.Add(this.btnRemoveSeries);
-            this.panel2.Controls.Add(this.btnEditSeries);
-            this.panel2.Controls.Add(this.btnAddNewSeries);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
@@ -193,13 +175,21 @@
             this.panel2.Controls.Add(this.cboProtocol);
             this.panel2.Controls.Add(this.lstSeries);
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.txtQueryInfo);
             this.panel2.Controls.Add(this.btnDataAnalysis);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Location = new System.Drawing.Point(12, 103);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1219, 553);
             this.panel2.TabIndex = 15;
+            // 
+            // rtxtQueryData
+            // 
+            this.rtxtQueryData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxtQueryData.Location = new System.Drawing.Point(1018, 209);
+            this.rtxtQueryData.Name = "rtxtQueryData";
+            this.rtxtQueryData.Size = new System.Drawing.Size(196, 301);
+            this.rtxtQueryData.TabIndex = 34;
+            this.rtxtQueryData.Text = "";
             // 
             // btnMoveUp
             // 
@@ -220,39 +210,6 @@
             this.btnMoveDown.TabIndex = 32;
             this.btnMoveDown.Text = "V";
             this.btnMoveDown.UseVisualStyleBackColor = true;
-            // 
-            // btnRemoveSeries
-            // 
-            this.btnRemoveSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveSeries.Location = new System.Drawing.Point(1018, 283);
-            this.btnRemoveSeries.Name = "btnRemoveSeries";
-            this.btnRemoveSeries.Size = new System.Drawing.Size(196, 31);
-            this.btnRemoveSeries.TabIndex = 31;
-            this.btnRemoveSeries.Text = "Remove Series";
-            this.btnRemoveSeries.UseVisualStyleBackColor = true;
-            // 
-            // btnEditSeries
-            // 
-            this.btnEditSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditSeries.Location = new System.Drawing.Point(1018, 246);
-            this.btnEditSeries.Name = "btnEditSeries";
-            this.btnEditSeries.Size = new System.Drawing.Size(196, 31);
-            this.btnEditSeries.TabIndex = 30;
-            this.btnEditSeries.Text = "Edit Series";
-            this.btnEditSeries.UseVisualStyleBackColor = true;
-            // 
-            // btnAddNewSeries
-            // 
-            this.btnAddNewSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNewSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewSeries.Location = new System.Drawing.Point(1018, 209);
-            this.btnAddNewSeries.Name = "btnAddNewSeries";
-            this.btnAddNewSeries.Size = new System.Drawing.Size(196, 31);
-            this.btnAddNewSeries.TabIndex = 29;
-            this.btnAddNewSeries.Text = "Add New Series";
-            this.btnAddNewSeries.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -418,7 +375,6 @@
         private System.Windows.Forms.Button btnDataAnalysis;
         private System.Windows.Forms.ListBox lstSeries;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtQueryInfo;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartOutcomeData;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -431,13 +387,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnRemoveSeries;
-        private System.Windows.Forms.Button btnEditSeries;
-        private System.Windows.Forms.Button btnAddNewSeries;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnMoveUp;
         private System.Windows.Forms.Button btnMoveDown;
+        private System.Windows.Forms.RichTextBox rtxtQueryData;
     }
 }

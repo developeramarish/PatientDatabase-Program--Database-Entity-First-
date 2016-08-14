@@ -30,10 +30,10 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnRunQuery = new System.Windows.Forms.Button();
+            this.btnSubmitQuery = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAddQuery = new System.Windows.Forms.Button();
-            this.btnRemoveQuery = new System.Windows.Forms.Button();
+            this.btnAddCondition = new System.Windows.Forms.Button();
+            this.btnRemoveCondition = new System.Windows.Forms.Button();
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnMoveDown = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -46,30 +46,32 @@
             this.cFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnInverse = new System.Windows.Forms.Button();
             this.btnAndOr = new System.Windows.Forms.Button();
-            this.btnEditQuery = new System.Windows.Forms.Button();
-            this.btnResultDisplaySettings = new System.Windows.Forms.Button();
+            this.btnEditCondition = new System.Windows.Forms.Button();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentQuery)).BeginInit();
             this.mnuCommandStrip.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnRunQuery
+            // btnSubmitQuery
             // 
-            this.btnRunQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRunQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRunQuery.Location = new System.Drawing.Point(397, 532);
-            this.btnRunQuery.Name = "btnRunQuery";
-            this.btnRunQuery.Size = new System.Drawing.Size(273, 35);
-            this.btnRunQuery.TabIndex = 3;
-            this.btnRunQuery.Text = "Run Query";
-            this.btnRunQuery.UseVisualStyleBackColor = true;
-            this.btnRunQuery.Click += new System.EventHandler(this.btnRunQuery_Click);
+            this.btnSubmitQuery.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSubmitQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmitQuery.Location = new System.Drawing.Point(397, 532);
+            this.btnSubmitQuery.Name = "btnSubmitQuery";
+            this.btnSubmitQuery.Size = new System.Drawing.Size(273, 35);
+            this.btnSubmitQuery.TabIndex = 3;
+            this.btnSubmitQuery.Text = "Submit Query";
+            this.btnSubmitQuery.UseVisualStyleBackColor = true;
+            this.btnSubmitQuery.Click += new System.EventHandler(this.btnSubmitQuery_Click);
             // 
             // label1
             // 
@@ -83,29 +85,29 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Query Builder";
             // 
-            // btnAddQuery
+            // btnAddCondition
             // 
-            this.btnAddQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddQuery.Location = new System.Drawing.Point(858, 253);
-            this.btnAddQuery.Name = "btnAddQuery";
-            this.btnAddQuery.Size = new System.Drawing.Size(135, 34);
-            this.btnAddQuery.TabIndex = 14;
-            this.btnAddQuery.Text = "Add Query";
-            this.btnAddQuery.UseVisualStyleBackColor = true;
-            this.btnAddQuery.Click += new System.EventHandler(this.btnAddQuery_Click);
+            this.btnAddCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCondition.Location = new System.Drawing.Point(858, 253);
+            this.btnAddCondition.Name = "btnAddCondition";
+            this.btnAddCondition.Size = new System.Drawing.Size(135, 34);
+            this.btnAddCondition.TabIndex = 14;
+            this.btnAddCondition.Text = "Add Condition";
+            this.btnAddCondition.UseVisualStyleBackColor = true;
+            this.btnAddCondition.Click += new System.EventHandler(this.btnAddCondition_Click);
             // 
-            // btnRemoveQuery
+            // btnRemoveCondition
             // 
-            this.btnRemoveQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveQuery.Location = new System.Drawing.Point(858, 333);
-            this.btnRemoveQuery.Name = "btnRemoveQuery";
-            this.btnRemoveQuery.Size = new System.Drawing.Size(135, 34);
-            this.btnRemoveQuery.TabIndex = 15;
-            this.btnRemoveQuery.Text = "Remove Query";
-            this.btnRemoveQuery.UseVisualStyleBackColor = true;
-            this.btnRemoveQuery.Click += new System.EventHandler(this.btnRemoveQuery_Click);
+            this.btnRemoveCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveCondition.Location = new System.Drawing.Point(858, 333);
+            this.btnRemoveCondition.Name = "btnRemoveCondition";
+            this.btnRemoveCondition.Size = new System.Drawing.Size(135, 34);
+            this.btnRemoveCondition.TabIndex = 15;
+            this.btnRemoveCondition.Text = "Remove Con.";
+            this.btnRemoveCondition.UseVisualStyleBackColor = true;
+            this.btnRemoveCondition.Click += new System.EventHandler(this.btnRemoveCondition_Click);
             // 
             // btnMoveUp
             // 
@@ -144,13 +146,13 @@
             this.panel1.Controls.Add(this.btnInverse);
             this.panel1.Controls.Add(this.btnAndOr);
             this.panel1.Controls.Add(this.btnMoveDown);
-            this.panel1.Controls.Add(this.btnRemoveQuery);
+            this.panel1.Controls.Add(this.btnRemoveCondition);
             this.panel1.Controls.Add(this.btnMoveUp);
-            this.panel1.Controls.Add(this.btnAddQuery);
-            this.panel1.Controls.Add(this.btnEditQuery);
+            this.panel1.Controls.Add(this.btnAddCondition);
+            this.panel1.Controls.Add(this.btnEditCondition);
             this.panel1.Location = new System.Drawing.Point(30, 109);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1007, 376);
+            this.panel1.Size = new System.Drawing.Size(1007, 377);
             this.panel1.TabIndex = 22;
             // 
             // btnPaste
@@ -215,7 +217,7 @@
             this.dgvCurrentQuery.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvCurrentQuery.RowHeadersVisible = false;
             this.dgvCurrentQuery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCurrentQuery.Size = new System.Drawing.Size(846, 368);
+            this.dgvCurrentQuery.Size = new System.Drawing.Size(846, 369);
             this.dgvCurrentQuery.TabIndex = 27;
             this.dgvCurrentQuery.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurrentQuery_CellClick);
             this.dgvCurrentQuery.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurrentQuery_CellDoubleClick);
@@ -277,28 +279,17 @@
             this.btnAndOr.UseVisualStyleBackColor = true;
             this.btnAndOr.Click += new System.EventHandler(this.btnAndOr_Click);
             // 
-            // btnEditQuery
+            // btnEditCondition
             // 
-            this.btnEditQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditQuery.Location = new System.Drawing.Point(858, 293);
-            this.btnEditQuery.Name = "btnEditQuery";
-            this.btnEditQuery.Size = new System.Drawing.Size(135, 34);
-            this.btnEditQuery.TabIndex = 22;
-            this.btnEditQuery.Text = "Edit Query";
-            this.btnEditQuery.UseVisualStyleBackColor = true;
-            this.btnEditQuery.Click += new System.EventHandler(this.btnEditQuery_Click);
-            // 
-            // btnResultDisplaySettings
-            // 
-            this.btnResultDisplaySettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnResultDisplaySettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResultDisplaySettings.Location = new System.Drawing.Point(397, 491);
-            this.btnResultDisplaySettings.Name = "btnResultDisplaySettings";
-            this.btnResultDisplaySettings.Size = new System.Drawing.Size(273, 35);
-            this.btnResultDisplaySettings.TabIndex = 23;
-            this.btnResultDisplaySettings.Text = "Result Display Settings";
-            this.btnResultDisplaySettings.UseVisualStyleBackColor = true;
+            this.btnEditCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditCondition.Location = new System.Drawing.Point(858, 293);
+            this.btnEditCondition.Name = "btnEditCondition";
+            this.btnEditCondition.Size = new System.Drawing.Size(135, 34);
+            this.btnEditCondition.TabIndex = 22;
+            this.btnEditCondition.Text = "Edit Condition";
+            this.btnEditCondition.UseVisualStyleBackColor = true;
+            this.btnEditCondition.Click += new System.EventHandler(this.btnEditCondition_Click);
             // 
             // mnuCommandStrip
             // 
@@ -352,17 +343,52 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // txtName
+            // 
+            this.txtName.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(500, 495);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(170, 26);
+            this.txtName.TabIndex = 26;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(393, 498);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 20);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Query Name:";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(397, 573);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(273, 35);
+            this.btnCancel.TabIndex = 28;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // QueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(1066, 575);
+            this.ClientSize = new System.Drawing.Size(1066, 620);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.btnResultDisplaySettings);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnRunQuery);
+            this.Controls.Add(this.btnSubmitQuery);
             this.Controls.Add(this.mnuCommandStrip);
             this.MainMenuStrip = this.mnuCommandStrip;
             this.Name = "QueryBuilder";
@@ -381,15 +407,14 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnRunQuery;
+        private System.Windows.Forms.Button btnSubmitQuery;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddQuery;
-        private System.Windows.Forms.Button btnRemoveQuery;
+        private System.Windows.Forms.Button btnAddCondition;
+        private System.Windows.Forms.Button btnRemoveCondition;
         private System.Windows.Forms.Button btnMoveUp;
         private System.Windows.Forms.Button btnMoveDown;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnEditQuery;
-        private System.Windows.Forms.Button btnResultDisplaySettings;
+        private System.Windows.Forms.Button btnEditCondition;
         private System.Windows.Forms.Button btnAndOr;
         private System.Windows.Forms.MenuStrip mnuCommandStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -404,5 +429,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cProperty;
         private System.Windows.Forms.DataGridViewTextBoxColumn cCriteria;
         private System.Windows.Forms.DataGridViewTextBoxColumn cFilter;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

@@ -14,7 +14,6 @@ namespace PatientDatabase
     public partial class DataCharts : Form
     {
         DatabaseAccess database;
-        List<Query> masterQuery;
         List<Protocol> protocols;
         Protocol selectedProtocol;
         List<Outcome> outcomes;
@@ -25,7 +24,9 @@ namespace PatientDatabase
         bool chartLoad = true;
         ChartData chartData;
 
-        public DataCharts(List<Query> queries)
+        QueryEntityCollection queryEntityCollection;
+
+        public DataCharts(QueryEntityCollection queryEntityCollection)
         {
             InitializeComponent();
             database = new DatabaseAccess();
@@ -33,18 +34,26 @@ namespace PatientDatabase
             outcomes = new List<Outcome>();
             intervals = new List<int>();
             chartData = new ChartData();
-            masterQuery = queries;
+            this.queryEntityCollection = queryEntityCollection;
         }
 
         private void DataCharts_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
-            chartData.ChartSeries.Add(new ChartSeries("Original Query", masterQuery, true));
+            loadChartSeries();
             loadSeriesListBox();
             setListBoxSelectedIndex(lstSeries, 0);
             loadProtocols();
             protocols.ForEach(p => cboProtocol.Items.Add(p.Name));
             setComboBoxSelectedIndex(cboProtocol, 0);
+        }
+
+        private void loadChartSeries()
+        {
+            foreach (QueryEntity qe in queryEntityCollection.QueryEntities)
+            {
+                chartData.ChartSeries.Add(new ChartSeries(qe, false));
+            }
         }
 
         private void setListBoxSelectedIndex(ListBox listbox, int index)
@@ -64,26 +73,26 @@ namespace PatientDatabase
 
         private void loadSeriesListBox()
         {
-            chartData.ChartSeries.ForEach(cs => lstSeries.Items.Add(cs.Name));
+            chartData.ChartSeries.ForEach(cs => lstSeries.Items.Add(cs.Entity.Name));
         }
 
         private void loadProtocols()
         {
-            HashSet<Protocol> uniqueProtocols = getUniqueProtocols();
-            uniqueProtocols.ToList().ForEach(p => protocols.Add(p));           
+            HashSet<Protocol> protocolsUnique = new HashSet<Protocol>();
+            chartData.ChartSeries.ForEach(cs => protocolsUnique = getUniqueProtocols(cs, protocolsUnique));
+            protocolsUnique.ToList().ForEach(p => protocols.Add(p));
         }
 
-        private HashSet<Protocol> getUniqueProtocols()
+        private HashSet<Protocol> getUniqueProtocols(ChartSeries cs, HashSet<Protocol> protocolsUnique)
         {
-            HashSet<Protocol> uniqueProtocols = new HashSet<Protocol>();
             List<PatientProtocol> patientProtocols;
-            List<Patient> patients = database.loadPatientsFromQuery(masterQuery);
+            List<Patient> patients = cs.Entity.getPatients();
             foreach (Patient patient in patients)
             {
                 patientProtocols = database.getPatientProtocol(patient);
-                patientProtocols.ForEach(pp => uniqueProtocols.Add(pp.Protocol));
+                patientProtocols.ForEach(pp => protocolsUnique.Add(pp.Protocol));
             }
-            return uniqueProtocols;
+            return protocolsUnique;
         }
 
         private void loadOutcomes()
@@ -124,14 +133,17 @@ namespace PatientDatabase
         {
             ClearGraphData();
             int seriesNumber = 0;
+            int queryNumber = 0;
             foreach (ChartSeries cs in chartData.ChartSeries)
             {
                 if (cs.Show)
                 {
-                    AddNewSeries(seriesNumber);
+                    AddNewSeries(seriesNumber, cs);
                     AddDataToChart(seriesNumber, cs);
+                    setSeriesColor(seriesNumber, queryNumber);
                     seriesNumber++;
                 }
+                queryNumber++;
             }
         }
 
@@ -141,12 +153,12 @@ namespace PatientDatabase
             foreach (var series in chartOutcomeData.Series) series.Points.Clear();
         }
 
-        private void AddNewSeries(int seriesNumber)
+        private void AddNewSeries(int seriesNumber, ChartSeries cs)
         {
             chartOutcomeData.Series.Add(new Series());
             chartOutcomeData.Series[seriesNumber].ChartType = SeriesChartType.Line;
             chartOutcomeData.Series[seriesNumber].BorderWidth = 3;
-            chartOutcomeData.Series[seriesNumber].LegendText = lstSeries.SelectedItem.ToString();
+            chartOutcomeData.Series[seriesNumber].LegendText = cs.Entity.Name.ToString();
         }
 
         private void AddDataToChart(int seriesNumber, ChartSeries cs)
@@ -168,10 +180,6 @@ namespace PatientDatabase
                 double end = start + 1;
                 int month = i * selectedProtocol.Interval__Months_;            
                 chartOutcomeData.ChartAreas[0].AxisX.CustomLabels.Add(start, end, getMonthLabel(month), 1, LabelMarkStyle.None);
-                if (chartData.ChartSeries[lstSeries.SelectedIndex].Show)
-                {
-                    chartOutcomeData.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "(" + points[i] + ")", 2, LabelMarkStyle.None);
-                }
                 start += 1;
             }
         }
@@ -224,7 +232,7 @@ namespace PatientDatabase
 
         private void loadChart()
         {
-            if (chartLoad)
+            if (chartLoad && chartData.ChartSeries.Count > 0)
             {
                 loadChartData();
                 setUpChartDisplay();
@@ -235,6 +243,40 @@ namespace PatientDatabase
         {
             chartData.ChartSeries[lstSeries.SelectedIndex].toggleShow();
             loadChart();
+        }
+
+        private void setSeriesColor(int seriesNumber, int queryNumber)
+        {
+            Color seriesColor = getSeriesColor(queryNumber);
+            chartOutcomeData.Series[seriesNumber].Color = seriesColor;
+            foreach (DataPoint point in chartOutcomeData.Series[seriesNumber].Points)
+            {
+                point.Color = seriesColor;
+            }
+            
+        }
+
+        private Color getSeriesColor(int queryNumber)
+        {
+            switch (queryNumber)
+            {
+                case 0: return Color.FromArgb(255, 65, 140, 240);
+                case 1: return Color.FromArgb(255, 253, 180, 65);
+                case 2: return Color.FromArgb(255, 224, 64, 10);
+                case 3: return Color.FromArgb(255, 5, 100, 146);
+                case 4: return Color.FromArgb(255, 191, 191, 191);
+                case 5: return Color.FromArgb(255, 26, 59, 105);
+                case 6: return Color.FromArgb(255, 255, 227, 130);
+                case 7: return Color.FromArgb(255, 18, 156, 221);
+                case 8: return Color.FromArgb(255, 202, 107, 75);
+                case 9: return Color.FromArgb(255, 0, 92, 219);
+                case 10: return Color.FromArgb(255, 243, 210, 136);
+                case 11: return Color.FromArgb(255, 80, 99, 129);
+                case 12: return Color.FromArgb(255, 241, 185, 168);
+                case 13: return Color.FromArgb(255, 224, 131, 10);
+                case 14: return Color.FromArgb(255, 120, 147, 190);
+                default: return Color.Black;
+            }
         }
     }
 }

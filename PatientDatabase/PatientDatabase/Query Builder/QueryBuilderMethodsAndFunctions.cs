@@ -20,25 +20,27 @@ namespace PatientDatabase
             loadDataGridView();
         }
 
-        private void addQuery()
+        private void addCondition()
         {
             AddQueryToBuilder aqtb = new AddQueryToBuilder(queries, dgvCurrentQuery, -1, queryCommands);
             aqtb.ShowDialog();
+            checkSubmitStatus();
         }
 
-        private void editQuery()
+        private void editCondition()
         {
             AddQueryToBuilder aqtb = new AddQueryToBuilder(queries, dgvCurrentQuery, selectedRow, queryCommands);
             aqtb.ShowDialog();
         }
 
-        private void removeQuery()
+        private void removeCondition()
         {
             setSelectedRow();
             queries.RemoveAt(selectedRow);
             loadDataGridView();
             if (selectedRow <= dgvCurrentQuery.Rows.Count - 1) setSelectedDataGridViewRow(selectedRow);
             else setSelectedDataGridViewRow(selectedRow - 1);
+            checkSubmitStatus();
         }
 
 
@@ -88,51 +90,23 @@ namespace PatientDatabase
             loadRow(selectedRow);
         }
 
-        private void copyQuery()
+        private void copyCondition()
         {
             copiedQuery = queries[selectedRow];
         }
 
-        private void pasteQuery()
+        private void pasteCondition()
         {
             queries.Insert(selectedRow, new PatientQuery(copiedQuery.Property, copiedQuery.Criteria, copiedQuery.Filter, copiedQuery.And, copiedQuery.Or));
             loadDataGridView();
             setSelectedDataGridViewRow(selectedRow);
         }
 
-        private void runQuery()
+        private void submitQuery()
         {
-            queries = formatQueriesList();
-           // List<Patient> results = database.loadPatientsFromQuery(queries);
-            DataCharts dc = new DataCharts(queries);
-            dc.ShowDialog();
-        }
-
-        // applies continue and standalone groups where needed to each query for structuring purposes
-        private List<Query> formatQueriesList()
-        {
-            if (queries.Count > 0) queries[0].And = true; // first query MUST be AND otherwise it won't work
-            for (int i = 0; i < queries.Count; i++)
-            {
-                if (queries[i].And && locationExistsInQueriesList(i + 1))
-                {
-                    if (!queries[i + 1].Or) queries[i].StandAlone = true;
-                    else if (queries[i + 1].Or) queries[i].StartGroup = true;
-                }
-                else if (queries[i].And && !locationExistsInQueriesList(i + 1)) queries[i].StandAlone = true;
-                else if (queries[i].Or && locationExistsInQueriesList(i + 1))
-                {
-                    if (!queries[i + 1].Or) queries[i].EndGroup = true;
-                    else if (queries[i + 1].Or) queries[i].ContinueGroup = true;
-                }
-                else if (queries[i].Or && !locationExistsInQueriesList(i + 1)) queries[i].EndGroup = true;
-            }
-            return queries;
-        }
-
-        private bool locationExistsInQueriesList(int index)
-        {
-            return index >= 0 & index <= queries.Count - 1;
+            if (editQueryIndex == -1) queryEntityCollection.QueryEntities.Add(new QueryEntity(txtName.Text, queries));
+            else queryEntityCollection.QueryEntities[editQueryIndex] = new QueryEntity(txtName.Text, queries);
+            this.Close();
         }
 
         private void setSelectedDataGridViewRow(int rowIndex)
@@ -162,6 +136,12 @@ namespace PatientDatabase
         private bool dataGridViewHasData()
         {
             return dgvCurrentQuery.Rows.Count > 0;
+        }
+
+        private void checkSubmitStatus()
+        {
+            if (queries.Count > 0) btnSubmitQuery.Enabled = true;
+            else btnSubmitQuery.Enabled = false;
         }
     }
 }
