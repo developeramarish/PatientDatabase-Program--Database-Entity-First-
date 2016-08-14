@@ -105,16 +105,10 @@
     <Compile Include="Query Builder\Command\PropertyTypes\PropertyString.cs" />
     <Compile Include="Database\DatabaseAccess.cs" />
     <Compile Include="Globals\GlobalFormManager.cs" />
-    <Compile Include="Query Builder\Data Manipulation\AddSeriesToDataChart.cs">
+    <Compile Include="Query Builder\QueryManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Query Builder\Data Manipulation\AddSeriesToDataChart.Designer.cs">
-      <DependentUpon>AddSeriesToDataChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Query Builder\Data Manipulation\QueryManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Query Builder\Data Manipulation\QueryManager.Designer.cs">
+    <Compile Include="Query Builder\QueryManager.Designer.cs">
       <DependentUpon>QueryManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Query Builder\Data Manipulation\DataCharts.cs">
@@ -220,8 +214,8 @@
     <Compile Include="Query Builder\QueryBuilderMethodsAndFunctions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QueryEntity.cs" />
-    <Compile Include="QueryEntityCollection.cs" />
+    <Compile Include="Database\Query\QueryEntity.cs" />
+    <Compile Include="Database\Query\QueryEntityCollection.cs" />
     <Compile Include="Surgery.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
@@ -240,7 +234,7 @@
     <EmbeddedResource Include="Query Builder\AddQueryToBuilder.resx">
       <DependentUpon>AddQueryToBuilder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Query Builder\Data Manipulation\QueryManager.resx">
+    <EmbeddedResource Include="Query Builder\QueryManager.resx">
       <DependentUpon>QueryManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Query Builder\Data Manipulation\DataCharts.resx">

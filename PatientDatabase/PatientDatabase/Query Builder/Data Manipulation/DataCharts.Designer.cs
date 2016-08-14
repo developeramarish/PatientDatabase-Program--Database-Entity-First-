@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,11 +106,14 @@
             this.lstSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lstSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstSeries.FormattingEnabled = true;
+            this.lstSeries.HorizontalScrollbar = true;
             this.lstSeries.ItemHeight = 20;
             this.lstSeries.Location = new System.Drawing.Point(1018, 42);
             this.lstSeries.Name = "lstSeries";
             this.lstSeries.Size = new System.Drawing.Size(168, 124);
             this.lstSeries.TabIndex = 11;
+            this.lstSeries.SelectedIndexChanged += new System.EventHandler(this.lstSeries_SelectedIndexChanged);
+            this.lstSeries.DoubleClick += new System.EventHandler(this.lstSeries_DoubleClick);
             // 
             // label8
             // 
@@ -125,19 +128,19 @@
             // 
             // chartOutcomeData
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartOutcomeData.ChartAreas.Add(chartArea1);
+            chartArea5.Name = "ChartArea1";
+            this.chartOutcomeData.ChartAreas.Add(chartArea5);
             this.chartOutcomeData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartOutcomeData.Legends.Add(legend1);
+            legend5.Name = "Legend1";
+            this.chartOutcomeData.Legends.Add(legend5);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
             this.chartOutcomeData.Name = "chartOutcomeData";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartOutcomeData.Series.Add(series1);
+            series5.BorderWidth = 3;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartOutcomeData.Series.Add(series5);
             this.chartOutcomeData.Size = new System.Drawing.Size(1007, 503);
             this.chartOutcomeData.TabIndex = 8;
             this.chartOutcomeData.Text = "chart1";
@@ -184,15 +187,22 @@
             // 
             // rtxtQueryData
             // 
+            this.rtxtQueryData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtxtQueryData.BackColor = System.Drawing.Color.White;
             this.rtxtQueryData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxtQueryData.Location = new System.Drawing.Point(1018, 209);
             this.rtxtQueryData.Name = "rtxtQueryData";
+            this.rtxtQueryData.ReadOnly = true;
+            this.rtxtQueryData.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
             this.rtxtQueryData.Size = new System.Drawing.Size(196, 301);
             this.rtxtQueryData.TabIndex = 34;
             this.rtxtQueryData.Text = "";
+            this.rtxtQueryData.WordWrap = false;
             // 
             // btnMoveUp
             // 
+            this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveUp.Location = new System.Drawing.Point(1188, 67);
             this.btnMoveUp.Name = "btnMoveUp";
@@ -200,9 +210,11 @@
             this.btnMoveUp.TabIndex = 33;
             this.btnMoveUp.Text = "Λ";
             this.btnMoveUp.UseVisualStyleBackColor = true;
+            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
             // 
             // btnMoveDown
             // 
+            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveDown.Location = new System.Drawing.Point(1188, 106);
             this.btnMoveDown.Name = "btnMoveDown";
@@ -210,6 +222,7 @@
             this.btnMoveDown.TabIndex = 32;
             this.btnMoveDown.Text = "V";
             this.btnMoveDown.UseVisualStyleBackColor = true;
+            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
             // 
             // label5
             // 
@@ -351,6 +364,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mnuCommandStrip);
             this.MainMenuStrip = this.mnuCommandStrip;
+            this.MinimumSize = new System.Drawing.Size(1259, 707);
             this.Name = "DataCharts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DataCharts";

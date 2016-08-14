@@ -35,7 +35,6 @@ namespace PatientDatabase
             database = new DatabaseAccess();
             this.queryEntityCollection = queryEntityCollection;
             queries = new List<Query>();
-            txtName.Text = "Unnamed";
             editQueryIndex = -1;
             checkSubmitStatus();
         }

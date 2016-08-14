@@ -42,10 +42,10 @@ namespace PatientDatabase
             GlobalFormManager.FormOpen();
             loadChartSeries();
             loadSeriesListBox();
-            setListBoxSelectedIndex(lstSeries, 0);
             loadProtocols();
             protocols.ForEach(p => cboProtocol.Items.Add(p.Name));
             setComboBoxSelectedIndex(cboProtocol, 0);
+            setListBoxSelectedIndex(lstSeries, 0);
         }
 
         private void loadChartSeries()
@@ -73,6 +73,7 @@ namespace PatientDatabase
 
         private void loadSeriesListBox()
         {
+            lstSeries.Items.Clear();
             chartData.ChartSeries.ForEach(cs => lstSeries.Items.Add(cs.Entity.Name));
         }
 
@@ -173,7 +174,6 @@ namespace PatientDatabase
         private void setUpChartDisplay()
         {
             setChartAreaSettings();
-            Dictionary<int, int> points = chartData.ChartSeries[lstSeries.SelectedIndex].getPoints(selectedProtocol, selectedOutcome, selectedStartInterval, selectedEndInterval);
             double start = -.5 + selectedStartInterval;
             for (int i = selectedStartInterval; i <= selectedEndInterval; i++)
             {
@@ -277,6 +277,55 @@ namespace PatientDatabase
                 case 14: return Color.FromArgb(255, 120, 147, 190);
                 default: return Color.Black;
             }
+        }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            if (lstSeries.SelectedIndex > 0)
+            {
+                int selectedIndex = lstSeries.SelectedIndex;
+                QueryEntity temp = queryEntityCollection.QueryEntities[selectedIndex];
+                queryEntityCollection.QueryEntities[selectedIndex] = queryEntityCollection.QueryEntities[selectedIndex - 1];
+                queryEntityCollection.QueryEntities[selectedIndex - 1] = temp;
+
+                ChartSeries temp2 = chartData.ChartSeries[selectedIndex];
+                chartData.ChartSeries[selectedIndex] = chartData.ChartSeries[selectedIndex - 1];
+                chartData.ChartSeries[selectedIndex - 1] = temp2;
+
+                loadSeriesListBox();
+                setListBoxSelectedIndex(lstSeries, selectedIndex - 1);
+            }
+        }
+
+        private void btnMoveDown_Click(object sender, EventArgs e)
+        {
+            if (lstSeries.SelectedIndex < lstSeries.Items.Count - 1)
+            {
+                int selectedIndex = lstSeries.SelectedIndex;
+                QueryEntity temp = queryEntityCollection.QueryEntities[selectedIndex];
+                queryEntityCollection.QueryEntities[selectedIndex] = queryEntityCollection.QueryEntities[selectedIndex + 1];
+                queryEntityCollection.QueryEntities[selectedIndex + 1] = temp;
+
+                ChartSeries temp2 = chartData.ChartSeries[selectedIndex];
+                chartData.ChartSeries[selectedIndex] = chartData.ChartSeries[selectedIndex + 1];
+                chartData.ChartSeries[selectedIndex + 1] = temp2;
+
+                loadSeriesListBox();
+                setListBoxSelectedIndex(lstSeries, selectedIndex + 1);
+            }
+        }
+
+        private void lstSeries_DoubleClick(object sender, EventArgs e)
+        {
+            chartData.ChartSeries[lstSeries.SelectedIndex].toggleShow();
+            loadChart();
+        }
+
+        private void lstSeries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rtxtQueryData.Text = queryEntityCollection.QueryEntities[lstSeries.SelectedIndex].entityToString();
+            rtxtQueryData.AppendText(Environment.NewLine + Environment.NewLine);
+            rtxtQueryData.AppendText(chartData.ChartSeries[lstSeries.SelectedIndex].getDataAnalysis(selectedProtocol, selectedOutcome, selectedStartInterval, selectedEndInterval));
         }
     }
 }

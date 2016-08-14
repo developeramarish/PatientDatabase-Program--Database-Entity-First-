@@ -50,7 +50,7 @@ namespace PatientDatabase
 
         private void btnAddQuery_Click(object sender, EventArgs e)
         {
-            if (queryEntityCollection.QueryEntities.Count == 15)
+            if (queryEntityCollection.QueryEntities.Count <= 15)
             {
                 int index = lstQuery.SelectedIndex;
                 int count = queryEntityCollection.QueryEntities.Count;
@@ -147,7 +147,7 @@ namespace PatientDatabase
 
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
-            if (queryEntityCollection.QueryEntities.Count == 15)
+            if (queryEntityCollection.QueryEntities.Count <= 15)
             {
                 int selectedIndex = lstQuery.SelectedIndex;
                 QueryEntity copiedQueryEntity = queryEntityCollection.QueryEntities[selectedIndex];
