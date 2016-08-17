@@ -45,6 +45,11 @@ namespace PatientDatabase
             return sb.ToString().Trim();
         }
 
+        public string countToString()
+        {
+            return "Total # of Patients: " + getPatientCount();
+        }
+
         public List<Patient> getPatients()
         {
             DatabaseAccess databaseAccess = new DatabaseAccess();

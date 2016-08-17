@@ -36,5 +36,5 @@ C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Pr
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\LinqKit.dll
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.AddQueryToBuilder.resources
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.IDHelper.resources
-C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.DataCharts.resources
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.QueryManager.resources
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.QueryDataChart.resources

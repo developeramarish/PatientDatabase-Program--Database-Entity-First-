@@ -11,55 +11,30 @@ using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Data.Entity.Core.Objects.DataClasses;
 using LinqKit;
-
 using System.Linq.Expressions;
-
-
 
 namespace PatientDatabase
 {
     public partial class QueryBuilder : Form
     {
-        CommandCenter queryCommands;
-        DatabaseAccess database;
-        List<Query> queries;
-        int selectedRow;
-        Query copiedQuery;
-        QueryEntityCollection queryEntityCollection;
-        int editQueryIndex;
+        QueryBuilderLogic logic;
 
         public QueryBuilder(QueryEntityCollection queryEntityCollection)
         {
             InitializeComponent();
-            queryCommands = new CommandCenter();
-            database = new DatabaseAccess();
-            this.queryEntityCollection = queryEntityCollection;
-            queries = new List<Query>();
-            editQueryIndex = -1;
-            checkSubmitStatus();
+            logic = new QueryBuilderLogic(queryEntityCollection, -1);       
         }
 
         public QueryBuilder(QueryEntityCollection queryEntityCollection, int editQueryIndex)
         {
             InitializeComponent();
-            queryCommands = new CommandCenter();
-            database = new DatabaseAccess();
-            this.queryEntityCollection = queryEntityCollection;
-            queries = queryEntityCollection.QueryEntities[editQueryIndex].Queries;
-            queries.ForEach(q => dgvCurrentQuery.Rows.Add(q.getGateText(), q.Property, q.Criteria, q.Filter));
-            txtName.Text = queryEntityCollection.QueryEntities[editQueryIndex].Name;
-            this.editQueryIndex = editQueryIndex;
+            logic = new QueryBuilderLogic(queryEntityCollection, editQueryIndex);
         }
 
         private void QueryBuilder_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
-            dgvCurrentQuery.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            copiedQuery = null;
-
-            // FOR TESTING, NOT FOR RELEASE
-            //loadTestQueries();
-            setSelectedRow();
+            logic.onFormLoad(dgvCurrentQuery, btnSubmitQuery, txtName);
         }
 
         private void QueryBuilder_FormClosing(object sender, FormClosingEventArgs e)
@@ -67,76 +42,60 @@ namespace PatientDatabase
             GlobalFormManager.FormClose();
         }
 
-        private void dgvCurrentQuery_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            setSelectedRow();
-        }
-
         private void btnAddCondition_Click(object sender, EventArgs e)
         {
-            addCondition();
+            logic.addCondition(dgvCurrentQuery, btnSubmitQuery);
         }
 
         private void btnEditCondition_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData()) editCondition();
+            logic.editCondition(dgvCurrentQuery);
         }
 
         private void btnRemoveCondition_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData()) removeCondition();
+            logic.removeCondition(dgvCurrentQuery, btnSubmitQuery);
         }
 
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData()) moveUp();
+            
+            logic.moveUp(dgvCurrentQuery);
         }
 
         private void btnMoveDown_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData()) moveDown();
+            logic.moveDown(dgvCurrentQuery);
         }
 
         private void btnInverse_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData()) applyInverse();
+            logic.applyInverse(dgvCurrentQuery);
         }
 
         private void btnAndOr_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData()) applyGateChange();
+            logic.applyGateChange(dgvCurrentQuery);
         }
 
         private void btnSubmitQuery_Click(object sender, EventArgs e)
         {
-            if (queryEntityCollection.isNameValid(txtName.Text, editQueryIndex))
-            {
-                submitQuery();
-            }
-            else
-            {
-                MessageBox.Show("Error: Name is not valid!"
-                    + Environment.NewLine
-                    + Environment.NewLine
-                    + "Name must not be blank and must not be a repeat of another query's name."
-                    , "Error");
-            }
-
+            logic.submitQuery(txtName, this);
         }
-
+   
         private void dgvCurrentQuery_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            editCondition();
+            logic.editCondition(dgvCurrentQuery);
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData()) copyCondition();
+            logic.copyCondition(dgvCurrentQuery);
         }
 
         private void btnPaste_Click(object sender, EventArgs e)
         {
-            if (dataGridViewHasData() && copiedQuery != null) pasteCondition();
+            logic.pasteCondition(dgvCurrentQuery);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -146,15 +105,7 @@ namespace PatientDatabase
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            MainMenu mm = new MainMenu();
-            mm.Show();
-
-            // Close all forms besides Main Menu
-            for (int i = 0; i < Application.OpenForms.Count; i++)
-            {
-                if (Application.OpenForms[i].Name != "MainMenu") Application.OpenForms[i].Close();
-            }
-            this.Close();
+            GlobalFormManager.Home(this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

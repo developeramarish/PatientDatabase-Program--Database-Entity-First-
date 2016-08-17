@@ -1,6 +1,6 @@
 ﻿namespace PatientDatabase
 {
-    partial class DataCharts
+    partial class QueryDataChart
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDataAnalysis = new System.Windows.Forms.Button();
             this.lstSeries = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -90,17 +89,6 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // btnDataAnalysis
-            // 
-            this.btnDataAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDataAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDataAnalysis.Location = new System.Drawing.Point(1018, 516);
-            this.btnDataAnalysis.Name = "btnDataAnalysis";
-            this.btnDataAnalysis.Size = new System.Drawing.Size(196, 31);
-            this.btnDataAnalysis.TabIndex = 13;
-            this.btnDataAnalysis.Text = "Data Analysis";
-            this.btnDataAnalysis.UseVisualStyleBackColor = true;
-            // 
             // lstSeries
             // 
             this.lstSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -128,19 +116,19 @@
             // 
             // chartOutcomeData
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chartOutcomeData.ChartAreas.Add(chartArea5);
+            chartArea2.Name = "ChartArea1";
+            this.chartOutcomeData.ChartAreas.Add(chartArea2);
             this.chartOutcomeData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend5.Name = "Legend1";
-            this.chartOutcomeData.Legends.Add(legend5);
+            legend2.Name = "Legend1";
+            this.chartOutcomeData.Legends.Add(legend2);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
             this.chartOutcomeData.Name = "chartOutcomeData";
-            series5.BorderWidth = 3;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chartOutcomeData.Series.Add(series5);
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartOutcomeData.Series.Add(series2);
             this.chartOutcomeData.Size = new System.Drawing.Size(1007, 503);
             this.chartOutcomeData.TabIndex = 8;
             this.chartOutcomeData.Text = "chart1";
@@ -178,7 +166,6 @@
             this.panel2.Controls.Add(this.cboProtocol);
             this.panel2.Controls.Add(this.lstSeries);
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.btnDataAnalysis);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Location = new System.Drawing.Point(12, 103);
             this.panel2.Name = "panel2";
@@ -195,7 +182,7 @@
             this.rtxtQueryData.Name = "rtxtQueryData";
             this.rtxtQueryData.ReadOnly = true;
             this.rtxtQueryData.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.rtxtQueryData.Size = new System.Drawing.Size(196, 301);
+            this.rtxtQueryData.Size = new System.Drawing.Size(196, 337);
             this.rtxtQueryData.TabIndex = 34;
             this.rtxtQueryData.Text = "";
             this.rtxtQueryData.WordWrap = false;
@@ -342,6 +329,7 @@
             this.btnHome.TabIndex = 7;
             this.btnHome.Text = "Home";
             this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // btnBack
             // 
@@ -352,8 +340,9 @@
             this.btnBack.TabIndex = 6;
             this.btnBack.Text = "< Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // DataCharts
+            // QueryDataChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -365,9 +354,9 @@
             this.Controls.Add(this.mnuCommandStrip);
             this.MainMenuStrip = this.mnuCommandStrip;
             this.MinimumSize = new System.Drawing.Size(1259, 707);
-            this.Name = "DataCharts";
+            this.Name = "QueryDataChart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DataCharts";
+            this.Text = "QueryDataChart";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataCharts_FormClosing);
             this.Load += new System.EventHandler(this.DataCharts_Load);
             this.mnuCommandStrip.ResumeLayout(false);
@@ -386,7 +375,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip mnuCommandStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.Button btnDataAnalysis;
         private System.Windows.Forms.ListBox lstSeries;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartOutcomeData;

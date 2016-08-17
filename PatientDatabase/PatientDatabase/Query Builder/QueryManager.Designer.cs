@@ -68,8 +68,8 @@
             this.lstQuery.Name = "lstQuery";
             this.lstQuery.Size = new System.Drawing.Size(314, 264);
             this.lstQuery.TabIndex = 0;
-            this.lstQuery.SelectedIndexChanged += new System.EventHandler(this.lstChartSeries_SelectedIndexChanged);
-            this.lstQuery.DoubleClick += new System.EventHandler(this.lstChartSeries_DoubleClick);
+            this.lstQuery.SelectedIndexChanged += new System.EventHandler(this.lstQuery_SelectedIndexChanged);
+            this.lstQuery.DoubleClick += new System.EventHandler(this.lstQuery_DoubleClick);
             // 
             // mnuCommandStrip
             // 

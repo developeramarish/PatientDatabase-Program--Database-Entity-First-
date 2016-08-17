@@ -219,7 +219,6 @@
             this.dgvCurrentQuery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCurrentQuery.Size = new System.Drawing.Size(846, 369);
             this.dgvCurrentQuery.TabIndex = 27;
-            this.dgvCurrentQuery.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurrentQuery_CellClick);
             this.dgvCurrentQuery.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurrentQuery_CellDoubleClick);
             // 
             // cGate

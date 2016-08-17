@@ -9,7 +9,7 @@ namespace PatientDatabase
 {
     public class ChartSeries
     {
-        public QueryEntity Entity;
+        public QueryEntity Entity { get; set; }
         public bool Show { get; set; }
         DatabaseAccess database;
 
@@ -20,33 +20,43 @@ namespace PatientDatabase
             database = new DatabaseAccess();
         }
 
-        public Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, int startInterval, int endInterval)
+        public Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
         {
             Dictionary<int, List<decimal>> allPoints = getAllPoints(selectedProtocol, selectedOutcome, startInterval, endInterval);
             Dictionary<int, int> averagedPoints = getAveragedPoints(allPoints);           
             return averagedPoints;
         }
 
-        private Dictionary<int, List<decimal>> getAllPoints(Protocol selectedProtocol, Outcome selectedOutcome, int startInterval, int endInterval)
+        private Dictionary<int, List<decimal>> getAllPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
         {
             Dictionary<int, List<decimal>> allPoints = new Dictionary<int, List<decimal>>();
             List<PatientOutcome> patientOutcomes;
             List<Patient> patients = Entity.getPatients();
+
             foreach (Patient patient in patients)
             {
                 patientOutcomes = database.getPatientOutcome(patient);
                 patientOutcomes = patientOutcomes.Where(po => po.Protocol.Equals(selectedProtocol)
                 && po.Outcome.Equals(selectedOutcome)
-                && po.Interval_Number >= startInterval
-                && po.Interval_Number <= endInterval).ToList();
-
-                foreach (PatientOutcome po in patientOutcomes)
+                && po.Interval_Number >= startInterval.Number
+                && po.Interval_Number <= endInterval.Number).ToList();
+                if (isPatientEligible(patientOutcomes, endInterval))
                 {
-                    if (!allPoints.ContainsKey(po.Interval_Number)) allPoints.Add(po.Interval_Number, new List<decimal>());
-                    allPoints[po.Interval_Number].Add(po.Result);
+                    foreach (PatientOutcome po in patientOutcomes)
+                    {
+                        if (!allPoints.ContainsKey(po.Interval_Number)) allPoints.Add(po.Interval_Number, new List<decimal>());
+                        allPoints[po.Interval_Number].Add(po.Result);
+                    }
                 }
             }
             return allPoints;
+        }
+
+        private bool isPatientEligible(List<PatientOutcome> patientOutcomes, Interval endInterval)
+        {
+            patientOutcomes.OrderBy(po => po.Interval_Number);
+            if (patientOutcomes[patientOutcomes.Count - 1].Interval_Number < endInterval.Number) return false;
+            else return true;
         }
 
         private Dictionary<int, int> getAveragedPoints(Dictionary<int, List<decimal>> allPoints)
@@ -71,29 +81,29 @@ namespace PatientDatabase
             else Show = true;
         }
 
-        public string getDataAnalysis(Protocol selectedProtocol, Outcome selectedOutcome, int startInterval, int endInterval)
+        public string getDataAnalysis(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
         {
             StringBuilder sb = new StringBuilder();
             Dictionary<int, List<decimal>> allPoints = getAllPoints(selectedProtocol, selectedOutcome, startInterval, endInterval);
             Dictionary<int, int> averagedPoints = getAveragedPoints(allPoints);
             int interval = selectedProtocol.Interval__Months_;
             foreach (KeyValuePair<int, List<decimal>> pair in allPoints) pair.Value.Sort();
-            sb.Append(getMeanString(averagedPoints, interval))
+            sb.Append(getMeanString(averagedPoints, interval, startInterval, endInterval))
             .AppendLine()
-            .Append(getMedianString(allPoints, interval))
+            .Append(getMedianString(allPoints, interval, startInterval, endInterval))
             .AppendLine()
-            .Append(getRangeString(allPoints, interval))
+            .Append(getRangeString(allPoints, interval, startInterval, endInterval))
             .AppendLine()
-            .Append(getModeString(allPoints, interval));
+            .Append(getModeString(allPoints, interval, startInterval, endInterval));
             return sb.ToString().Trim();
         }
 
-        private string getMeanString(Dictionary<int, int> averagedPoints, int interval)
+        private string getMeanString(Dictionary<int, int> averagedPoints, int interval, Interval startInterval, Interval endInterval)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Mean (Displayed):").AppendLine();
             
-            for (int i = 0; i < averagedPoints.Count; i++)
+            for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
                     + averagedPoints[i])
@@ -102,11 +112,11 @@ namespace PatientDatabase
             return sb.ToString();
         }
 
-        private string getMedianString(Dictionary<int, List<decimal>> allPoints, int interval)
+        private string getMedianString(Dictionary<int, List<decimal>> allPoints, int interval, Interval startInterval, Interval endInterval)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Median:").AppendLine();
-            for (int i = 0; i < allPoints.Count; i++)
+            for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
                     + getMedian(allPoints[i]))
@@ -133,11 +143,11 @@ namespace PatientDatabase
             else return count / 2;
         }
 
-        private string getRangeString(Dictionary<int, List<decimal>> allPoints, int interval)
+        private string getRangeString(Dictionary<int, List<decimal>> allPoints, int interval, Interval startInterval, Interval endInterval)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Range:").AppendLine();
-            for (int i = 0; i < allPoints.Count; i++)
+            for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
                     + getRangeLowerBounds(allPoints[i])
@@ -158,11 +168,11 @@ namespace PatientDatabase
             return points[points.Count - 1];
         }
 
-        private string getModeString(Dictionary<int, List<decimal>> allPoints, int interval)
+        private string getModeString(Dictionary<int, List<decimal>> allPoints, int interval, Interval startInterval, Interval endInterval)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Mode:").AppendLine();
-            for (int i = 0; i < allPoints.Count; i++)
+            for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
                     + getMode(allPoints[i]))
@@ -174,13 +184,25 @@ namespace PatientDatabase
         private string getMode(List<decimal> points)
         {
             StringBuilder sb = new StringBuilder();
+            Dictionary<decimal, int> valueCount = getValueCount(points);
+            List<decimal> pointsHighestCount = getPointsHighestCount(valueCount);
+            foreach (decimal point in pointsHighestCount) sb.Append(point + " ");
+            return sb.ToString().Trim().Replace(" ", ", ");  
+        }
+
+        private Dictionary<decimal, int> getValueCount(List<decimal> points)
+        {
             Dictionary<decimal, int> valueCount = new Dictionary<decimal, int>();
             foreach (decimal point in points)
             {
                 if (!valueCount.ContainsKey(point)) valueCount.Add(point, 1);
                 else valueCount[point] = valueCount[point] + 1;
             }
+            return valueCount;
+        }
 
+        private List<decimal> getPointsHighestCount(Dictionary<decimal, int> valueCount)
+        {
             int highestCount = 0;
             List<decimal> pointsHighestCount = new List<decimal>();
             foreach (KeyValuePair<decimal, int> pair in valueCount)
@@ -194,20 +216,35 @@ namespace PatientDatabase
                 }
             }
             pointsHighestCount.Sort();
-            foreach (decimal point in pointsHighestCount)
-            {
-                sb.Append(point + " ");
-            }
-            string mode = sb.ToString().Trim();
-            mode = mode.Replace(" ", ", ");
-            return mode;
-            
+            return pointsHighestCount;
         }
 
         private string getMonthLabel(int intervalIndex, int interval)
         {
             if (intervalIndex == 0) return "Baseline";
             else return (intervalIndex * interval) + " Months";
+        }
+
+        public string getSeriesCount(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        {
+            return "Graphed Patients: " + getGraphedPatientsCount(selectedProtocol, selectedOutcome, startInterval, endInterval);
+        }
+
+        private int getGraphedPatientsCount(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        {
+            int count = 0;
+            List<PatientOutcome> patientOutcomes;
+            List<Patient> patients = Entity.getPatients();
+            foreach (Patient patient in patients)
+            {
+                patientOutcomes = database.getPatientOutcome(patient);
+                patientOutcomes = patientOutcomes.Where(po => po.Protocol.Equals(selectedProtocol)
+                && po.Outcome.Equals(selectedOutcome)
+                && po.Interval_Number >= startInterval.Number
+                && po.Interval_Number <= endInterval.Number).ToList();
+                if (isPatientEligible(patientOutcomes, endInterval)) count++;
+            }
+            return count;
         }
     }
 }

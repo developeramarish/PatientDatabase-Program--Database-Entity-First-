@@ -97,7 +97,7 @@
             this.fileToolStripMenuItem});
             this.mnuCommandStrip.Location = new System.Drawing.Point(0, 0);
             this.mnuCommandStrip.Name = "mnuCommandStrip";
-            this.mnuCommandStrip.Size = new System.Drawing.Size(742, 24);
+            this.mnuCommandStrip.Size = new System.Drawing.Size(843, 24);
             this.mnuCommandStrip.TabIndex = 49;
             this.mnuCommandStrip.Text = "menuStrip1";
             // 
@@ -124,7 +124,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 428F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(728, 428);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(829, 428);
             this.tableLayoutPanel1.TabIndex = 58;
             // 
             // panel4
@@ -139,16 +139,16 @@
             this.panel4.Controls.Add(this.chkCriteriaDevMode);
             this.panel4.Controls.Add(this.lblFilterCriteria);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(245, 3);
+            this.panel4.Location = new System.Drawing.Point(279, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(236, 422);
+            this.panel4.Size = new System.Drawing.Size(270, 422);
             this.panel4.TabIndex = 58;
             // 
             // btnClearCriteria
             // 
             this.btnClearCriteria.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnClearCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearCriteria.Location = new System.Drawing.Point(23, 378);
+            this.btnClearCriteria.Location = new System.Drawing.Point(40, 378);
             this.btnClearCriteria.Name = "btnClearCriteria";
             this.btnClearCriteria.Size = new System.Drawing.Size(189, 31);
             this.btnClearCriteria.TabIndex = 69;
@@ -176,7 +176,7 @@
             this.txtCriteriaFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCriteriaFilter.Location = new System.Drawing.Point(66, 10);
             this.txtCriteriaFilter.Name = "txtCriteriaFilter";
-            this.txtCriteriaFilter.Size = new System.Drawing.Size(157, 26);
+            this.txtCriteriaFilter.Size = new System.Drawing.Size(191, 26);
             this.txtCriteriaFilter.TabIndex = 43;
             this.txtCriteriaFilter.TextChanged += new System.EventHandler(this.txtCriteriaFilter_TextChanged);
             // 
@@ -184,7 +184,7 @@
             // 
             this.btnSelectCriteria.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSelectCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectCriteria.Location = new System.Drawing.Point(23, 341);
+            this.btnSelectCriteria.Location = new System.Drawing.Point(40, 341);
             this.btnSelectCriteria.Name = "btnSelectCriteria";
             this.btnSelectCriteria.Size = new System.Drawing.Size(189, 31);
             this.btnSelectCriteria.TabIndex = 45;
@@ -203,7 +203,7 @@
             this.lstCriteria.ItemHeight = 20;
             this.lstCriteria.Location = new System.Drawing.Point(12, 46);
             this.lstCriteria.Name = "lstCriteria";
-            this.lstCriteria.Size = new System.Drawing.Size(211, 264);
+            this.lstCriteria.Size = new System.Drawing.Size(245, 264);
             this.lstCriteria.TabIndex = 42;
             this.lstCriteria.DoubleClick += new System.EventHandler(this.lstCriteria_DoubleClick);
             // 
@@ -212,7 +212,7 @@
             this.chkCriteriaDevMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkCriteriaDevMode.AutoSize = true;
             this.chkCriteriaDevMode.ForeColor = System.Drawing.Color.Black;
-            this.chkCriteriaDevMode.Location = new System.Drawing.Point(117, 313);
+            this.chkCriteriaDevMode.Location = new System.Drawing.Point(151, 313);
             this.chkCriteriaDevMode.Name = "chkCriteriaDevMode";
             this.chkCriteriaDevMode.Size = new System.Drawing.Size(106, 17);
             this.chkCriteriaDevMode.TabIndex = 46;
@@ -246,9 +246,9 @@
             this.panel5.Controls.Add(this.txtReq2);
             this.panel5.Controls.Add(this.txtReq1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(487, 3);
+            this.panel5.Location = new System.Drawing.Point(555, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(238, 422);
+            this.panel5.Size = new System.Drawing.Size(271, 422);
             this.panel5.TabIndex = 59;
             // 
             // panel6
@@ -260,7 +260,7 @@
             this.panel6.Controls.Add(this.rtxtInstructions);
             this.panel6.Location = new System.Drawing.Point(23, 155);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(189, 175);
+            this.panel6.Size = new System.Drawing.Size(222, 175);
             this.panel6.TabIndex = 69;
             // 
             // rtxtInstructions
@@ -272,7 +272,7 @@
             this.rtxtInstructions.Location = new System.Drawing.Point(0, 0);
             this.rtxtInstructions.Name = "rtxtInstructions";
             this.rtxtInstructions.ReadOnly = true;
-            this.rtxtInstructions.Size = new System.Drawing.Size(187, 173);
+            this.rtxtInstructions.Size = new System.Drawing.Size(220, 173);
             this.rtxtInstructions.TabIndex = 67;
             this.rtxtInstructions.Text = "";
             // 
@@ -280,7 +280,7 @@
             // 
             this.btnClearFilter.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnClearFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearFilter.Location = new System.Drawing.Point(24, 378);
+            this.btnClearFilter.Location = new System.Drawing.Point(40, 378);
             this.btnClearFilter.Name = "btnClearFilter";
             this.btnClearFilter.Size = new System.Drawing.Size(189, 31);
             this.btnClearFilter.TabIndex = 68;
@@ -292,7 +292,7 @@
             // 
             this.btnSelectFilter.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSelectFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectFilter.Location = new System.Drawing.Point(24, 341);
+            this.btnSelectFilter.Location = new System.Drawing.Point(40, 341);
             this.btnSelectFilter.Name = "btnSelectFilter";
             this.btnSelectFilter.Size = new System.Drawing.Size(189, 31);
             this.btnSelectFilter.TabIndex = 59;
@@ -304,7 +304,7 @@
             // 
             this.btnIdHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIdHelper.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIdHelper.Location = new System.Drawing.Point(208, 18);
+            this.btnIdHelper.Location = new System.Drawing.Point(241, 18);
             this.btnIdHelper.Name = "btnIdHelper";
             this.btnIdHelper.Size = new System.Drawing.Size(27, 26);
             this.btnIdHelper.TabIndex = 66;
@@ -353,7 +353,7 @@
             this.txtReq3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReq3.Location = new System.Drawing.Point(90, 110);
             this.txtReq3.Name = "txtReq3";
-            this.txtReq3.Size = new System.Drawing.Size(117, 26);
+            this.txtReq3.Size = new System.Drawing.Size(150, 26);
             this.txtReq3.TabIndex = 62;
             // 
             // txtReq2
@@ -364,7 +364,7 @@
             this.txtReq2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReq2.Location = new System.Drawing.Point(90, 64);
             this.txtReq2.Name = "txtReq2";
-            this.txtReq2.Size = new System.Drawing.Size(117, 26);
+            this.txtReq2.Size = new System.Drawing.Size(150, 26);
             this.txtReq2.TabIndex = 61;
             // 
             // txtReq1
@@ -375,7 +375,7 @@
             this.txtReq1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReq1.Location = new System.Drawing.Point(90, 18);
             this.txtReq1.Name = "txtReq1";
-            this.txtReq1.Size = new System.Drawing.Size(117, 26);
+            this.txtReq1.Size = new System.Drawing.Size(150, 26);
             this.txtReq1.TabIndex = 60;
             // 
             // panel1
@@ -391,14 +391,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(236, 422);
+            this.panel1.Size = new System.Drawing.Size(270, 422);
             this.panel1.TabIndex = 57;
             // 
             // btnClearProperty
             // 
             this.btnClearProperty.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnClearProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearProperty.Location = new System.Drawing.Point(23, 378);
+            this.btnClearProperty.Location = new System.Drawing.Point(40, 378);
             this.btnClearProperty.Name = "btnClearProperty";
             this.btnClearProperty.Size = new System.Drawing.Size(189, 31);
             this.btnClearProperty.TabIndex = 70;
@@ -413,7 +413,7 @@
             this.txtPropertyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPropertyFilter.Location = new System.Drawing.Point(66, 10);
             this.txtPropertyFilter.Name = "txtPropertyFilter";
-            this.txtPropertyFilter.Size = new System.Drawing.Size(157, 26);
+            this.txtPropertyFilter.Size = new System.Drawing.Size(191, 26);
             this.txtPropertyFilter.TabIndex = 43;
             this.txtPropertyFilter.TextChanged += new System.EventHandler(this.txtPropertyFilter_TextChanged);
             // 
@@ -421,7 +421,7 @@
             // 
             this.btnSelectProperty.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSelectProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectProperty.Location = new System.Drawing.Point(23, 341);
+            this.btnSelectProperty.Location = new System.Drawing.Point(40, 341);
             this.btnSelectProperty.Name = "btnSelectProperty";
             this.btnSelectProperty.Size = new System.Drawing.Size(189, 31);
             this.btnSelectProperty.TabIndex = 45;
@@ -440,7 +440,7 @@
             this.lstProperty.ItemHeight = 20;
             this.lstProperty.Location = new System.Drawing.Point(12, 46);
             this.lstProperty.Name = "lstProperty";
-            this.lstProperty.Size = new System.Drawing.Size(211, 264);
+            this.lstProperty.Size = new System.Drawing.Size(245, 264);
             this.lstProperty.TabIndex = 42;
             this.lstProperty.DoubleClick += new System.EventHandler(this.lstProperty_DoubleClick);
             // 
@@ -449,7 +449,7 @@
             this.chkPropertyDevMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkPropertyDevMode.AutoSize = true;
             this.chkPropertyDevMode.ForeColor = System.Drawing.Color.Black;
-            this.chkPropertyDevMode.Location = new System.Drawing.Point(117, 313);
+            this.chkPropertyDevMode.Location = new System.Drawing.Point(151, 313);
             this.chkPropertyDevMode.Name = "chkPropertyDevMode";
             this.chkPropertyDevMode.Size = new System.Drawing.Size(106, 17);
             this.chkPropertyDevMode.TabIndex = 46;
@@ -474,7 +474,7 @@
             this.lblCriteria.AutoSize = true;
             this.lblCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCriteria.ForeColor = System.Drawing.Color.White;
-            this.lblCriteria.Location = new System.Drawing.Point(89, 5);
+            this.lblCriteria.Location = new System.Drawing.Point(106, 5);
             this.lblCriteria.Name = "lblCriteria";
             this.lblCriteria.Size = new System.Drawing.Size(59, 20);
             this.lblCriteria.TabIndex = 48;
@@ -486,7 +486,7 @@
             this.lblRequirement.AutoSize = true;
             this.lblRequirement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRequirement.ForeColor = System.Drawing.Color.White;
-            this.lblRequirement.Location = new System.Drawing.Point(84, 5);
+            this.lblRequirement.Location = new System.Drawing.Point(101, 5);
             this.lblRequirement.Name = "lblRequirement";
             this.lblRequirement.Size = new System.Drawing.Size(68, 20);
             this.lblRequirement.TabIndex = 48;
@@ -498,7 +498,7 @@
             this.lblFilter.AutoSize = true;
             this.lblFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFilter.ForeColor = System.Drawing.Color.White;
-            this.lblFilter.Location = new System.Drawing.Point(97, 5);
+            this.lblFilter.Location = new System.Drawing.Point(113, 5);
             this.lblFilter.Name = "lblFilter";
             this.lblFilter.Size = new System.Drawing.Size(44, 20);
             this.lblFilter.TabIndex = 59;
@@ -512,7 +512,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(230, 548);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(280, 548);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -577,7 +577,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(728, 31);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(829, 31);
             this.tableLayoutPanel3.TabIndex = 61;
             // 
             // txtSelectedFilter
@@ -585,10 +585,10 @@
             this.txtSelectedFilter.BackColor = System.Drawing.Color.White;
             this.txtSelectedFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSelectedFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSelectedFilter.Location = new System.Drawing.Point(487, 3);
+            this.txtSelectedFilter.Location = new System.Drawing.Point(555, 3);
             this.txtSelectedFilter.Name = "txtSelectedFilter";
             this.txtSelectedFilter.ReadOnly = true;
-            this.txtSelectedFilter.Size = new System.Drawing.Size(238, 26);
+            this.txtSelectedFilter.Size = new System.Drawing.Size(271, 26);
             this.txtSelectedFilter.TabIndex = 2;
             // 
             // txtSelectedCriteria
@@ -596,10 +596,10 @@
             this.txtSelectedCriteria.BackColor = System.Drawing.Color.White;
             this.txtSelectedCriteria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSelectedCriteria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSelectedCriteria.Location = new System.Drawing.Point(245, 3);
+            this.txtSelectedCriteria.Location = new System.Drawing.Point(279, 3);
             this.txtSelectedCriteria.Name = "txtSelectedCriteria";
             this.txtSelectedCriteria.ReadOnly = true;
-            this.txtSelectedCriteria.Size = new System.Drawing.Size(236, 26);
+            this.txtSelectedCriteria.Size = new System.Drawing.Size(270, 26);
             this.txtSelectedCriteria.TabIndex = 1;
             // 
             // txtSelectedProperty
@@ -610,7 +610,7 @@
             this.txtSelectedProperty.Location = new System.Drawing.Point(3, 3);
             this.txtSelectedProperty.Name = "txtSelectedProperty";
             this.txtSelectedProperty.ReadOnly = true;
-            this.txtSelectedProperty.Size = new System.Drawing.Size(236, 26);
+            this.txtSelectedProperty.Size = new System.Drawing.Size(270, 26);
             this.txtSelectedProperty.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -628,7 +628,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(728, 36);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(829, 36);
             this.tableLayoutPanel4.TabIndex = 62;
             // 
             // panel7
@@ -637,25 +637,25 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(236, 30);
+            this.panel7.Size = new System.Drawing.Size(270, 30);
             this.panel7.TabIndex = 0;
             // 
             // panel8
             // 
             this.panel8.Controls.Add(this.lblCriteria);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(245, 3);
+            this.panel8.Location = new System.Drawing.Point(279, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(236, 30);
+            this.panel8.Size = new System.Drawing.Size(270, 30);
             this.panel8.TabIndex = 1;
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.lblFilter);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(487, 3);
+            this.panel9.Location = new System.Drawing.Point(555, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(238, 30);
+            this.panel9.Size = new System.Drawing.Size(271, 30);
             this.panel9.TabIndex = 2;
             // 
             // AddQueryToBuilder
@@ -663,7 +663,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(742, 607);
+            this.ClientSize = new System.Drawing.Size(843, 607);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);

@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonUIMethodsAndFunctions.cs" />
     <Compile Include="Entity Extended\DBContextExtended.cs" />
     <Compile Include="Entity Extended\OutcomeExtended.cs" />
     <Compile Include="Entity Extended\ProtocolExtended.cs" />
@@ -105,17 +106,19 @@
     <Compile Include="Query Builder\Command\PropertyTypes\PropertyString.cs" />
     <Compile Include="Database\DatabaseAccess.cs" />
     <Compile Include="Globals\GlobalFormManager.cs" />
+    <Compile Include="Query Builder\Data Manipulation\Graph\Interval.cs" />
+    <Compile Include="Query Builder\Data Manipulation\QueryDataChartLogic.cs" />
     <Compile Include="Query Builder\QueryManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Query Builder\QueryManager.Designer.cs">
       <DependentUpon>QueryManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Query Builder\Data Manipulation\DataCharts.cs">
+    <Compile Include="Query Builder\Data Manipulation\QueryDataChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Query Builder\Data Manipulation\DataCharts.Designer.cs">
-      <DependentUpon>DataCharts.cs</DependentUpon>
+    <Compile Include="Query Builder\Data Manipulation\QueryDataChart.Designer.cs">
+      <DependentUpon>QueryDataChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Query Builder\Data Manipulation\Graph\ChartData.cs" />
     <Compile Include="Query Builder\Data Manipulation\Graph\ChartSeries.cs" />
@@ -211,11 +214,10 @@
     <Compile Include="Query Builder\QueryBuilder.Designer.cs">
       <DependentUpon>QueryBuilder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Query Builder\QueryBuilderMethodsAndFunctions.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Query Builder\QueryBuilderLogic.cs" />
     <Compile Include="Database\Query\QueryEntity.cs" />
     <Compile Include="Database\Query\QueryEntityCollection.cs" />
+    <Compile Include="Query Builder\QueryManagerLogic.cs" />
     <Compile Include="Surgery.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
@@ -237,8 +239,8 @@
     <EmbeddedResource Include="Query Builder\QueryManager.resx">
       <DependentUpon>QueryManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Query Builder\Data Manipulation\DataCharts.resx">
-      <DependentUpon>DataCharts.cs</DependentUpon>
+    <EmbeddedResource Include="Query Builder\Data Manipulation\QueryDataChart.resx">
+      <DependentUpon>QueryDataChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Query Builder\IDHelper.resx">
       <DependentUpon>IDHelper.cs</DependentUpon>

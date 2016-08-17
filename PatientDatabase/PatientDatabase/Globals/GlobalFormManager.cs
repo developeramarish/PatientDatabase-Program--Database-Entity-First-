@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PatientDatabase
 {
@@ -20,6 +21,19 @@ namespace PatientDatabase
         {
             ScreenCount--;
             if (ScreenCount == 0) { Environment.Exit(0); }
+        }
+
+        public static void Home(Form form)
+        {
+            MainMenu mm = new MainMenu();
+            mm.Show();
+
+            // Close all forms besides Main Menu
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i].Name != "MainMenu") Application.OpenForms[i].Close();
+            }
+            form.Close();
         }
     }
 }
