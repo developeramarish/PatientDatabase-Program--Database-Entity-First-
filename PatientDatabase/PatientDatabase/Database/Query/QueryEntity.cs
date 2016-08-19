@@ -10,11 +10,13 @@ namespace PatientDatabase
     {
         public string Name { get; set; }
         public List<Query> Queries { get; set; }
+        DatabaseAccess database;
 
         public QueryEntity(string name, List<Query> queries)
         {
             Name = name;
             Queries = queries;
+            database = new DatabaseAccess();
         }
 
         public string entityToString()
@@ -47,7 +49,14 @@ namespace PatientDatabase
 
         public string countToString()
         {
-            return "Total # of Patients: " + getPatientCount();
+            int count = getPatientCount();
+            return "Total # of Patients: " + count + " (" + getPercentage(count) + "%)";
+        }
+
+        private decimal getPercentage(int count)
+        {
+            int total = database.getTableRecordCount("Patient");
+            return Math.Round(((decimal)count / (decimal)total) * 100, 2);
         }
 
         public List<Patient> getPatients()

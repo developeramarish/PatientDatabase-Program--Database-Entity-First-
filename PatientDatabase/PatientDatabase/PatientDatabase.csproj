@@ -65,7 +65,11 @@
     <Compile Include="Entity Extended\DBContextExtended.cs" />
     <Compile Include="Entity Extended\OutcomeExtended.cs" />
     <Compile Include="Entity Extended\ProtocolExtended.cs" />
+    <Compile Include="Main Menu\MainMenuLogic.cs" />
     <Compile Include="Outcome.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientMorphineEquivalentDose.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientOutcome.cs">
@@ -74,6 +78,13 @@
     <Compile Include="PatientProtocol.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientSnapshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientSnapshot.Designer.cs">
+      <DependentUpon>PatientSnapshot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientSnapshotLogic.cs" />
     <Compile Include="Protocol.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
@@ -86,9 +97,7 @@
     <Compile Include="Query Builder\AddQueryToBuilder.Designer.cs">
       <DependentUpon>AddQueryToBuilder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Query Builder\AddQueryToBuilderMethodsAndFunctions.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Query Builder\AddQueryToBuilderLogic.cs" />
     <Compile Include="Query Builder\Command\CommandCenter.cs" />
     <Compile Include="Query Builder\Command\Criteria.cs" />
     <Compile Include="Query Builder\Command\CriteriaOption.cs" />
@@ -233,6 +242,9 @@
     <Compile Include="Patient Profile\ViewPropertyDetails.Designer.cs">
       <DependentUpon>ViewPropertyDetails.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PatientSnapshot.resx">
+      <DependentUpon>PatientSnapshot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Query Builder\AddQueryToBuilder.resx">
       <DependentUpon>AddQueryToBuilder.cs</DependentUpon>
     </EmbeddedResource>

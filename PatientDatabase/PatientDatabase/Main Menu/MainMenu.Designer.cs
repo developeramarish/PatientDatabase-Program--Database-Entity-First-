@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnPatientProfiles = new System.Windows.Forms.Button();
-            this.btnQueryBuilder = new System.Windows.Forms.Button();
             this.btnQueryManager = new System.Windows.Forms.Button();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,23 +47,11 @@
             this.btnPatientProfiles.UseVisualStyleBackColor = true;
             this.btnPatientProfiles.Click += new System.EventHandler(this.btnPatientProfiles_Click);
             // 
-            // btnQueryBuilder
-            // 
-            this.btnQueryBuilder.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnQueryBuilder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQueryBuilder.Location = new System.Drawing.Point(49, 149);
-            this.btnQueryBuilder.Name = "btnQueryBuilder";
-            this.btnQueryBuilder.Size = new System.Drawing.Size(263, 61);
-            this.btnQueryBuilder.TabIndex = 1;
-            this.btnQueryBuilder.Text = "Query Builder";
-            this.btnQueryBuilder.UseVisualStyleBackColor = true;
-            this.btnQueryBuilder.Click += new System.EventHandler(this.btnQueryBuilder_Click);
-            // 
             // btnQueryManager
             // 
             this.btnQueryManager.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnQueryManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQueryManager.Location = new System.Drawing.Point(49, 249);
+            this.btnQueryManager.Location = new System.Drawing.Point(49, 131);
             this.btnQueryManager.Name = "btnQueryManager";
             this.btnQueryManager.Size = new System.Drawing.Size(263, 61);
             this.btnQueryManager.TabIndex = 2;
@@ -94,9 +81,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(360, 358);
+            this.ClientSize = new System.Drawing.Size(360, 214);
             this.Controls.Add(this.btnQueryManager);
-            this.Controls.Add(this.btnQueryBuilder);
             this.Controls.Add(this.btnPatientProfiles);
             this.Controls.Add(this.mnuCommandStrip);
             this.MainMenuStrip = this.mnuCommandStrip;
@@ -115,7 +101,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnPatientProfiles;
-        private System.Windows.Forms.Button btnQueryBuilder;
         private System.Windows.Forms.Button btnQueryManager;
         private System.Windows.Forms.MenuStrip mnuCommandStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;

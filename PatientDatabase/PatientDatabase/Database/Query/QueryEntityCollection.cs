@@ -35,5 +35,19 @@ namespace PatientDatabase
             while (isRepeat(name + " (" + copyNumber.ToString() + ")", -1)) copyNumber++;
             return name + " (" + copyNumber.ToString() + ")";
         }
+
+        public void moveQueryUp(int selectedIndex)
+        {
+            QueryEntity temp = QueryEntities[selectedIndex];
+            QueryEntities[selectedIndex] = QueryEntities[selectedIndex - 1];
+            QueryEntities[selectedIndex - 1] = temp;
+        }
+
+        public void moveQueryDown(int selectedIndex)
+        {
+            QueryEntity temp = QueryEntities[selectedIndex];
+            QueryEntities[selectedIndex] = QueryEntities[selectedIndex + 1];
+            QueryEntities[selectedIndex + 1] = temp;
+        }
     }
 }

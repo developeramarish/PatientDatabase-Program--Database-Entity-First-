@@ -66,7 +66,7 @@
             this.lstQuery.ItemHeight = 20;
             this.lstQuery.Location = new System.Drawing.Point(0, 0);
             this.lstQuery.Name = "lstQuery";
-            this.lstQuery.Size = new System.Drawing.Size(314, 264);
+            this.lstQuery.Size = new System.Drawing.Size(302, 264);
             this.lstQuery.TabIndex = 0;
             this.lstQuery.SelectedIndexChanged += new System.EventHandler(this.lstQuery_SelectedIndexChanged);
             this.lstQuery.DoubleClick += new System.EventHandler(this.lstQuery_DoubleClick);
@@ -161,7 +161,7 @@
             // 
             this.btnDataChart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDataChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDataChart.Location = new System.Drawing.Point(508, 314);
+            this.btnDataChart.Location = new System.Drawing.Point(494, 313);
             this.btnDataChart.Name = "btnDataChart";
             this.btnDataChart.Size = new System.Drawing.Size(135, 34);
             this.btnDataChart.TabIndex = 34;
@@ -186,7 +186,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(442, 8);
+            this.label3.Location = new System.Drawing.Point(442, 6);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 32;
@@ -197,7 +197,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(132, 8);
+            this.label2.Location = new System.Drawing.Point(132, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 31;
@@ -213,11 +213,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 34);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 34);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(640, 270);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(617, 270);
             this.tableLayoutPanel1.TabIndex = 29;
             // 
             // panel2
@@ -226,16 +226,16 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(314, 264);
+            this.panel2.Size = new System.Drawing.Size(302, 264);
             this.panel2.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.rtxtConditions);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(323, 3);
+            this.panel4.Location = new System.Drawing.Point(311, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(314, 264);
+            this.panel4.Size = new System.Drawing.Size(303, 264);
             this.panel4.TabIndex = 1;
             // 
             // rtxtConditions
@@ -246,7 +246,7 @@
             this.rtxtConditions.Location = new System.Drawing.Point(0, 0);
             this.rtxtConditions.Name = "rtxtConditions";
             this.rtxtConditions.ReadOnly = true;
-            this.rtxtConditions.Size = new System.Drawing.Size(314, 264);
+            this.rtxtConditions.Size = new System.Drawing.Size(303, 264);
             this.rtxtConditions.TabIndex = 28;
             this.rtxtConditions.Text = "";
             this.rtxtConditions.WordWrap = false;

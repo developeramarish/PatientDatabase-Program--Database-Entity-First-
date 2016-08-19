@@ -13,33 +13,19 @@ namespace PatientDatabase
     // Look in AddQueryToBuilderMethodsAndFunctions for all non control methods and functions called
     public partial class AddQueryToBuilder : Form
     {
-        CommandCenter queryCommands;
-        List<Query> queries;
-        DataGridView dgvCurrentQuery;
-        Query query;
-        int selectedIndex;
+        AddQueryToBuilderLogic logic;
 
         public AddQueryToBuilder(List<Query> queries, DataGridView dgvCurrentQuery, int selectedIndex, CommandCenter queryCommands)
         {
             InitializeComponent();
-            this.queries = queries;
-            this.dgvCurrentQuery = dgvCurrentQuery;
-
-            if (selectedIndex == -1)
-                query = new PatientQuery("", "", "");
-            else
-                query = queries[selectedIndex];
-
-            this.selectedIndex = selectedIndex;
-            this.queryCommands = queryCommands;
+            logic = new AddQueryToBuilderLogic(queries, dgvCurrentQuery, selectedIndex, queryCommands);          
         }
 
         private void AddQueryToBuilder_Load(object sender, EventArgs e)
-        {
+        {            
             GlobalFormManager.FormOpen();
-            setUpProperty();
-            setUpCriteria();
-            setUpFilter();
+            logic.onFormLoad(txtSelectedProperty, panelProperty,
+                txtSelectedCriteria, panelCriteria, txtSelectedFilter, panelFilter, btnSubmit);
         }
 
         private void AddQueryToBuilder_FormClosing(object sender, FormClosingEventArgs e)
@@ -49,89 +35,82 @@ namespace PatientDatabase
 
         private void txtPropertyFilter_TextChanged(object sender, EventArgs e)
         {
-            lstProperty.Items.Clear();
-            lstProperty.Items.AddRange(queryCommands.getProperties(txtPropertyFilter.Text, chkPropertyDevMode.Checked));
-            setListBoxSelectedIndex(lstProperty, 0);
+            logic.reloadPropertyListBox(lstProperty, txtPropertyFilter, chkPropertyDevMode);
         }
 
         private void chkPropertyDevMode_CheckedChanged(object sender, EventArgs e)
         {
-            lstProperty.Items.Clear();
-            lstProperty.Items.AddRange(queryCommands.getProperties(txtPropertyFilter.Text, chkPropertyDevMode.Checked));
-            setListBoxSelectedIndex(lstProperty, 0);
+            logic.reloadPropertyListBox(lstProperty, txtPropertyFilter, chkPropertyDevMode);
         }
 
         private void btnSelectProperty_Click(object sender, EventArgs e)
         {
-            commitPropertyChoice();
+            logic.commitPropertyChoice(lstProperty, txtSelectedProperty, txtSelectedCriteria,
+                panelCriteria, txtSelectedFilter,  panelFilter, btnSubmit);
         }
 
         private void lstProperty_DoubleClick(object sender, EventArgs e)
         {
-            commitPropertyChoice();
+            logic.commitPropertyChoice(lstProperty, txtSelectedProperty, txtSelectedCriteria,
+                 panelCriteria, txtSelectedFilter, panelFilter, btnSubmit);
         }
 
         private void btnClearProperty_Click(object sender, EventArgs e)
         {
-            clearProperty();
+            logic.clearProperty(txtSelectedProperty, txtSelectedCriteria,
+                panelCriteria, txtSelectedFilter,panelFilter, btnSubmit);
         }
 
         private void txtCriteriaFilter_TextChanged(object sender, EventArgs e)
         {
-            lstCriteria.Items.Clear();
-            lstCriteria.Items.AddRange(queryCommands.getProperty(query.Property).getCriteria().getCriteriaOptions(txtCriteriaFilter.Text, chkCriteriaDevMode.Checked, chkNot.Checked));
-            setListBoxSelectedIndex(lstCriteria, 0);
+            logic.reloadCriteriaListBox(lstCriteria, txtCriteriaFilter, chkCriteriaDevMode, chkNot);
         }
 
         private void chkCriteriaDevMode_CheckedChanged(object sender, EventArgs e)
         {
-            lstCriteria.Items.Clear();
-            lstCriteria.Items.AddRange(queryCommands.getProperty(query.Property).getCriteria().getCriteriaOptions(txtCriteriaFilter.Text, chkCriteriaDevMode.Checked, chkNot.Checked));
-            setListBoxSelectedIndex(lstCriteria, 0);
+            logic.reloadCriteriaListBox(lstCriteria, txtCriteriaFilter, chkCriteriaDevMode, chkNot);
         }
 
         private void chkNot_CheckedChanged(object sender, EventArgs e)
         {
-            int currentIndex = lstCriteria.SelectedIndex;
-            lstCriteria.Items.Clear();
-            lstCriteria.Items.AddRange(queryCommands.getProperty(query.Property).getCriteria().getCriteriaOptions(txtCriteriaFilter.Text, chkCriteriaDevMode.Checked, chkNot.Checked));
-            setListBoxSelectedIndex(lstCriteria, currentIndex);
+            logic.CheckBoxNotCheckChange(lstCriteria, txtCriteriaFilter, chkCriteriaDevMode, chkNot);
         }
 
         private void btnSelectCriteria_Click(object sender, EventArgs e)
         {
-            commitCriteriaChoice();
+            logic.commitCriteriaChoice(lstCriteria, txtSelectedCriteria, txtSelectedFilter, 
+                panelFilter, btnSubmit);
         }
 
         private void lstCriteria_DoubleClick(object sender, EventArgs e)
         {
-            commitCriteriaChoice();
+            logic.commitCriteriaChoice(lstCriteria, txtSelectedCriteria, txtSelectedFilter,
+                panelFilter, btnSubmit);
         }
 
         private void btnClearCriteria_Click(object sender, EventArgs e)
         {
-            clearCriteria();
+            logic.clearCriteria(txtSelectedCriteria, txtSelectedFilter,  panelFilter, btnSubmit);
         }
 
         private void btnIdHelper_Click(object sender, EventArgs e)
         {
-            IDHelper idHelper = new IDHelper(queryCommands.getProperty(query.Property).Entity, txtReq1);
-            idHelper.ShowDialog();
+            logic.loadIdHelperForm(txtReq1);
         }
 
         private void btnSelectFilter_Click(object sender, EventArgs e)
         {
-            commitFilterChoice();
+            logic.commitFilterChoice(txtSelectedFilter, panelFilter, btnSubmit);
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)
         {
-            clearFilter();
+            logic.clearFilter(txtSelectedFilter, panelFilter, btnSubmit);
         }
   
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            submitQuery();
+            logic.submitQuery();
             this.Close();
         }
 

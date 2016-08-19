@@ -21,6 +21,7 @@ namespace PatientDatabase
         public bool StandAlone { get; set; }
         public bool And { get; set; }
         public bool Or { get; set; }
+        protected DatabaseAccess database;
 
         public Query(string property, string criteria, string filter)
         {
@@ -28,6 +29,7 @@ namespace PatientDatabase
             Property = property;
             Criteria = criteria;
             And = true;
+            database = new DatabaseAccess();
         }
 
         public Query(string property, string criteria, string filter, bool and, bool or)
@@ -37,6 +39,7 @@ namespace PatientDatabase
             Criteria = criteria;
             And = and;
             Or = or;
+            database = new DatabaseAccess();
         }
         public virtual Expression<Func<Patient, bool>> runQuery() { return p => false; }
         

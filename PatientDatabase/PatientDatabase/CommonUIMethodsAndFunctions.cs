@@ -28,5 +28,14 @@ namespace PatientDatabase
         {
             return dgv.Rows.Count > 0;
         }
+
+        public Control getControlFromPanel(Panel panel, string name)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                if (control.Name == name) return control;
+            }
+            return null;
+        }
     }
 }

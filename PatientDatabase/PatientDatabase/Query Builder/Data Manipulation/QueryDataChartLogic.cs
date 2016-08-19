@@ -143,6 +143,7 @@ namespace PatientDatabase
             if (lstSeries.SelectedIndex > 0)
             {
                 int selectedIndex = lstSeries.SelectedIndex;
+                queryEntityCollection.moveQueryUp(selectedIndex);
                 chartData.moveSeriesUp(selectedIndex, queryEntityCollection);
                 loadSeriesListBox(lstSeries);
                 commonUI.setListBoxSelectedIndex(lstSeries, selectedIndex - 1);
@@ -155,6 +156,7 @@ namespace PatientDatabase
             if (lstSeries.SelectedIndex < lstSeries.Items.Count - 1)
             {
                 int selectedIndex = lstSeries.SelectedIndex;
+                queryEntityCollection.moveQueryDown(selectedIndex);
                 chartData.moveSeriesDown(selectedIndex, queryEntityCollection);
                 loadSeriesListBox(lstSeries);
                 commonUI.setListBoxSelectedIndex(lstSeries, selectedIndex + 1);
@@ -194,6 +196,52 @@ namespace PatientDatabase
         private enum Call_Location
         {
             NONE, LOAD, PROTOCOL, OUTCOME, START_INTERVAL, END_INTERVAL
+        }
+
+        public void toggleIntervalViewType(Chart chartOutcomeData, ToolStripMenuItem menuItem)
+        {
+            if (chartData.ShowInBetweenIntervals)
+            {
+                chartData.ShowInBetweenIntervals = false;
+                menuItem.Checked = true;
+            }
+            else
+            {
+                chartData.ShowInBetweenIntervals = true;
+                menuItem.Checked = false;
+            }
+
+            chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void setChartYAxisInterval(int interval, Chart chartOutcomeData, ToolStripMenuItem menuItem,
+            ToolStripMenuItem yAxisScaleToolStripMenuItem)
+        {
+            chartData.YAxisInterval = interval;
+
+            foreach (ToolStripMenuItem item in yAxisScaleToolStripMenuItem.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            menuItem.Checked = true;
+
+            chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void toggleChartGridLines(Chart chartOutcomeData, ToolStripMenuItem menuItem)
+        {
+            if (chartData.ShowGridLines)
+            {
+                chartData.ShowGridLines = false;
+                menuItem.Checked = true;
+            }
+            else
+            {
+                chartData.ShowGridLines = true;
+                menuItem.Checked = false;
+            }
+
+            chartData.loadChartData(chartOutcomeData);
         }
     }
 }

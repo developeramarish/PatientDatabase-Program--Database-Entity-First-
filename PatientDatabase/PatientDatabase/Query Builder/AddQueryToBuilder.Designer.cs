@@ -31,7 +31,7 @@
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelCriteria = new System.Windows.Forms.Panel();
             this.btnClearCriteria = new System.Windows.Forms.Button();
             this.chkNot = new System.Windows.Forms.CheckBox();
             this.txtCriteriaFilter = new System.Windows.Forms.TextBox();
@@ -39,8 +39,7 @@
             this.lstCriteria = new System.Windows.Forms.ListBox();
             this.chkCriteriaDevMode = new System.Windows.Forms.CheckBox();
             this.lblFilterCriteria = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.panelFilter = new System.Windows.Forms.Panel();
             this.rtxtInstructions = new System.Windows.Forms.RichTextBox();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.btnSelectFilter = new System.Windows.Forms.Button();
@@ -51,7 +50,7 @@
             this.txtReq3 = new System.Windows.Forms.TextBox();
             this.txtReq2 = new System.Windows.Forms.TextBox();
             this.txtReq1 = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelProperty = new System.Windows.Forms.Panel();
             this.btnClearProperty = new System.Windows.Forms.Button();
             this.txtPropertyFilter = new System.Windows.Forms.TextBox();
             this.btnSelectProperty = new System.Windows.Forms.Button();
@@ -76,10 +75,9 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.mnuCommandStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelCriteria.SuspendLayout();
+            this.panelFilter.SuspendLayout();
+            this.panelProperty.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -116,9 +114,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel5, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelCriteria, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelFilter, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelProperty, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 107);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -127,22 +125,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(829, 428);
             this.tableLayoutPanel1.TabIndex = 58;
             // 
-            // panel4
+            // panelCriteria
             // 
-            this.panel4.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.btnClearCriteria);
-            this.panel4.Controls.Add(this.chkNot);
-            this.panel4.Controls.Add(this.txtCriteriaFilter);
-            this.panel4.Controls.Add(this.btnSelectCriteria);
-            this.panel4.Controls.Add(this.lstCriteria);
-            this.panel4.Controls.Add(this.chkCriteriaDevMode);
-            this.panel4.Controls.Add(this.lblFilterCriteria);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(279, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(270, 422);
-            this.panel4.TabIndex = 58;
+            this.panelCriteria.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelCriteria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCriteria.Controls.Add(this.btnClearCriteria);
+            this.panelCriteria.Controls.Add(this.chkNot);
+            this.panelCriteria.Controls.Add(this.txtCriteriaFilter);
+            this.panelCriteria.Controls.Add(this.btnSelectCriteria);
+            this.panelCriteria.Controls.Add(this.lstCriteria);
+            this.panelCriteria.Controls.Add(this.chkCriteriaDevMode);
+            this.panelCriteria.Controls.Add(this.lblFilterCriteria);
+            this.panelCriteria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCriteria.Location = new System.Drawing.Point(279, 3);
+            this.panelCriteria.Name = "panelCriteria";
+            this.panelCriteria.Size = new System.Drawing.Size(270, 422);
+            this.panelCriteria.TabIndex = 58;
             // 
             // btnClearCriteria
             // 
@@ -231,45 +229,35 @@
             this.lblFilterCriteria.TabIndex = 44;
             this.lblFilterCriteria.Text = "Filter:";
             // 
-            // panel5
+            // panelFilter
             // 
-            this.panel5.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.btnClearFilter);
-            this.panel5.Controls.Add(this.btnSelectFilter);
-            this.panel5.Controls.Add(this.btnIdHelper);
-            this.panel5.Controls.Add(this.lblReq3);
-            this.panel5.Controls.Add(this.lblReq2);
-            this.panel5.Controls.Add(this.lblReq1);
-            this.panel5.Controls.Add(this.txtReq3);
-            this.panel5.Controls.Add(this.txtReq2);
-            this.panel5.Controls.Add(this.txtReq1);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(555, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(271, 422);
-            this.panel5.TabIndex = 59;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.rtxtInstructions);
-            this.panel6.Location = new System.Drawing.Point(23, 155);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(222, 175);
-            this.panel6.TabIndex = 69;
+            this.panelFilter.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelFilter.Controls.Add(this.btnClearFilter);
+            this.panelFilter.Controls.Add(this.btnSelectFilter);
+            this.panelFilter.Controls.Add(this.btnIdHelper);
+            this.panelFilter.Controls.Add(this.lblReq3);
+            this.panelFilter.Controls.Add(this.lblReq2);
+            this.panelFilter.Controls.Add(this.lblReq1);
+            this.panelFilter.Controls.Add(this.txtReq3);
+            this.panelFilter.Controls.Add(this.txtReq2);
+            this.panelFilter.Controls.Add(this.txtReq1);
+            this.panelFilter.Controls.Add(this.rtxtInstructions);
+            this.panelFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFilter.Location = new System.Drawing.Point(555, 3);
+            this.panelFilter.Name = "panelFilter";
+            this.panelFilter.Size = new System.Drawing.Size(271, 422);
+            this.panelFilter.TabIndex = 59;
             // 
             // rtxtInstructions
             // 
+            this.rtxtInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtInstructions.BackColor = System.Drawing.Color.White;
-            this.rtxtInstructions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtxtInstructions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtxtInstructions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtxtInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtInstructions.Location = new System.Drawing.Point(0, 0);
+            this.rtxtInstructions.Location = new System.Drawing.Point(24, 153);
             this.rtxtInstructions.Name = "rtxtInstructions";
             this.rtxtInstructions.ReadOnly = true;
             this.rtxtInstructions.Size = new System.Drawing.Size(220, 173);
@@ -378,21 +366,21 @@
             this.txtReq1.Size = new System.Drawing.Size(150, 26);
             this.txtReq1.TabIndex = 60;
             // 
-            // panel1
+            // panelProperty
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnClearProperty);
-            this.panel1.Controls.Add(this.txtPropertyFilter);
-            this.panel1.Controls.Add(this.btnSelectProperty);
-            this.panel1.Controls.Add(this.lstProperty);
-            this.panel1.Controls.Add(this.chkPropertyDevMode);
-            this.panel1.Controls.Add(this.lblFilterProperty);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(270, 422);
-            this.panel1.TabIndex = 57;
+            this.panelProperty.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelProperty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelProperty.Controls.Add(this.btnClearProperty);
+            this.panelProperty.Controls.Add(this.txtPropertyFilter);
+            this.panelProperty.Controls.Add(this.btnSelectProperty);
+            this.panelProperty.Controls.Add(this.lstProperty);
+            this.panelProperty.Controls.Add(this.chkPropertyDevMode);
+            this.panelProperty.Controls.Add(this.lblFilterProperty);
+            this.panelProperty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelProperty.Location = new System.Drawing.Point(3, 3);
+            this.panelProperty.Name = "panelProperty";
+            this.panelProperty.Size = new System.Drawing.Size(270, 422);
+            this.panelProperty.TabIndex = 57;
             // 
             // btnClearProperty
             // 
@@ -678,13 +666,12 @@
             this.mnuCommandStrip.ResumeLayout(false);
             this.mnuCommandStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelCriteria.ResumeLayout(false);
+            this.panelCriteria.PerformLayout();
+            this.panelFilter.ResumeLayout(false);
+            this.panelFilter.PerformLayout();
+            this.panelProperty.ResumeLayout(false);
+            this.panelProperty.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -711,7 +698,7 @@
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelCriteria;
         private System.Windows.Forms.Button btnClearCriteria;
         private System.Windows.Forms.CheckBox chkNot;
         private System.Windows.Forms.Label lblCriteria;
@@ -720,7 +707,7 @@
         private System.Windows.Forms.ListBox lstCriteria;
         private System.Windows.Forms.CheckBox chkCriteriaDevMode;
         private System.Windows.Forms.Label lblFilterCriteria;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelProperty;
         private System.Windows.Forms.Button btnClearProperty;
         private System.Windows.Forms.Label lblRequirement;
         private System.Windows.Forms.TextBox txtPropertyFilter;
@@ -728,7 +715,7 @@
         private System.Windows.Forms.ListBox lstProperty;
         private System.Windows.Forms.CheckBox chkPropertyDevMode;
         private System.Windows.Forms.Label lblFilterProperty;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panelFilter;
         private System.Windows.Forms.Button btnClearFilter;
         private System.Windows.Forms.RichTextBox rtxtInstructions;
         private System.Windows.Forms.Button btnSelectFilter;
@@ -740,7 +727,6 @@
         private System.Windows.Forms.TextBox txtReq2;
         private System.Windows.Forms.TextBox txtReq1;
         private System.Windows.Forms.Label lblFilter;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox txtSelectedFilter;
         private System.Windows.Forms.TextBox txtSelectedCriteria;

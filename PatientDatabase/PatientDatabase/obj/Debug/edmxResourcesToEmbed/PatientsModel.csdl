@@ -27,6 +27,7 @@
     <NavigationProperty Name="PatientTreatments" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="Patient" ToRole="PatientTreatment" />
     <NavigationProperty Name="PatientOutcomes" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToPatient" FromRole="Patient" ToRole="PatientOutcome" />
     <NavigationProperty Name="PatientProtocols" Relationship="PatientDatabaseModel.FK_PatientProtocol_ToPatient" FromRole="Patient" ToRole="PatientProtocol" />
+    <NavigationProperty Name="PatientMorphineEquivalentDoses" Relationship="PatientDatabaseModel.FK_PatientMorphineEquivalentDose_ToTablePatient" FromRole="Patient" ToRole="PatientMorphineEquivalentDose" />
   </EntityType>
   <EntityContainer Name="PatientDatabaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Patients" EntityType="Self.Patient" />
@@ -132,6 +133,11 @@
     <AssociationSet Name="FK_PatientOutcome_ToProtocol" Association="PatientDatabaseModel.FK_PatientOutcome_ToProtocol">
       <End Role="Protocol" EntitySet="Protocols" />
       <End Role="PatientOutcome" EntitySet="PatientOutcomes" />
+    </AssociationSet>
+    <EntitySet Name="PatientMorphineEquivalentDoses" EntityType="PatientDatabaseModel.PatientMorphineEquivalentDose" />
+    <AssociationSet Name="FK_PatientMorphineEquivalentDose_ToTablePatient" Association="PatientDatabaseModel.FK_PatientMorphineEquivalentDose_ToTablePatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientMorphineEquivalentDose" EntitySet="PatientMorphineEquivalentDoses" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Pathology">
@@ -581,6 +587,27 @@
       </Principal>
       <Dependent Role="PatientOutcome">
         <PropertyRef Name="ProtocolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PatientMorphineEquivalentDose">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="Morphine_Equivalent_Dose__Mg_" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientMorphineEquivalentDose_ToTablePatient" FromRole="PatientMorphineEquivalentDose" ToRole="Patient" />
+  </EntityType>
+  <Association Name="FK_PatientMorphineEquivalentDose_ToTablePatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientMorphineEquivalentDose" Role="PatientMorphineEquivalentDose" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientMorphineEquivalentDose">
+        <PropertyRef Name="PatientID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

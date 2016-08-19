@@ -86,5 +86,33 @@ namespace PatientDatabase
         {
             GlobalFormManager.Home(this);
         }
+
+        private void onlyShowStartAndEndToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.toggleIntervalViewType(chartOutcomeData, onlyShowStartAndEndToolStripMenuItem);           
+        }
+
+        private void YAxisInterval20toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.setChartYAxisInterval(20, chartOutcomeData, YAxisInterval20toolStripMenuItem,
+                yAxisScaleToolStripMenuItem);
+        }
+
+        private void YAxisInterval10toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.setChartYAxisInterval(10, chartOutcomeData, YAxisInterval10toolStripMenuItem,
+                yAxisScaleToolStripMenuItem);
+        }
+
+        private void YAxisInterval5toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.setChartYAxisInterval(5, chartOutcomeData, YAxisInterval5toolStripMenuItem,
+                yAxisScaleToolStripMenuItem);
+        }
+
+        private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.toggleChartGridLines(chartOutcomeData, showGridToolStripMenuItem);
+        }
     }
 }

@@ -55,6 +55,7 @@ namespace PatientDatabase
                 case "Medication @ Sustained Release": return checkMedicationSustainedRelease();
                 case "Medication @ Short Acting": return checkMedicationShortActing();
                 case "Medication @ Is Currently Being Taken": return checkMedicationIsCurrentlyBeingTaken();
+                case "Morphine Equivalent Dose": return checkMorphineEquivalentDose();
                 case "Past Medical History Entity": return checkPastMedicalHistoryEntity();
                 case "Past Medical History @ Name": return checkPastMedicalHistoryName();
                 case "Pathology Entity": return checkPathologyEntity();
@@ -612,6 +613,35 @@ namespace PatientDatabase
             {
                 case "Is Current": return p => p.PatientMedications.Any(pm => pm.End_Date == neverEndingDate);
                 case "Is Current NOT": return p => p.PatientMedications.Any(pm => pm.End_Date != neverEndingDate);
+                default: return p => false;
+            }
+        }
+        #endregion
+        #region Morphine Equivalent Dose
+        private Expression<Func<Patient, bool>> checkMorphineEquivalentDose()
+        {
+            string[] values = Filter.Split(' ');
+            int value1 = Int32.Parse(values[0]);
+            int value2 = value1;
+            if (values.Length > 1) { value1 = Int32.Parse(values[0]); value2 = Int32.Parse(values[1]); }
+
+
+            switch (Criteria)
+            {
+                case "Is Equal To": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ == value1);
+                case "Is Between Inclusive": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ >= value1 && pm.Morphine_Equivalent_Dose__Mg_ <= value2);
+                case "Is Greater Than Or Equal To": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ >= value1);
+                case "Is Less Than Or Equal To": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ <= value1);
+                case "Is Between Exclusive": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ > value1 && pm.Morphine_Equivalent_Dose__Mg_ < value2);
+                case "Is Greater Than": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ > value1);
+                case "Is Less Than": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ < value1);
+                case "Is Equal To NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ != value1);
+                case "Is Between Inclusive NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ < value1 && pm.Morphine_Equivalent_Dose__Mg_ > value2);
+                case "Is Greater Than Or Equal To NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ < value1);
+                case "Is Less Than Or Equal To NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ > value1);
+                case "Is Between Exclusive NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ <= value1 && pm.Morphine_Equivalent_Dose__Mg_ >= value2);
+                case "Is Greater Than NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ <= value1);
+                case "Is Less Than NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ >= value1);
                 default: return p => false;
             }
         }

@@ -63,6 +63,14 @@
     <Property Name="Start Date" Type="date" Nullable="false" />
     <Property Name="End Date" Type="date" Nullable="false" />
   </EntityType>
+  <EntityType Name="PatientMorphineEquivalentDose">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="Morphine Equivalent Dose (Mg)" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
   <EntityType Name="PatientOutcome">
     <Key>
       <PropertyRef Name="Id" />
@@ -204,6 +212,18 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="PatientMedication">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatientMorphineEquivalentDose_ToTablePatient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientMorphineEquivalentDose" Type="Self.PatientMorphineEquivalentDose" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientMorphineEquivalentDose">
         <PropertyRef Name="PatientID" />
       </Dependent>
     </ReferentialConstraint>
@@ -447,6 +467,7 @@
     <EntitySet Name="Pathology" EntityType="Self.Pathology" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientMedication" EntityType="Self.PatientMedication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatientMorphineEquivalentDose" EntityType="Self.PatientMorphineEquivalentDose" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientOutcome" EntityType="Self.PatientOutcome" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientPast_Medical_History" EntityType="Self.PatientPast_Medical_History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatientPathology" EntityType="Self.PatientPathology" Schema="dbo" store:Type="Tables" />
@@ -468,6 +489,10 @@
     <AssociationSet Name="FK_PatientMedication_ToPatient" Association="Self.FK_PatientMedication_ToPatient">
       <End Role="Patient" EntitySet="Patient" />
       <End Role="PatientMedication" EntitySet="PatientMedication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatientMorphineEquivalentDose_ToTablePatient" Association="Self.FK_PatientMorphineEquivalentDose_ToTablePatient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="PatientMorphineEquivalentDose" EntitySet="PatientMorphineEquivalentDose" />
     </AssociationSet>
     <AssociationSet Name="FK_PatientOutcome_ToOutcome" Association="Self.FK_PatientOutcome_ToOutcome">
       <End Role="Outcome" EntitySet="Outcome" />

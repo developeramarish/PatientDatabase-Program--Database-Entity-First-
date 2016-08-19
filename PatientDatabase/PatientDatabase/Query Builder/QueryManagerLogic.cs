@@ -86,9 +86,7 @@ namespace PatientDatabase
                 if (lstQuery.SelectedIndex > 0)
                 {
                     int selectedIndex = lstQuery.SelectedIndex;
-                    QueryEntity temp = queryEntityCollection.QueryEntities[selectedIndex];
-                    queryEntityCollection.QueryEntities[selectedIndex] = queryEntityCollection.QueryEntities[selectedIndex - 1];
-                    queryEntityCollection.QueryEntities[selectedIndex - 1] = temp;
+                    queryEntityCollection.moveQueryUp(selectedIndex);
                     loadSeries(lstQuery);
                     commonUI.setListBoxSelectedIndex(lstQuery, selectedIndex - 1);
                 }
@@ -102,9 +100,7 @@ namespace PatientDatabase
                 if (lstQuery.SelectedIndex < lstQuery.Items.Count - 1)
                 {
                     int selectedIndex = lstQuery.SelectedIndex;
-                    QueryEntity temp = queryEntityCollection.QueryEntities[selectedIndex];
-                    queryEntityCollection.QueryEntities[selectedIndex] = queryEntityCollection.QueryEntities[selectedIndex + 1];
-                    queryEntityCollection.QueryEntities[selectedIndex + 1] = temp;
+                    queryEntityCollection.moveQueryDown(selectedIndex);
                     loadSeries(lstQuery);
                     commonUI.setListBoxSelectedIndex(lstQuery, selectedIndex + 1);
                 }

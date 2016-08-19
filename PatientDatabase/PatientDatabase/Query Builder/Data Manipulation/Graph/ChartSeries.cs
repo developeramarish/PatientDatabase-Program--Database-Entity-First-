@@ -106,10 +106,16 @@ namespace PatientDatabase
             for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
-                    + averagedPoints[i])
+                    + getAverage(averagedPoints, i))
                     .AppendLine();
             }
             return sb.ToString();
+        }
+
+        private string getAverage(Dictionary<int, int> averagedPoints, int index)
+        {
+            if (averagedPoints.ContainsKey(index)) return averagedPoints[index].ToString();
+            else return "N/A";
         }
 
         private string getMedianString(Dictionary<int, List<decimal>> allPoints, int interval, Interval startInterval, Interval endInterval)
@@ -119,17 +125,22 @@ namespace PatientDatabase
             for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
-                    + getMedian(allPoints[i]))
+                    + getMedian(allPoints, i))
                     .AppendLine();
             }
             return sb.ToString();
         }
 
-        private decimal getMedian(List<decimal> points)
+        private string getMedian(Dictionary<int, List<decimal>> allPoints, int index)
         {
-            int center = getCenterIndex(points.Count);
-            if (isOdd(points.Count)) return points[center];
-            else return Math.Round((points[center] + points[center - 1]) / 2, 2);
+            if (allPoints.ContainsKey(index))
+            {
+                List<decimal> points = allPoints[index];
+                int center = getCenterIndex(points.Count);
+                if (isOdd(points.Count)) return points[center].ToString();
+                else return Math.Round((points[center] + points[center - 1]) / 2, 2).ToString();
+            }
+            else return "N/A";
         }
 
         private bool isOdd(int count)
@@ -150,22 +161,20 @@ namespace PatientDatabase
             for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
-                    + getRangeLowerBounds(allPoints[i])
-                    + " - "
-                    + getRangeUpperBounds(allPoints[i]))
+                    + getRangeBounds(allPoints, i))
                     .AppendLine();
             }
             return sb.ToString();
         }
 
-        private decimal getRangeLowerBounds(List<decimal> points)
+        private string getRangeBounds(Dictionary<int, List<decimal>> allPoints, int index)
         {
-            return points[0];
-        }
-
-        private decimal getRangeUpperBounds(List<decimal> points)
-        {
-            return points[points.Count - 1];
+            if (allPoints.ContainsKey(index))
+            {
+                List<decimal> points = allPoints[index];
+                return points[0] + " - " + points[points.Count - 1];
+            }
+            else return "N/A";
         }
 
         private string getModeString(Dictionary<int, List<decimal>> allPoints, int interval, Interval startInterval, Interval endInterval)
@@ -175,19 +184,24 @@ namespace PatientDatabase
             for (int i = startInterval.Number; i <= endInterval.Number; i++)
             {
                 sb.Append(getMonthLabel(i, interval) + ": "
-                    + getMode(allPoints[i]))
+                    + getMode(allPoints, i))
                     .AppendLine();
             }
             return sb.ToString();
         }
 
-        private string getMode(List<decimal> points)
+        private string getMode(Dictionary<int, List<decimal>> allPoints, int index)
         {
-            StringBuilder sb = new StringBuilder();
-            Dictionary<decimal, int> valueCount = getValueCount(points);
-            List<decimal> pointsHighestCount = getPointsHighestCount(valueCount);
-            foreach (decimal point in pointsHighestCount) sb.Append(point + " ");
-            return sb.ToString().Trim().Replace(" ", ", ");  
+            if (allPoints.ContainsKey(index))
+            {
+                List<decimal> points = allPoints[index];
+                StringBuilder sb = new StringBuilder();
+                Dictionary<decimal, int> valueCount = getValueCount(points);
+                List<decimal> pointsHighestCount = getPointsHighestCount(valueCount);
+                foreach (decimal point in pointsHighestCount) sb.Append(point + " ");
+                return sb.ToString().Trim().Replace(" ", ", ");
+            }
+            else return "N/A";
         }
 
         private Dictionary<decimal, int> getValueCount(List<decimal> points)

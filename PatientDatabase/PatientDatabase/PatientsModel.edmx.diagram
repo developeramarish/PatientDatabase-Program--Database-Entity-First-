@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3423c2df1540468c951769462b41a686" Name="Diagram1" ZoomLevel="72">
+      <Diagram DiagramId="3423c2df1540468c951769462b41a686" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="PatientDatabaseModel.Patient" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PatientDatabaseModel.Pathology" Width="1.5" PointX="0.75" PointY="6.25" />
         <EntityTypeShape EntityType="PatientDatabaseModel.PatientPathology" Width="1.5" PointX="3" PointY="0.875" />
@@ -46,6 +46,8 @@
         <AssociationConnector Association="PatientDatabaseModel.FK_PatientProtocol_ToProtocol" />
         <AssociationConnector Association="PatientDatabaseModel.FK_ProtocolOutcome_ToProtocol" />
         <AssociationConnector Association="PatientDatabaseModel.FK_PatientOutcome_ToProtocol" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientMorphineEquivalentDose" Width="1.5" PointX="3" PointY="7.625" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientMorphineEquivalentDose_ToTablePatient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

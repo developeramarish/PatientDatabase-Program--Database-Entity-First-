@@ -20,6 +20,9 @@ namespace PatientDatabase
         public List<Interval> EndIntervals { get; set; }
         public Interval SelectedStartInterval { get; set; }
         public Interval SelectedEndInterval { get; set; }
+        public bool ShowInBetweenIntervals { get; set; }
+        public int YAxisInterval { get; set; }
+        public bool ShowGridLines { get; set; }
         DatabaseAccess database = new DatabaseAccess();
 
         public ChartData()
@@ -30,8 +33,12 @@ namespace PatientDatabase
             Intervals = new List<Interval>();
             StartIntervals = new List<Interval>();
             EndIntervals = new List<Interval>();
+            ShowInBetweenIntervals = true;
+            YAxisInterval = 20;
+            ShowGridLines = true;
         }
 
+        // Creates chartSeries from a list of QueryEntity.
         public void loadChartSeries(List<QueryEntity> queryEntities)
         {
             ChartSeries.Clear();
@@ -41,6 +48,7 @@ namespace PatientDatabase
             }
         }
 
+        // Loads all eligible protocols the chart can show data for based on patients returned from each chart series
         public void loadProtocols()
         {
             HashSet<Protocol> protocolsUnique = new HashSet<Protocol>();
@@ -48,6 +56,7 @@ namespace PatientDatabase
             protocolsUnique.ToList().ForEach(p => Protocols.Add(p));
         }
 
+        // Gets all unique protocols from each chart series to ensure each protocol is only counted once
         private HashSet<Protocol> getUniqueProtocols(ChartSeries cs, HashSet<Protocol> protocolsUnique)
         {
             List<PatientProtocol> patientProtocols;
@@ -60,6 +69,7 @@ namespace PatientDatabase
             return protocolsUnique;
         }
 
+        // Loads all eligible outcome selections based on the selected Protocol.
         public void loadOutcomes()
         {
             List<ProtocolOutcome> protocolOutcomes;
@@ -70,6 +80,7 @@ namespace PatientDatabase
             }
         }
 
+        // Loads Interval choices based on the selected Protocol.
         public void loadIntervals()
         {
             int intervalLength = SelectedProtocol.Interval__Months_;
@@ -82,6 +93,7 @@ namespace PatientDatabase
             }
         }
 
+        // Loads all eligible start intervals based on the End Interval (any start interval greater than or equal to end interval is removed)
         public void loadStartIntervals()
         {
             int intervalLength = SelectedProtocol.Interval__Months_;
@@ -94,6 +106,7 @@ namespace PatientDatabase
             }
         }
 
+        // Loads data into chart 
         public void loadChartData(Chart chart)
         {
             if (ChartSeries.Count > 0)
@@ -113,16 +126,18 @@ namespace PatientDatabase
                     queryNumber++;
                 }
                 setChartAreaSettings(chart);
-                setUpChartDisplay(chart);
+                setUpChartLabels(chart);
             }
         }
 
+        // Resets graph data by clearing all existing series and points
         private void ClearGraphData(Chart chart)
         {
             chart.Series.Clear();
             foreach (var series in chart.Series) series.Points.Clear();
         }
 
+        // Adds new series to chart from the List of chartSeries objects created earlier
         private void AddNewSeries(int seriesNumber, ChartSeries cs, Chart chart)
         {
             chart.Series.Add(new Series());
@@ -131,6 +146,7 @@ namespace PatientDatabase
             chart.Series[seriesNumber].LegendText = cs.Entity.Name.ToString();
         }
 
+        // Graphs points on chart
         private void AddDataToChart(int seriesNumber, ChartSeries cs, Chart chart)
         {
             Dictionary<int, int> points = cs.getPoints(
@@ -138,10 +154,20 @@ namespace PatientDatabase
                 SelectedStartInterval, SelectedEndInterval);
             foreach (KeyValuePair<int, int> pair in points)
             {
-                chart.Series[seriesNumber].Points.AddXY(pair.Key, pair.Value);
+                if (ShowInBetweenIntervals)
+                    chart.Series[seriesNumber].Points.AddXY(pair.Key, pair.Value);  
+                else // otherwise, ignore all intervals that aren't start and end, and turn end interval to location 1
+                {
+                    if (pair.Key == SelectedStartInterval.Number)                   
+                        chart.Series[seriesNumber].Points.AddXY(pair.Key, pair.Value);                    
+                    else if (pair.Key == SelectedEndInterval.Number)                   
+                        chart.Series[seriesNumber].Points.AddXY(1, pair.Value);                  
+                }
             }
         }
 
+        // Sets the color of line on graph based on the position of the series in the query manager list
+        // ensures same series will always have same color line
         private void setSeriesColor(int seriesNumber, int queryNumber, Chart chart)
         {
             chart.Series[seriesNumber].Color = getSeriesColor(queryNumber);
@@ -151,47 +177,71 @@ namespace PatientDatabase
             }
         }
 
+        // General settings for chart are set here
         private void setChartAreaSettings(Chart chart)
         {
+            setGridLines(chart);
             foreach (var areas in chart.ChartAreas) areas.AxisX.CustomLabels.Clear();
             chart.ChartAreas[0].AxisX.IsMarginVisible = false;
             chart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
+            chart.ChartAreas[0].AxisY.Interval = YAxisInterval;
         }
 
-        private void setUpChartDisplay(Chart chart)
+        public void setGridLines(Chart chart)
         {
-            double start = -.5 + SelectedStartInterval.Number;
-            for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
+            if (ShowGridLines)
             {
-                double end = start + 1;
-                int month = i * SelectedProtocol.Interval__Months_;
-                chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, Intervals[i].getMonthLabel(), 1, LabelMarkStyle.None);
-                start += 1;
+                chart.ChartAreas[0].AxisX.MajorGrid.Enabled = true;
+                chart.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
+            }
+            else
+            {
+                chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+                chart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
             }
         }
 
+        // Adds custom chart labels to chart (inverval names)
+        private void setUpChartLabels(Chart chart)
+        {
+            double start = -.5 + SelectedStartInterval.Number;
+            if (ShowInBetweenIntervals)
+            {
+                for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
+                {
+                    double end = start + 1;
+                    int month = i * SelectedProtocol.Interval__Months_;
+                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, Intervals[i].getMonthLabel(), 1, LabelMarkStyle.None);
+                    start += 1;
+                }
+            }
+            else
+            {
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 1, LabelMarkStyle.None);
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 1, LabelMarkStyle.None);
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.Number.ToString(), 0, LabelMarkStyle.None);
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.Number.ToString(), 0, LabelMarkStyle.None);               
+            }
+            
+        }
+
+        // Moves selected chart series in the list of chartSeries up one spot
         public void moveSeriesUp(int selectedIndex, QueryEntityCollection queryEntityCollection)
         {
-            QueryEntity temp = queryEntityCollection.QueryEntities[selectedIndex];
-            queryEntityCollection.QueryEntities[selectedIndex] = queryEntityCollection.QueryEntities[selectedIndex - 1];
-            queryEntityCollection.QueryEntities[selectedIndex - 1] = temp;
-
-            ChartSeries temp2 = ChartSeries[selectedIndex];
+            ChartSeries temp = ChartSeries[selectedIndex];
             ChartSeries[selectedIndex] = ChartSeries[selectedIndex - 1];
-            ChartSeries[selectedIndex - 1] = temp2;
+            ChartSeries[selectedIndex - 1] = temp;
         }
 
+        // Moves selected chart series in the list of chartSeries down one spot
         public void moveSeriesDown(int selectedIndex, QueryEntityCollection queryEntityCollection)
         {
-            QueryEntity temp = queryEntityCollection.QueryEntities[selectedIndex];
-            queryEntityCollection.QueryEntities[selectedIndex] = queryEntityCollection.QueryEntities[selectedIndex + 1];
-            queryEntityCollection.QueryEntities[selectedIndex + 1] = temp;
-
-            ChartSeries temp2 = ChartSeries[selectedIndex];
+            ChartSeries temp = ChartSeries[selectedIndex];
             ChartSeries[selectedIndex] = ChartSeries[selectedIndex + 1];
-            ChartSeries[selectedIndex + 1] = temp2;
+            ChartSeries[selectedIndex + 1] = temp;
         }
 
+        // gets color of series based on location in query manager
         public Color getSeriesColor(int queryNumber)
         {
             switch (queryNumber)

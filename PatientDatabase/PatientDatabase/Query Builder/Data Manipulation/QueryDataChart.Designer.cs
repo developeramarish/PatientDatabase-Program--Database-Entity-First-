@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.intervalOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onlyShowStartAndEndToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yAxisScaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YAxisInterval20toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YAxisInterval10toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YAxisInterval5toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lstSeries = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -54,6 +61,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.showGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCommandStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
             this.panel1.SuspendLayout();
@@ -76,7 +84,8 @@
             // 
             this.mnuCommandStrip.BackColor = System.Drawing.Color.LightSteelBlue;
             this.mnuCommandStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.chartToolStripMenuItem});
             this.mnuCommandStrip.Location = new System.Drawing.Point(0, 0);
             this.mnuCommandStrip.Name = "mnuCommandStrip";
             this.mnuCommandStrip.Size = new System.Drawing.Size(1243, 24);
@@ -88,6 +97,64 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // chartToolStripMenuItem
+            // 
+            this.chartToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.intervalOptionsToolStripMenuItem,
+            this.yAxisScaleToolStripMenuItem,
+            this.showGridToolStripMenuItem});
+            this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.chartToolStripMenuItem.Text = "Chart";
+            // 
+            // intervalOptionsToolStripMenuItem
+            // 
+            this.intervalOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onlyShowStartAndEndToolStripMenuItem});
+            this.intervalOptionsToolStripMenuItem.Name = "intervalOptionsToolStripMenuItem";
+            this.intervalOptionsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.intervalOptionsToolStripMenuItem.Text = "Interval Options";
+            // 
+            // onlyShowStartAndEndToolStripMenuItem
+            // 
+            this.onlyShowStartAndEndToolStripMenuItem.Name = "onlyShowStartAndEndToolStripMenuItem";
+            this.onlyShowStartAndEndToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.onlyShowStartAndEndToolStripMenuItem.Text = "Only Show Start and End";
+            this.onlyShowStartAndEndToolStripMenuItem.Click += new System.EventHandler(this.onlyShowStartAndEndToolStripMenuItem_Click);
+            // 
+            // yAxisScaleToolStripMenuItem
+            // 
+            this.yAxisScaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.YAxisInterval20toolStripMenuItem,
+            this.YAxisInterval10toolStripMenuItem,
+            this.YAxisInterval5toolStripMenuItem});
+            this.yAxisScaleToolStripMenuItem.Name = "yAxisScaleToolStripMenuItem";
+            this.yAxisScaleToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.yAxisScaleToolStripMenuItem.Text = "Y Axis Scale";
+            // 
+            // YAxisInterval20toolStripMenuItem
+            // 
+            this.YAxisInterval20toolStripMenuItem.Checked = true;
+            this.YAxisInterval20toolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.YAxisInterval20toolStripMenuItem.Name = "YAxisInterval20toolStripMenuItem";
+            this.YAxisInterval20toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval20toolStripMenuItem.Text = "20";
+            this.YAxisInterval20toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval20toolStripMenuItem_Click);
+            // 
+            // YAxisInterval10toolStripMenuItem
+            // 
+            this.YAxisInterval10toolStripMenuItem.Name = "YAxisInterval10toolStripMenuItem";
+            this.YAxisInterval10toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval10toolStripMenuItem.Text = "10";
+            this.YAxisInterval10toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval10toolStripMenuItem_Click);
+            // 
+            // YAxisInterval5toolStripMenuItem
+            // 
+            this.YAxisInterval5toolStripMenuItem.Name = "YAxisInterval5toolStripMenuItem";
+            this.YAxisInterval5toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval5toolStripMenuItem.Text = "5";
+            this.YAxisInterval5toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval5toolStripMenuItem_Click);
             // 
             // lstSeries
             // 
@@ -116,19 +183,19 @@
             // 
             // chartOutcomeData
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartOutcomeData.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.chartOutcomeData.ChartAreas.Add(chartArea4);
             this.chartOutcomeData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chartOutcomeData.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            this.chartOutcomeData.Legends.Add(legend4);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
             this.chartOutcomeData.Name = "chartOutcomeData";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartOutcomeData.Series.Add(series2);
+            series4.BorderWidth = 3;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartOutcomeData.Series.Add(series4);
             this.chartOutcomeData.Size = new System.Drawing.Size(1007, 503);
             this.chartOutcomeData.TabIndex = 8;
             this.chartOutcomeData.Text = "chart1";
@@ -342,6 +409,13 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // showGridToolStripMenuItem
+            // 
+            this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
+            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.showGridToolStripMenuItem.Text = "Show Grid";
+            this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
+            // 
             // QueryDataChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,5 +469,13 @@
         private System.Windows.Forms.Button btnMoveUp;
         private System.Windows.Forms.Button btnMoveDown;
         private System.Windows.Forms.RichTextBox rtxtQueryData;
+        private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem intervalOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onlyShowStartAndEndToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yAxisScaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem YAxisInterval20toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem YAxisInterval10toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem YAxisInterval5toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showGridToolStripMenuItem;
     }
 }
