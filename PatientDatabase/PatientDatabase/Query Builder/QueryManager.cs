@@ -53,7 +53,8 @@ namespace PatientDatabase
 
         private void btnDataChart_Click(object sender, EventArgs e)
         {
-            logic.loadDataChartForm(this);
+            GlobalFormManager.OpenNewForm(new QueryDataChart(logic.queryEntityCollection), this);
+            GlobalFormManager.CloseCurrentForm(this);
         }
 
         private void btnBack_Click(object sender, EventArgs e)

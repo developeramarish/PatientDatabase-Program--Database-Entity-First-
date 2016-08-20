@@ -27,9 +27,6 @@ namespace PatientDatabase
 
         }
 
-        public void back(Form form)
-        {
 
-        }
     }
 }

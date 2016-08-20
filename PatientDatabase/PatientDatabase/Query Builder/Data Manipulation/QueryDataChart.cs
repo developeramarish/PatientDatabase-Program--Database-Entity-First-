@@ -79,7 +79,8 @@ namespace PatientDatabase
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            logic.back(this);
+            GlobalFormManager.OpenNewForm(new QueryManager(logic.queryEntityCollection), this);
+            GlobalFormManager.CloseCurrentForm(this);
         }
 
         private void btnHome_Click(object sender, EventArgs e)

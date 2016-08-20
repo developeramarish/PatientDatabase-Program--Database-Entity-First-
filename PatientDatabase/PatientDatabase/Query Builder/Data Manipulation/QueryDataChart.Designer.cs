@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +41,7 @@
             this.YAxisInterval20toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.YAxisInterval10toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.YAxisInterval5toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lstSeries = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -61,7 +62,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.showGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCommandStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
             this.panel1.SuspendLayout();
@@ -138,23 +138,30 @@
             this.YAxisInterval20toolStripMenuItem.Checked = true;
             this.YAxisInterval20toolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.YAxisInterval20toolStripMenuItem.Name = "YAxisInterval20toolStripMenuItem";
-            this.YAxisInterval20toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval20toolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.YAxisInterval20toolStripMenuItem.Text = "20";
             this.YAxisInterval20toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval20toolStripMenuItem_Click);
             // 
             // YAxisInterval10toolStripMenuItem
             // 
             this.YAxisInterval10toolStripMenuItem.Name = "YAxisInterval10toolStripMenuItem";
-            this.YAxisInterval10toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval10toolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.YAxisInterval10toolStripMenuItem.Text = "10";
             this.YAxisInterval10toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval10toolStripMenuItem_Click);
             // 
             // YAxisInterval5toolStripMenuItem
             // 
             this.YAxisInterval5toolStripMenuItem.Name = "YAxisInterval5toolStripMenuItem";
-            this.YAxisInterval5toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval5toolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.YAxisInterval5toolStripMenuItem.Text = "5";
             this.YAxisInterval5toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval5toolStripMenuItem_Click);
+            // 
+            // showGridToolStripMenuItem
+            // 
+            this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
+            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.showGridToolStripMenuItem.Text = "Show Grid";
+            this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
             // 
             // lstSeries
             // 
@@ -175,27 +182,27 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(1078, 10);
+            this.label8.Location = new System.Drawing.Point(1055, 10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 20);
+            this.label8.Size = new System.Drawing.Size(93, 20);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Series";
+            this.label8.Text = "Series Data";
             // 
             // chartOutcomeData
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartOutcomeData.ChartAreas.Add(chartArea4);
+            chartArea1.Name = "ChartArea1";
+            this.chartOutcomeData.ChartAreas.Add(chartArea1);
             this.chartOutcomeData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chartOutcomeData.Legends.Add(legend4);
+            legend1.Name = "Legend1";
+            this.chartOutcomeData.Legends.Add(legend1);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
             this.chartOutcomeData.Name = "chartOutcomeData";
-            series4.BorderWidth = 3;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartOutcomeData.Series.Add(series4);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartOutcomeData.Series.Add(series1);
             this.chartOutcomeData.Size = new System.Drawing.Size(1007, 503);
             this.chartOutcomeData.TabIndex = 8;
             this.chartOutcomeData.Text = "chart1";
@@ -408,13 +415,6 @@
             this.btnBack.Text = "< Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // showGridToolStripMenuItem
-            // 
-            this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
-            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.showGridToolStripMenuItem.Text = "Show Grid";
-            this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
             // 
             // QueryDataChart
             // 

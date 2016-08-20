@@ -38,13 +38,19 @@ namespace PatientDatabase
             ShowGridLines = true;
         }
 
+        public void loadChartSeries(Patient patient)
+        {
+            ChartSeries.Clear();
+            ChartSeries.Add(new ChartSeriesSingularPatient(patient));
+        }
+
         // Creates chartSeries from a list of QueryEntity.
         public void loadChartSeries(List<QueryEntity> queryEntities)
         {
             ChartSeries.Clear();
             foreach (QueryEntity qe in queryEntities)
             {
-                ChartSeries.Add(new ChartSeries(qe, false));
+                ChartSeries.Add(new ChartSeriesQueryEntity(qe, false));
             }
         }
 
@@ -60,7 +66,7 @@ namespace PatientDatabase
         private HashSet<Protocol> getUniqueProtocols(ChartSeries cs, HashSet<Protocol> protocolsUnique)
         {
             List<PatientProtocol> patientProtocols;
-            List<Patient> patients = cs.Entity.getPatients();
+            List<Patient> patients = cs.getPatients();
             foreach (Patient patient in patients)
             {
                 patientProtocols = database.getPatientProtocol(patient);
@@ -112,8 +118,8 @@ namespace PatientDatabase
             if (ChartSeries.Count > 0)
             {
                 ClearGraphData(chart);
-                int seriesNumber = 0;
-                int queryNumber = 0;
+                int seriesNumber = 0; // series number out of the series that will be shown
+                int queryNumber = 0; // series number out of entire list of series
                 foreach (ChartSeries cs in ChartSeries)
                 {
                     if (cs.Show)
@@ -143,7 +149,7 @@ namespace PatientDatabase
             chart.Series.Add(new Series());
             chart.Series[seriesNumber].ChartType = SeriesChartType.Line;
             chart.Series[seriesNumber].BorderWidth = 3;
-            chart.Series[seriesNumber].LegendText = cs.Entity.Name.ToString();
+            chart.Series[seriesNumber].LegendText = cs.getName();
         }
 
         // Graphs points on chart
@@ -154,7 +160,7 @@ namespace PatientDatabase
                 SelectedStartInterval, SelectedEndInterval);
             foreach (KeyValuePair<int, int> pair in points)
             {
-                if (ShowInBetweenIntervals)
+                if (ShowInBetweenIntervals) // plot all points in between start and end intervals as well
                     chart.Series[seriesNumber].Points.AddXY(pair.Key, pair.Value);  
                 else // otherwise, ignore all intervals that aren't start and end, and turn end interval to location 1
                 {
@@ -187,6 +193,7 @@ namespace PatientDatabase
             chart.ChartAreas[0].AxisY.Interval = YAxisInterval;
         }
 
+        // shows or hide grid lines on chart
         public void setGridLines(Chart chart)
         {
             if (ShowGridLines)
@@ -205,7 +212,7 @@ namespace PatientDatabase
         private void setUpChartLabels(Chart chart)
         {
             double start = -.5 + SelectedStartInterval.Number;
-            if (ShowInBetweenIntervals)
+            if (ShowInBetweenIntervals) // show all interval labels in between start and end
             {
                 for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
                 {
@@ -215,7 +222,7 @@ namespace PatientDatabase
                     start += 1;
                 }
             }
-            else
+            else // show only interval labels start and end
             {
                 chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 1, LabelMarkStyle.None);
                 chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 1, LabelMarkStyle.None);

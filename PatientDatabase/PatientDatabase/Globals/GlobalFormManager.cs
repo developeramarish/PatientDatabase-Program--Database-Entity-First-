@@ -23,6 +23,19 @@ namespace PatientDatabase
             if (ScreenCount == 0) { Environment.Exit(0); }
         }
 
+        public static void OpenNewForm(Form newForm, Form currentForm)
+        {
+            if (currentForm.WindowState == FormWindowState.Maximized)
+                newForm.WindowState = FormWindowState.Maximized;
+
+            newForm.Show();
+        }
+
+        public static void CloseCurrentForm(Form form)
+        {
+            form.Close();
+        }
+
         public static void Home(Form form)
         {
             MainMenu mm = new MainMenu();

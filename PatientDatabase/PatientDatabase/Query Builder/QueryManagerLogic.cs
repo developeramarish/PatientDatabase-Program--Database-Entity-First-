@@ -9,7 +9,7 @@ namespace PatientDatabase
 {
     public class QueryManagerLogic
     {
-        QueryEntityCollection queryEntityCollection;
+        public QueryEntityCollection queryEntityCollection { get; set; }
         CommonUIMethodsAndFunctions commonUI;
 
         public QueryManagerLogic(QueryEntityCollection queryEntityCollection)
@@ -62,14 +62,7 @@ namespace PatientDatabase
             QueryBuilder qb = new QueryBuilder(queryEntityCollection, selectedIndex);
             qb.ShowDialog();
             loadSeries(lstQuery);
-            commonUI.setListBoxSelectedIndex(lstQuery, lstQuery.Items.Count - 1);
-        }
-
-        public void loadDataChartForm(Form form)
-        {
-            QueryDataChart dc = new QueryDataChart(queryEntityCollection);
-            dc.Show();
-            form.Close();
+            commonUI.setListBoxSelectedIndex(lstQuery, selectedIndex);
         }
 
         public void back(Form form)

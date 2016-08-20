@@ -13,7 +13,7 @@ namespace PatientDatabase
         DatabaseAccess database;
         CommonUIMethodsAndFunctions commonUI;
         ChartData chartData;
-        QueryEntityCollection queryEntityCollection;
+        public QueryEntityCollection queryEntityCollection { get; set; }
         Call_Location callLocation;
 
         public QueryDataChartLogic(QueryEntityCollection queryEntityCollection)
@@ -41,7 +41,7 @@ namespace PatientDatabase
         private void loadSeriesListBox(ListBox lstSeries)
         {
             lstSeries.Items.Clear();
-            chartData.ChartSeries.ForEach(cs => lstSeries.Items.Add(cs.Entity.Name));
+            chartData.ChartSeries.ForEach(cs => lstSeries.Items.Add(cs.getName()));
         }
 
         public void ProtocolComboBoxIndexChanged(ComboBox cboProtocol, ComboBox cboOutcome, ComboBox cboEndInterval, Chart chartOutcomeData, RichTextBox rtxtQueryData, ListBox lstSeries)
@@ -184,13 +184,6 @@ namespace PatientDatabase
                 .getDataAnalysis(
                 chartData.SelectedProtocol, chartData.SelectedOutcome,
                 chartData.SelectedStartInterval, chartData.SelectedEndInterval));
-        }
-
-        public void back(Form form)
-        {
-            QueryManager qm = new QueryManager(queryEntityCollection);
-            qm.Show();
-            form.Close();
         }
 
         private enum Call_Location

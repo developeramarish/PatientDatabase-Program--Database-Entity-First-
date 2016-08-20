@@ -36,10 +36,11 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDataChart = new System.Windows.Forms.Button();
-            this.btnDuplicate = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnDataChart = new System.Windows.Forms.Button();
+            this.btnDuplicate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -52,6 +53,7 @@
             this.mnuCommandStrip.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -66,7 +68,7 @@
             this.lstQuery.ItemHeight = 20;
             this.lstQuery.Location = new System.Drawing.Point(0, 0);
             this.lstQuery.Name = "lstQuery";
-            this.lstQuery.Size = new System.Drawing.Size(302, 264);
+            this.lstQuery.Size = new System.Drawing.Size(337, 264);
             this.lstQuery.TabIndex = 0;
             this.lstQuery.SelectedIndexChanged += new System.EventHandler(this.lstQuery_SelectedIndexChanged);
             this.lstQuery.DoubleClick += new System.EventHandler(this.lstQuery_DoubleClick);
@@ -78,7 +80,7 @@
             this.fileToolStripMenuItem});
             this.mnuCommandStrip.Location = new System.Drawing.Point(0, 0);
             this.mnuCommandStrip.Name = "mnuCommandStrip";
-            this.mnuCommandStrip.Size = new System.Drawing.Size(700, 24);
+            this.mnuCommandStrip.Size = new System.Drawing.Size(770, 24);
             this.mnuCommandStrip.TabIndex = 1;
             this.mnuCommandStrip.Text = "menuStrip1";
             // 
@@ -98,13 +100,13 @@
             this.panel3.Controls.Add(this.btnBack);
             this.panel3.Location = new System.Drawing.Point(-8, 24);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(719, 30);
+            this.panel3.Size = new System.Drawing.Size(789, 30);
             this.panel3.TabIndex = 28;
             // 
             // btnHome
             // 
             this.btnHome.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnHome.Location = new System.Drawing.Point(648, 2);
+            this.btnHome.Location = new System.Drawing.Point(718, 2);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(49, 23);
             this.btnHome.TabIndex = 7;
@@ -129,7 +131,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(291, 62);
+            this.label1.Location = new System.Drawing.Point(326, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 20);
             this.label1.TabIndex = 29;
@@ -142,10 +144,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.btnDataChart);
             this.panel1.Controls.Add(this.btnDuplicate);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Controls.Add(this.btnMoveDown);
             this.panel1.Controls.Add(this.btnRemoveQuery);
@@ -154,14 +155,52 @@
             this.panel1.Controls.Add(this.btnEditQuery);
             this.panel1.Location = new System.Drawing.Point(26, 94);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(648, 439);
+            this.panel1.Size = new System.Drawing.Size(718, 439);
             this.panel1.TabIndex = 30;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(15, 6);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(687, 27);
+            this.tableLayoutPanel2.TabIndex = 35;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(468, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 20);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Condition(s)";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(146, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Query";
             // 
             // btnDataChart
             // 
             this.btnDataChart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDataChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDataChart.Location = new System.Drawing.Point(494, 313);
+            this.btnDataChart.Location = new System.Drawing.Point(529, 313);
             this.btnDataChart.Name = "btnDataChart";
             this.btnDataChart.Size = new System.Drawing.Size(135, 34);
             this.btnDataChart.TabIndex = 34;
@@ -173,35 +212,13 @@
             // 
             this.btnDuplicate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDuplicate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDuplicate.Location = new System.Drawing.Point(185, 394);
+            this.btnDuplicate.Location = new System.Drawing.Point(220, 394);
             this.btnDuplicate.Name = "btnDuplicate";
             this.btnDuplicate.Size = new System.Drawing.Size(135, 34);
             this.btnDuplicate.TabIndex = 33;
             this.btnDuplicate.Text = "Duplicate";
             this.btnDuplicate.UseVisualStyleBackColor = true;
             this.btnDuplicate.Click += new System.EventHandler(this.btnDuplicate_Click);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(442, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 20);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Condition(s)";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(132, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "Query";
             // 
             // tableLayoutPanel1
             // 
@@ -217,7 +234,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(617, 270);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(687, 270);
             this.tableLayoutPanel1.TabIndex = 29;
             // 
             // panel2
@@ -226,16 +243,16 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(302, 264);
+            this.panel2.Size = new System.Drawing.Size(337, 264);
             this.panel2.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.rtxtConditions);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(311, 3);
+            this.panel4.Location = new System.Drawing.Point(346, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(303, 264);
+            this.panel4.Size = new System.Drawing.Size(338, 264);
             this.panel4.TabIndex = 1;
             // 
             // rtxtConditions
@@ -246,7 +263,7 @@
             this.rtxtConditions.Location = new System.Drawing.Point(0, 0);
             this.rtxtConditions.Name = "rtxtConditions";
             this.rtxtConditions.ReadOnly = true;
-            this.rtxtConditions.Size = new System.Drawing.Size(303, 264);
+            this.rtxtConditions.Size = new System.Drawing.Size(338, 264);
             this.rtxtConditions.TabIndex = 28;
             this.rtxtConditions.Text = "";
             this.rtxtConditions.WordWrap = false;
@@ -255,7 +272,7 @@
             // 
             this.btnMoveDown.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveDown.Location = new System.Drawing.Point(185, 354);
+            this.btnMoveDown.Location = new System.Drawing.Point(220, 354);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(135, 35);
             this.btnMoveDown.TabIndex = 26;
@@ -267,7 +284,7 @@
             // 
             this.btnRemoveQuery.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnRemoveQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveQuery.Location = new System.Drawing.Point(326, 394);
+            this.btnRemoveQuery.Location = new System.Drawing.Point(361, 394);
             this.btnRemoveQuery.Name = "btnRemoveQuery";
             this.btnRemoveQuery.Size = new System.Drawing.Size(135, 34);
             this.btnRemoveQuery.TabIndex = 24;
@@ -279,7 +296,7 @@
             // 
             this.btnMoveUp.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveUp.Location = new System.Drawing.Point(185, 313);
+            this.btnMoveUp.Location = new System.Drawing.Point(220, 313);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(135, 35);
             this.btnMoveUp.TabIndex = 25;
@@ -291,7 +308,7 @@
             // 
             this.btnAddQuery.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAddQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddQuery.Location = new System.Drawing.Point(326, 313);
+            this.btnAddQuery.Location = new System.Drawing.Point(361, 313);
             this.btnAddQuery.Name = "btnAddQuery";
             this.btnAddQuery.Size = new System.Drawing.Size(135, 34);
             this.btnAddQuery.TabIndex = 23;
@@ -303,7 +320,7 @@
             // 
             this.btnEditQuery.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnEditQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditQuery.Location = new System.Drawing.Point(326, 354);
+            this.btnEditQuery.Location = new System.Drawing.Point(361, 354);
             this.btnEditQuery.Name = "btnEditQuery";
             this.btnEditQuery.Size = new System.Drawing.Size(135, 34);
             this.btnEditQuery.TabIndex = 27;
@@ -316,7 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(700, 545);
+            this.ClientSize = new System.Drawing.Size(770, 545);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel3);
@@ -331,7 +348,8 @@
             this.mnuCommandStrip.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -363,5 +381,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnDuplicate;
         private System.Windows.Forms.Button btnDataChart;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }

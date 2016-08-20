@@ -69,9 +69,6 @@
     <Compile Include="Outcome.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PatientMorphineEquivalentDose.cs">
-      <DependentUpon>PatientsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="PatientOutcome.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
@@ -115,6 +112,8 @@
     <Compile Include="Query Builder\Command\PropertyTypes\PropertyString.cs" />
     <Compile Include="Database\DatabaseAccess.cs" />
     <Compile Include="Globals\GlobalFormManager.cs" />
+    <Compile Include="Query Builder\Data Manipulation\Graph\ChartSeries.cs" />
+    <Compile Include="Query Builder\Data Manipulation\Graph\ChartSeriesSingularPatient.cs" />
     <Compile Include="Query Builder\Data Manipulation\Graph\Interval.cs" />
     <Compile Include="Query Builder\Data Manipulation\QueryDataChartLogic.cs" />
     <Compile Include="Query Builder\QueryManager.cs">
@@ -130,7 +129,7 @@
       <DependentUpon>QueryDataChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Query Builder\Data Manipulation\Graph\ChartData.cs" />
-    <Compile Include="Query Builder\Data Manipulation\Graph\ChartSeries.cs" />
+    <Compile Include="Query Builder\Data Manipulation\Graph\ChartSeriesQueryEntity.cs" />
     <Compile Include="Query Builder\IDHelper.cs">
       <SubType>Form</SubType>
     </Compile>

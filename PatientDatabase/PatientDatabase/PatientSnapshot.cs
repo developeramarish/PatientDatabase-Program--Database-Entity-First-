@@ -32,7 +32,7 @@ namespace PatientDatabase
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            logic.back(this);
+            
         }
 
         private void btnHome_Click(object sender, EventArgs e)

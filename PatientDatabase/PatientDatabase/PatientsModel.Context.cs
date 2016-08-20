@@ -45,6 +45,5 @@ namespace PatientDatabase
         public virtual DbSet<PatientProtocol> PatientProtocols { get; set; }
         public virtual DbSet<Protocol> Protocols { get; set; }
         public virtual DbSet<ProtocolOutcome> ProtocolOutcomes { get; set; }
-        public virtual DbSet<PatientMorphineEquivalentDose> PatientMorphineEquivalentDoses { get; set; }
     }
 }

@@ -628,20 +628,20 @@ namespace PatientDatabase
 
             switch (Criteria)
             {
-                case "Is Equal To": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ == value1);
-                case "Is Between Inclusive": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ >= value1 && pm.Morphine_Equivalent_Dose__Mg_ <= value2);
-                case "Is Greater Than Or Equal To": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ >= value1);
-                case "Is Less Than Or Equal To": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ <= value1);
-                case "Is Between Exclusive": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ > value1 && pm.Morphine_Equivalent_Dose__Mg_ < value2);
-                case "Is Greater Than": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ > value1);
-                case "Is Less Than": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ < value1);
-                case "Is Equal To NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ != value1);
-                case "Is Between Inclusive NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ < value1 && pm.Morphine_Equivalent_Dose__Mg_ > value2);
-                case "Is Greater Than Or Equal To NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ < value1);
-                case "Is Less Than Or Equal To NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ > value1);
-                case "Is Between Exclusive NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ <= value1 && pm.Morphine_Equivalent_Dose__Mg_ >= value2);
-                case "Is Greater Than NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ <= value1);
-                case "Is Less Than NOT": return p => p.PatientMorphineEquivalentDoses.Any(pm => pm.Morphine_Equivalent_Dose__Mg_ >= value1);
+                case "Is Equal To": return p => getMorphineEquivalentDose(p.Id) == value1;
+                case "Is Between Inclusive": return p => getMorphineEquivalentDose(p.Id) >= value1 && getMorphineEquivalentDose(p.Id) <= value2;
+                case "Is Greater Than Or Equal To": return p => getMorphineEquivalentDose(p.Id) >= value1;
+                case "Is Less Than Or Equal To": return p => getMorphineEquivalentDose(p.Id) <= value1;
+                case "Is Between Exclusive": return p => getMorphineEquivalentDose(p.Id) > value1 && getMorphineEquivalentDose(p.Id) < value2;
+                case "Is Greater Than": return p => getMorphineEquivalentDose(p.Id) > value1;
+                case "Is Less Than": return p => getMorphineEquivalentDose(p.Id) < value1;
+                case "Is Equal To NOT": return p => getMorphineEquivalentDose(p.Id) != value1;
+                case "Is Between Inclusive NOT": return p => getMorphineEquivalentDose(p.Id) < value1 && getMorphineEquivalentDose(p.Id) > value2;
+                case "Is Greater Than Or Equal To NOT": return p => getMorphineEquivalentDose(p.Id) < value1;
+                case "Is Less Than Or Equal To NOT": return p => getMorphineEquivalentDose(p.Id) > value1;
+                case "Is Between Exclusive NOT": return p => getMorphineEquivalentDose(p.Id) <= value1 && getMorphineEquivalentDose(p.Id) >= value2;
+                case "Is Greater Than NOT": return p => getMorphineEquivalentDose(p.Id) <= value1;
+                case "Is Less Than NOT": return p => getMorphineEquivalentDose(p.Id) >= value1;
                 default: return p => false;
             }
         }
@@ -963,6 +963,12 @@ namespace PatientDatabase
         #region DBFunctions
         [DbFunction("PatientDatabaseModel.Store", "getAge")]
         private int? getAge(DateTime bday, DateTime currentDate)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
+        [DbFunction("PatientDatabaseModel.Store", "getMorphineEquivalentDose")]
+        private int? getMorphineEquivalentDose(int patientID)
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
