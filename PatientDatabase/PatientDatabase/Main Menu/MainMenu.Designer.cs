@@ -32,6 +32,9 @@
             this.btnQueryManager = new System.Windows.Forms.Button();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPatientSnapShot = new System.Windows.Forms.Button();
+            this.txtHexCode = new System.Windows.Forms.TextBox();
+            this.btnChooseImage = new System.Windows.Forms.Button();
             this.mnuCommandStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,12 +79,44 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // btnPatientSnapShot
+            // 
+            this.btnPatientSnapShot.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPatientSnapShot.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPatientSnapShot.Location = new System.Drawing.Point(49, 212);
+            this.btnPatientSnapShot.Name = "btnPatientSnapShot";
+            this.btnPatientSnapShot.Size = new System.Drawing.Size(263, 61);
+            this.btnPatientSnapShot.TabIndex = 4;
+            this.btnPatientSnapShot.Text = "Patient Snapshot";
+            this.btnPatientSnapShot.UseVisualStyleBackColor = true;
+            this.btnPatientSnapShot.Click += new System.EventHandler(this.btnPatientSnapShot_Click);
+            // 
+            // txtHexCode
+            // 
+            this.txtHexCode.Location = new System.Drawing.Point(221, 279);
+            this.txtHexCode.Name = "txtHexCode";
+            this.txtHexCode.Size = new System.Drawing.Size(100, 20);
+            this.txtHexCode.TabIndex = 5;
+            // 
+            // btnChooseImage
+            // 
+            this.btnChooseImage.Location = new System.Drawing.Point(118, 277);
+            this.btnChooseImage.Name = "btnChooseImage";
+            this.btnChooseImage.Size = new System.Drawing.Size(97, 23);
+            this.btnChooseImage.TabIndex = 6;
+            this.btnChooseImage.Text = "Choose Image";
+            this.btnChooseImage.UseVisualStyleBackColor = true;
+            this.btnChooseImage.Click += new System.EventHandler(this.btnChooseImage_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(360, 214);
+            this.ClientSize = new System.Drawing.Size(360, 329);
+            this.Controls.Add(this.btnChooseImage);
+            this.Controls.Add(this.txtHexCode);
+            this.Controls.Add(this.btnPatientSnapShot);
             this.Controls.Add(this.btnQueryManager);
             this.Controls.Add(this.btnPatientProfiles);
             this.Controls.Add(this.mnuCommandStrip);
@@ -104,6 +139,9 @@
         private System.Windows.Forms.Button btnQueryManager;
         private System.Windows.Forms.MenuStrip mnuCommandStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.Button btnPatientSnapShot;
+        private System.Windows.Forms.TextBox txtHexCode;
+        private System.Windows.Forms.Button btnChooseImage;
     }
 }
 

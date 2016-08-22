@@ -17,6 +17,8 @@ namespace PatientDatabase
         public int Id { get; set; }
         public int PatientID { get; set; }
         public int PathologyID { get; set; }
+        public System.DateTime Start_Date { get; set; }
+        public System.DateTime End_Date { get; set; }
     
         public virtual Pathology Pathology { get; set; }
         public virtual Patient Patient { get; set; }

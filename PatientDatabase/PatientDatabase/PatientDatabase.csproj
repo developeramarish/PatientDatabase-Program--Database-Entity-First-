@@ -64,9 +64,15 @@
     <Compile Include="CommonUIMethodsAndFunctions.cs" />
     <Compile Include="Entity Extended\DBContextExtended.cs" />
     <Compile Include="Entity Extended\OutcomeExtended.cs" />
+    <Compile Include="Entity Extended\PatientExtended.cs" />
     <Compile Include="Entity Extended\ProtocolExtended.cs" />
+    <Compile Include="Extension Methods\ExtensionMethods.cs" />
+    <Compile Include="Globals\GlobalImageMethods.cs" />
     <Compile Include="Main Menu\MainMenuLogic.cs" />
     <Compile Include="Outcome.cs">
+      <DependentUpon>PatientsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientImage.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientOutcome.cs">
@@ -75,13 +81,14 @@
     <Compile Include="PatientProtocol.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PatientSnapshot.cs">
+    <Compile Include="Snapshot\PatientSnapshot.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PatientSnapshot.Designer.cs">
+    <Compile Include="Snapshot\PatientSnapshot.Designer.cs">
       <DependentUpon>PatientSnapshot.cs</DependentUpon>
     </Compile>
-    <Compile Include="PatientSnapshotLogic.cs" />
+    <Compile Include="PatientSnapshotLoadCurrentData.cs" />
+    <Compile Include="Snapshot\PatientSnapshotLogic.cs" />
     <Compile Include="Protocol.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
@@ -241,7 +248,7 @@
     <Compile Include="Patient Profile\ViewPropertyDetails.Designer.cs">
       <DependentUpon>ViewPropertyDetails.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PatientSnapshot.resx">
+    <EmbeddedResource Include="Snapshot\PatientSnapshot.resx">
       <DependentUpon>PatientSnapshot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Query Builder\AddQueryToBuilder.resx">

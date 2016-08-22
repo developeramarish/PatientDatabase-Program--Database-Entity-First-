@@ -32,6 +32,8 @@
     <EntitySetMapping Name="PatientPathologies">
       <EntityTypeMapping TypeName="PatientDatabaseModel.PatientPathology">
         <MappingFragment StoreEntitySet="PatientPathology">
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
           <ScalarProperty Name="PathologyID" ColumnName="PathologyID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -74,6 +76,8 @@
     <EntitySetMapping Name="PatientPast_Medical_History">
       <EntityTypeMapping TypeName="PatientDatabaseModel.PatientPast_Medical_History">
         <MappingFragment StoreEntitySet="PatientPast_Medical_History">
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
           <ScalarProperty Name="Past_Medical_HistoryID" ColumnName="Past_Medical_HistoryID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -83,6 +87,8 @@
     <EntitySetMapping Name="PatientProblems">
       <EntityTypeMapping TypeName="PatientDatabaseModel.PatientProblem">
         <MappingFragment StoreEntitySet="PatientProblem">
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
           <ScalarProperty Name="Primary" ColumnName="Primary" />
           <ScalarProperty Name="ProblemID" ColumnName="ProblemID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
@@ -93,6 +99,8 @@
     <EntitySetMapping Name="PatientSurgeries">
       <EntityTypeMapping TypeName="PatientDatabaseModel.PatientSurgery">
         <MappingFragment StoreEntitySet="PatientSurgery">
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
           <ScalarProperty Name="Date_Received" ColumnName="Date Received" />
           <ScalarProperty Name="SurgeryID" ColumnName="SurgeryID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
@@ -103,6 +111,8 @@
     <EntitySetMapping Name="PatientTraumas">
       <EntityTypeMapping TypeName="PatientDatabaseModel.PatientTrauma">
         <MappingFragment StoreEntitySet="PatientTrauma">
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
           <ScalarProperty Name="TraumaID" ColumnName="TraumaID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -112,8 +122,8 @@
     <EntitySetMapping Name="PatientTreatments">
       <EntityTypeMapping TypeName="PatientDatabaseModel.PatientTreatment">
         <MappingFragment StoreEntitySet="PatientTreatment">
-          <ScalarProperty Name="Date_Ended" ColumnName="Date Ended" />
-          <ScalarProperty Name="Date_Started" ColumnName="Date Started" />
+          <ScalarProperty Name="End_Date" ColumnName="End Date" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
           <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />
           <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -201,6 +211,15 @@
         <MappingFragment StoreEntitySet="ProtocolOutcome">
           <ScalarProperty Name="OutcomeID" ColumnName="OutcomeID" />
           <ScalarProperty Name="ProtocolID" ColumnName="ProtocolID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientImages">
+      <EntityTypeMapping TypeName="PatientDatabaseModel.PatientImage">
+        <MappingFragment StoreEntitySet="PatientImage">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

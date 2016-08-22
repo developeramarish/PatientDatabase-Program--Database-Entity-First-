@@ -27,6 +27,7 @@
     <NavigationProperty Name="PatientTreatments" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="Patient" ToRole="PatientTreatment" />
     <NavigationProperty Name="PatientOutcomes" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToPatient" FromRole="Patient" ToRole="PatientOutcome" />
     <NavigationProperty Name="PatientProtocols" Relationship="PatientDatabaseModel.FK_PatientProtocol_ToPatient" FromRole="Patient" ToRole="PatientProtocol" />
+    <NavigationProperty Name="PatientImages" Relationship="PatientDatabaseModel.FK_PatientImage_ToTablePatient" FromRole="Patient" ToRole="PatientImage" />
   </EntityType>
   <EntityContainer Name="PatientDatabaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Patients" EntityType="Self.Patient" />
@@ -133,6 +134,11 @@
       <End Role="Protocol" EntitySet="Protocols" />
       <End Role="PatientOutcome" EntitySet="PatientOutcomes" />
     </AssociationSet>
+    <EntitySet Name="PatientImages" EntityType="PatientDatabaseModel.PatientImage" />
+    <AssociationSet Name="FK_PatientImage_ToTablePatient" Association="PatientDatabaseModel.FK_PatientImage_ToTablePatient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientImage" EntitySet="PatientImages" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Pathology">
     <Key>
@@ -151,6 +157,8 @@
     <Property Name="PathologyID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Pathology" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable_1" FromRole="PatientPathology" ToRole="Pathology" />
     <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable" FromRole="PatientPathology" ToRole="Patient" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <Association Name="FK_PatientPathology_ToTable_1">
     <End Type="PatientDatabaseModel.Pathology" Role="Pathology" Multiplicity="1" />
@@ -243,6 +251,8 @@
     <Property Name="Past_Medical_HistoryID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Past_Medical_History" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPast_Medical_History" FromRole="PatientPast_Medical_History" ToRole="Past_Medical_History" />
     <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPatient" FromRole="PatientPast_Medical_History" ToRole="Patient" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="PatientProblem">
     <Key>
@@ -254,6 +264,8 @@
     <Property Name="Primary" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable" FromRole="PatientProblem" ToRole="Patient" />
     <NavigationProperty Name="Problem" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable_1" FromRole="PatientProblem" ToRole="Problem" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="PatientSurgery">
     <Key>
@@ -265,6 +277,8 @@
     <Property Name="Date_Received" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToPatient" FromRole="PatientSurgery" ToRole="Patient" />
     <NavigationProperty Name="Surgery" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToSurgery" FromRole="PatientSurgery" ToRole="Surgery" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="PatientTrauma">
     <Key>
@@ -275,6 +289,8 @@
     <Property Name="TraumaID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToPatient" FromRole="PatientTrauma" ToRole="Patient" />
     <NavigationProperty Name="Trauma" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToTrauma" FromRole="PatientTrauma" ToRole="Trauma" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="PatientTreatment">
     <Key>
@@ -283,10 +299,10 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PatientID" Type="Int32" Nullable="false" />
     <Property Name="TreatmentID" Type="Int32" Nullable="false" />
-    <Property Name="Date_Started" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Date_Ended" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="PatientTreatment" ToRole="Patient" />
     <NavigationProperty Name="Treatment" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToTreatment" FromRole="PatientTreatment" ToRole="Treatment" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="Problem">
     <Key>
@@ -581,6 +597,27 @@
       </Principal>
       <Dependent Role="PatientOutcome">
         <PropertyRef Name="ProtocolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PatientImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientImage_ToTablePatient" FromRole="PatientImage" ToRole="Patient" />
+  </EntityType>
+  <Association Name="FK_PatientImage_ToTablePatient">
+    <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="PatientDatabaseModel.PatientImage" Role="PatientImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientImage">
+        <PropertyRef Name="PatientID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

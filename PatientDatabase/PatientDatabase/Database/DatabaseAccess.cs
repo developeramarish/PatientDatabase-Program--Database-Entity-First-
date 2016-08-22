@@ -282,6 +282,14 @@ namespace PatientDatabase
             }
         }
 
+        public PatientImage getPatientImage(Patient patient)
+        {
+            using (pde = new PatientDatabaseEntities())
+            {
+                return pde.PatientImages.FirstOrDefault(pi => pi.PatientID == patient.Id);
+            }
+        }
+
         public List<ProtocolOutcome> getProtocolOutcome(Protocol protocol)
         {
             using (pde = new PatientDatabaseEntities())

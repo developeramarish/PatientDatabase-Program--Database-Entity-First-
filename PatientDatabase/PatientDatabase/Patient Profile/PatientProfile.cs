@@ -137,7 +137,7 @@ namespace PatientDatabase
             dgvPatientProperties.Columns.Add("cDateStarted", "Date Started");
             dgvPatientProperties.Columns.Add("cDateEnded", "Date Ended");
             patientTreatment = database.getPatientTreatment(patient);
-            patientTreatment.ForEach(pt => dgvPatientProperties.Rows.Add(pt.Treatment.Name, pt.Date_Started.ToShortDateString(), getEndDateDisplay(pt.Date_Ended)));
+            patientTreatment.ForEach(pt => dgvPatientProperties.Rows.Add(pt.Treatment.Name, pt.Start_Date.ToShortDateString(), getEndDateDisplay(pt.End_Date)));
             btnViewDetails.Text = "View Treatment Details";
         }
 

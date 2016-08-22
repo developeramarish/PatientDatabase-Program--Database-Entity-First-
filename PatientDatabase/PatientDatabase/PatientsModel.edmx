@@ -57,6 +57,14 @@
           <Property Name="Zip Code" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="PatientImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="PatientMedication">
           <Key>
             <PropertyRef Name="Id" />
@@ -87,6 +95,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientID" Type="int" Nullable="false" />
           <Property Name="Past_Medical_HistoryID" Type="int" Nullable="false" />
+          <Property Name="Start Date" Type="date" Nullable="false" />
+          <Property Name="End Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientPathology">
           <Key>
@@ -95,6 +105,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientID" Type="int" Nullable="false" />
           <Property Name="PathologyID" Type="int" Nullable="false" />
+          <Property Name="Start Date" Type="date" Nullable="false" />
+          <Property Name="End Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientProblem">
           <Key>
@@ -104,6 +116,8 @@
           <Property Name="PatientID" Type="int" Nullable="false" />
           <Property Name="ProblemID" Type="int" Nullable="false" />
           <Property Name="Primary" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Start Date" Type="date" Nullable="false" />
+          <Property Name="End Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientProtocol">
           <Key>
@@ -125,6 +139,8 @@
           <Property Name="PatientID" Type="int" Nullable="false" />
           <Property Name="SurgeryID" Type="int" Nullable="false" />
           <Property Name="Date Received" Type="date" Nullable="false" />
+          <Property Name="Start Date" Type="date" Nullable="false" />
+          <Property Name="End Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientTrauma">
           <Key>
@@ -133,6 +149,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientID" Type="int" Nullable="false" />
           <Property Name="TraumaID" Type="int" Nullable="false" />
+          <Property Name="Start Date" Type="date" Nullable="false" />
+          <Property Name="End Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientTreatment">
           <Key>
@@ -141,8 +159,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientID" Type="int" Nullable="false" />
           <Property Name="TreatmentID" Type="int" Nullable="false" />
-          <Property Name="Date Started" Type="date" Nullable="false" />
-          <Property Name="Date Ended" Type="date" Nullable="false" />
+          <Property Name="Start Date" Type="date" Nullable="false" />
+          <Property Name="End Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Problem">
           <Key>
@@ -189,6 +207,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_PatientImage_ToTablePatient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PatientImage" Type="Self.PatientImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientImage">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PatientMedication_ToMedication">
           <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
           <End Role="PatientMedication" Type="Self.PatientMedication" Multiplicity="*" />
@@ -454,6 +484,7 @@
           <EntitySet Name="Past_Medical_History" EntityType="Self.Past_Medical_History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pathology" EntityType="Self.Pathology" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientImage" EntityType="Self.PatientImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMedication" EntityType="Self.PatientMedication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientOutcome" EntityType="Self.PatientOutcome" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientPast_Medical_History" EntityType="Self.PatientPast_Medical_History" Schema="dbo" store:Type="Tables" />
@@ -469,6 +500,10 @@
           <EntitySet Name="Surgery" EntityType="Self.Surgery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trauma" EntityType="Self.Trauma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PatientImage_ToTablePatient" Association="Self.FK_PatientImage_ToTablePatient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PatientImage" EntitySet="PatientImage" />
+          </AssociationSet>
           <AssociationSet Name="FK_PatientMedication_ToMedication" Association="Self.FK_PatientMedication_ToMedication">
             <End Role="Medication" EntitySet="Medication" />
             <End Role="PatientMedication" EntitySet="PatientMedication" />
@@ -585,6 +620,7 @@
           <NavigationProperty Name="PatientTreatments" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="Patient" ToRole="PatientTreatment" />
           <NavigationProperty Name="PatientOutcomes" Relationship="PatientDatabaseModel.FK_PatientOutcome_ToPatient" FromRole="Patient" ToRole="PatientOutcome" />
           <NavigationProperty Name="PatientProtocols" Relationship="PatientDatabaseModel.FK_PatientProtocol_ToPatient" FromRole="Patient" ToRole="PatientProtocol" />
+          <NavigationProperty Name="PatientImages" Relationship="PatientDatabaseModel.FK_PatientImage_ToTablePatient" FromRole="Patient" ToRole="PatientImage" />
         </EntityType>
         <EntityContainer Name="PatientDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Patients" EntityType="Self.Patient" />
@@ -691,6 +727,11 @@
             <End Role="Protocol" EntitySet="Protocols" />
             <End Role="PatientOutcome" EntitySet="PatientOutcomes" />
           </AssociationSet>
+          <EntitySet Name="PatientImages" EntityType="PatientDatabaseModel.PatientImage" />
+          <AssociationSet Name="FK_PatientImage_ToTablePatient" Association="PatientDatabaseModel.FK_PatientImage_ToTablePatient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="PatientImage" EntitySet="PatientImages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Pathology">
           <Key>
@@ -709,6 +750,8 @@
           <Property Name="PathologyID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pathology" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable_1" FromRole="PatientPathology" ToRole="Pathology" />
           <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientPathology_ToTable" FromRole="PatientPathology" ToRole="Patient" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_PatientPathology_ToTable_1">
           <End Type="PatientDatabaseModel.Pathology" Role="Pathology" Multiplicity="1" />
@@ -801,6 +844,8 @@
           <Property Name="Past_Medical_HistoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Past_Medical_History" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPast_Medical_History" FromRole="PatientPast_Medical_History" ToRole="Past_Medical_History" />
           <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientPast_Medical_History_ToPatient" FromRole="PatientPast_Medical_History" ToRole="Patient" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="PatientProblem">
           <Key>
@@ -812,6 +857,8 @@
           <Property Name="Primary" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable" FromRole="PatientProblem" ToRole="Patient" />
           <NavigationProperty Name="Problem" Relationship="PatientDatabaseModel.FK_PatientProblem_ToTable_1" FromRole="PatientProblem" ToRole="Problem" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="PatientSurgery">
           <Key>
@@ -823,6 +870,8 @@
           <Property Name="Date_Received" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToPatient" FromRole="PatientSurgery" ToRole="Patient" />
           <NavigationProperty Name="Surgery" Relationship="PatientDatabaseModel.FK_PatientSurgery_ToSurgery" FromRole="PatientSurgery" ToRole="Surgery" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="PatientTrauma">
           <Key>
@@ -833,6 +882,8 @@
           <Property Name="TraumaID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToPatient" FromRole="PatientTrauma" ToRole="Patient" />
           <NavigationProperty Name="Trauma" Relationship="PatientDatabaseModel.FK_PatientTrauma_ToTrauma" FromRole="PatientTrauma" ToRole="Trauma" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="PatientTreatment">
           <Key>
@@ -841,10 +892,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientID" Type="Int32" Nullable="false" />
           <Property Name="TreatmentID" Type="Int32" Nullable="false" />
-          <Property Name="Date_Started" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Date_Ended" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToPatient" FromRole="PatientTreatment" ToRole="Patient" />
           <NavigationProperty Name="Treatment" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToTreatment" FromRole="PatientTreatment" ToRole="Treatment" />
+          <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Problem">
           <Key>
@@ -1142,6 +1193,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PatientImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Patient" Relationship="PatientDatabaseModel.FK_PatientImage_ToTablePatient" FromRole="PatientImage" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK_PatientImage_ToTablePatient">
+          <End Type="PatientDatabaseModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="PatientDatabaseModel.PatientImage" Role="PatientImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientImage">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1179,6 +1251,8 @@
           <EntitySetMapping Name="PatientPathologies">
             <EntityTypeMapping TypeName="PatientDatabaseModel.PatientPathology">
               <MappingFragment StoreEntitySet="PatientPathology">
+                <ScalarProperty Name="End_Date" ColumnName="End Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
                 <ScalarProperty Name="PathologyID" ColumnName="PathologyID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1221,6 +1295,8 @@
           <EntitySetMapping Name="PatientPast_Medical_History">
             <EntityTypeMapping TypeName="PatientDatabaseModel.PatientPast_Medical_History">
               <MappingFragment StoreEntitySet="PatientPast_Medical_History">
+                <ScalarProperty Name="End_Date" ColumnName="End Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
                 <ScalarProperty Name="Past_Medical_HistoryID" ColumnName="Past_Medical_HistoryID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1230,6 +1306,8 @@
           <EntitySetMapping Name="PatientProblems">
             <EntityTypeMapping TypeName="PatientDatabaseModel.PatientProblem">
               <MappingFragment StoreEntitySet="PatientProblem">
+                <ScalarProperty Name="End_Date" ColumnName="End Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
                 <ScalarProperty Name="Primary" ColumnName="Primary" />
                 <ScalarProperty Name="ProblemID" ColumnName="ProblemID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
@@ -1240,6 +1318,8 @@
           <EntitySetMapping Name="PatientSurgeries">
             <EntityTypeMapping TypeName="PatientDatabaseModel.PatientSurgery">
               <MappingFragment StoreEntitySet="PatientSurgery">
+                <ScalarProperty Name="End_Date" ColumnName="End Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
                 <ScalarProperty Name="Date_Received" ColumnName="Date Received" />
                 <ScalarProperty Name="SurgeryID" ColumnName="SurgeryID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
@@ -1250,6 +1330,8 @@
           <EntitySetMapping Name="PatientTraumas">
             <EntityTypeMapping TypeName="PatientDatabaseModel.PatientTrauma">
               <MappingFragment StoreEntitySet="PatientTrauma">
+                <ScalarProperty Name="End_Date" ColumnName="End Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
                 <ScalarProperty Name="TraumaID" ColumnName="TraumaID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1259,8 +1341,8 @@
           <EntitySetMapping Name="PatientTreatments">
             <EntityTypeMapping TypeName="PatientDatabaseModel.PatientTreatment">
               <MappingFragment StoreEntitySet="PatientTreatment">
-                <ScalarProperty Name="Date_Ended" ColumnName="Date Ended" />
-                <ScalarProperty Name="Date_Started" ColumnName="Date Started" />
+                <ScalarProperty Name="End_Date" ColumnName="End Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
                 <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1348,6 +1430,15 @@
               <MappingFragment StoreEntitySet="ProtocolOutcome">
                 <ScalarProperty Name="OutcomeID" ColumnName="OutcomeID" />
                 <ScalarProperty Name="ProtocolID" ColumnName="ProtocolID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientImages">
+            <EntityTypeMapping TypeName="PatientDatabaseModel.PatientImage">
+              <MappingFragment StoreEntitySet="PatientImage">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

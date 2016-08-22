@@ -868,20 +868,20 @@ namespace PatientDatabase
             if (values.Length > 2) date2 = DateTime.Parse(values[2]);
             switch (Criteria)
             {
-                case "Is Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started == date1);
-                case "Is Between Inclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started >= date1 && tre.Date_Started <= date2);
-                case "Is Before Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started <= date1);
-                case "Is After Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started >= date1);
-                case "Is Between Exclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started > date1 && tre.Date_Started < date2);
-                case "Is Before": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started < date1);
-                case "Is After": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started > date1);
-                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started != date1);
-                case "Is Between Inclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started < date1 && tre.Date_Started > date2);
-                case "Is Before Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started > date1);
-                case "Is After Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started < date1);
-                case "Is Between Exclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started <= date1 && tre.Date_Started >= date2);
-                case "Is Before NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started >= date1);
-                case "Is After NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Started <= date1);
+                case "Is Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date == date1);
+                case "Is Between Inclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date >= date1 && tre.Start_Date <= date2);
+                case "Is Before Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date <= date1);
+                case "Is After Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date >= date1);
+                case "Is Between Exclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date > date1 && tre.Start_Date < date2);
+                case "Is Before": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date < date1);
+                case "Is After": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date > date1);
+                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date != date1);
+                case "Is Between Inclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date < date1 && tre.Start_Date > date2);
+                case "Is Before Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date > date1);
+                case "Is After Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date < date1);
+                case "Is Between Exclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date <= date1 && tre.Start_Date >= date2);
+                case "Is Before NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date >= date1);
+                case "Is After NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Start_Date <= date1);
                 default: return p => false;
             }
         }
@@ -897,20 +897,20 @@ namespace PatientDatabase
             if (values.Length > 2) date2 = DateTime.Parse(values[2]);
             switch (Criteria)
             {
-                case "Is Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended == date1);
-                case "Is Between Inclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended >= date1 && tre.Date_Ended <= date2);
-                case "Is Before Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended <= date1);
-                case "Is After Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended >= date1);
-                case "Is Between Exclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended > date1 && tre.Date_Ended < date2);
-                case "Is Before": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended < date1);
-                case "Is After": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended > date1);
-                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended != date1);
-                case "Is Between Inclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended < date1 && tre.Date_Ended > date2);
-                case "Is Before Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended > date1);
-                case "Is After Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended < date1);
-                case "Is Between Exclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended <= date1 && tre.Date_Ended >= date2);
-                case "Is Before NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended >= date1);
-                case "Is After NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.Date_Ended <= date1);
+                case "Is Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date == date1);
+                case "Is Between Inclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date >= date1 && tre.End_Date <= date2);
+                case "Is Before Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date <= date1);
+                case "Is After Or Equal To": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date >= date1);
+                case "Is Between Exclusive": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date > date1 && tre.End_Date < date2);
+                case "Is Before": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date < date1);
+                case "Is After": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date > date1);
+                case "Is Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date != date1);
+                case "Is Between Inclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date < date1 && tre.End_Date > date2);
+                case "Is Before Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date > date1);
+                case "Is After Or Equal To NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date < date1);
+                case "Is Between Exclusive NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date <= date1 && tre.End_Date >= date2);
+                case "Is Before NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date >= date1);
+                case "Is After NOT": return p => p.PatientTreatments.Any(tre => tre.TreatmentID == treId && tre.End_Date <= date1);
                 default: return p => false;
             }
         }

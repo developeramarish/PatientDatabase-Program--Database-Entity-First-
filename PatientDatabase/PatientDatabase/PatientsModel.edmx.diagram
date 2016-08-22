@@ -46,6 +46,8 @@
         <AssociationConnector Association="PatientDatabaseModel.FK_PatientProtocol_ToProtocol" />
         <AssociationConnector Association="PatientDatabaseModel.FK_ProtocolOutcome_ToProtocol" />
         <AssociationConnector Association="PatientDatabaseModel.FK_PatientOutcome_ToProtocol" />
+        <EntityTypeShape EntityType="PatientDatabaseModel.PatientImage" Width="1.5" PointX="3" PointY="7.625" />
+        <AssociationConnector Association="PatientDatabaseModel.FK_PatientImage_ToTablePatient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -23,6 +23,7 @@ namespace PatientDatabase
         private void PatientSnapshot_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
+            logic.onFormLoad(panelGeneral);
         }
 
         private void PatientSnapshot_FormClosing(object sender, FormClosingEventArgs e)
@@ -32,7 +33,8 @@ namespace PatientDatabase
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            
+            GlobalFormManager.OpenNewForm(new MainMenu(), this);
+            GlobalFormManager.CloseCurrentForm(this);
         }
 
         private void btnHome_Click(object sender, EventArgs e)

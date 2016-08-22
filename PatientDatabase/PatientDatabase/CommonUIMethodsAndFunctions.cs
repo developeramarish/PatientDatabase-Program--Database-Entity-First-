@@ -37,5 +37,23 @@ namespace PatientDatabase
             }
             return null;
         }
+
+        public Control getControlFromTabControl(TabControl tabControl, string name)
+        {
+            foreach (Control control in tabControl.Controls)
+            {
+                if (control.Name == name) return control;
+            }
+            return null;
+        }
+
+        public Control getControlFromTabPage(TabPage tabPage, string name)
+        {
+            foreach (Control control in tabPage.Controls)
+            {
+                if (control.Name == name) return control;
+            }
+            return null;
+        }
     }
 }

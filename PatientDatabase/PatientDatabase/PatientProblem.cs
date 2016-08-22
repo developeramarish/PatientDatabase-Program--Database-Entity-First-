@@ -18,6 +18,8 @@ namespace PatientDatabase
         public int PatientID { get; set; }
         public int ProblemID { get; set; }
         public string Primary { get; set; }
+        public System.DateTime Start_Date { get; set; }
+        public System.DateTime End_Date { get; set; }
     
         public virtual Patient Patient { get; set; }
         public virtual Problem Problem { get; set; }
