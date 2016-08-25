@@ -42,6 +42,8 @@
             this.YAxisInterval10toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.YAxisInterval5toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSelectedSeriesAveragesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lstSeries = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -62,6 +64,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.valueOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeOnlyEligibleValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCommandStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
             this.panel1.SuspendLayout();
@@ -103,7 +107,9 @@
             this.chartToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.intervalOptionsToolStripMenuItem,
             this.yAxisScaleToolStripMenuItem,
-            this.showGridToolStripMenuItem});
+            this.showGridToolStripMenuItem,
+            this.labelOptionsToolStripMenuItem,
+            this.valueOptionsToolStripMenuItem});
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
             this.chartToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.chartToolStripMenuItem.Text = "Chart";
@@ -158,10 +164,27 @@
             // 
             // showGridToolStripMenuItem
             // 
+            this.showGridToolStripMenuItem.Checked = true;
+            this.showGridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
             this.showGridToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.showGridToolStripMenuItem.Text = "Show Grid";
             this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
+            // 
+            // labelOptionsToolStripMenuItem
+            // 
+            this.labelOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showSelectedSeriesAveragesToolStripMenuItem});
+            this.labelOptionsToolStripMenuItem.Name = "labelOptionsToolStripMenuItem";
+            this.labelOptionsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.labelOptionsToolStripMenuItem.Text = "Label Options";
+            // 
+            // showSelectedSeriesAveragesToolStripMenuItem
+            // 
+            this.showSelectedSeriesAveragesToolStripMenuItem.Name = "showSelectedSeriesAveragesToolStripMenuItem";
+            this.showSelectedSeriesAveragesToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.showSelectedSeriesAveragesToolStripMenuItem.Text = "Show Selected Series Averages";
+            this.showSelectedSeriesAveragesToolStripMenuItem.Click += new System.EventHandler(this.showSelectedSeriesAveragesToolStripMenuItem_Click);
             // 
             // lstSeries
             // 
@@ -416,6 +439,23 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // valueOptionsToolStripMenuItem
+            // 
+            this.valueOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.includeOnlyEligibleValuesToolStripMenuItem});
+            this.valueOptionsToolStripMenuItem.Name = "valueOptionsToolStripMenuItem";
+            this.valueOptionsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.valueOptionsToolStripMenuItem.Text = "Value Options";
+            // 
+            // includeOnlyEligibleValuesToolStripMenuItem
+            // 
+            this.includeOnlyEligibleValuesToolStripMenuItem.Checked = true;
+            this.includeOnlyEligibleValuesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.includeOnlyEligibleValuesToolStripMenuItem.Name = "includeOnlyEligibleValuesToolStripMenuItem";
+            this.includeOnlyEligibleValuesToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.includeOnlyEligibleValuesToolStripMenuItem.Text = "Include Only Eligible Values";
+            this.includeOnlyEligibleValuesToolStripMenuItem.Click += new System.EventHandler(this.includeOnlyEligibleValuesToolStripMenuItem_Click);
+            // 
             // QueryDataChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -477,5 +517,9 @@
         private System.Windows.Forms.ToolStripMenuItem YAxisInterval10toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem YAxisInterval5toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showGridToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem labelOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showSelectedSeriesAveragesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem valueOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem includeOnlyEligibleValuesToolStripMenuItem;
     }
 }

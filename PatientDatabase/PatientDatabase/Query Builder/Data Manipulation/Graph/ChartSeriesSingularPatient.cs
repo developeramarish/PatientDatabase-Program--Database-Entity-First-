@@ -24,7 +24,7 @@ namespace PatientDatabase
             return new List<Patient> { patient };
         }
 
-        public override Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        public override Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
         {
             Dictionary<int, int> allPoints = new Dictionary<int, int>();
             List<PatientOutcome> patientOutcomes = database.getPatientOutcome(patient);

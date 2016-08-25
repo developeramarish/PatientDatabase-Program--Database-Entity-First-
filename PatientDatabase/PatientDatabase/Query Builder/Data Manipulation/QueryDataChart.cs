@@ -74,7 +74,7 @@ namespace PatientDatabase
 
         private void lstSeries_SelectedIndexChanged(object sender, EventArgs e)
         {
-            logic.ListBoxSeriesSelectedIndexChanged(rtxtQueryData, lstSeries);
+            logic.ListBoxSeriesSelectedIndexChanged(rtxtQueryData, lstSeries, chartOutcomeData);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -114,6 +114,16 @@ namespace PatientDatabase
         private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
         {
             logic.toggleChartGridLines(chartOutcomeData, showGridToolStripMenuItem);
+        }
+
+        private void showSelectedSeriesAveragesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.toggleShowSelectedSeriesAverages(chartOutcomeData, showSelectedSeriesAveragesToolStripMenuItem);
+        }
+
+        private void includeOnlyEligibleValuesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.toggleIncludeOnlyEligibleValues(chartOutcomeData, includeOnlyEligibleValuesToolStripMenuItem, rtxtQueryData, lstSeries);
         }
     }
 }

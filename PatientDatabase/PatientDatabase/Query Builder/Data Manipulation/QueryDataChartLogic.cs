@@ -50,6 +50,7 @@ namespace PatientDatabase
             chartData.SelectedProtocol = chartData.Protocols[cboProtocol.SelectedIndex];
             chartData.loadOutcomes();
             chartData.loadIntervals();
+            chartData.loadEndIntervals();
             loadOutcomeComboBox(cboOutcome);
             loadEndIntervalComboBox(cboEndInterval);
             commonUI.setComboBoxSelectedIndex(cboOutcome, 0);
@@ -164,9 +165,11 @@ namespace PatientDatabase
             }
         }
 
-        public void ListBoxSeriesSelectedIndexChanged(RichTextBox rtxtQueryData, ListBox lstSeries)
+        public void ListBoxSeriesSelectedIndexChanged(RichTextBox rtxtQueryData, ListBox lstSeries, Chart chartOutcomeData)
         {
             loadQueryData(rtxtQueryData, lstSeries);
+            chartData.SelectedSeries = lstSeries.SelectedIndex;
+            chartData.SetUpPointAverageLabels(chartOutcomeData);
         }
 
         private void loadQueryData(RichTextBox rtxtQueryData, ListBox lstSeries)
@@ -178,17 +181,12 @@ namespace PatientDatabase
             rtxtQueryData.AppendText(chartData.ChartSeries[lstSeries.SelectedIndex]
                 .getSeriesCount(
                 chartData.SelectedProtocol, chartData.SelectedOutcome,
-                chartData.SelectedStartInterval, chartData.SelectedEndInterval));
+                chartData.SelectedStartInterval, chartData.SelectedEndInterval, chartData.IncludeOnlyEligibleValues));
             rtxtQueryData.AppendText(Environment.NewLine + Environment.NewLine);
             rtxtQueryData.AppendText(chartData.ChartSeries[lstSeries.SelectedIndex]
                 .getDataAnalysis(
                 chartData.SelectedProtocol, chartData.SelectedOutcome,
-                chartData.SelectedStartInterval, chartData.SelectedEndInterval));
-        }
-
-        private enum Call_Location
-        {
-            NONE, LOAD, PROTOCOL, OUTCOME, START_INTERVAL, END_INTERVAL
+                chartData.SelectedStartInterval, chartData.SelectedEndInterval, chartData.IncludeOnlyEligibleValues));
         }
 
         public void toggleIntervalViewType(Chart chartOutcomeData, ToolStripMenuItem menuItem)
@@ -226,15 +224,54 @@ namespace PatientDatabase
             if (chartData.ShowGridLines)
             {
                 chartData.ShowGridLines = false;
-                menuItem.Checked = true;
+                menuItem.Checked = false;
             }
             else
             {
                 chartData.ShowGridLines = true;
-                menuItem.Checked = false;
+                menuItem.Checked = true;
             }
 
             chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void toggleShowSelectedSeriesAverages(Chart chartOutcomeData, ToolStripMenuItem menuItem)
+        {
+            if (chartData.ShowPointAverageLabels)
+            {
+                chartData.ShowPointAverageLabels = false;
+                menuItem.Checked = false;
+            }
+            else
+            {
+                chartData.ShowPointAverageLabels = true;
+                menuItem.Checked = true;
+            }
+
+            chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void toggleIncludeOnlyEligibleValues(Chart chartOutcomeData, ToolStripMenuItem menuItem, RichTextBox rtxtQueryData, ListBox lstSeries)
+        {
+            if (chartData.IncludeOnlyEligibleValues)
+            {
+                chartData.IncludeOnlyEligibleValues = false;
+                menuItem.Checked = false;
+            }
+            else
+            {
+                chartData.IncludeOnlyEligibleValues = true;
+                menuItem.Checked = true;
+            }
+
+            chartData.loadChartData(chartOutcomeData);
+            loadQueryData(rtxtQueryData, lstSeries);
+        }
+
+
+        private enum Call_Location
+        {
+            NONE, LOAD, PROTOCOL, OUTCOME, START_INTERVAL, END_INTERVAL
         }
     }
 }

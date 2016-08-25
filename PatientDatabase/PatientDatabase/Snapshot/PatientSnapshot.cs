@@ -23,7 +23,7 @@ namespace PatientDatabase
         private void PatientSnapshot_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
-            logic.onFormLoad(panelGeneral);
+            logic.onFormLoad(panelGeneral, panelChart);
         }
 
         private void PatientSnapshot_FormClosing(object sender, FormClosingEventArgs e)
@@ -40,6 +40,31 @@ namespace PatientDatabase
         private void btnHome_Click(object sender, EventArgs e)
         {
             GlobalFormManager.Home(this);
+        }
+
+        private void dgvPatientGeneralInfo_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvPatientGeneralInfo.ClearSelection();
+        }
+
+        private void cboProtocol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            logic.ProtocolComboBoxIndexChanged(cboProtocol, cboOutcome, cboEndInterval, chartOutcomeData);
+        }
+
+        private void cboOutcome_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            logic.OutcomeComboBoxIndexChanged(cboOutcome, chartOutcomeData);
+        }
+
+        private void cboStartInterval_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            logic.StartIntervalComboBoxIndexChanged(cboStartInterval, chartOutcomeData);
+        }
+
+        private void cboEndInterval_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            logic.EndIntervalComboBoxIndexChanged(cboEndInterval, cboStartInterval, chartOutcomeData);
         }
     }
 }

@@ -23,6 +23,10 @@ namespace PatientDatabase
         public bool ShowInBetweenIntervals { get; set; }
         public int YAxisInterval { get; set; }
         public bool ShowGridLines { get; set; }
+        public bool ShowPointAverageLabels { get; set; }
+        public int SelectedSeries { get; set; }
+        public bool IncludeOnlyEligibleValues { get; set; }
+        public SeriesChartType SeriesChartType { get; set; }
         DatabaseAccess database = new DatabaseAccess();
 
         public ChartData()
@@ -36,12 +40,17 @@ namespace PatientDatabase
             ShowInBetweenIntervals = true;
             YAxisInterval = 20;
             ShowGridLines = true;
+            ShowPointAverageLabels = false;
+            SelectedSeries = 0;
+            IncludeOnlyEligibleValues = true;
+            SeriesChartType = SeriesChartType.Line;
         }
 
         public void loadChartSeries(Patient patient)
         {
             ChartSeries.Clear();
             ChartSeries.Add(new ChartSeriesSingularPatient(patient));
+            ChartSeries[0].Show = true;
         }
 
         // Creates chartSeries from a list of QueryEntity.
@@ -94,8 +103,8 @@ namespace PatientDatabase
             for (int i = 0; i <= endInterval; i++)
             {
                 Intervals.Add(new Interval(i, intervalLength));
-                if (i != endInterval) StartIntervals.Add(new Interval(i, intervalLength));
-                if (i != 0) EndIntervals.Add(new Interval(i, intervalLength));
+                //if (i != endInterval) StartIntervals.Add(new Interval(i, intervalLength));
+                //if (i != 0) EndIntervals.Add(new Interval(i, intervalLength));
             }
         }
 
@@ -105,10 +114,34 @@ namespace PatientDatabase
             int intervalLength = SelectedProtocol.Interval__Months_;
             int endInterval = SelectedProtocol.End_Interval;
             StartIntervals.Clear();
-            for (int i = 0; i <= endInterval; i++)
+            for (int i = 0; i < endInterval; i++)
             {
                 if (i < SelectedEndInterval.Number)
                     StartIntervals.Add(new Interval(i, intervalLength));
+            }
+        }
+
+        // loads all eligible end intervals based the farthest end interval of all patients in all series
+        public void loadEndIntervals()
+        {
+            int currentHighestInterval = 0;
+            foreach (ChartSeries series in ChartSeries)
+            {
+                List<Patient> patients = series.getPatients();
+                foreach (Patient patient in patients)
+                {
+                    List<PatientOutcome> patientOutcomes = database.getPatientOutcome(patient);
+                    foreach (PatientOutcome po in patientOutcomes)
+                    {
+                        if (po.Interval_Number > currentHighestInterval)
+                            currentHighestInterval = po.Interval_Number;
+                    }
+                }
+            }
+            int intervalLength = SelectedProtocol.Interval__Months_;
+            for (int i = 1; i <= currentHighestInterval; i++)
+            {
+                EndIntervals.Add(new Interval(i, intervalLength));
             }
         }
 
@@ -133,6 +166,7 @@ namespace PatientDatabase
                 }
                 setChartAreaSettings(chart);
                 setUpChartLabels(chart);
+                SetUpPointAverageLabels(chart);
             }
         }
 
@@ -141,6 +175,7 @@ namespace PatientDatabase
         {
             chart.Series.Clear();
             foreach (var series in chart.Series) series.Points.Clear();
+            chart.ChartAreas[0].AxisX.CustomLabels.Clear();
         }
 
         // Adds new series to chart from the List of chartSeries objects created earlier
@@ -157,7 +192,7 @@ namespace PatientDatabase
         {
             Dictionary<int, int> points = cs.getPoints(
                 SelectedProtocol, SelectedOutcome,
-                SelectedStartInterval, SelectedEndInterval);
+                SelectedStartInterval, SelectedEndInterval, IncludeOnlyEligibleValues);
             foreach (KeyValuePair<int, int> pair in points)
             {
                 if (ShowInBetweenIntervals) // plot all points in between start and end intervals as well
@@ -218,18 +253,15 @@ namespace PatientDatabase
                 {
                     double end = start + 1;
                     int month = i * SelectedProtocol.Interval__Months_;
-                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, Intervals[i].getMonthLabel(), 1, LabelMarkStyle.None);
+                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, Intervals[i].getMonthLabel(), 0, LabelMarkStyle.None);
                     start += 1;
                 }
             }
             else // show only interval labels start and end
             {
-                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 1, LabelMarkStyle.None);
-                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 1, LabelMarkStyle.None);
-                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.Number.ToString(), 0, LabelMarkStyle.None);
-                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.Number.ToString(), 0, LabelMarkStyle.None);               
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
             }
-            
         }
 
         // Moves selected chart series in the list of chartSeries up one spot
@@ -269,6 +301,43 @@ namespace PatientDatabase
                 case 13: return Color.FromArgb(255, 224, 131, 10);
                 case 14: return Color.FromArgb(255, 120, 147, 190);
                 default: return Color.Black;
+            }
+        }
+        //**** REFACOTR
+        public void SetUpPointAverageLabels(Chart chart)
+        {
+            if (ChartSeries[SelectedSeries].Show)
+            {
+                chart.ChartAreas[0].AxisX.CustomLabels.Clear();
+                setUpChartLabels(chart);
+                if (ShowPointAverageLabels)
+                {
+                    double start = -.5 + SelectedStartInterval.Number;
+                    Dictionary<int, int> points = ChartSeries[SelectedSeries].getPoints(SelectedProtocol, SelectedOutcome, SelectedStartInterval, SelectedEndInterval, IncludeOnlyEligibleValues);
+                    if (ShowInBetweenIntervals) // show all interval labels in between start and end
+                    {
+                        for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
+                        {
+                            double end = start + 1;
+                            int month = i * SelectedProtocol.Interval__Months_;
+                            chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "(" + points[i] + ")", 1, LabelMarkStyle.None);
+                            start += 1;
+                        }
+                    }
+                    else // show only interval labels start and end
+                    {
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "(" + points[SelectedStartInterval.Number] + ")", 1, LabelMarkStyle.None);
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "(" + points[SelectedEndInterval.Number] + ")", 1, LabelMarkStyle.None);
+                    }
+                }
+            }
+            else
+            {
+                chart.ChartAreas[0].AxisX.CustomLabels.Clear();
+                setUpChartLabels(chart);
             }
         }
     }

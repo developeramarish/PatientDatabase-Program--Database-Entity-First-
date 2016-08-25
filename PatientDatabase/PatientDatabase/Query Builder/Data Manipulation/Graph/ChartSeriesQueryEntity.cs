@@ -25,14 +25,14 @@ namespace PatientDatabase
             return entity.getPatients();
         }
 
-        public override Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        public override Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
         {
-            Dictionary<int, List<decimal>> allPoints = getAllPoints(selectedProtocol, selectedOutcome, startInterval, endInterval);
+            Dictionary<int, List<decimal>> allPoints = getAllPoints(selectedProtocol, selectedOutcome, startInterval, endInterval, includeOnlyEligibleValues);
             Dictionary<int, int> averagedPoints = getAveragedPoints(allPoints);           
             return averagedPoints;
         }
 
-        private Dictionary<int, List<decimal>> getAllPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        private Dictionary<int, List<decimal>> getAllPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
         {
             Dictionary<int, List<decimal>> allPoints = new Dictionary<int, List<decimal>>();
             List<PatientOutcome> patientOutcomes;
@@ -41,11 +41,12 @@ namespace PatientDatabase
             foreach (Patient patient in patients)
             {
                 patientOutcomes = database.getPatientOutcome(patient);
-                patientOutcomes = patientOutcomes.Where(po => po.Protocol.Equals(selectedProtocol)
+                patientOutcomes = patientOutcomes.Where(po => 
+                po.Protocol.Equals(selectedProtocol)
                 && po.Outcome.Equals(selectedOutcome)
                 && po.Interval_Number >= startInterval.Number
                 && po.Interval_Number <= endInterval.Number).ToList();
-                if (isPatientEligible(patientOutcomes, endInterval))
+                if (!includeOnlyEligibleValues || isPatientEligible(patientOutcomes, endInterval))
                 {
                     foreach (PatientOutcome po in patientOutcomes)
                     {
@@ -59,9 +60,13 @@ namespace PatientDatabase
 
         private bool isPatientEligible(List<PatientOutcome> patientOutcomes, Interval endInterval)
         {
-            patientOutcomes.OrderBy(po => po.Interval_Number);
-            if (patientOutcomes[patientOutcomes.Count - 1].Interval_Number < endInterval.Number) return false;
-            else return true;
+            if (patientOutcomes.Count > 0)
+            {
+                patientOutcomes = patientOutcomes.OrderBy(po => po.Interval_Number).ToList();
+                if (patientOutcomes[patientOutcomes.Count - 1].Interval_Number < endInterval.Number) return false;
+                else return true;
+            }
+            return false;
         }
 
         private Dictionary<int, int> getAveragedPoints(Dictionary<int, List<decimal>> allPoints)
@@ -80,10 +85,10 @@ namespace PatientDatabase
             return points;
         }
 
-        public override string getDataAnalysis(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        public override string getDataAnalysis(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
         {
             StringBuilder sb = new StringBuilder();
-            Dictionary<int, List<decimal>> allPoints = getAllPoints(selectedProtocol, selectedOutcome, startInterval, endInterval);
+            Dictionary<int, List<decimal>> allPoints = getAllPoints(selectedProtocol, selectedOutcome, startInterval, endInterval, includeOnlyEligibleValues);
             Dictionary<int, int> averagedPoints = getAveragedPoints(allPoints);
             int interval = selectedProtocol.Interval__Months_;
             foreach (KeyValuePair<int, List<decimal>> pair in allPoints) pair.Value.Sort();
@@ -238,12 +243,12 @@ namespace PatientDatabase
             else return (intervalIndex * interval) + " Months";
         }
 
-        public override string getSeriesCount(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        public override string getSeriesCount(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
         {
-            return "Graphed Patients: " + getGraphedPatientsCount(selectedProtocol, selectedOutcome, startInterval, endInterval);
+            return "Graphed Patients: " + getGraphedPatientsCount(selectedProtocol, selectedOutcome, startInterval, endInterval, includeOnlyEligibleValues);
         }
 
-        private int getGraphedPatientsCount(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        private int getGraphedPatientsCount(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
         {
             int count = 0;
             List<PatientOutcome> patientOutcomes;
@@ -255,7 +260,7 @@ namespace PatientDatabase
                 && po.Outcome.Equals(selectedOutcome)
                 && po.Interval_Number >= startInterval.Number
                 && po.Interval_Number <= endInterval.Number).ToList();
-                if (isPatientEligible(patientOutcomes, endInterval)) count++;
+                if (!includeOnlyEligibleValues || isPatientEligible(patientOutcomes, endInterval)) count++;
             }
             return count;
         }

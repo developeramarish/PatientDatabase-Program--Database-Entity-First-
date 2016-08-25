@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -37,8 +39,10 @@
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.panelGeneral = new System.Windows.Forms.Panel();
+            this.dgvPatientGeneralInfo = new System.Windows.Forms.DataGridView();
+            this.cInfoHeader = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picPatientPicture = new System.Windows.Forms.PictureBox();
-            this.rtxtGeneralInformation = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMedicalData = new System.Windows.Forms.Panel();
             this.cboMedicalDataInterval = new System.Windows.Forms.ComboBox();
@@ -54,15 +58,16 @@
             this.cboProtocol = new System.Windows.Forms.ComboBox();
             this.panelMEDTimeline = new System.Windows.Forms.Panel();
             this.panelChart = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.panelChartOutline = new System.Windows.Forms.Panel();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPatientGeneralInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPatientPicture)).BeginInit();
             this.panelMedicalData.SuspendLayout();
             this.panelChart.SuspendLayout();
-            this.panel6.SuspendLayout();
+            this.panelChartOutline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,12 +129,67 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelGeneral.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelGeneral.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelGeneral.Controls.Add(this.dgvPatientGeneralInfo);
             this.panelGeneral.Controls.Add(this.picPatientPicture);
-            this.panelGeneral.Controls.Add(this.rtxtGeneralInformation);
             this.panelGeneral.Location = new System.Drawing.Point(12, 85);
             this.panelGeneral.Name = "panelGeneral";
             this.panelGeneral.Size = new System.Drawing.Size(273, 571);
             this.panelGeneral.TabIndex = 29;
+            // 
+            // dgvPatientGeneralInfo
+            // 
+            this.dgvPatientGeneralInfo.AllowUserToAddRows = false;
+            this.dgvPatientGeneralInfo.AllowUserToDeleteRows = false;
+            this.dgvPatientGeneralInfo.AllowUserToResizeColumns = false;
+            this.dgvPatientGeneralInfo.AllowUserToResizeRows = false;
+            this.dgvPatientGeneralInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvPatientGeneralInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvPatientGeneralInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvPatientGeneralInfo.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPatientGeneralInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvPatientGeneralInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPatientGeneralInfo.ColumnHeadersVisible = false;
+            this.dgvPatientGeneralInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cInfoHeader,
+            this.cInfo});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPatientGeneralInfo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPatientGeneralInfo.Location = new System.Drawing.Point(3, 265);
+            this.dgvPatientGeneralInfo.Name = "dgvPatientGeneralInfo";
+            this.dgvPatientGeneralInfo.ReadOnly = true;
+            this.dgvPatientGeneralInfo.RowHeadersVisible = false;
+            this.dgvPatientGeneralInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPatientGeneralInfo.Size = new System.Drawing.Size(265, 301);
+            this.dgvPatientGeneralInfo.TabIndex = 2;
+            this.dgvPatientGeneralInfo.SelectionChanged += new System.EventHandler(this.dgvPatientGeneralInfo_SelectionChanged);
+            // 
+            // cInfoHeader
+            // 
+            this.cInfoHeader.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cInfoHeader.DefaultCellStyle = dataGridViewCellStyle1;
+            this.cInfoHeader.HeaderText = "";
+            this.cInfoHeader.Name = "cInfoHeader";
+            this.cInfoHeader.ReadOnly = true;
+            this.cInfoHeader.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cInfoHeader.Width = 5;
+            // 
+            // cInfo
+            // 
+            this.cInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cInfo.HeaderText = "";
+            this.cInfo.Name = "cInfo";
+            this.cInfo.ReadOnly = true;
+            this.cInfo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cInfo.Width = 5;
             // 
             // picPatientPicture
             // 
@@ -139,17 +199,6 @@
             this.picPatientPicture.Size = new System.Drawing.Size(256, 256);
             this.picPatientPicture.TabIndex = 1;
             this.picPatientPicture.TabStop = false;
-            // 
-            // rtxtGeneralInformation
-            // 
-            this.rtxtGeneralInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.rtxtGeneralInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtGeneralInformation.Location = new System.Drawing.Point(3, 265);
-            this.rtxtGeneralInformation.Name = "rtxtGeneralInformation";
-            this.rtxtGeneralInformation.Size = new System.Drawing.Size(265, 301);
-            this.rtxtGeneralInformation.TabIndex = 0;
-            this.rtxtGeneralInformation.Text = "";
             // 
             // label1
             // 
@@ -264,6 +313,7 @@
             this.cboEndInterval.Name = "cboEndInterval";
             this.cboEndInterval.Size = new System.Drawing.Size(140, 28);
             this.cboEndInterval.TabIndex = 35;
+            this.cboEndInterval.SelectedIndexChanged += new System.EventHandler(this.cboEndInterval_SelectedIndexChanged);
             // 
             // cboStartInterval
             // 
@@ -275,6 +325,7 @@
             this.cboStartInterval.Name = "cboStartInterval";
             this.cboStartInterval.Size = new System.Drawing.Size(140, 28);
             this.cboStartInterval.TabIndex = 34;
+            this.cboStartInterval.SelectedIndexChanged += new System.EventHandler(this.cboStartInterval_SelectedIndexChanged);
             // 
             // cboOutcome
             // 
@@ -286,6 +337,7 @@
             this.cboOutcome.Name = "cboOutcome";
             this.cboOutcome.Size = new System.Drawing.Size(140, 28);
             this.cboOutcome.TabIndex = 33;
+            this.cboOutcome.SelectedIndexChanged += new System.EventHandler(this.cboOutcome_SelectedIndexChanged);
             // 
             // cboProtocol
             // 
@@ -297,6 +349,7 @@
             this.cboProtocol.Name = "cboProtocol";
             this.cboProtocol.Size = new System.Drawing.Size(140, 28);
             this.cboProtocol.TabIndex = 32;
+            this.cboProtocol.SelectedIndexChanged += new System.EventHandler(this.cboProtocol_SelectedIndexChanged);
             // 
             // panelMEDTimeline
             // 
@@ -316,7 +369,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelChart.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelChart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelChart.Controls.Add(this.panel6);
+            this.panelChart.Controls.Add(this.panelChartOutline);
             this.panelChart.Controls.Add(this.label2);
             this.panelChart.Controls.Add(this.cboEndInterval);
             this.panelChart.Controls.Add(this.cboStartInterval);
@@ -330,17 +383,17 @@
             this.panelChart.Size = new System.Drawing.Size(755, 495);
             this.panelChart.TabIndex = 42;
             // 
-            // panel6
+            // panelChartOutline
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panelChartOutline.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.chartOutcomeData);
-            this.panel6.Location = new System.Drawing.Point(3, 81);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(747, 409);
-            this.panel6.TabIndex = 40;
+            this.panelChartOutline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelChartOutline.Controls.Add(this.chartOutcomeData);
+            this.panelChartOutline.Location = new System.Drawing.Point(3, 81);
+            this.panelChartOutline.Name = "panelChartOutline";
+            this.panelChartOutline.Size = new System.Drawing.Size(747, 409);
+            this.panelChartOutline.TabIndex = 40;
             // 
             // chartOutcomeData
             // 
@@ -382,12 +435,13 @@
             this.menuStrip1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panelGeneral.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPatientGeneralInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPatientPicture)).EndInit();
             this.panelMedicalData.ResumeLayout(false);
             this.panelMedicalData.PerformLayout();
             this.panelChart.ResumeLayout(false);
             this.panelChart.PerformLayout();
-            this.panel6.ResumeLayout(false);
+            this.panelChartOutline.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -414,12 +468,14 @@
         private System.Windows.Forms.ComboBox cboProtocol;
         private System.Windows.Forms.Panel panelMEDTimeline;
         private System.Windows.Forms.Panel panelChart;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panelChartOutline;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartOutcomeData;
-        private System.Windows.Forms.RichTextBox rtxtGeneralInformation;
         private System.Windows.Forms.RichTextBox rtxtMedicalData;
         private System.Windows.Forms.ComboBox cboMedicalDataInterval;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picPatientPicture;
+        private System.Windows.Forms.DataGridView dgvPatientGeneralInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cInfoHeader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cInfo;
     }
 }

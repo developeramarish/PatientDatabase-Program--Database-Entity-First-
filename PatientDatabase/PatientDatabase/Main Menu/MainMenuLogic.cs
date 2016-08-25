@@ -22,6 +22,10 @@ namespace PatientDatabase
 
         private void LoadTestEntities()
         {
+            //List<Query> queries = new List<Query>();
+            //queries.Add(new PatientQuery("Last Name", "Is Equal To", "Baez"));
+            //queryEntityCollection.QueryEntities.Add(new QueryEntity("Baez", queries));
+
             List<Query> queries = new List<Query>();
             queries.Add(new PatientQuery("Sex", "Is Equal To", "Male"));
             queryEntityCollection.QueryEntities.Add(new QueryEntity("All Male", queries));
