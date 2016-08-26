@@ -26,7 +26,7 @@ namespace PatientDatabase
         public bool ShowPointAverageLabels { get; set; }
         public int SelectedSeries { get; set; }
         public bool IncludeOnlyEligibleValues { get; set; }
-        public SeriesChartType SeriesChartType { get; set; }
+        public GraphType GraphType { get; set; }
         DatabaseAccess database = new DatabaseAccess();
 
         public ChartData()
@@ -43,7 +43,7 @@ namespace PatientDatabase
             ShowPointAverageLabels = false;
             SelectedSeries = 0;
             IncludeOnlyEligibleValues = true;
-            SeriesChartType = SeriesChartType.Line;
+            GraphType = GraphType.LINE;
         }
 
         public void loadChartSeries(Patient patient)
@@ -103,8 +103,6 @@ namespace PatientDatabase
             for (int i = 0; i <= endInterval; i++)
             {
                 Intervals.Add(new Interval(i, intervalLength));
-                //if (i != endInterval) StartIntervals.Add(new Interval(i, intervalLength));
-                //if (i != 0) EndIntervals.Add(new Interval(i, intervalLength));
             }
         }
 
@@ -114,9 +112,9 @@ namespace PatientDatabase
             int intervalLength = SelectedProtocol.Interval__Months_;
             int endInterval = SelectedProtocol.End_Interval;
             StartIntervals.Clear();
-            for (int i = 0; i < endInterval; i++)
+            for (int i = 0; i <= endInterval; i++)
             {
-                if (i < SelectedEndInterval.Number)
+                if (i <= SelectedEndInterval.Number)
                     StartIntervals.Add(new Interval(i, intervalLength));
             }
         }
@@ -139,7 +137,7 @@ namespace PatientDatabase
                 }
             }
             int intervalLength = SelectedProtocol.Interval__Months_;
-            for (int i = 1; i <= currentHighestInterval; i++)
+            for (int i = 0; i <= currentHighestInterval; i++)
             {
                 EndIntervals.Add(new Interval(i, intervalLength));
             }
@@ -158,12 +156,13 @@ namespace PatientDatabase
                     if (cs.Show)
                     {
                         AddNewSeries(seriesNumber, cs, chart);
-                        AddDataToChart(seriesNumber, cs, chart);
                         setSeriesColor(seriesNumber, queryNumber, chart);
+                        AddDataToChart(seriesNumber, cs, chart);                       
                         seriesNumber++;
                     }
                     queryNumber++;
                 }
+                setAxisXRange(chart);
                 setChartAreaSettings(chart);
                 setUpChartLabels(chart);
                 SetUpPointAverageLabels(chart);
@@ -182,9 +181,34 @@ namespace PatientDatabase
         private void AddNewSeries(int seriesNumber, ChartSeries cs, Chart chart)
         {
             chart.Series.Add(new Series());
-            chart.Series[seriesNumber].ChartType = SeriesChartType.Line;
-            chart.Series[seriesNumber].BorderWidth = 3;
+            setSeriesChartType(chart, seriesNumber, GraphType);
             chart.Series[seriesNumber].LegendText = cs.getName();
+        }
+
+        // sets x axis range for chart depending on what needs to be shown based on chart properties
+        private void setAxisXRange(Chart chart)
+        {
+            if (SelectedEndInterval.Number - SelectedStartInterval.Number != 0) // if multiple data points exist
+            {
+                if (ShowInBetweenIntervals) // all points in between start and end intervals as well
+                {
+                    // set maximum to end interval, minimum to start interval
+                    chart.ChartAreas[0].AxisX.Maximum = SelectedEndInterval.Number;
+                    chart.ChartAreas[0].AxisX.Minimum = SelectedStartInterval.Number;
+                }
+                else // if only show start and end intervals
+                {
+                    // set maximum to 1 (end interval) and minimum to 0 (start interval)
+                    chart.ChartAreas[0].AxisX.Maximum = 1;
+                    chart.ChartAreas[0].AxisX.Minimum = 0;
+                }
+            }
+            else // if only one interval (eg baseline to baseline)
+            {
+                // sort of "hacky" in order to get the one singular label to format correctly, since setting both the maximum and minimum to zero caused issues with the chart control
+                chart.ChartAreas[0].AxisX.Maximum = .5;
+                chart.ChartAreas[0].AxisX.Minimum = 0;
+            }
         }
 
         // Graphs points on chart
@@ -193,17 +217,86 @@ namespace PatientDatabase
             Dictionary<int, int> points = cs.getPoints(
                 SelectedProtocol, SelectedOutcome,
                 SelectedStartInterval, SelectedEndInterval, IncludeOnlyEligibleValues);
-            foreach (KeyValuePair<int, int> pair in points)
+
+            if (points.Count > 0)
             {
-                if (ShowInBetweenIntervals) // plot all points in between start and end intervals as well
-                    chart.Series[seriesNumber].Points.AddXY(pair.Key, pair.Value);  
-                else // otherwise, ignore all intervals that aren't start and end, and turn end interval to location 1
+                foreach (KeyValuePair<int, int> pair in points)
                 {
-                    if (pair.Key == SelectedStartInterval.Number)                   
-                        chart.Series[seriesNumber].Points.AddXY(pair.Key, pair.Value);                    
-                    else if (pair.Key == SelectedEndInterval.Number)                   
-                        chart.Series[seriesNumber].Points.AddXY(1, pair.Value);                  
+                    if (SelectedEndInterval.Number - SelectedStartInterval.Number != 0) // if multiple data points exist
+                    {
+                        if (ShowInBetweenIntervals) // plot all points in between start and end intervals as well
+                        {
+                            chart.Series[seriesNumber].Points.AddXY(pair.Key, pair.Value);
+                        }
+                        else // otherwise, ignore all intervals that aren't start and end, and turn end interval to location 1 (start location is always 0)
+                        {
+                            if (pair.Key == SelectedStartInterval.Number)
+                                chart.Series[seriesNumber].Points.AddXY(0, pair.Value);
+                            else if (pair.Key == SelectedEndInterval.Number)
+                                chart.Series[seriesNumber].Points.AddXY(1, pair.Value);
+                        }
+                    }
+                    else // if only one data point exists on graph (ex baseline to baseline), add data point at x location zero
+                    {
+                        chart.Series[seriesNumber].Points.AddXY(0, pair.Value);
+                    }
                 }
+                modifySeriesIfNecessary(points, chart, seriesNumber);
+            }
+            else chart.Series[seriesNumber].Color = Color.Transparent; // if no points to plot for series, change legend color to transparent so it does not show
+        }
+
+        // after adding all points in, a specific series may need to be adjusted accordingly (eg changing series into a point graph type, etc...)
+        // some stuff in here is a little "hacky" to get the chart to look how I want...sorry future me. I tried documenting the best I can
+        private void modifySeriesIfNecessary(Dictionary<int, int> points, Chart chart, int seriesNumber)
+        {
+            if (SelectedEndInterval.Number - SelectedStartInterval.Number != 0) // if start and end interval are not the same (more than one data point to plot)
+            {
+                // if show all intervals inbetween start and end, and include all values, but the value only has a value of one...
+                // this method changes the series to a graph type of POINT and then adds in a "buffer point" to allow it exist at point zero (because for some reason the chart control forces it into point one if it's the only point in a series)
+                // without this, the point would not be shown because a line requires two points
+                if (ShowInBetweenIntervals && !IncludeOnlyEligibleValues && points.Count == 1)
+                {
+                    setSeriesChartType(chart, seriesNumber, GraphType.POINT);
+                    chart.Series[seriesNumber].Points.AddXY(SelectedEndInterval.Number, 0);
+                    chart.Series[seriesNumber].Points[chart.Series[seriesNumber].Points.Count - 1].MarkerSize = 0;
+                }
+                // similar to above, but this only applies when the only intervals shown are start and end
+                // if it can only find one or the other value in a series (start or end), it will plot that point exactly as I did it above
+                else if (!ShowInBetweenIntervals
+                    && !IncludeOnlyEligibleValues
+                    && (points.ContainsKey(SelectedStartInterval.Number) && !points.ContainsKey(SelectedEndInterval.Number))
+                    || (!points.ContainsKey(SelectedStartInterval.Number) && points.ContainsKey(SelectedEndInterval.Number)))
+                {
+                    setSeriesChartType(chart, seriesNumber, GraphType.POINT);
+                    chart.Series[seriesNumber].Points.AddXY(SelectedStartInterval.Number, 0);
+                    chart.Series[seriesNumber].Points[chart.Series[seriesNumber].Points.Count - 1].MarkerSize = 0;
+                    chart.Series[seriesNumber].Points.AddXY(SelectedEndInterval.Number, 0);
+                    chart.Series[seriesNumber].Points[chart.Series[seriesNumber].Points.Count - 1].MarkerSize = 0;
+                }
+            }
+            // if only one interval to plot (eg baseline to baseline), just change the graph type to point and create the "buffer" point to circumvent the glitch where it kept putting singular points in a series at "one" instead at "zero"
+            else
+            {
+                setSeriesChartType(chart, seriesNumber, GraphType.POINT);
+                chart.Series[seriesNumber].Points.AddXY(-1, 0);
+                chart.Series[seriesNumber].Points[chart.Series[seriesNumber].Points.Count - 1].MarkerSize = 0;
+            }
+        }
+
+        // sets series chart type and changes properties accordingly to proper formatting
+        private void setSeriesChartType(Chart chart, int seriesNumber, GraphType graphType)
+        {
+            if (graphType == GraphType.LINE)
+            {
+                chart.Series[seriesNumber].ChartType = SeriesChartType.Line;
+                chart.Series[seriesNumber].BorderWidth = 3;
+            }
+            else if (graphType == GraphType.POINT)
+            {
+                chart.Series[seriesNumber].ChartType = SeriesChartType.Point;
+                chart.Series[seriesNumber].MarkerStyle = MarkerStyle.Circle;
+                chart.Series[seriesNumber].MarkerSize = 10;
             }
         }
 
@@ -212,10 +305,6 @@ namespace PatientDatabase
         private void setSeriesColor(int seriesNumber, int queryNumber, Chart chart)
         {
             chart.Series[seriesNumber].Color = getSeriesColor(queryNumber);
-            foreach (DataPoint point in chart.Series[seriesNumber].Points)
-            {
-                point.Color = chart.Series[seriesNumber].Color;
-            }
         }
 
         // General settings for chart are set here
@@ -246,21 +335,28 @@ namespace PatientDatabase
         // Adds custom chart labels to chart (inverval names)
         private void setUpChartLabels(Chart chart)
         {
-            double start = -.5 + SelectedStartInterval.Number;
-            if (ShowInBetweenIntervals) // show all interval labels in between start and end
+            if (SelectedEndInterval.Number - SelectedStartInterval.Number != 0)
             {
-                for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
+                double start = -.5 + SelectedStartInterval.Number;
+                if (ShowInBetweenIntervals) // show all interval labels in between start and end
                 {
-                    double end = start + 1;
-                    int month = i * SelectedProtocol.Interval__Months_;
-                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, Intervals[i].getMonthLabel(), 0, LabelMarkStyle.None);
-                    start += 1;
+                    for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
+                    {
+                        double end = start + 1;
+                        int month = i * SelectedProtocol.Interval__Months_;
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, Intervals[i].getMonthLabel(), 0, LabelMarkStyle.None);
+                        start += 1;
+                    }
+                }
+                else // show only interval labels start and end
+                {
+                    chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+                    chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
                 }
             }
-            else // show only interval labels start and end
+            else // if there is only one data point, draw only one label at start
             {
-                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 0, LabelMarkStyle.None);
-                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
             }
         }
 
@@ -312,26 +408,36 @@ namespace PatientDatabase
                 setUpChartLabels(chart);
                 if (ShowPointAverageLabels)
                 {
-                    double start = -.5 + SelectedStartInterval.Number;
                     Dictionary<int, int> points = ChartSeries[SelectedSeries].getPoints(SelectedProtocol, SelectedOutcome, SelectedStartInterval, SelectedEndInterval, IncludeOnlyEligibleValues);
-                    if (ShowInBetweenIntervals) // show all interval labels in between start and end
+                    if (SelectedEndInterval.Number - SelectedStartInterval.Number != 0)
                     {
-                        for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
+                        double start = -.5 + SelectedStartInterval.Number;
+                        if (ShowInBetweenIntervals) // show all interval labels in between start and end
                         {
-                            double end = start + 1;
-                            int month = i * SelectedProtocol.Interval__Months_;
-                            chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "(" + points[i] + ")", 1, LabelMarkStyle.None);
-                            start += 1;
+                            for (int i = SelectedStartInterval.Number; i <= SelectedEndInterval.Number; i++)
+                            {
+                                if (points.ContainsKey(i))
+                                {
+                                    double end = start + 1;
+                                    int month = i * SelectedProtocol.Interval__Months_;
+                                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "(" + points[i] + ")", 1, LabelMarkStyle.None);
+                                    start += 1;
+                                }
+                            }
+                        }
+                        else // show only interval labels start and end
+                        {
+                            if (points.ContainsKey(SelectedStartInterval.Number))
+                                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "(" + points[SelectedStartInterval.Number] + ")", 1, LabelMarkStyle.None);
+                            if (points.ContainsKey(SelectedEndInterval.Number))
+                                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "(" + points[SelectedEndInterval.Number] + ")", 1, LabelMarkStyle.None);
                         }
                     }
-                    else // show only interval labels start and end
+                    else
                     {
-                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, SelectedStartInterval.getMonthLabel(), 0, LabelMarkStyle.None);
-                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
-
                         chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "(" + points[SelectedStartInterval.Number] + ")", 1, LabelMarkStyle.None);
-                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "(" + points[SelectedEndInterval.Number] + ")", 1, LabelMarkStyle.None);
                     }
+                    
                 }
             }
             else

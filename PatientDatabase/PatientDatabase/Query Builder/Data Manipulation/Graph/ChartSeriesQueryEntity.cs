@@ -260,7 +260,7 @@ namespace PatientDatabase
                 && po.Outcome.Equals(selectedOutcome)
                 && po.Interval_Number >= startInterval.Number
                 && po.Interval_Number <= endInterval.Number).ToList();
-                if (!includeOnlyEligibleValues || isPatientEligible(patientOutcomes, endInterval)) count++;
+                if (!includeOnlyEligibleValues || isPatientEligible(patientOutcomes, endInterval)) count++;              
             }
             return count;
         }

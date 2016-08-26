@@ -44,6 +44,8 @@
             this.showGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showSelectedSeriesAveragesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.valueOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeOnlyEligibleValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lstSeries = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -64,8 +66,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.valueOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.includeOnlyEligibleValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCommandStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
             this.panel1.SuspendLayout();
@@ -185,6 +185,23 @@
             this.showSelectedSeriesAveragesToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.showSelectedSeriesAveragesToolStripMenuItem.Text = "Show Selected Series Averages";
             this.showSelectedSeriesAveragesToolStripMenuItem.Click += new System.EventHandler(this.showSelectedSeriesAveragesToolStripMenuItem_Click);
+            // 
+            // valueOptionsToolStripMenuItem
+            // 
+            this.valueOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.includeOnlyEligibleValuesToolStripMenuItem});
+            this.valueOptionsToolStripMenuItem.Name = "valueOptionsToolStripMenuItem";
+            this.valueOptionsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.valueOptionsToolStripMenuItem.Text = "Value Options";
+            // 
+            // includeOnlyEligibleValuesToolStripMenuItem
+            // 
+            this.includeOnlyEligibleValuesToolStripMenuItem.Checked = true;
+            this.includeOnlyEligibleValuesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.includeOnlyEligibleValuesToolStripMenuItem.Name = "includeOnlyEligibleValuesToolStripMenuItem";
+            this.includeOnlyEligibleValuesToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.includeOnlyEligibleValuesToolStripMenuItem.Text = "Include Only Eligible Values";
+            this.includeOnlyEligibleValuesToolStripMenuItem.Click += new System.EventHandler(this.includeOnlyEligibleValuesToolStripMenuItem_Click);
             // 
             // lstSeries
             // 
@@ -438,23 +455,6 @@
             this.btnBack.Text = "< Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // valueOptionsToolStripMenuItem
-            // 
-            this.valueOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.includeOnlyEligibleValuesToolStripMenuItem});
-            this.valueOptionsToolStripMenuItem.Name = "valueOptionsToolStripMenuItem";
-            this.valueOptionsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.valueOptionsToolStripMenuItem.Text = "Value Options";
-            // 
-            // includeOnlyEligibleValuesToolStripMenuItem
-            // 
-            this.includeOnlyEligibleValuesToolStripMenuItem.Checked = true;
-            this.includeOnlyEligibleValuesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.includeOnlyEligibleValuesToolStripMenuItem.Name = "includeOnlyEligibleValuesToolStripMenuItem";
-            this.includeOnlyEligibleValuesToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.includeOnlyEligibleValuesToolStripMenuItem.Text = "Include Only Eligible Values";
-            this.includeOnlyEligibleValuesToolStripMenuItem.Click += new System.EventHandler(this.includeOnlyEligibleValuesToolStripMenuItem_Click);
             // 
             // QueryDataChart
             // 

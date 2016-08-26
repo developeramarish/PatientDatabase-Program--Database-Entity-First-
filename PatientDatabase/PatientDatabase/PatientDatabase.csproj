@@ -81,6 +81,7 @@
     <Compile Include="PatientProtocol.cs">
       <DependentUpon>PatientsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Query Builder\Data Manipulation\Graph\GraphType.cs" />
     <Compile Include="Snapshot\PatientSnapshot.cs">
       <SubType>Form</SubType>
     </Compile>

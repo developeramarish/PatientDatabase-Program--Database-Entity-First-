@@ -22,10 +22,6 @@ namespace PatientDatabase
 
         private void LoadTestEntities()
         {
-            //List<Query> queries = new List<Query>();
-            //queries.Add(new PatientQuery("Last Name", "Is Equal To", "Baez"));
-            //queryEntityCollection.QueryEntities.Add(new QueryEntity("Baez", queries));
-
             List<Query> queries = new List<Query>();
             queries.Add(new PatientQuery("Sex", "Is Equal To", "Male"));
             queryEntityCollection.QueryEntities.Add(new QueryEntity("All Male", queries));
@@ -35,8 +31,12 @@ namespace PatientDatabase
             queryEntityCollection.QueryEntities.Add(new QueryEntity("All Female", queries2));
 
             List<Query> queries3 = new List<Query>();
-            queries3.Add(new PatientQuery("Age", "Is Greater Than Or Equal To", "18"));
-            queryEntityCollection.QueryEntities.Add(new QueryEntity("Age Above 18", queries3));
+            queries3.Add(new PatientQuery("Last Name", "Is Equal To", "Bjornberg"));
+            queryEntityCollection.QueryEntities.Add(new QueryEntity("Bjornberg", queries3));
+
+            List<Query> queries4 = new List<Query>();
+            queries4.Add(new PatientQuery("Last Name", "Is Equal To", "Baez"));
+            queryEntityCollection.QueryEntities.Add(new QueryEntity("Baez", queries4));
         }
 
         public void onFormLoad()
