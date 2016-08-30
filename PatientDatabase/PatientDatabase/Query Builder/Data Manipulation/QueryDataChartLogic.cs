@@ -29,9 +29,9 @@ namespace PatientDatabase
         public void onFormLoad(ComboBox cboProtocol, Chart chartOutcomeData, RichTextBox rtxtQueryData, ListBox lstSeries)
         {
             callLocation = Call_Location.LOAD;
-            chartData.loadChartSeries(queryEntityCollection.QueryEntities);
+            chartData.cdi.loadChartSeries(queryEntityCollection.QueryEntities);
             loadSeriesListBox(lstSeries);
-            chartData.loadProtocols();
+            chartData.cdi.loadProtocols();
             loadProtocolComboBox(cboProtocol);
             commonUI.setComboBoxSelectedIndex(cboProtocol, 0);
             loadQueryData(rtxtQueryData, lstSeries);
@@ -42,16 +42,16 @@ namespace PatientDatabase
         private void loadSeriesListBox(ListBox lstSeries)
         {
             lstSeries.Items.Clear();
-            chartData.ChartSeries.ForEach(cs => lstSeries.Items.Add(cs.getName()));
+            chartData.cdi.ChartSeries.ForEach(cs => lstSeries.Items.Add(cs.getName()));
         }
 
         public void ProtocolComboBoxIndexChanged(ComboBox cboProtocol, ComboBox cboOutcome, ComboBox cboEndInterval, Chart chartOutcomeData, RichTextBox rtxtQueryData, ListBox lstSeries)
         {
             setCallLocation(Call_Location.PROTOCOL);
-            chartData.SelectedProtocol = chartData.Protocols[cboProtocol.SelectedIndex];
-            chartData.loadOutcomes();
-            chartData.loadIntervals();
-            chartData.loadEndIntervals();
+            chartData.cdi.SelectedProtocol = chartData.cdi.Protocols[cboProtocol.SelectedIndex];
+            chartData.cdi.loadOutcomes();
+            chartData.cdi.loadIntervals();
+            chartData.cdi.loadEndIntervals();
             loadOutcomeComboBox(cboOutcome);
             loadEndIntervalComboBox(cboEndInterval);
             commonUI.setComboBoxSelectedIndex(cboOutcome, 0);
@@ -63,26 +63,26 @@ namespace PatientDatabase
         public void OutcomeComboBoxIndexChanged(ComboBox cboOutcome, Chart chartOutcomeData, RichTextBox rtxtQueryData, ListBox lstSeries)
         {
             setCallLocation(Call_Location.OUTCOME);
-            chartData.SelectedOutcome = chartData.Outcomes[cboOutcome.SelectedIndex];
+            chartData.cdi.SelectedOutcome = chartData.cdi.Outcomes[cboOutcome.SelectedIndex];
             loadDataFromComboBoxSelectedIndexChange(Call_Location.OUTCOME, chartOutcomeData, rtxtQueryData, lstSeries);
         }
 
         public void StartIntervalComboBoxIndexChanged(ComboBox cboStartInterval, Chart chartOutcomeData, RichTextBox rtxtQueryData, ListBox lstSeries)
         {
             setCallLocation(Call_Location.START_INTERVAL);
-            chartData.SelectedStartInterval = chartData.StartIntervals[cboStartInterval.SelectedIndex];
+            chartData.cdi.SelectedStartInterval = chartData.cdi.StartIntervals[cboStartInterval.SelectedIndex];
             loadDataFromComboBoxSelectedIndexChange(Call_Location.START_INTERVAL, chartOutcomeData, rtxtQueryData, lstSeries);
         }
 
         public void EndIntervalComboBoxIndexChanged(ComboBox cboEndInterval, ComboBox cboStartInterval, Chart chartOutcomeData, RichTextBox rtxtQueryData, ListBox lstSeries)
         {
             setCallLocation(Call_Location.END_INTERVAL);
-            chartData.SelectedEndInterval = chartData.EndIntervals[cboEndInterval.SelectedIndex];
-            chartData.loadStartIntervals();
+            chartData.cdi.SelectedEndInterval = chartData.cdi.EndIntervals[cboEndInterval.SelectedIndex];
+            chartData.cdi.loadStartIntervals();
             int currentStartIntervalIndex = cboStartInterval.SelectedIndex;
             loadStartIntervalComboBox(cboStartInterval);
-            if (chartData.SelectedStartInterval == null
-                || chartData.SelectedStartInterval.Number >= chartData.SelectedEndInterval.Number)
+            if (chartData.cdi.SelectedStartInterval == null
+                || chartData.cdi.SelectedStartInterval.Number >= chartData.cdi.SelectedEndInterval.Number)
             {
                 commonUI.setComboBoxSelectedIndex(cboStartInterval, 0);
             }
@@ -108,25 +108,25 @@ namespace PatientDatabase
         private void loadProtocolComboBox(ComboBox cboProtocol)
         {
             cboProtocol.Items.Clear();
-            chartData.Protocols.ForEach(p => cboProtocol.Items.Add(p.Name));
+            chartData.cdi.Protocols.ForEach(p => cboProtocol.Items.Add(p.Name));
         }
 
         private void loadOutcomeComboBox(ComboBox cboOutcome)
         {
             cboOutcome.Items.Clear();
-            chartData.Outcomes.ForEach(o => cboOutcome.Items.Add(o.Name));
+            chartData.cdi.Outcomes.ForEach(o => cboOutcome.Items.Add(o.Name));
         }
 
         private void loadStartIntervalComboBox(ComboBox cboStartInterval)
         {
             cboStartInterval.Items.Clear();
-            chartData.StartIntervals.ForEach(i => cboStartInterval.Items.Add(i.getMonthLabel()));
+            chartData.cdi.StartIntervals.ForEach(i => cboStartInterval.Items.Add(i.getMonthLabel()));
         }
 
         private void loadEndIntervalComboBox(ComboBox cboEndInterval)
         {
             cboEndInterval.Items.Clear();
-            chartData.EndIntervals.ForEach(i => cboEndInterval.Items.Add(i.getMonthLabel()));
+            chartData.cdi.EndIntervals.ForEach(i => cboEndInterval.Items.Add(i.getMonthLabel()));
         }
 
         private void loadChart(Chart chartOutcomeData)
@@ -134,9 +134,17 @@ namespace PatientDatabase
             chartData.loadChartData(chartOutcomeData);
         }
 
+        // shows/hides selected listbox series item
         public void toggle(Chart chartOutcomeData, ListBox lstSeries)
         {
-            chartData.ChartSeries[lstSeries.SelectedIndex].toggleShow();
+            chartData.cdi.ChartSeries[lstSeries.SelectedIndex].toggleShow();
+
+            // reloads item in listbox so draw item is triggered, thus changing back color of item depending on whether it's showing or hiding
+            int index = lstSeries.SelectedIndex;
+            if (index < lstSeries.Items.Count) lstSeries.Items.Insert(index, chartData.cdi.ChartSeries[index].getName());
+            else lstSeries.Items.Add(chartData.cdi.ChartSeries[index].getName());
+            lstSeries.Items.RemoveAt(index);
+
             loadChart(chartOutcomeData);
         }
 
@@ -169,7 +177,7 @@ namespace PatientDatabase
         public void ListBoxSeriesSelectedIndexChanged(RichTextBox rtxtQueryData, ListBox lstSeries, Chart chartOutcomeData)
         {
             loadQueryData(rtxtQueryData, lstSeries);
-            chartData.SelectedSeries = lstSeries.SelectedIndex;
+            chartData.cds.SelectedSeries = lstSeries.SelectedIndex;
             chartData.SetUpPointAverageLabels(chartOutcomeData);
         }
 
@@ -179,27 +187,27 @@ namespace PatientDatabase
             rtxtQueryData.AppendText(Environment.NewLine + Environment.NewLine);
             rtxtQueryData.AppendText(queryEntityCollection.QueryEntities[lstSeries.SelectedIndex].countToString());
             rtxtQueryData.AppendText(Environment.NewLine);
-            rtxtQueryData.AppendText(chartData.ChartSeries[lstSeries.SelectedIndex]
+            rtxtQueryData.AppendText(chartData.cdi.ChartSeries[lstSeries.SelectedIndex]
                 .getSeriesCount(
-                chartData.SelectedProtocol, chartData.SelectedOutcome,
-                chartData.SelectedStartInterval, chartData.SelectedEndInterval, chartData.IncludeOnlyEligibleValues));
+                chartData.cdi.SelectedProtocol, chartData.cdi.SelectedOutcome,
+                chartData.cdi.SelectedStartInterval, chartData.cdi.SelectedEndInterval, chartData.cds.IncludeOnlyEligibleValues));
             rtxtQueryData.AppendText(Environment.NewLine + Environment.NewLine);
-            rtxtQueryData.AppendText(chartData.ChartSeries[lstSeries.SelectedIndex]
+            rtxtQueryData.AppendText(chartData.cdi.ChartSeries[lstSeries.SelectedIndex]
                 .getDataAnalysis(
-                chartData.SelectedProtocol, chartData.SelectedOutcome,
-                chartData.SelectedStartInterval, chartData.SelectedEndInterval, chartData.IncludeOnlyEligibleValues));
+                chartData.cdi.SelectedProtocol, chartData.cdi.SelectedOutcome,
+                chartData.cdi.SelectedStartInterval, chartData.cdi.SelectedEndInterval, chartData.cds.IncludeOnlyEligibleValues));
         }
 
         public void toggleIntervalViewType(Chart chartOutcomeData, ToolStripMenuItem menuItem)
         {
-            if (chartData.ShowInBetweenIntervals)
+            if (chartData.cds.ShowInBetweenIntervals)
             {
-                chartData.ShowInBetweenIntervals = false;
+                chartData.cds.ShowInBetweenIntervals = false;
                 menuItem.Checked = true;
             }
             else
             {
-                chartData.ShowInBetweenIntervals = true;
+                chartData.cds.ShowInBetweenIntervals = true;
                 menuItem.Checked = false;
             }
 
@@ -209,7 +217,7 @@ namespace PatientDatabase
         public void setChartYAxisInterval(int interval, Chart chartOutcomeData, ToolStripMenuItem menuItem,
             ToolStripMenuItem yAxisScaleToolStripMenuItem)
         {
-            chartData.YAxisInterval = interval;
+            chartData.cds.YAxisInterval = interval;
 
             foreach (ToolStripMenuItem item in yAxisScaleToolStripMenuItem.DropDownItems)
             {
@@ -222,14 +230,14 @@ namespace PatientDatabase
 
         public void toggleChartGridLines(Chart chartOutcomeData, ToolStripMenuItem menuItem)
         {
-            if (chartData.ShowGridLines)
+            if (chartData.cds.ShowGridLines)
             {
-                chartData.ShowGridLines = false;
+                chartData.cds.ShowGridLines = false;
                 menuItem.Checked = false;
             }
             else
             {
-                chartData.ShowGridLines = true;
+                chartData.cds.ShowGridLines = true;
                 menuItem.Checked = true;
             }
 
@@ -238,14 +246,14 @@ namespace PatientDatabase
 
         public void toggleShowSelectedSeriesAverages(Chart chartOutcomeData, ToolStripMenuItem menuItem)
         {
-            if (chartData.ShowPointAverageLabels)
+            if (chartData.cds.ShowPointAverageLabels)
             {
-                chartData.ShowPointAverageLabels = false;
+                chartData.cds.ShowPointAverageLabels = false;
                 menuItem.Checked = false;
             }
             else
             {
-                chartData.ShowPointAverageLabels = true;
+                chartData.cds.ShowPointAverageLabels = true;
                 menuItem.Checked = true;
             }
 
@@ -254,19 +262,59 @@ namespace PatientDatabase
 
         public void toggleIncludeOnlyEligibleValues(Chart chartOutcomeData, ToolStripMenuItem menuItem, RichTextBox rtxtQueryData, ListBox lstSeries)
         {
-            if (chartData.IncludeOnlyEligibleValues)
+            if (chartData.cds.IncludeOnlyEligibleValues)
             {
-                chartData.IncludeOnlyEligibleValues = false;
+                chartData.cds.IncludeOnlyEligibleValues = false;
                 menuItem.Checked = false;
             }
             else
             {
-                chartData.IncludeOnlyEligibleValues = true;
+                chartData.cds.IncludeOnlyEligibleValues = true;
                 menuItem.Checked = true;
             }
 
             chartData.loadChartData(chartOutcomeData);
             loadQueryData(rtxtQueryData, lstSeries);
+        }
+
+        public void drawListBoxSeriesItemColor(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+            else
+            {
+                e.DrawBackground();
+                Brush myBrush = Brushes.Black;
+                Graphics g = e.Graphics;
+
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                {
+                    if (chartData.cdi.ChartSeries[e.Index].Show)
+                    {
+                        myBrush = Brushes.White;
+                        g.FillRectangle(new SolidBrush(Color.DarkGreen), e.Bounds);
+                    }
+                    else
+                    {
+                        myBrush = Brushes.White;
+                        g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
+                    }
+                }
+                else
+                {
+                    if (chartData.cdi.ChartSeries[e.Index].Show)
+                    {
+                        myBrush = Brushes.White;
+                        g.FillRectangle(new SolidBrush(Color.SeaGreen), e.Bounds);
+                    }
+                    else
+                    {
+                        myBrush = Brushes.Black;
+                        g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                    }
+                }
+                e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
+                e.DrawFocusRectangle();
+            }
         }
 
 

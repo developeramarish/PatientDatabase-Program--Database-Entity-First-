@@ -84,7 +84,7 @@ namespace PatientDatabase
 
         private void btnRemoveQuery_Click(object sender, EventArgs e)
         {
-            logic.remove(lstQuery);
+            logic.remove(lstQuery, rtxtConditions);
         }
     }
 }

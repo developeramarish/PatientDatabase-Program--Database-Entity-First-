@@ -208,6 +208,7 @@ namespace PatientDatabase
             else return "N/A";
         }
 
+        // gets count of each value in list of points in order to assist in getting the mode
         private Dictionary<decimal, int> getValueCount(List<decimal> points)
         {
             Dictionary<decimal, int> valueCount = new Dictionary<decimal, int>();
@@ -263,6 +264,64 @@ namespace PatientDatabase
                 if (!includeOnlyEligibleValues || isPatientEligible(patientOutcomes, endInterval)) count++;              
             }
             return count;
+        }
+
+        public override Dictionary<int, int> getPatientsIntervalAverageMED(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
+        {
+            
+            Dictionary<int, List<decimal>> allPatientsIntervalMED = getAllPatientsIntervalMED(selectedProtocol, selectedOutcome,
+                startInterval, endInterval);
+            Dictionary<int, int> patientsAverageIntervalMED = getPatientsAverageIntervalMED(allPatientsIntervalMED);
+            return patientsAverageIntervalMED;
+        }
+
+        private Dictionary<int, List<decimal>> getAllPatientsIntervalMED(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval)
+        {
+            Dictionary<int, List<decimal>> patientsIntervalMEDs = new Dictionary<int, List<decimal>>();
+            List<Patient> patients = getPatients();
+            foreach (Patient patient in patients)
+            {
+                List<PatientOutcome> patientOutcomes = database.getPatientOutcome(patient)
+                    .Where(po =>
+                    po.Interval_Number >= startInterval.Number
+                    && po.Interval_Number <= endInterval.Number
+                    && po.Protocol.Equals(selectedProtocol)
+                    && po.Outcome.Equals(selectedOutcome)).ToList();
+
+                foreach (PatientOutcome po in patientOutcomes)
+                {
+                    List<PatientMedication> patientMedications = database.getPatientMedications(patient)
+                        .Where(pm =>
+                        pm.Start_Date <= po.Date
+                        && pm.End_Date > po.Date).ToList();
+
+                    decimal med = 0;
+                    foreach (PatientMedication pm in patientMedications)
+                    {
+                        med += Math.Round(pm.Mg * pm.Medication.Morphine_Equivalent__mg_, 2);
+                    }
+                    if (!patientsIntervalMEDs.ContainsKey(po.Interval_Number)) patientsIntervalMEDs.Add(po.Interval_Number, new List<decimal>());
+                    patientsIntervalMEDs[po.Interval_Number].Add(med);     
+                }
+
+            }
+            return patientsIntervalMEDs;
+        }
+
+        public Dictionary<int, int> getPatientsAverageIntervalMED(Dictionary<int, List<decimal>> allPatientsIntervalMED)
+        {
+            Dictionary<int, int> points = new Dictionary<int, int>();
+            foreach (KeyValuePair<int, List<decimal>> pair in allPatientsIntervalMED)
+            {
+                int interval = pair.Key;
+                decimal total = 0;
+                pair.Value.ForEach(p => total += p);
+                int count = pair.Value.Count;
+                decimal average = total / count;
+                int roundedAverage = Convert.ToInt32(Math.Round(average, 2));
+                points.Add(interval, roundedAverage);
+            }
+            return points;
         }
     }
 }

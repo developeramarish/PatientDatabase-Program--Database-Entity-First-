@@ -206,6 +206,7 @@
             // lstSeries
             // 
             this.lstSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstSeries.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstSeries.FormattingEnabled = true;
             this.lstSeries.HorizontalScrollbar = true;
@@ -214,6 +215,7 @@
             this.lstSeries.Name = "lstSeries";
             this.lstSeries.Size = new System.Drawing.Size(168, 124);
             this.lstSeries.TabIndex = 11;
+            this.lstSeries.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstSeries_DrawItem);
             this.lstSeries.SelectedIndexChanged += new System.EventHandler(this.lstSeries_SelectedIndexChanged);
             this.lstSeries.DoubleClick += new System.EventHandler(this.lstSeries_DoubleClick);
             // 

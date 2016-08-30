@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PatientDatabase
 {
-    public enum GraphType
+    public enum ChartType
     {
-        LINE, BAR, POINT
+        LINE, POINT
     }
 }

@@ -32,7 +32,9 @@ namespace PatientDatabase
 
         public void loadConditions(RichTextBox rtxtConditions, ListBox lstQuery)
         {
-            rtxtConditions.Text = queryEntityCollection.QueryEntities[lstQuery.SelectedIndex].queryToString();
+            rtxtConditions.Clear();
+            if (lstQuery.SelectedIndex >= 0)         
+                rtxtConditions.Text = queryEntityCollection.QueryEntities[lstQuery.SelectedIndex].queryToString();          
         }
 
         public void addQuery(ListBox lstQuery)
@@ -129,7 +131,7 @@ namespace PatientDatabase
             return copiedQueries;
         }
 
-        public void remove(ListBox lstQuery)
+        public void remove(ListBox lstQuery, RichTextBox rtxtConditions)
         {
             if (queryEntityCollection.QueryEntities.Count > 0)
             {
@@ -143,6 +145,7 @@ namespace PatientDatabase
                     else commonUI.setListBoxSelectedIndex(lstQuery, 0);
                 }
             }
+            loadConditions(rtxtConditions, lstQuery);
         }
     }
 }

@@ -25,18 +25,16 @@ namespace PatientDatabase
             this.patient = patient;
             database = new DatabaseAccess();
             chartData = new ChartData();
+            chartData.cds.ShowPointAverageLabels = true;
+            chartData.cds.IncludeOnlyEligibleValues = false;
             commonUI = new CommonUIMethodsAndFunctions();
         }
 
-        public void onFormLoad(Panel panelGeneral, Panel panelChart)
+        public void onFormLoad(Panel panelGeneral, Panel panelChart, Panel panelMedicalData)
         {
-
-
-
-
             loadPatientImage(panelGeneral);
             loadPatientGeneralData(panelGeneral);
-
+            loadMedicalData(panelMedicalData);
             loadChartData(panelChart);
         }
 
@@ -76,6 +74,14 @@ namespace PatientDatabase
             dgvPatientGeneralInfo.Rows.Add("Date Added:", patient.Date_Entered_Into_System.ToShortDateString());
         }
 
+        private void loadMedicalData(Panel panelMedicalData)
+        {
+            ComboBox cboInterval = (ComboBox)commonUI.getControlFromPanel(panelMedicalData, "cboMedicalDataInterval");
+            DataGridView dgvMedicalData = (DataGridView)commonUI.getControlFromPanel(panelMedicalData, "dgvMedicalData");
+
+
+        }
+
         private void loadChartData(Panel panelChart)
         {
             Panel panelChartOutline = (Panel)commonUI.getControlFromPanel(panelChart, "panelChartOutline");
@@ -86,9 +92,9 @@ namespace PatientDatabase
             ComboBox cboEndInterval = (ComboBox)commonUI.getControlFromPanel(panelChart, "cboEndInterval");
 
             callLocation = Call_Location.LOAD;
-            chartData.ShowPointAverageLabels = true;
-            chartData.loadChartSeries(patient);
-            chartData.loadProtocols();
+            chartData.cds.ShowPointAverageLabels = true;
+            chartData.cdi.loadChartSeries(patient);
+            chartData.cdi.loadProtocols();
             loadProtocolComboBox(cboProtocol);
             commonUI.setComboBoxSelectedIndex(cboProtocol, 0);
             loadChart(chartOutcomeData);
@@ -98,10 +104,10 @@ namespace PatientDatabase
         public void ProtocolComboBoxIndexChanged(ComboBox cboProtocol, ComboBox cboOutcome, ComboBox cboEndInterval, Chart chartOutcomeData)
         {
             setCallLocation(Call_Location.PROTOCOL);
-            chartData.SelectedProtocol = chartData.Protocols[cboProtocol.SelectedIndex];
-            chartData.loadOutcomes();
-            chartData.loadIntervals();
-            chartData.loadEndIntervals();
+            chartData.cdi.SelectedProtocol = chartData.cdi.Protocols[cboProtocol.SelectedIndex];
+            chartData.cdi.loadOutcomes();
+            chartData.cdi.loadIntervals();
+            chartData.cdi.loadEndIntervals();
             loadOutcomeComboBox(cboOutcome);
             loadEndIntervalComboBox(cboEndInterval);
             commonUI.setComboBoxSelectedIndex(cboOutcome, 0);
@@ -112,26 +118,26 @@ namespace PatientDatabase
         public void OutcomeComboBoxIndexChanged(ComboBox cboOutcome, Chart chartOutcomeData)
         {
             setCallLocation(Call_Location.OUTCOME);
-            chartData.SelectedOutcome = chartData.Outcomes[cboOutcome.SelectedIndex];
+            chartData.cdi.SelectedOutcome = chartData.cdi.Outcomes[cboOutcome.SelectedIndex];
             loadDataFromComboBoxSelectedIndexChange(Call_Location.OUTCOME, chartOutcomeData);
         }
 
         public void StartIntervalComboBoxIndexChanged(ComboBox cboStartInterval, Chart chartOutcomeData)
         {
             setCallLocation(Call_Location.START_INTERVAL);
-            chartData.SelectedStartInterval = chartData.StartIntervals[cboStartInterval.SelectedIndex];
+            chartData.cdi.SelectedStartInterval = chartData.cdi.StartIntervals[cboStartInterval.SelectedIndex];
             loadDataFromComboBoxSelectedIndexChange(Call_Location.START_INTERVAL, chartOutcomeData);
         }
 
         public void EndIntervalComboBoxIndexChanged(ComboBox cboEndInterval, ComboBox cboStartInterval, Chart chartOutcomeData)
         {
             setCallLocation(Call_Location.END_INTERVAL);
-            chartData.SelectedEndInterval = chartData.EndIntervals[cboEndInterval.SelectedIndex];
-            chartData.loadStartIntervals();
+            chartData.cdi.SelectedEndInterval = chartData.cdi.EndIntervals[cboEndInterval.SelectedIndex];
+            chartData.cdi.loadStartIntervals();
             int currentStartIntervalIndex = cboStartInterval.SelectedIndex;
             loadStartIntervalComboBox(cboStartInterval);
-            if (chartData.SelectedStartInterval == null
-                || chartData.SelectedStartInterval.Number >= chartData.SelectedEndInterval.Number)
+            if (chartData.cdi.SelectedStartInterval == null
+                || chartData.cdi.SelectedStartInterval.Number >= chartData.cdi.SelectedEndInterval.Number)
             {
                 commonUI.setComboBoxSelectedIndex(cboStartInterval, 0);
             }
@@ -142,25 +148,25 @@ namespace PatientDatabase
         private void loadProtocolComboBox(ComboBox cboProtocol)
         {
             cboProtocol.Items.Clear();
-            chartData.Protocols.ForEach(p => cboProtocol.Items.Add(p.Name));
+            chartData.cdi.Protocols.ForEach(p => cboProtocol.Items.Add(p.Name));
         }
 
         private void loadOutcomeComboBox(ComboBox cboOutcome)
         {
             cboOutcome.Items.Clear();
-            chartData.Outcomes.ForEach(o => cboOutcome.Items.Add(o.Name));
+            chartData.cdi.Outcomes.ForEach(o => cboOutcome.Items.Add(o.Name));
         }
 
         private void loadStartIntervalComboBox(ComboBox cboStartInterval)
         {
             cboStartInterval.Items.Clear();
-            chartData.StartIntervals.ForEach(i => cboStartInterval.Items.Add(i.getMonthLabel()));
+            chartData.cdi.StartIntervals.ForEach(i => cboStartInterval.Items.Add(i.getMonthLabel()));
         }
 
         private void loadEndIntervalComboBox(ComboBox cboEndInterval)
         {
             cboEndInterval.Items.Clear();
-            chartData.EndIntervals.ForEach(i => cboEndInterval.Items.Add(i.getMonthLabel()));
+            chartData.cdi.EndIntervals.ForEach(i => cboEndInterval.Items.Add(i.getMonthLabel()));
         }
 
         private enum Call_Location
@@ -185,6 +191,66 @@ namespace PatientDatabase
         private void loadChart(Chart chartOutcomeData)
         {
             chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void toggleIntervalViewType(Chart chartOutcomeData, ToolStripMenuItem menuItem)
+        {
+            if (chartData.cds.ShowInBetweenIntervals)
+            {
+                chartData.cds.ShowInBetweenIntervals = false;
+                menuItem.Checked = true;
+            }
+            else
+            {
+                chartData.cds.ShowInBetweenIntervals = true;
+                menuItem.Checked = false;
+            }
+
+            chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void setChartYAxisInterval(int interval, Chart chartOutcomeData, ToolStripMenuItem menuItem,
+            ToolStripMenuItem yAxisScaleToolStripMenuItem)
+        {
+            chartData.cds.YAxisInterval = interval;
+
+            foreach (ToolStripMenuItem item in yAxisScaleToolStripMenuItem.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            menuItem.Checked = true;
+
+            chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void toggleChartGridLines(Chart chartOutcomeData, ToolStripMenuItem menuItem)
+        {
+            if (chartData.cds.ShowGridLines)
+            {
+                chartData.cds.ShowGridLines = false;
+                menuItem.Checked = false;
+            }
+            else
+            {
+                chartData.cds.ShowGridLines = true;
+                menuItem.Checked = true;
+            }
+
+            chartData.loadChartData(chartOutcomeData);
+        }
+
+        public void changeChartDimensions(Size size, Chart chartOutcomeData,
+             ToolStripMenuItem parentMenuItem, ToolStripMenuItem selectedMenuItem,
+             Panel panelChartOutline)
+        {
+            foreach (ToolStripMenuItem item in parentMenuItem.DropDownItems)
+            {
+                item.Checked = false;
+            }
+            selectedMenuItem.Checked = true;
+            chartOutcomeData.MinimumSize = size;
+            chartOutcomeData.Size = size;
+            panelChartOutline.AutoScrollMinSize = size;
         }
     }
 }

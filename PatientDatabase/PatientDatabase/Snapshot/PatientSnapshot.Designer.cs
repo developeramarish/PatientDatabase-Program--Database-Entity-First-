@@ -33,8 +33,25 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.intervalOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onlyShowStartAndEndToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yAxisScaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YAxisInterval20toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YAxisInterval10toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YAxisInterval5toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.widthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StandardWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LargeWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.heightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StandardHeightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LargeHeightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -47,7 +64,6 @@
             this.panelMedicalData = new System.Windows.Forms.Panel();
             this.cboMedicalDataInterval = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.rtxtMedicalData = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,6 +76,9 @@
             this.panelChart = new System.Windows.Forms.Panel();
             this.panelChartOutline = new System.Windows.Forms.Panel();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dgvMedicalData = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelGeneral.SuspendLayout();
@@ -69,13 +88,15 @@
             this.panelChart.SuspendLayout();
             this.panelChartOutline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicalData)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.chartToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1337, 24);
@@ -87,6 +108,133 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // chartToolStripMenuItem
+            // 
+            this.chartToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.intervalOptionsToolStripMenuItem,
+            this.yAxisScaleToolStripMenuItem,
+            this.showGridToolStripMenuItem,
+            this.sizeToolStripMenuItem});
+            this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.chartToolStripMenuItem.Text = "Chart";
+            // 
+            // intervalOptionsToolStripMenuItem
+            // 
+            this.intervalOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onlyShowStartAndEndToolStripMenuItem});
+            this.intervalOptionsToolStripMenuItem.Name = "intervalOptionsToolStripMenuItem";
+            this.intervalOptionsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.intervalOptionsToolStripMenuItem.Text = "Interval Options";
+            // 
+            // onlyShowStartAndEndToolStripMenuItem
+            // 
+            this.onlyShowStartAndEndToolStripMenuItem.Name = "onlyShowStartAndEndToolStripMenuItem";
+            this.onlyShowStartAndEndToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.onlyShowStartAndEndToolStripMenuItem.Text = "Only Show Start and End";
+            this.onlyShowStartAndEndToolStripMenuItem.Click += new System.EventHandler(this.onlyShowStartAndEndToolStripMenuItem_Click);
+            // 
+            // yAxisScaleToolStripMenuItem
+            // 
+            this.yAxisScaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.YAxisInterval20toolStripMenuItem,
+            this.YAxisInterval10toolStripMenuItem,
+            this.YAxisInterval5toolStripMenuItem});
+            this.yAxisScaleToolStripMenuItem.Name = "yAxisScaleToolStripMenuItem";
+            this.yAxisScaleToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.yAxisScaleToolStripMenuItem.Text = "Y Axis Scale";
+            // 
+            // YAxisInterval20toolStripMenuItem
+            // 
+            this.YAxisInterval20toolStripMenuItem.Checked = true;
+            this.YAxisInterval20toolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.YAxisInterval20toolStripMenuItem.Name = "YAxisInterval20toolStripMenuItem";
+            this.YAxisInterval20toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval20toolStripMenuItem.Text = "20";
+            this.YAxisInterval20toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval20toolStripMenuItem_Click);
+            // 
+            // YAxisInterval10toolStripMenuItem
+            // 
+            this.YAxisInterval10toolStripMenuItem.Name = "YAxisInterval10toolStripMenuItem";
+            this.YAxisInterval10toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval10toolStripMenuItem.Text = "10";
+            this.YAxisInterval10toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval10toolStripMenuItem_Click);
+            // 
+            // YAxisInterval5toolStripMenuItem
+            // 
+            this.YAxisInterval5toolStripMenuItem.Name = "YAxisInterval5toolStripMenuItem";
+            this.YAxisInterval5toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval5toolStripMenuItem.Text = "5";
+            this.YAxisInterval5toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval5toolStripMenuItem_Click);
+            // 
+            // showGridToolStripMenuItem
+            // 
+            this.showGridToolStripMenuItem.Checked = true;
+            this.showGridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
+            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.showGridToolStripMenuItem.Text = "Show Grid";
+            this.showGridToolStripMenuItem.Click += new System.EventHandler(this.showGridToolStripMenuItem_Click);
+            // 
+            // sizeToolStripMenuItem
+            // 
+            this.sizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.widthToolStripMenuItem,
+            this.heightToolStripMenuItem});
+            this.sizeToolStripMenuItem.Name = "sizeToolStripMenuItem";
+            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.sizeToolStripMenuItem.Text = "Size";
+            // 
+            // widthToolStripMenuItem
+            // 
+            this.widthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StandardWidthToolStripMenuItem,
+            this.LargeWidthToolStripMenuItem});
+            this.widthToolStripMenuItem.Name = "widthToolStripMenuItem";
+            this.widthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.widthToolStripMenuItem.Text = "Width";
+            // 
+            // StandardWidthToolStripMenuItem
+            // 
+            this.StandardWidthToolStripMenuItem.Checked = true;
+            this.StandardWidthToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.StandardWidthToolStripMenuItem.Name = "StandardWidthToolStripMenuItem";
+            this.StandardWidthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.StandardWidthToolStripMenuItem.Text = "Standard";
+            this.StandardWidthToolStripMenuItem.Click += new System.EventHandler(this.StandardWidthToolStripMenuItem_Click);
+            // 
+            // LargeWidthToolStripMenuItem
+            // 
+            this.LargeWidthToolStripMenuItem.Name = "LargeWidthToolStripMenuItem";
+            this.LargeWidthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LargeWidthToolStripMenuItem.Text = "Large";
+            this.LargeWidthToolStripMenuItem.Click += new System.EventHandler(this.LargeWidthToolStripMenuItem_Click);
+            // 
+            // heightToolStripMenuItem
+            // 
+            this.heightToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StandardHeightToolStripMenuItem,
+            this.LargeHeightToolStripMenuItem});
+            this.heightToolStripMenuItem.Name = "heightToolStripMenuItem";
+            this.heightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.heightToolStripMenuItem.Text = "Height";
+            // 
+            // StandardHeightToolStripMenuItem
+            // 
+            this.StandardHeightToolStripMenuItem.Checked = true;
+            this.StandardHeightToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.StandardHeightToolStripMenuItem.Name = "StandardHeightToolStripMenuItem";
+            this.StandardHeightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.StandardHeightToolStripMenuItem.Text = "Standard";
+            this.StandardHeightToolStripMenuItem.Click += new System.EventHandler(this.StandardHeightToolStripMenuItem_Click);
+            // 
+            // LargeHeightToolStripMenuItem
+            // 
+            this.LargeHeightToolStripMenuItem.Name = "LargeHeightToolStripMenuItem";
+            this.LargeHeightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LargeHeightToolStripMenuItem.Text = "Large";
+            this.LargeHeightToolStripMenuItem.Click += new System.EventHandler(this.LargeHeightToolStripMenuItem_Click);
             // 
             // panel3
             // 
@@ -218,9 +366,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMedicalData.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelMedicalData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMedicalData.Controls.Add(this.dgvMedicalData);
             this.panelMedicalData.Controls.Add(this.cboMedicalDataInterval);
             this.panelMedicalData.Controls.Add(this.label6);
-            this.panelMedicalData.Controls.Add(this.rtxtMedicalData);
             this.panelMedicalData.Location = new System.Drawing.Point(1052, 85);
             this.panelMedicalData.Name = "panelMedicalData";
             this.panelMedicalData.Size = new System.Drawing.Size(273, 571);
@@ -246,18 +394,6 @@
             this.label6.Size = new System.Drawing.Size(65, 20);
             this.label6.TabIndex = 1;
             this.label6.Text = "Interval:";
-            // 
-            // rtxtMedicalData
-            // 
-            this.rtxtMedicalData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtMedicalData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtxtMedicalData.Location = new System.Drawing.Point(3, 39);
-            this.rtxtMedicalData.Name = "rtxtMedicalData";
-            this.rtxtMedicalData.Size = new System.Drawing.Size(265, 527);
-            this.rtxtMedicalData.TabIndex = 0;
-            this.rtxtMedicalData.Text = "";
             // 
             // label5
             // 
@@ -388,6 +524,8 @@
             this.panelChartOutline.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelChartOutline.AutoScroll = true;
+            this.panelChartOutline.AutoScrollMinSize = new System.Drawing.Size(747, 409);
             this.panelChartOutline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelChartOutline.Controls.Add(this.chartOutcomeData);
             this.panelChartOutline.Location = new System.Drawing.Point(3, 81);
@@ -403,14 +541,69 @@
             legend1.Name = "Legend1";
             this.chartOutcomeData.Legends.Add(legend1);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
+            this.chartOutcomeData.MinimumSize = new System.Drawing.Size(747, 409);
             this.chartOutcomeData.Name = "chartOutcomeData";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartOutcomeData.Series.Add(series1);
-            this.chartOutcomeData.Size = new System.Drawing.Size(745, 407);
+            this.chartOutcomeData.Size = new System.Drawing.Size(747, 409);
             this.chartOutcomeData.TabIndex = 0;
             this.chartOutcomeData.Text = "chart1";
+            // 
+            // dgvMedicalData
+            // 
+            this.dgvMedicalData.AllowUserToAddRows = false;
+            this.dgvMedicalData.AllowUserToDeleteRows = false;
+            this.dgvMedicalData.AllowUserToResizeColumns = false;
+            this.dgvMedicalData.AllowUserToResizeRows = false;
+            this.dgvMedicalData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvMedicalData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvMedicalData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvMedicalData.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMedicalData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvMedicalData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMedicalData.ColumnHeadersVisible = false;
+            this.dgvMedicalData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMedicalData.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvMedicalData.Location = new System.Drawing.Point(3, 39);
+            this.dgvMedicalData.Name = "dgvMedicalData";
+            this.dgvMedicalData.ReadOnly = true;
+            this.dgvMedicalData.RowHeadersVisible = false;
+            this.dgvMedicalData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMedicalData.Size = new System.Drawing.Size(265, 527);
+            this.dgvMedicalData.TabIndex = 3;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn1.HeaderText = "";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 5;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewTextBoxColumn2.HeaderText = "";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 5;
             // 
             // PatientSnapshot
             // 
@@ -426,6 +619,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(1120, 500);
             this.Name = "PatientSnapshot";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PatientSnapshot";
@@ -443,6 +637,7 @@
             this.panelChart.PerformLayout();
             this.panelChartOutline.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicalData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,12 +665,29 @@
         private System.Windows.Forms.Panel panelChart;
         private System.Windows.Forms.Panel panelChartOutline;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartOutcomeData;
-        private System.Windows.Forms.RichTextBox rtxtMedicalData;
         private System.Windows.Forms.ComboBox cboMedicalDataInterval;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picPatientPicture;
         private System.Windows.Forms.DataGridView dgvPatientGeneralInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cInfoHeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn cInfo;
+        private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem intervalOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yAxisScaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showGridToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onlyShowStartAndEndToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem YAxisInterval20toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem YAxisInterval10toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem YAxisInterval5toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem widthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StandardWidthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LargeWidthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem heightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StandardHeightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LargeHeightToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dgvMedicalData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

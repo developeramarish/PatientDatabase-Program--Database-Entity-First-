@@ -38,5 +38,10 @@ namespace PatientDatabase
             }
             return allPoints;
         }
+
+        public override Dictionary<int, int> getPatientsIntervalAverageMED(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues)
+        {
+            return new Dictionary<int, int>();
+        }
     }
 }

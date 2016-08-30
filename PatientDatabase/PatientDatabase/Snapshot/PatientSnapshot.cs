@@ -13,17 +13,21 @@ namespace PatientDatabase
     public partial class PatientSnapshot : Form
     {
         PatientSnapshotLogic logic;
-
+        Size formStandardSize;
+        Size chartStandardSize;
         public PatientSnapshot(Patient patient)
         {
             InitializeComponent();
             logic = new PatientSnapshotLogic(patient);
+            formStandardSize = new Size(this.Width, this.Height);
+            chartStandardSize = new Size(chartOutcomeData.Width, chartOutcomeData.Height);
         }
 
         private void PatientSnapshot_Load(object sender, EventArgs e)
         {
             GlobalFormManager.FormOpen();
-            logic.onFormLoad(panelGeneral, panelChart);
+            logic.onFormLoad(panelGeneral, panelChart, panelMedicalData);
+            chartOutcomeData.Size = new Size(chartOutcomeData.Width, chartOutcomeData.Height);
         }
 
         private void PatientSnapshot_FormClosing(object sender, FormClosingEventArgs e)
@@ -65,6 +69,58 @@ namespace PatientDatabase
         private void cboEndInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
             logic.EndIntervalComboBoxIndexChanged(cboEndInterval, cboStartInterval, chartOutcomeData);
+        }
+
+        private void onlyShowStartAndEndToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.toggleIntervalViewType(chartOutcomeData, onlyShowStartAndEndToolStripMenuItem);
+        }
+
+        private void YAxisInterval20toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.setChartYAxisInterval(20, chartOutcomeData, YAxisInterval20toolStripMenuItem,
+               yAxisScaleToolStripMenuItem);
+        }
+
+        private void YAxisInterval10toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.setChartYAxisInterval(10, chartOutcomeData, YAxisInterval10toolStripMenuItem,
+               yAxisScaleToolStripMenuItem);
+        }
+
+        private void YAxisInterval5toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.setChartYAxisInterval(5, chartOutcomeData, YAxisInterval5toolStripMenuItem,
+               yAxisScaleToolStripMenuItem);
+        }
+
+        private void showGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.toggleChartGridLines(chartOutcomeData, showGridToolStripMenuItem);
+        }
+
+        private void StandardWidthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.changeChartDimensions(new Size(747, chartOutcomeData.Height), chartOutcomeData,
+                widthToolStripMenuItem, StandardWidthToolStripMenuItem, panelChartOutline);
+        }
+
+        private void LargeWidthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.changeChartDimensions(new Size(1447, chartOutcomeData.Height), chartOutcomeData,
+                widthToolStripMenuItem, LargeWidthToolStripMenuItem, panelChartOutline);
+        }
+
+        private void StandardHeightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.changeChartDimensions(new Size(chartOutcomeData.Width, 409), chartOutcomeData,
+                heightToolStripMenuItem, StandardHeightToolStripMenuItem, panelChartOutline);
+        }
+
+        private void LargeHeightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logic.changeChartDimensions(new Size(chartOutcomeData.Width, 908), chartOutcomeData,
+                heightToolStripMenuItem, LargeHeightToolStripMenuItem, panelChartOutline);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace PatientDatabase
 
         public abstract string getName();
         public abstract List<Patient> getPatients();
+        public abstract Dictionary<int, int> getPatientsIntervalAverageMED(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues);
         public abstract Dictionary<int, int> getPoints(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues);
 
         public virtual string getDataAnalysis(Protocol selectedProtocol, Outcome selectedOutcome, Interval startInterval, Interval endInterval, bool includeOnlyEligibleValues) { return ""; }

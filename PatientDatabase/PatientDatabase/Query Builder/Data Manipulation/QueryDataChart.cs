@@ -125,5 +125,12 @@ namespace PatientDatabase
         {
             logic.toggleIncludeOnlyEligibleValues(chartOutcomeData, includeOnlyEligibleValuesToolStripMenuItem, rtxtQueryData, lstSeries);
         }
+
+        private void lstSeries_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            logic.drawListBoxSeriesItemColor(sender, e);
+            
+        }
+    
     }
 }
