@@ -84,6 +84,7 @@
     <Compile Include="Query Builder\Data Manipulation\Graph\ChartDataInformation.cs" />
     <Compile Include="Query Builder\Data Manipulation\Graph\ChartDataSettings.cs" />
     <Compile Include="Query Builder\Data Manipulation\Graph\GraphType.cs" />
+    <Compile Include="Query Builder\Data Manipulation\Graph\LineGraph.cs" />
     <Compile Include="Snapshot\PatientSnapshot.cs">
       <SubType>Form</SubType>
     </Compile>

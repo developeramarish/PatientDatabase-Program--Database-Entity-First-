@@ -24,7 +24,7 @@ namespace PatientDatabase
         {
             this.patient = patient;
             database = new DatabaseAccess();
-            chartData = new ChartData();
+            chartData = new LineGraph();
             chartData.cds.ShowPointAverageLabels = true;
             chartData.cds.IncludeOnlyEligibleValues = false;
             commonUI = new CommonUIMethodsAndFunctions();

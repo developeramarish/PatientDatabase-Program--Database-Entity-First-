@@ -21,7 +21,7 @@ namespace PatientDatabase
         {
             database = new DatabaseAccess();
             commonUI = new CommonUIMethodsAndFunctions();
-            chartData = new ChartData();
+            chartData = new LineGraph();
             this.queryEntityCollection = queryEntityCollection;
             callLocation = Call_Location.NONE;
         }

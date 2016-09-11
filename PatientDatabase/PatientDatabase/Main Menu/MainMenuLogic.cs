@@ -37,6 +37,14 @@ namespace PatientDatabase
             List<Query> queries4 = new List<Query>();
             queries4.Add(new PatientQuery("Last Name", "Is Equal To", "Baez"));
             queryEntityCollection.QueryEntities.Add(new QueryEntity("Baez", queries4));
+
+            List<Query> queries5 = new List<Query>();
+            queries5.Add(new PatientQuery("Last Name", "Is Equal To", "Duncan"));
+            queryEntityCollection.QueryEntities.Add(new QueryEntity("Dunkey", queries5));
+
+            List<Query> queries6 = new List<Query>();
+            queries6.Add(new PatientQuery("Last Name", "Is Equal To", "Hoffman"));
+            queryEntityCollection.QueryEntities.Add(new QueryEntity("Hoffman", queries6));
         }
 
         public void onFormLoad()
