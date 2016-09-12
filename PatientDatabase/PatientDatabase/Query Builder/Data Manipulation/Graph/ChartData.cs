@@ -28,6 +28,10 @@ namespace PatientDatabase
         {
             chart.Series.Clear();
             foreach (var series in chart.Series) series.Points.Clear();
+        }
+
+        protected void ClearLabelData(Chart chart)
+        {
             chart.ChartAreas[0].AxisX.CustomLabels.Clear();
         }
 
@@ -47,6 +51,13 @@ namespace PatientDatabase
             cdi.ChartSeries[selectedIndex + 1] = temp;
         }
 
-        public abstract void SetUpPointAverageLabels(Chart chart);
+        public abstract void setUpChartLabels(Chart chart);
+
+        public Dictionary<int, int> getChartSeriesPoints(ChartSeries cs)
+        {
+            return cs.getPoints(
+                cdi.SelectedProtocol, cdi.SelectedOutcome,
+                cdi.SelectedStartInterval, cdi.SelectedEndInterval, cds.IncludeOnlyEligibleValues);
+        }
     }
 }

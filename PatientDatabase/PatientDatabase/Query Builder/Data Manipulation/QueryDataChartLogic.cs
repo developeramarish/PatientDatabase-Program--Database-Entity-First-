@@ -178,7 +178,8 @@ namespace PatientDatabase
         {
             loadQueryData(rtxtQueryData, lstSeries);
             chartData.cds.SelectedSeries = lstSeries.SelectedIndex;
-            chartData.SetUpPointAverageLabels(chartOutcomeData);
+            //chartData.setUpPointAverageLabels(chartOutcomeData, chartData.getChartSeriesPoints(chartData.cdi.ChartSeries[lstSeries.SelectedIndex]));
+            chartData.setUpChartLabels(chartOutcomeData);
         }
 
         private void loadQueryData(RichTextBox rtxtQueryData, ListBox lstSeries)

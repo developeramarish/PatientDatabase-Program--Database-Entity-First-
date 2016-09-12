@@ -32,16 +32,16 @@ namespace PatientDatabase
                 cds.setAxisXRange(chart, cdi);
                 cds.setChartAreaSettings(chart);
                 setUpChartLabels(chart);
-                //SetUpPointAverageLabels(chart);
-                //setUpMEDTags(chart);
             }
         }
 
-        protected Dictionary<int, int> getChartSeriesPoints(ChartSeries cs)
+        public override void setUpChartLabels(Chart chart)
         {
-            return cs.getPoints(
-                cdi.SelectedProtocol, cdi.SelectedOutcome,
-                cdi.SelectedStartInterval, cdi.SelectedEndInterval, cds.IncludeOnlyEligibleValues);
+            ClearLabelData(chart);
+            setUpChartIntervalLabels(chart);
+            Dictionary<int, int> selectedSeriesPoints = getChartSeriesPoints(cdi.ChartSeries[cds.SelectedSeries]);
+            setUpPointAverageLabels(chart, selectedSeriesPoints);
+            setUpMEDTags(chart);
         }
 
         // Adds new series to chart from the List of chartSeries objects created earlier
@@ -116,112 +116,120 @@ namespace PatientDatabase
         }
 
         // Adds custom chart labels to chart (inverval names)
-        private void setUpChartLabels(Chart chart)
+        private void setUpChartIntervalLabels(Chart chart)
         {
-            if (cdi.SelectedEndInterval.Number - cdi.SelectedStartInterval.Number != 0)
+            if (isMultipleIntervals() && cds.ShowInBetweenIntervals)
             {
                 double start = -.5 + cdi.SelectedStartInterval.Number;
-                if (cds.ShowInBetweenIntervals) // show all interval labels in between start and end
+                for (int i = cdi.SelectedStartInterval.Number; i <= cdi.SelectedEndInterval.Number; i++)
                 {
-                    for (int i = cdi.SelectedStartInterval.Number; i <= cdi.SelectedEndInterval.Number; i++)
-                    {
-                        double end = start + 1;
-                        int month = i * cdi.SelectedProtocol.Interval__Months_;
-                        chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, cdi.Intervals[i].getMonthLabel(), 0, LabelMarkStyle.None);
-                        start += 1;
-                    }
-                }
-                else // show only interval labels start and end
-                {
-                    chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, cdi.SelectedStartInterval.getMonthLabel(), 0, LabelMarkStyle.None);
-                    chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, cdi.SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+                    double end = start + 1;
+                    int month = i * cdi.SelectedProtocol.Interval__Months_;
+                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, cdi.Intervals[i].getMonthLabel(), 0, LabelMarkStyle.None);
+                    start += 1;
                 }
             }
-            else // if there is only one data point, draw only one label at start
+            else if (isMultipleIntervals() && cds.ShowInBetweenIntervals) // show only interval labels start and end
+            {
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, cdi.SelectedStartInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, cdi.SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
+            }
+            else if (!isMultipleIntervals()) // if there is only one data point, draw only one label at start
             {
                 chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, cdi.SelectedEndInterval.getMonthLabel(), 0, LabelMarkStyle.None);
             }
         }
 
         // if ShowPointAverageLabels is true, it shows the selected series' point values as custom labels under the interval labels
-        public override void SetUpPointAverageLabels(Chart chart)
+        public void setUpPointAverageLabels(Chart chart, Dictionary<int, int> points)
         {
-            if (cdi.ChartSeries[cds.SelectedSeries].Show)
+            if (cds.ShowPointAverageLabels && cdi.ChartSeries[cds.SelectedSeries].Show)
             {
-                if (cds.ShowPointAverageLabels)
+                if (isMultipleIntervals() && cds.ShowInBetweenIntervals)
                 {
-                    Dictionary<int, int> points = cdi.ChartSeries[cds.SelectedSeries].getPoints(cdi.SelectedProtocol, cdi.SelectedOutcome, cdi.SelectedStartInterval, cdi.SelectedEndInterval, cds.IncludeOnlyEligibleValues);
-                    if (cdi.SelectedEndInterval.Number - cdi.SelectedStartInterval.Number != 0)
+                    double start = -.5 + cdi.SelectedStartInterval.Number;
+                    for (int i = cdi.SelectedStartInterval.Number; i <= cdi.SelectedEndInterval.Number; i++)
                     {
-                        if (cds.ShowInBetweenIntervals) // show all interval labels in between start and end
+                        double end = start + 1;
+                        if (points.ContainsKey(i))
                         {
-                            double start = -.5 + cdi.SelectedStartInterval.Number;
-                            for (int i = cdi.SelectedStartInterval.Number; i <= cdi.SelectedEndInterval.Number; i++)
-                            {
-                                if (points.ContainsKey(i))
-                                {
-                                    double end = start + 1;
-                                    int month = i * cdi.SelectedProtocol.Interval__Months_;
-                                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "(" + points[i] + ")", 1, LabelMarkStyle.None);
-                                    start += 1;
-                                }
-                            }
+                            int month = i * cdi.SelectedProtocol.Interval__Months_;
+                            chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "OUT: " + points[i], 1, LabelMarkStyle.None);                            
                         }
-                        else // show only interval labels start and end
+                        else
                         {
-                            if (points.ContainsKey(cdi.SelectedStartInterval.Number))
-                                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "(" + points[cdi.SelectedStartInterval.Number] + ")", 1, LabelMarkStyle.None);
-                            if (points.ContainsKey(cdi.SelectedEndInterval.Number))
-                                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "(" + points[cdi.SelectedEndInterval.Number] + ")", 1, LabelMarkStyle.None);
+                            chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "OUT: N/A", 1, LabelMarkStyle.None);
                         }
-                    }
-                    else
-                    {
-                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "(" + points[cdi.SelectedStartInterval.Number] + ")", 1, LabelMarkStyle.None);
+                        start += 1;
                     }
                 }
+                else if (isMultipleIntervals() && !cds.ShowInBetweenIntervals) // show only interval labels start and end
+                {
+                    if (points.ContainsKey(cdi.SelectedStartInterval.Number))
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "OUT: " + points[cdi.SelectedStartInterval.Number], 1, LabelMarkStyle.None);
+                    else
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "OUT: N/A", 1, LabelMarkStyle.None);
+                    if (points.ContainsKey(cdi.SelectedEndInterval.Number))
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "OUT: " + points[cdi.SelectedEndInterval.Number], 1, LabelMarkStyle.None);
+                    else
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "OUT: N/A", 1, LabelMarkStyle.None);
+                }
+                else if (!isMultipleIntervals())
+                {
+                    if (points.ContainsKey(cdi.SelectedEndInterval.Number))
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "OUT: " + points[cdi.SelectedStartInterval.Number], 1, LabelMarkStyle.None);
+                    else
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "OUT: N/A", 1, LabelMarkStyle.None);
+                }
+
             }
         }
 
         public void setUpMEDTags(Chart chart)
         {
-            if (cdi.ChartSeries[cds.SelectedSeries].Show)
+            if (cds.ShowMEDTags && cdi.ChartSeries[cds.SelectedSeries].Show)
             {
-                if (cds.ShowMEDTags)
+                Dictionary<int, int> meds = cdi.ChartSeries[cds.SelectedSeries].getPatientsIntervalAverageMED(cdi.SelectedProtocol, cdi.SelectedOutcome, cdi.SelectedStartInterval, cdi.SelectedEndInterval, cds.IncludeOnlyEligibleValues);
+                if (isMultipleIntervals() && cds.ShowInBetweenIntervals)
                 {
-                    Dictionary<int, int> meds = cdi.ChartSeries[cds.SelectedSeries].getPatientsIntervalAverageMED(cdi.SelectedProtocol, cdi.SelectedOutcome, cdi.SelectedStartInterval, cdi.SelectedEndInterval, cds.IncludeOnlyEligibleValues);
-                    if (cdi.SelectedEndInterval.Number - cdi.SelectedStartInterval.Number != 0)
+                    double start = -.5 + cdi.SelectedStartInterval.Number;
+                    for (int i = cdi.SelectedStartInterval.Number; i <= cdi.SelectedEndInterval.Number; i++)
                     {
-                        if (cds.ShowInBetweenIntervals) // show all interval labels in between start and end
+                        double end = start + 1;
+                        if (meds.ContainsKey(i))
                         {
-                            double start = -.5 + cdi.SelectedStartInterval.Number;
-                            for (int i = cdi.SelectedStartInterval.Number; i <= cdi.SelectedEndInterval.Number; i++)
-                            {
-                                if (meds.ContainsKey(i))
-                                {
-                                    double end = start + 1;
-                                    int month = i * cdi.SelectedProtocol.Interval__Months_;
-                                    chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "MED: " + meds[i], 2, LabelMarkStyle.None);
-                                    start += 1;
-                                }
-                            }
+                            int month = i * cdi.SelectedProtocol.Interval__Months_;
+                            chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "MED: " + meds[i], 2, LabelMarkStyle.None);
+                            
                         }
-                        else // show only interval labels start and end
+                        else
                         {
-                            if (meds.ContainsKey(cdi.SelectedStartInterval.Number))
-                                chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "MED: " + meds[cdi.SelectedStartInterval.Number], 2, LabelMarkStyle.None);
-                            if (meds.ContainsKey(cdi.SelectedEndInterval.Number))
-                                chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "MED: " + meds[cdi.SelectedEndInterval.Number], 2, LabelMarkStyle.None);
+                            chart.ChartAreas[0].AxisX.CustomLabels.Add(start, end, "MED: N/A", 2, LabelMarkStyle.None);
                         }
+                        start += 1;
                     }
-
-                    else
-                    {
-                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "MED: " + meds[cdi.SelectedStartInterval.Number], 2, LabelMarkStyle.None);
-                    }
-
                 }
+                else if (isMultipleIntervals() && !cds.ShowInBetweenIntervals) // show only interval labels start and end
+                {
+                    if (meds.ContainsKey(cdi.SelectedStartInterval.Number))
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "MED: " + meds[cdi.SelectedStartInterval.Number], 2, LabelMarkStyle.None);
+                    else
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "MED: N/A", 2, LabelMarkStyle.None);
+                    if (meds.ContainsKey(cdi.SelectedEndInterval.Number))
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "MED: " + meds[cdi.SelectedEndInterval.Number], 2, LabelMarkStyle.None);
+                    else
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(.5, 1.5, "MED: N/A", 2, LabelMarkStyle.None);
+                }
+                else if (!isMultipleIntervals())
+                {
+                    if (meds.ContainsKey(cdi.SelectedEndInterval.Number))
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "MED: " + meds[cdi.SelectedStartInterval.Number], 2, LabelMarkStyle.None);
+                    else
+                        chart.ChartAreas[0].AxisX.CustomLabels.Add(-.5, .5, "MED: N/A", 2, LabelMarkStyle.None);
+                }
+
             }
+            
 
         }
     }

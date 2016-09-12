@@ -12,6 +12,8 @@ namespace PatientDatabase
         protected QueryEntity entity;
         protected Patient patient;
         protected DatabaseAccess database;
+        //public Dictionary<int, int> outcomePoints { get; set; }
+        //public Dictionary<int, int> medPoints { get; set; }
 
         public ChartSeries(QueryEntity entity, bool show)
         {
