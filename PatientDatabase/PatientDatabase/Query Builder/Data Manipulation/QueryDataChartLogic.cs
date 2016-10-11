@@ -82,7 +82,7 @@ namespace PatientDatabase
             int currentStartIntervalIndex = cboStartInterval.SelectedIndex;
             loadStartIntervalComboBox(cboStartInterval);
             if (chartData.cdi.SelectedStartInterval == null
-                || chartData.cdi.SelectedStartInterval.Number >= chartData.cdi.SelectedEndInterval.Number)
+                || chartData.cdi.SelectedStartInterval.Number > chartData.cdi.SelectedEndInterval.Number)
             {
                 commonUI.setComboBoxSelectedIndex(cboStartInterval, 0);
             }
@@ -201,17 +201,8 @@ namespace PatientDatabase
 
         public void toggleIntervalViewType(Chart chartOutcomeData, ToolStripMenuItem menuItem)
         {
-            if (chartData.cds.ShowInBetweenIntervals)
-            {
-                chartData.cds.ShowInBetweenIntervals = false;
-                menuItem.Checked = true;
-            }
-            else
-            {
-                chartData.cds.ShowInBetweenIntervals = true;
-                menuItem.Checked = false;
-            }
-
+            chartData.cds.ShowInBetweenIntervals = !chartData.cds.ShowInBetweenIntervals;
+            menuItem.Checked = chartData.cds.ShowInBetweenIntervals;
             chartData.loadChartData(chartOutcomeData);
         }
 
@@ -231,48 +222,23 @@ namespace PatientDatabase
 
         public void toggleChartGridLines(Chart chartOutcomeData, ToolStripMenuItem menuItem)
         {
-            if (chartData.cds.ShowGridLines)
-            {
-                chartData.cds.ShowGridLines = false;
-                menuItem.Checked = false;
-            }
-            else
-            {
-                chartData.cds.ShowGridLines = true;
-                menuItem.Checked = true;
-            }
+            chartData.cds.ShowGridLines = !chartData.cds.ShowGridLines;
+            menuItem.Checked = chartData.cds.ShowGridLines;
 
             chartData.loadChartData(chartOutcomeData);
         }
 
         public void toggleShowSelectedSeriesAverages(Chart chartOutcomeData, ToolStripMenuItem menuItem)
         {
-            if (chartData.cds.ShowPointAverageLabels)
-            {
-                chartData.cds.ShowPointAverageLabels = false;
-                menuItem.Checked = false;
-            }
-            else
-            {
-                chartData.cds.ShowPointAverageLabels = true;
-                menuItem.Checked = true;
-            }
-
+            chartData.cds.ShowPointAverageLabels = !chartData.cds.ShowPointAverageLabels;
+            menuItem.Checked = chartData.cds.ShowPointAverageLabels;
             chartData.loadChartData(chartOutcomeData);
         }
 
         public void toggleIncludeOnlyEligibleValues(Chart chartOutcomeData, ToolStripMenuItem menuItem, RichTextBox rtxtQueryData, ListBox lstSeries)
         {
-            if (chartData.cds.IncludeOnlyEligibleValues)
-            {
-                chartData.cds.IncludeOnlyEligibleValues = false;
-                menuItem.Checked = false;
-            }
-            else
-            {
-                chartData.cds.IncludeOnlyEligibleValues = true;
-                menuItem.Checked = true;
-            }
+            chartData.cds.IncludeOnlyEligibleValues = !chartData.cds.IncludeOnlyEligibleValues;
+            menuItem.Checked = chartData.cds.IncludeOnlyEligibleValues;
 
             chartData.loadChartData(chartOutcomeData);
             loadQueryData(rtxtQueryData, lstSeries);
@@ -313,6 +279,7 @@ namespace PatientDatabase
                         g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
                     }
                 }
+                //Font font = new Font("Microsoft Sans Serif", 12, FontStyle.Regular);
                 e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
                 e.DrawFocusRectangle();
             }

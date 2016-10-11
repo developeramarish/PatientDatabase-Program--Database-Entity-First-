@@ -20,6 +20,17 @@ namespace PatientDatabase
             return age;
         }
 
+        public decimal getMorphineEquivalentDose(DateTime intervalDate)
+        {
+            List<PatientMedication> patientMedication = database.getPatientMedications(this)
+                .Where(pm => pm.Start_Date <= intervalDate
+                && pm.End_Date > intervalDate).ToList();
+            decimal morphineEquivalentDose = 0;
+            patientMedication.ForEach(pm =>
+                morphineEquivalentDose += (pm.Mg * pm.Medication.Morphine_Equivalent__mg_));
+            return morphineEquivalentDose;
+        }
+
         public decimal getMorphineEquivalentDose(Protocol protocol, Interval interval)
         {
             List<PatientMedication> patientMedication = database.getPatientMedications(this)

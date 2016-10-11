@@ -56,6 +56,7 @@ namespace PatientDatabase
             chart.Series[seriesNumber].MarkerSize = 22;
         }
 
+        // adds points to chart based on settings set by chartData
         public void AddDataToChart(int seriesNumber, Dictionary<int, int> points, Chart chart)
         {
             if (points.Count > 0)
@@ -78,7 +79,7 @@ namespace PatientDatabase
                         }
                         else gap = true;
                     }
-                    if (points.Count == 1) chart.Series[seriesNumber].Points.AddXY(-1, 0);
+                    if (points.Count == 1) chart.Series[seriesNumber].Points.AddXY(-1, 0); // add extra point at -1 so the point at spot 0 will show up (need two points to make a line...)
                 }
                 // if multiple data points exist and only start and end intervals are to be shown
                 else if (isMultipleIntervals() && !cds.ShowInBetweenIntervals)

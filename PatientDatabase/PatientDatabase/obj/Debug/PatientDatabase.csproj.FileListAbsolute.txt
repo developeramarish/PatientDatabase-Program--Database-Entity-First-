@@ -39,3 +39,11 @@ C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Pr
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.QueryManager.resources
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.QueryDataChart.resources
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.PatientSnapshot.resources
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\NodaTime.dll
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\NodaTime.Serialization.JsonNet.dll
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\NodaTime.Testing.dll
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\NodaTime.xml
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\NodaTime.Serialization.JsonNet.xml
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\NodaTime.Testing.xml
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.TestQueryBuilder.resources
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.AnalyzeQueryData.resources

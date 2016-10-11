@@ -131,6 +131,5 @@ namespace PatientDatabase
             logic.drawListBoxSeriesItemColor(sender, e);
             
         }
-    
     }
 }

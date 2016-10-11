@@ -303,6 +303,7 @@
     <NavigationProperty Name="Treatment" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToTreatment" FromRole="PatientTreatment" ToRole="Treatment" />
     <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_Received" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="Problem">
     <Key>

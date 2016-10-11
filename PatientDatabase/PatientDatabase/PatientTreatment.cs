@@ -19,6 +19,7 @@ namespace PatientDatabase
         public int TreatmentID { get; set; }
         public System.DateTime Start_Date { get; set; }
         public System.DateTime End_Date { get; set; }
+        public System.DateTime Date_Received { get; set; }
     
         public virtual Patient Patient { get; set; }
         public virtual Treatment Treatment { get; set; }

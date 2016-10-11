@@ -156,6 +156,7 @@
     <Property Name="TreatmentID" Type="int" Nullable="false" />
     <Property Name="Start Date" Type="date" Nullable="false" />
     <Property Name="End Date" Type="date" Nullable="false" />
+    <Property Name="Date_Received" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="Problem">
     <Key>

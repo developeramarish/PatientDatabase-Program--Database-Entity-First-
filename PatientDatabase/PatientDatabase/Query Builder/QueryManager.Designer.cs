@@ -50,6 +50,7 @@
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnAddQuery = new System.Windows.Forms.Button();
             this.btnEditQuery = new System.Windows.Forms.Button();
+            this.btnAnalyze = new System.Windows.Forms.Button();
             this.mnuCommandStrip.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -144,6 +145,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnAnalyze);
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.btnDataChart);
             this.panel1.Controls.Add(this.btnDuplicate);
@@ -200,7 +202,7 @@
             // 
             this.btnDataChart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDataChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDataChart.Location = new System.Drawing.Point(529, 313);
+            this.btnDataChart.Location = new System.Drawing.Point(531, 354);
             this.btnDataChart.Name = "btnDataChart";
             this.btnDataChart.Size = new System.Drawing.Size(135, 34);
             this.btnDataChart.TabIndex = 34;
@@ -328,6 +330,17 @@
             this.btnEditQuery.UseVisualStyleBackColor = true;
             this.btnEditQuery.Click += new System.EventHandler(this.btnEditQuery_Click);
             // 
+            // btnAnalyze
+            // 
+            this.btnAnalyze.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAnalyze.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnalyze.Location = new System.Drawing.Point(531, 314);
+            this.btnAnalyze.Name = "btnAnalyze";
+            this.btnAnalyze.Size = new System.Drawing.Size(135, 34);
+            this.btnAnalyze.TabIndex = 36;
+            this.btnAnalyze.Text = "Analyze";
+            this.btnAnalyze.UseVisualStyleBackColor = true;
+            // 
             // QueryManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,5 +395,6 @@
         private System.Windows.Forms.Button btnDuplicate;
         private System.Windows.Forms.Button btnDataChart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button btnAnalyze;
     }
 }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.mnuCommandStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,19 +46,13 @@
             this.showSelectedSeriesAveragesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.valueOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeOnlyEligibleValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lstSeries = new System.Windows.Forms.ListBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.rtxtQueryData = new System.Windows.Forms.RichTextBox();
-            this.btnMoveUp = new System.Windows.Forms.Button();
-            this.btnMoveDown = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnToggle = new System.Windows.Forms.Button();
             this.cboEndInterval = new System.Windows.Forms.ComboBox();
             this.cboStartInterval = new System.Windows.Forms.ComboBox();
             this.cboOutcome = new System.Windows.Forms.ComboBox();
@@ -66,6 +60,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.rtxtQueryData = new System.Windows.Forms.RichTextBox();
+            this.btnMoveUp = new System.Windows.Forms.Button();
+            this.btnMoveDown = new System.Windows.Forms.Button();
+            this.btnToggle = new System.Windows.Forms.Button();
+            this.lstSeries = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.mnuCommandStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,7 +78,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(574, 67);
+            this.label1.Location = new System.Drawing.Point(346, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 20);
             this.label1.TabIndex = 1;
@@ -181,6 +181,8 @@
             // 
             // showSelectedSeriesAveragesToolStripMenuItem
             // 
+            this.showSelectedSeriesAveragesToolStripMenuItem.Checked = true;
+            this.showSelectedSeriesAveragesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showSelectedSeriesAveragesToolStripMenuItem.Name = "showSelectedSeriesAveragesToolStripMenuItem";
             this.showSelectedSeriesAveragesToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.showSelectedSeriesAveragesToolStripMenuItem.Text = "Show Selected Series Averages";
@@ -203,49 +205,22 @@
             this.includeOnlyEligibleValuesToolStripMenuItem.Text = "Include Only Eligible Values";
             this.includeOnlyEligibleValuesToolStripMenuItem.Click += new System.EventHandler(this.includeOnlyEligibleValuesToolStripMenuItem_Click);
             // 
-            // lstSeries
-            // 
-            this.lstSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstSeries.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lstSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstSeries.FormattingEnabled = true;
-            this.lstSeries.HorizontalScrollbar = true;
-            this.lstSeries.ItemHeight = 20;
-            this.lstSeries.Location = new System.Drawing.Point(1018, 42);
-            this.lstSeries.Name = "lstSeries";
-            this.lstSeries.Size = new System.Drawing.Size(168, 124);
-            this.lstSeries.TabIndex = 11;
-            this.lstSeries.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstSeries_DrawItem);
-            this.lstSeries.SelectedIndexChanged += new System.EventHandler(this.lstSeries_SelectedIndexChanged);
-            this.lstSeries.DoubleClick += new System.EventHandler(this.lstSeries_DoubleClick);
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(1055, 10);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 20);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Series Data";
-            // 
             // chartOutcomeData
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartOutcomeData.ChartAreas.Add(chartArea1);
+            chartArea7.Name = "ChartArea1";
+            this.chartOutcomeData.ChartAreas.Add(chartArea7);
             this.chartOutcomeData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartOutcomeData.Legends.Add(legend1);
+            legend7.Name = "Legend1";
+            this.chartOutcomeData.Legends.Add(legend7);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
             this.chartOutcomeData.Name = "chartOutcomeData";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartOutcomeData.Series.Add(series1);
-            this.chartOutcomeData.Size = new System.Drawing.Size(1007, 503);
+            series7.BorderWidth = 3;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chartOutcomeData.Series.Add(series7);
+            this.chartOutcomeData.Size = new System.Drawing.Size(960, 470);
             this.chartOutcomeData.TabIndex = 8;
             this.chartOutcomeData.Text = "chart1";
             // 
@@ -256,9 +231,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.chartOutcomeData);
-            this.panel1.Location = new System.Drawing.Point(3, 42);
+            this.panel1.Location = new System.Drawing.Point(3, 75);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1009, 505);
+            this.panel1.Size = new System.Drawing.Size(962, 472);
             this.panel1.TabIndex = 14;
             // 
             // panel2
@@ -268,70 +243,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.rtxtQueryData);
-            this.panel2.Controls.Add(this.btnMoveUp);
-            this.panel2.Controls.Add(this.btnMoveDown);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.btnToggle);
             this.panel2.Controls.Add(this.cboEndInterval);
             this.panel2.Controls.Add(this.cboStartInterval);
             this.panel2.Controls.Add(this.cboOutcome);
             this.panel2.Controls.Add(this.cboProtocol);
-            this.panel2.Controls.Add(this.lstSeries);
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.label8);
             this.panel2.Location = new System.Drawing.Point(12, 103);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1219, 553);
+            this.panel2.Size = new System.Drawing.Size(970, 553);
             this.panel2.TabIndex = 15;
-            // 
-            // rtxtQueryData
-            // 
-            this.rtxtQueryData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtQueryData.BackColor = System.Drawing.Color.White;
-            this.rtxtQueryData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtQueryData.Location = new System.Drawing.Point(1018, 209);
-            this.rtxtQueryData.Name = "rtxtQueryData";
-            this.rtxtQueryData.ReadOnly = true;
-            this.rtxtQueryData.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.rtxtQueryData.Size = new System.Drawing.Size(196, 337);
-            this.rtxtQueryData.TabIndex = 34;
-            this.rtxtQueryData.Text = "";
-            this.rtxtQueryData.WordWrap = false;
-            // 
-            // btnMoveUp
-            // 
-            this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveUp.Location = new System.Drawing.Point(1188, 67);
-            this.btnMoveUp.Name = "btnMoveUp";
-            this.btnMoveUp.Size = new System.Drawing.Size(26, 33);
-            this.btnMoveUp.TabIndex = 33;
-            this.btnMoveUp.Text = "Λ";
-            this.btnMoveUp.UseVisualStyleBackColor = true;
-            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
-            // 
-            // btnMoveDown
-            // 
-            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveDown.Location = new System.Drawing.Point(1188, 106);
-            this.btnMoveDown.Name = "btnMoveDown";
-            this.btnMoveDown.Size = new System.Drawing.Size(26, 33);
-            this.btnMoveDown.TabIndex = 32;
-            this.btnMoveDown.Text = "V";
-            this.btnMoveDown.UseVisualStyleBackColor = true;
-            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(768, 10);
+            this.label5.Location = new System.Drawing.Point(482, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 20);
             this.label5.TabIndex = 28;
@@ -339,9 +270,10 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(496, 10);
+            this.label4.Location = new System.Drawing.Point(476, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 20);
             this.label4.TabIndex = 27;
@@ -349,9 +281,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(244, 10);
+            this.label3.Location = new System.Drawing.Point(242, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 26;
@@ -359,32 +292,22 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(2, 10);
+            this.label2.Location = new System.Drawing.Point(248, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 20);
             this.label2.TabIndex = 25;
             this.label2.Text = "Protocol:";
             // 
-            // btnToggle
-            // 
-            this.btnToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToggle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnToggle.Location = new System.Drawing.Point(1018, 172);
-            this.btnToggle.Name = "btnToggle";
-            this.btnToggle.Size = new System.Drawing.Size(196, 31);
-            this.btnToggle.TabIndex = 23;
-            this.btnToggle.Text = "Toggle On/Off";
-            this.btnToggle.UseVisualStyleBackColor = true;
-            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
-            // 
             // cboEndInterval
             // 
+            this.cboEndInterval.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cboEndInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEndInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEndInterval.FormattingEnabled = true;
-            this.cboEndInterval.Location = new System.Drawing.Point(872, 7);
+            this.cboEndInterval.Location = new System.Drawing.Point(586, 41);
             this.cboEndInterval.Name = "cboEndInterval";
             this.cboEndInterval.Size = new System.Drawing.Size(140, 28);
             this.cboEndInterval.TabIndex = 21;
@@ -392,10 +315,11 @@
             // 
             // cboStartInterval
             // 
+            this.cboStartInterval.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cboStartInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStartInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStartInterval.FormattingEnabled = true;
-            this.cboStartInterval.Location = new System.Drawing.Point(606, 7);
+            this.cboStartInterval.Location = new System.Drawing.Point(586, 7);
             this.cboStartInterval.Name = "cboStartInterval";
             this.cboStartInterval.Size = new System.Drawing.Size(140, 28);
             this.cboStartInterval.TabIndex = 20;
@@ -403,10 +327,11 @@
             // 
             // cboOutcome
             // 
+            this.cboOutcome.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cboOutcome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboOutcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboOutcome.FormattingEnabled = true;
-            this.cboOutcome.Location = new System.Drawing.Point(328, 7);
+            this.cboOutcome.Location = new System.Drawing.Point(325, 41);
             this.cboOutcome.Name = "cboOutcome";
             this.cboOutcome.Size = new System.Drawing.Size(140, 28);
             this.cboOutcome.TabIndex = 19;
@@ -414,10 +339,11 @@
             // 
             // cboProtocol
             // 
+            this.cboProtocol.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cboProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProtocol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboProtocol.FormattingEnabled = true;
-            this.cboProtocol.Location = new System.Drawing.Point(79, 7);
+            this.cboProtocol.Location = new System.Drawing.Point(325, 7);
             this.cboProtocol.Name = "cboProtocol";
             this.cboProtocol.Size = new System.Drawing.Size(140, 28);
             this.cboProtocol.TabIndex = 18;
@@ -458,18 +384,101 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // rtxtQueryData
+            // 
+            this.rtxtQueryData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtxtQueryData.BackColor = System.Drawing.Color.White;
+            this.rtxtQueryData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxtQueryData.Location = new System.Drawing.Point(988, 302);
+            this.rtxtQueryData.Name = "rtxtQueryData";
+            this.rtxtQueryData.ReadOnly = true;
+            this.rtxtQueryData.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.rtxtQueryData.Size = new System.Drawing.Size(247, 354);
+            this.rtxtQueryData.TabIndex = 40;
+            this.rtxtQueryData.Text = "";
+            this.rtxtQueryData.WordWrap = false;
+            // 
+            // btnMoveUp
+            // 
+            this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveUp.Location = new System.Drawing.Point(1211, 160);
+            this.btnMoveUp.Name = "btnMoveUp";
+            this.btnMoveUp.Size = new System.Drawing.Size(26, 33);
+            this.btnMoveUp.TabIndex = 39;
+            this.btnMoveUp.Text = "Λ";
+            this.btnMoveUp.UseVisualStyleBackColor = true;
+            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
+            // 
+            // btnMoveDown
+            // 
+            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveDown.Location = new System.Drawing.Point(1211, 199);
+            this.btnMoveDown.Name = "btnMoveDown";
+            this.btnMoveDown.Size = new System.Drawing.Size(26, 33);
+            this.btnMoveDown.TabIndex = 38;
+            this.btnMoveDown.Text = "V";
+            this.btnMoveDown.UseVisualStyleBackColor = true;
+            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
+            // 
+            // btnToggle
+            // 
+            this.btnToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToggle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnToggle.Location = new System.Drawing.Point(988, 265);
+            this.btnToggle.Name = "btnToggle";
+            this.btnToggle.Size = new System.Drawing.Size(249, 31);
+            this.btnToggle.TabIndex = 37;
+            this.btnToggle.Text = "Toggle On/Off";
+            this.btnToggle.UseVisualStyleBackColor = true;
+            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
+            // 
+            // lstSeries
+            // 
+            this.lstSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstSeries.FormattingEnabled = true;
+            this.lstSeries.HorizontalScrollbar = true;
+            this.lstSeries.ItemHeight = 20;
+            this.lstSeries.Location = new System.Drawing.Point(988, 135);
+            this.lstSeries.Name = "lstSeries";
+            this.lstSeries.Size = new System.Drawing.Size(219, 124);
+            this.lstSeries.TabIndex = 36;
+            this.lstSeries.Click += new System.EventHandler(this.lstSeries_SelectedIndexChanged);
+            this.lstSeries.DoubleClick += new System.EventHandler(this.lstSeries_DoubleClick);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(1057, 103);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 20);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "Series Data";
+            // 
             // QueryDataChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(1243, 668);
+            this.Controls.Add(this.rtxtQueryData);
+            this.Controls.Add(this.btnMoveUp);
+            this.Controls.Add(this.btnMoveDown);
+            this.Controls.Add(this.btnToggle);
+            this.Controls.Add(this.lstSeries);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mnuCommandStrip);
             this.MainMenuStrip = this.mnuCommandStrip;
-            this.MinimumSize = new System.Drawing.Size(1259, 707);
+            this.MinimumSize = new System.Drawing.Size(790, 0);
             this.Name = "QueryDataChart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QueryDataChart";
@@ -491,16 +500,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip mnuCommandStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ListBox lstSeries;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartOutcomeData;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cboEndInterval;
         private System.Windows.Forms.ComboBox cboStartInterval;
         private System.Windows.Forms.ComboBox cboOutcome;
         private System.Windows.Forms.ComboBox cboProtocol;
-        private System.Windows.Forms.Button btnToggle;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -508,9 +513,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnMoveUp;
-        private System.Windows.Forms.Button btnMoveDown;
-        private System.Windows.Forms.RichTextBox rtxtQueryData;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem intervalOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem onlyShowStartAndEndToolStripMenuItem;
@@ -523,5 +525,12 @@
         private System.Windows.Forms.ToolStripMenuItem showSelectedSeriesAveragesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem valueOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeOnlyEligibleValuesToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox rtxtQueryData;
+        private System.Windows.Forms.Button btnMoveUp;
+        private System.Windows.Forms.Button btnMoveDown;
+        private System.Windows.Forms.Button btnToggle;
+        private System.Windows.Forms.ListBox lstSeries;
+        private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.DataVisualization.Charting.Chart chartOutcomeData;
     }
 }

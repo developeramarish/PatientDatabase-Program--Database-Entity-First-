@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodaTime;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -46,6 +47,8 @@ namespace PatientDatabase
             picPatientPicture.SizeMode = PictureBoxSizeMode.AutoSize;
         }
 
+        // loads patient image from database
+        // image is in binary format -- converts it to image using memory stream
         private Image getPatientProfileImage()
         {
             byte[] imageHexCode = database.getPatientImage(patient).Image;
@@ -55,6 +58,7 @@ namespace PatientDatabase
             return image;
         }
 
+        // loads basic patient information
         private void loadPatientGeneralData(Panel panelGeneral)
         {
             DataGridView dgvPatientGeneralInfo = (DataGridView)commonUI.getControlFromPanel(panelGeneral, "dgvPatientGeneralInfo");
@@ -76,10 +80,261 @@ namespace PatientDatabase
 
         private void loadMedicalData(Panel panelMedicalData)
         {
-            ComboBox cboInterval = (ComboBox)commonUI.getControlFromPanel(panelMedicalData, "cboMedicalDataInterval");
-            DataGridView dgvMedicalData = (DataGridView)commonUI.getControlFromPanel(panelMedicalData, "dgvMedicalData");
+            TreeView tvMedicalData = (TreeView)commonUI.getControlFromPanel(panelMedicalData, "tvMedicalData");
+            tvMedicalData.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular);
+            loadMorphineEquivalentDose(tvMedicalData);
+            loadPastMedicalHistory(tvMedicalData);
+            loadPathology(tvMedicalData);
+            loadProblem(tvMedicalData);
+            loadSurgery(tvMedicalData);
+            loadTrauma(tvMedicalData);
+            loadTreatment(tvMedicalData);
+        }
+
+        private void loadMorphineEquivalentDose(TreeView tvMedicalData)
+        {
+            tvMedicalData.Nodes.Add("Morphine Equivalent Dose");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].ImageIndex = 0;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].SelectedImageIndex = 0;
+
+            List<PatientMedication> patientMedications = database.getPatientMedications(patient);
+
+            Dictionary<DateTime, MorphineEquivalentDose> patientDateMEDs = new Dictionary<DateTime, MorphineEquivalentDose>();
+
+            foreach (PatientMedication pm in patientMedications)
+            {
+                if (!patientDateMEDs.ContainsKey(pm.Start_Date))
+                {
+                    patientDateMEDs.Add(pm.Start_Date,
+                        new MorphineEquivalentDose(
+                            patient.getMorphineEquivalentDose(pm.Start_Date),
+                            patientMedications
+                            .Where(pm_ => pm_.Start_Date <= pm.Start_Date
+                            && pm_.End_Date > pm.Start_Date)
+                            .ToList()));
+                }
+                if (!patientDateMEDs.ContainsKey(pm.End_Date) && pm.End_Date <= DateTime.Now)
+                {
+                    patientDateMEDs.Add(pm.End_Date,
+                        new MorphineEquivalentDose(
+                            patient.getMorphineEquivalentDose(pm.End_Date),
+                            patientMedications
+                            .Where(pm_ => pm_.Start_Date <= pm.End_Date
+                            && pm_.End_Date > pm.End_Date)
+                            .ToList()));
+                }
+            }
+            List<PatientMorphineEquivalentDose> patientMEDs = new List<PatientMorphineEquivalentDose>();
+            foreach (KeyValuePair<DateTime, MorphineEquivalentDose> pdm in patientDateMEDs)
+            {
+                patientMEDs.Add(new PatientMorphineEquivalentDose(pdm.Key, pdm.Value));
+            }
+            patientMEDs = patientMEDs.OrderByDescending(pm => pm.Date).ToList();
+            foreach (PatientMorphineEquivalentDose pm in patientMEDs)
+            {
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add(pm.MED.MED + "mg - " + pm.Date.ToShortDateString());
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 0;
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 0;
+
+                foreach (PatientMedication pm_ in pm.MED.MakeUp)
+                {
+                    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.Nodes.Add(
+                        pm_.Medication.Name + " - " + pm_.Mg + "mg");
+                }
+
+                
+            }
 
 
+
+
+
+
+
+
+
+
+
+            //// start by adding current MED at this very moment
+            //tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add("Current");
+            //tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 0;
+            //tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 0;
+            //tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.Nodes.Add(
+            //    patient.getMorphineEquivalentDose(DateTime.Now) + "mg");
+            //tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.ImageIndex = 0;
+            //tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.SelectedImageIndex = 0;
+
+            //List<PatientMedication> patientCurrentMedications = database.getPatientMedications(patient)
+            //        .Where(pm => pm.Start_Date <= DateTime.Now && pm.End_Date >= DateTime.Now)
+            //        .ToList();
+
+            //foreach (PatientMedication pm in patientCurrentMedications)
+            //{
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.Nodes
+            //        .Add(pm.Medication.Name + " - " + pm.Mg + "mg");
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.LastNode.ImageIndex = 0;
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.LastNode.SelectedImageIndex = 0;
+            //}
+
+            //// later add MED breakdown into intervals from most recent to baseline
+            //DateTime baseDate = patient.Date_Entered_Into_System;
+
+            //LocalDate start = new LocalDate(baseDate.Year, baseDate.Month, baseDate.Day);
+            //LocalDate end = new LocalDate(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            //Period period = Period.Between(start, end, PeriodUnits.Months);
+            //int months = (int)period.Months;
+            //int monthIntervals = months / 3;
+
+            //DateTime intervalDate = baseDate.AddMonths(monthIntervals);
+            //for (int i = monthIntervals; i >= 0; i--)
+            //{
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add((i * 3) + " Months");
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 0;
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 0;
+
+
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.Nodes.Add(
+            //        patient.getMorphineEquivalentDose(intervalDate) + "mg"
+            //        );
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.ImageIndex = 0;
+            //    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.SelectedImageIndex = 0;
+
+            //    List<PatientMedication> patientMedications = database.getPatientMedications(patient)
+            //        .Where(pm => pm.Start_Date <= intervalDate && pm.End_Date >= intervalDate)
+            //        .ToList();
+
+            //    foreach (PatientMedication pm in patientMedications)
+            //    {
+            //        tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.Nodes
+            //            .Add(pm.Medication.Name + " - " + pm.Mg + "mg");
+            //        tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.ImageIndex = 0;
+            //        tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.LastNode.SelectedImageIndex = 0;
+
+            //    }
+            //    intervalDate.AddMonths(-3);
+            //}
+        }
+
+        private void loadPastMedicalHistory(TreeView tvMedicalData)
+        {
+            tvMedicalData.Nodes.Add("Past Medical History");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].ImageIndex = 1;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].SelectedImageIndex = 1;
+
+            List<PatientPast_Medical_History> patientPMH = database.getPatientPastMedicalHistory(patient);
+
+            foreach (PatientPast_Medical_History pmh in patientPMH)
+            {
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add(
+                    pmh.Past_Medical_History.Name);
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 1;
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 1;
+
+            }
+        }
+
+        private void loadPathology(TreeView tvMedicalData)
+        {
+            tvMedicalData.Nodes.Add("Pathology");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].ImageIndex = 2;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].SelectedImageIndex = 2;
+
+            List<PatientPathology> patientPathology = database.getPatientPathology(patient);
+
+            foreach (PatientPathology pp in patientPathology)
+            {
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add(
+                    pp.Pathology.Name);
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 2;
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 2;
+            }
+        }
+
+        private void loadProblem(TreeView tvMedicalData)
+        {
+            tvMedicalData.Nodes.Add("Problem");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].ImageIndex = 3;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].SelectedImageIndex = 3;
+
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add("Primary");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 3;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 3;
+
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add("Other");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 3;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 3;
+
+
+            List<PatientProblem> patientProblem = database.getPatientProblem(patient);
+
+            foreach (PatientProblem pp in patientProblem)
+            {
+                if (pp.Primary == "Y")
+                {
+                    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes[0].Nodes.Add(
+                        pp.Problem.Name);
+                    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes[0].LastNode.ImageIndex = 3;
+                    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes[0].LastNode.SelectedImageIndex = 3;
+                }
+                else
+                {
+                    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add(
+                       pp.Problem.Name);
+                    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 3;
+                    tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 3;
+                }
+            }
+        }
+
+        private void loadSurgery(TreeView tvMedicalData)
+        {
+            tvMedicalData.Nodes.Add("Surgery");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].ImageIndex = 4;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].SelectedImageIndex = 4;
+
+            List<PatientSurgery> patientSurgery = database.getPatientSurgery(patient).OrderBy(ps => ps.Date_Received).ToList();
+
+            foreach (PatientSurgery ps in patientSurgery)
+            {
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add(
+                    ps.Surgery.Name + " - " + ps.Date_Received);
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 4;
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 4;
+            }
+        }
+
+        private void loadTrauma(TreeView tvMedicalData)
+        {
+            tvMedicalData.Nodes.Add("Trauma");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].ImageIndex = 5;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].SelectedImageIndex = 5;
+
+            List<PatientTrauma> patientTrauma = database.getPatientTrauma(patient);
+
+            foreach (PatientTrauma pp in patientTrauma)
+            {
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add(
+                    pp.Trauma.Name);
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 5;
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 5;
+            }
+        }
+
+        private void loadTreatment(TreeView tvMedicalData)
+        {
+            tvMedicalData.Nodes.Add("Treatment");
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].ImageIndex = 6;
+            tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].SelectedImageIndex = 6;
+
+            List<PatientTreatment> patientTreatment = database.getPatientTreatment(patient).OrderBy(pt => pt.Date_Received).ToList();
+
+            foreach (PatientTreatment pt in patientTreatment)
+            {
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].Nodes.Add(
+                    pt.Treatment.Name + " - " + pt.Date_Received);
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.ImageIndex = 6;
+                tvMedicalData.Nodes[tvMedicalData.Nodes.Count - 1].LastNode.SelectedImageIndex = 6;
+            }
         }
 
         private void loadChartData(Panel panelChart)

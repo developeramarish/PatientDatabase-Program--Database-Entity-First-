@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientSnapshot));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,8 +62,8 @@
             this.picPatientPicture = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMedicalData = new System.Windows.Forms.Panel();
-            this.cboMedicalDataInterval = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.tvMedicalData = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -76,9 +76,6 @@
             this.panelChart = new System.Windows.Forms.Panel();
             this.panelChartOutline = new System.Windows.Forms.Panel();
             this.chartOutcomeData = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dgvMedicalData = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelGeneral.SuspendLayout();
@@ -88,7 +85,6 @@
             this.panelChart.SuspendLayout();
             this.panelChartOutline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicalData)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -150,21 +146,21 @@
             this.YAxisInterval20toolStripMenuItem.Checked = true;
             this.YAxisInterval20toolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.YAxisInterval20toolStripMenuItem.Name = "YAxisInterval20toolStripMenuItem";
-            this.YAxisInterval20toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval20toolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.YAxisInterval20toolStripMenuItem.Text = "20";
             this.YAxisInterval20toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval20toolStripMenuItem_Click);
             // 
             // YAxisInterval10toolStripMenuItem
             // 
             this.YAxisInterval10toolStripMenuItem.Name = "YAxisInterval10toolStripMenuItem";
-            this.YAxisInterval10toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval10toolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.YAxisInterval10toolStripMenuItem.Text = "10";
             this.YAxisInterval10toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval10toolStripMenuItem_Click);
             // 
             // YAxisInterval5toolStripMenuItem
             // 
             this.YAxisInterval5toolStripMenuItem.Name = "YAxisInterval5toolStripMenuItem";
-            this.YAxisInterval5toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YAxisInterval5toolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.YAxisInterval5toolStripMenuItem.Text = "5";
             this.YAxisInterval5toolStripMenuItem.Click += new System.EventHandler(this.YAxisInterval5toolStripMenuItem_Click);
             // 
@@ -192,7 +188,7 @@
             this.StandardWidthToolStripMenuItem,
             this.LargeWidthToolStripMenuItem});
             this.widthToolStripMenuItem.Name = "widthToolStripMenuItem";
-            this.widthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.widthToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.widthToolStripMenuItem.Text = "Width";
             // 
             // StandardWidthToolStripMenuItem
@@ -200,14 +196,14 @@
             this.StandardWidthToolStripMenuItem.Checked = true;
             this.StandardWidthToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.StandardWidthToolStripMenuItem.Name = "StandardWidthToolStripMenuItem";
-            this.StandardWidthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.StandardWidthToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.StandardWidthToolStripMenuItem.Text = "Standard";
             this.StandardWidthToolStripMenuItem.Click += new System.EventHandler(this.StandardWidthToolStripMenuItem_Click);
             // 
             // LargeWidthToolStripMenuItem
             // 
             this.LargeWidthToolStripMenuItem.Name = "LargeWidthToolStripMenuItem";
-            this.LargeWidthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LargeWidthToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.LargeWidthToolStripMenuItem.Text = "Large";
             this.LargeWidthToolStripMenuItem.Click += new System.EventHandler(this.LargeWidthToolStripMenuItem_Click);
             // 
@@ -217,7 +213,7 @@
             this.StandardHeightToolStripMenuItem,
             this.LargeHeightToolStripMenuItem});
             this.heightToolStripMenuItem.Name = "heightToolStripMenuItem";
-            this.heightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.heightToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.heightToolStripMenuItem.Text = "Height";
             // 
             // StandardHeightToolStripMenuItem
@@ -225,14 +221,14 @@
             this.StandardHeightToolStripMenuItem.Checked = true;
             this.StandardHeightToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.StandardHeightToolStripMenuItem.Name = "StandardHeightToolStripMenuItem";
-            this.StandardHeightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.StandardHeightToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.StandardHeightToolStripMenuItem.Text = "Standard";
             this.StandardHeightToolStripMenuItem.Click += new System.EventHandler(this.StandardHeightToolStripMenuItem_Click);
             // 
             // LargeHeightToolStripMenuItem
             // 
             this.LargeHeightToolStripMenuItem.Name = "LargeHeightToolStripMenuItem";
-            this.LargeHeightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LargeHeightToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.LargeHeightToolStripMenuItem.Text = "Large";
             this.LargeHeightToolStripMenuItem.Click += new System.EventHandler(this.LargeHeightToolStripMenuItem_Click);
             // 
@@ -302,14 +298,14 @@
             this.dgvPatientGeneralInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cInfoHeader,
             this.cInfo});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPatientGeneralInfo.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPatientGeneralInfo.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPatientGeneralInfo.Location = new System.Drawing.Point(3, 265);
             this.dgvPatientGeneralInfo.Name = "dgvPatientGeneralInfo";
             this.dgvPatientGeneralInfo.ReadOnly = true;
@@ -322,8 +318,8 @@
             // cInfoHeader
             // 
             this.cInfoHeader.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cInfoHeader.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cInfoHeader.DefaultCellStyle = dataGridViewCellStyle3;
             this.cInfoHeader.HeaderText = "";
             this.cInfoHeader.Name = "cInfoHeader";
             this.cInfoHeader.ReadOnly = true;
@@ -366,34 +362,35 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMedicalData.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelMedicalData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMedicalData.Controls.Add(this.dgvMedicalData);
-            this.panelMedicalData.Controls.Add(this.cboMedicalDataInterval);
-            this.panelMedicalData.Controls.Add(this.label6);
+            this.panelMedicalData.Controls.Add(this.tvMedicalData);
             this.panelMedicalData.Location = new System.Drawing.Point(1052, 85);
             this.panelMedicalData.Name = "panelMedicalData";
             this.panelMedicalData.Size = new System.Drawing.Size(273, 571);
             this.panelMedicalData.TabIndex = 31;
             // 
-            // cboMedicalDataInterval
+            // tvMedicalData
             // 
-            this.cboMedicalDataInterval.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cboMedicalDataInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboMedicalDataInterval.FormattingEnabled = true;
-            this.cboMedicalDataInterval.Location = new System.Drawing.Point(74, 5);
-            this.cboMedicalDataInterval.Name = "cboMedicalDataInterval";
-            this.cboMedicalDataInterval.Size = new System.Drawing.Size(194, 28);
-            this.cboMedicalDataInterval.TabIndex = 2;
+            this.tvMedicalData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tvMedicalData.ImageIndex = 0;
+            this.tvMedicalData.ImageList = this.imageList1;
+            this.tvMedicalData.Location = new System.Drawing.Point(3, 3);
+            this.tvMedicalData.Name = "tvMedicalData";
+            this.tvMedicalData.SelectedImageIndex = 0;
+            this.tvMedicalData.Size = new System.Drawing.Size(265, 563);
+            this.tvMedicalData.TabIndex = 0;
             // 
-            // label6
+            // imageList1
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 8);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 20);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Interval:";
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "blue.png");
+            this.imageList1.Images.SetKeyName(1, "green.png");
+            this.imageList1.Images.SetKeyName(2, "orange.png");
+            this.imageList1.Images.SetKeyName(3, "purple.png");
+            this.imageList1.Images.SetKeyName(4, "red.png");
+            this.imageList1.Images.SetKeyName(5, "yellow.png");
+            this.imageList1.Images.SetKeyName(6, "lightblue.png");
             // 
             // label5
             // 
@@ -535,75 +532,21 @@
             // 
             // chartOutcomeData
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartOutcomeData.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chartOutcomeData.ChartAreas.Add(chartArea2);
             this.chartOutcomeData.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartOutcomeData.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chartOutcomeData.Legends.Add(legend2);
             this.chartOutcomeData.Location = new System.Drawing.Point(0, 0);
             this.chartOutcomeData.MinimumSize = new System.Drawing.Size(747, 409);
             this.chartOutcomeData.Name = "chartOutcomeData";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartOutcomeData.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartOutcomeData.Series.Add(series2);
             this.chartOutcomeData.Size = new System.Drawing.Size(747, 409);
             this.chartOutcomeData.TabIndex = 0;
             this.chartOutcomeData.Text = "chart1";
-            // 
-            // dgvMedicalData
-            // 
-            this.dgvMedicalData.AllowUserToAddRows = false;
-            this.dgvMedicalData.AllowUserToDeleteRows = false;
-            this.dgvMedicalData.AllowUserToResizeColumns = false;
-            this.dgvMedicalData.AllowUserToResizeRows = false;
-            this.dgvMedicalData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvMedicalData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dgvMedicalData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dgvMedicalData.BackgroundColor = System.Drawing.Color.White;
-            this.dgvMedicalData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgvMedicalData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMedicalData.ColumnHeadersVisible = false;
-            this.dgvMedicalData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMedicalData.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvMedicalData.Location = new System.Drawing.Point(3, 39);
-            this.dgvMedicalData.Name = "dgvMedicalData";
-            this.dgvMedicalData.ReadOnly = true;
-            this.dgvMedicalData.RowHeadersVisible = false;
-            this.dgvMedicalData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMedicalData.Size = new System.Drawing.Size(265, 527);
-            this.dgvMedicalData.TabIndex = 3;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn1.HeaderText = "";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 5;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn2.HeaderText = "";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 5;
             // 
             // PatientSnapshot
             // 
@@ -632,12 +575,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatientGeneralInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPatientPicture)).EndInit();
             this.panelMedicalData.ResumeLayout(false);
-            this.panelMedicalData.PerformLayout();
             this.panelChart.ResumeLayout(false);
             this.panelChart.PerformLayout();
             this.panelChartOutline.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartOutcomeData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicalData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -665,8 +606,6 @@
         private System.Windows.Forms.Panel panelChart;
         private System.Windows.Forms.Panel panelChartOutline;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartOutcomeData;
-        private System.Windows.Forms.ComboBox cboMedicalDataInterval;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picPatientPicture;
         private System.Windows.Forms.DataGridView dgvPatientGeneralInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cInfoHeader;
@@ -686,8 +625,7 @@
         private System.Windows.Forms.ToolStripMenuItem heightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StandardHeightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LargeHeightToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dgvMedicalData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.TreeView tvMedicalData;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

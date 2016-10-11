@@ -161,6 +161,7 @@
           <Property Name="TreatmentID" Type="int" Nullable="false" />
           <Property Name="Start Date" Type="date" Nullable="false" />
           <Property Name="End Date" Type="date" Nullable="false" />
+          <Property Name="Date_Received" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Problem">
           <Key>
@@ -896,6 +897,7 @@
           <NavigationProperty Name="Treatment" Relationship="PatientDatabaseModel.FK_PatientTreatment_ToTreatment" FromRole="PatientTreatment" ToRole="Treatment" />
           <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_Received" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Problem">
           <Key>
@@ -1341,6 +1343,7 @@
           <EntitySetMapping Name="PatientTreatments">
             <EntityTypeMapping TypeName="PatientDatabaseModel.PatientTreatment">
               <MappingFragment StoreEntitySet="PatientTreatment">
+                <ScalarProperty Name="Date_Received" ColumnName="Date_Received" />
                 <ScalarProperty Name="End_Date" ColumnName="End Date" />
                 <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
                 <ScalarProperty Name="TreatmentID" ColumnName="TreatmentID" />

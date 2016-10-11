@@ -60,7 +60,9 @@ namespace PatientDatabase
             chart.ChartAreas[0].AxisX.IsMarginVisible = false;
             chart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
             chart.ChartAreas[0].AxisY.Interval = YAxisInterval;
-        }
+            chart.Legends[0].MaximumAutoSize = 25;
+            chart.Legends[0].Font = new Font("Microsoft Sans Serif", 12, FontStyle.Regular);
+    }
 
         // shows or hide grid lines on chart
         public void setGridLines(Chart chart)
