@@ -102,6 +102,12 @@
     <Compile Include="Query Builder\Data Manipulation\Graph\ChartDataSettings.cs" />
     <Compile Include="Query Builder\Data Manipulation\Graph\GraphType.cs" />
     <Compile Include="Query Builder\Data Manipulation\Graph\LineGraph.cs" />
+    <Compile Include="QueryBuilderRedux.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryBuilderRedux.Designer.cs">
+      <DependentUpon>QueryBuilderRedux.cs</DependentUpon>
+    </Compile>
     <Compile Include="Snapshot\PatientSnapshot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +284,9 @@
     <EmbeddedResource Include="AnalyzeQueryData.resx">
       <DependentUpon>AnalyzeQueryData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QueryBuilderRedux.resx">
+      <DependentUpon>QueryBuilderRedux.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Snapshot\PatientSnapshot.resx">
       <DependentUpon>PatientSnapshot.cs</DependentUpon>
     </EmbeddedResource>
@@ -313,6 +322,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Query Builder\QueryBuilder.resx">
       <DependentUpon>QueryBuilder.cs</DependentUpon>
@@ -356,6 +366,9 @@
       <DependentUpon>PatientsModel.edmx</DependentUpon>
       <LastGenOutput>PatientsModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\information.png" />
+    <None Include="Resources\redxmark.png" />
+    <None Include="Resources\checkmark.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

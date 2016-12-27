@@ -47,3 +47,4 @@ C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Pr
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\bin\Debug\NodaTime.Testing.xml
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.TestQueryBuilder.resources
 C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.AnalyzeQueryData.resources
+C:\Users\Owner\Documents\Programming\Projects\Applications\C#\PatientDatabase Program (Database Entity First)\PatientDatabase\PatientDatabase\obj\Debug\PatientDatabase.QueryBuilderRedux.resources

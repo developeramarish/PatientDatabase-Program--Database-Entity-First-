@@ -28,7 +28,8 @@ namespace PatientDatabase
 
         private void btnPatientProfiles_Click(object sender, EventArgs e)
         {
-            logic.loadPatientProfilePreSelectionForm(this);
+            //logic.loadPatientProfilePreSelectionForm(this);
+            TestQueryBuilder tqb = new TestQueryBuilder(); tqb.Show(); this.Close();
         }
 
         private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
